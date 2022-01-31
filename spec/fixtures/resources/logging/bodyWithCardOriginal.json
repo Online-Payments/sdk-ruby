@@ -1,0 +1,22 @@
+{
+	"order": {
+		"amountOfMoney": {
+			"currencyCode": "EUR",
+			"amount": 2345
+		},
+		"customer": {
+			"billingAddress": {
+				"countryCode": "BE"
+			}
+		}
+	},
+	"cardPaymentMethodSpecificInput": {
+		"paymentProductId": 1,
+		"card": {
+			"cardholderName": "Wile E. Coyote",
+			"cvv": "123",
+			"cardNumber": "1234567890123456",
+			"expiryDate": "1230"
+		}
+	}
+}

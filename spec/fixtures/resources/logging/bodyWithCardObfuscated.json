@@ -1,0 +1,22 @@
+{
+	"order": {
+		"amountOfMoney": {
+			"currencyCode": "EUR",
+			"amount": 2345
+		},
+		"customer": {
+			"billingAddress": {
+				"countryCode": "BE"
+			}
+		}
+	},
+	"cardPaymentMethodSpecificInput": {
+		"paymentProductId": 1,
+		"card": {
+			"cardholderName": "*14",
+			"cvv": "*3",
+			"cardNumber": "*16",
+			"expiryDate": "*4"
+		}
+	}
+}

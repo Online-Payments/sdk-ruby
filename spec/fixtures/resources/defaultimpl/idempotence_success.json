@@ -1,0 +1,39 @@
+{
+	"creationOutput": {
+		"additionalReference": "00000200002014254946",
+		"externalReference": "000002000020142549460000100001"
+	},
+	"payment": {
+		"id": "000002000020142549460000100001",
+		"paymentOutput": {
+			"amountOfMoney": {
+				"amount": 2345,
+				"currencyCode": "EUR"
+			},
+			"references": {
+				"paymentReference": "0"
+			},
+			"paymentMethod": "card",
+			"cardPaymentMethodSpecificOutput": {
+				"paymentProductId": 1,
+				"authorisationCode": "OK1131",
+				"card": {
+					"cardNumber": "************9176",
+					"expiryDate": "1230"
+				},
+				"fraudResults": {
+					"fraudServiceResult": "error",
+					"avsResult": "X",
+					"cvvResult": "M"
+				}
+			}
+		},
+		"status": "PENDING_CAPTURE",
+		"statusOutput": {
+			"isCancellable": true,
+			"statusCode": 5,
+			"statusCodeChangeDateTime": "20200101120000",
+			"isAuthorized": true
+		}
+	}
+}

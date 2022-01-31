@@ -1,0 +1,17 @@
+{
+	"order": {
+		"amountOfMoney": {
+			"currencyCode": "EUR",
+			"amount": 1000
+		},
+		"customer": {
+			"locale": "fr_BE",
+			"billingAddress": {
+				"countryCode": "BE"
+			}
+		}
+	},
+	"cardPaymentMethodSpecificInput": {
+		"paymentProductId": 1
+	}
+}
