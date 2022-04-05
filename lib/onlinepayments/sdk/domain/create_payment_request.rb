@@ -15,6 +15,7 @@ module OnlinePayments::SDK
     # @attr [OnlinePayments::SDK::Domain::CardPaymentMethodSpecificInput] card_payment_method_specific_input
     # @attr [String] encrypted_customer_input
     # @attr [OnlinePayments::SDK::Domain::FraudFields] fraud_fields
+    # @attr [String] hosted_tokenization_id
     # @attr [OnlinePayments::SDK::Domain::MobilePaymentMethodSpecificInput] mobile_payment_method_specific_input
     # @attr [OnlinePayments::SDK::Domain::Order] order
     # @attr [OnlinePayments::SDK::Domain::RedirectPaymentMethodSpecificInput] redirect_payment_method_specific_input
@@ -23,6 +24,7 @@ module OnlinePayments::SDK
       attr_accessor :card_payment_method_specific_input
       attr_accessor :encrypted_customer_input
       attr_accessor :fraud_fields
+      attr_accessor :hosted_tokenization_id
       attr_accessor :mobile_payment_method_specific_input
       attr_accessor :order
       attr_accessor :redirect_payment_method_specific_input
@@ -34,6 +36,7 @@ module OnlinePayments::SDK
         hash['cardPaymentMethodSpecificInput'] = @card_payment_method_specific_input.to_h if @card_payment_method_specific_input
         hash['encryptedCustomerInput'] = @encrypted_customer_input unless @encrypted_customer_input.nil?
         hash['fraudFields'] = @fraud_fields.to_h if @fraud_fields
+        hash['hostedTokenizationId'] = @hosted_tokenization_id unless @hosted_tokenization_id.nil?
         hash['mobilePaymentMethodSpecificInput'] = @mobile_payment_method_specific_input.to_h if @mobile_payment_method_specific_input
         hash['order'] = @order.to_h if @order
         hash['redirectPaymentMethodSpecificInput'] = @redirect_payment_method_specific_input.to_h if @redirect_payment_method_specific_input
@@ -52,6 +55,7 @@ module OnlinePayments::SDK
           raise TypeError, "value '%s' is not a Hash" % [hash['fraudFields']] unless hash['fraudFields'].is_a? Hash
           @fraud_fields = OnlinePayments::SDK::Domain::FraudFields.new_from_hash(hash['fraudFields'])
         end
+        @hosted_tokenization_id = hash['hostedTokenizationId'] if hash.key? 'hostedTokenizationId'
         if hash.key? 'mobilePaymentMethodSpecificInput'
           raise TypeError, "value '%s' is not a Hash" % [hash['mobilePaymentMethodSpecificInput']] unless hash['mobilePaymentMethodSpecificInput'].is_a? Hash
           @mobile_payment_method_specific_input = OnlinePayments::SDK::Domain::MobilePaymentMethodSpecificInput.new_from_hash(hash['mobilePaymentMethodSpecificInput'])
