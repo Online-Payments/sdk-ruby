@@ -8,6 +8,7 @@ module OnlinePayments::SDK
 
     # @attr [String] category
     # @attr [String] code
+    # @attr [String] error_code
     # @attr [Integer] http_status_code
     # @attr [String] id
     # @attr [String] message
@@ -15,6 +16,7 @@ module OnlinePayments::SDK
     class APIError < OnlinePayments::SDK::DataObject
       attr_accessor :category
       attr_accessor :code
+      attr_accessor :error_code
       attr_accessor :http_status_code
       attr_accessor :id
       attr_accessor :message
@@ -25,6 +27,7 @@ module OnlinePayments::SDK
         hash = super
         hash['category'] = @category unless @category.nil?
         hash['code'] = @code unless @code.nil?
+        hash['errorCode'] = @error_code unless @error_code.nil?
         hash['httpStatusCode'] = @http_status_code unless @http_status_code.nil?
         hash['id'] = @id unless @id.nil?
         hash['message'] = @message unless @message.nil?
@@ -36,6 +39,7 @@ module OnlinePayments::SDK
         super
         @category = hash['category'] if hash.key? 'category'
         @code = hash['code'] if hash.key? 'code'
+        @error_code = hash['errorCode'] if hash.key? 'errorCode'
         @http_status_code = hash['httpStatusCode'] if hash.key? 'httpStatusCode'
         @id = hash['id'] if hash.key? 'id'
         @message = hash['message'] if hash.key? 'message'
