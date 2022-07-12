@@ -3,6 +3,7 @@
 #
 require 'onlinepayments/sdk/api_resource'
 require 'onlinepayments/sdk/response_exception'
+require 'onlinepayments/sdk/domain/cancel_payment_request'
 require 'onlinepayments/sdk/domain/cancel_payment_response'
 require 'onlinepayments/sdk/domain/capture_payment_request'
 require 'onlinepayments/sdk/domain/capture_response'
@@ -128,6 +129,7 @@ module OnlinePayments::SDK
 
         # Resource /v2/!{merchantId}/payments/!{paymentId}/cancel
         # @param payment_id [String]
+        # @param body       [OnlinePayments::SDK::Domain::CancelPaymentRequest]
         # @param context    [OnlinePayments::SDK::CallContext]
         # @return [OnlinePayments::SDK::Domain::CancelPaymentResponse]
         # @raise [OnlinePayments::SDK::ValidationException] if the request was not correct and couldn't be processed (HTTP status code 400)
@@ -139,7 +141,7 @@ module OnlinePayments::SDK
         #        the payment platform was unable to process a message from a downstream partner/acquirer,
         #        or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
         # @raise [OnlinePayments::SDK::ApiException]if the payment platform returned any other error
-        def cancel_payment(payment_id, context = nil)
+        def cancel_payment(payment_id, body = nil, context = nil)
           path_context = {
             'paymentId'.freeze => payment_id,
           }
@@ -148,7 +150,7 @@ module OnlinePayments::SDK
             uri,
             client_headers,
             nil,
-            nil,
+            body,
             OnlinePayments::SDK::Domain::CancelPaymentResponse,
             context
           )
