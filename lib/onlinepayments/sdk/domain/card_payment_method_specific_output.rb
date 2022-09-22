@@ -18,6 +18,7 @@ module OnlinePayments::SDK
     # @attr [String] initial_scheme_transaction_id
     # @attr [String] payment_option
     # @attr [Integer] payment_product_id
+    # @attr [String] scheme_reference_data
     # @attr [OnlinePayments::SDK::Domain::ThreeDSecureResults] three_d_secure_results
     # @attr [String] token
     class CardPaymentMethodSpecificOutput < OnlinePayments::SDK::DataObject
@@ -29,6 +30,7 @@ module OnlinePayments::SDK
       attr_accessor :initial_scheme_transaction_id
       attr_accessor :payment_option
       attr_accessor :payment_product_id
+      attr_accessor :scheme_reference_data
       attr_accessor :three_d_secure_results
       attr_accessor :token
 
@@ -43,6 +45,7 @@ module OnlinePayments::SDK
         hash['initialSchemeTransactionId'] = @initial_scheme_transaction_id unless @initial_scheme_transaction_id.nil?
         hash['paymentOption'] = @payment_option unless @payment_option.nil?
         hash['paymentProductId'] = @payment_product_id unless @payment_product_id.nil?
+        hash['schemeReferenceData'] = @scheme_reference_data unless @scheme_reference_data.nil?
         hash['threeDSecureResults'] = @three_d_secure_results.to_h if @three_d_secure_results
         hash['token'] = @token unless @token.nil?
         hash
@@ -67,6 +70,7 @@ module OnlinePayments::SDK
         @initial_scheme_transaction_id = hash['initialSchemeTransactionId'] if hash.key? 'initialSchemeTransactionId'
         @payment_option = hash['paymentOption'] if hash.key? 'paymentOption'
         @payment_product_id = hash['paymentProductId'] if hash.key? 'paymentProductId'
+        @scheme_reference_data = hash['schemeReferenceData'] if hash.key? 'schemeReferenceData'
         if hash.key? 'threeDSecureResults'
           raise TypeError, "value '%s' is not a Hash" % [hash['threeDSecureResults']] unless hash['threeDSecureResults'].is_a? Hash
           @three_d_secure_results = OnlinePayments::SDK::Domain::ThreeDSecureResults.new_from_hash(hash['threeDSecureResults'])
