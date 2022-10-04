@@ -12,6 +12,7 @@ require 'onlinepayments/sdk/domain/sepa_direct_debit_payment_method_specific_out
 module OnlinePayments::SDK
   module Domain
 
+    # @attr [OnlinePayments::SDK::Domain::AmountOfMoney] acquired_amount
     # @attr [OnlinePayments::SDK::Domain::AmountOfMoney] amount_of_money
     # @attr [Long] amount_paid
     # @attr [OnlinePayments::SDK::Domain::CardPaymentMethodSpecificOutput] card_payment_method_specific_output
@@ -22,6 +23,7 @@ module OnlinePayments::SDK
     # @attr [OnlinePayments::SDK::Domain::PaymentReferences] references
     # @attr [OnlinePayments::SDK::Domain::SepaDirectDebitPaymentMethodSpecificOutput] sepa_direct_debit_payment_method_specific_output
     class CaptureOutput < OnlinePayments::SDK::DataObject
+      attr_accessor :acquired_amount
       attr_accessor :amount_of_money
       attr_accessor :amount_paid
       attr_accessor :card_payment_method_specific_output
@@ -35,6 +37,7 @@ module OnlinePayments::SDK
       # @return (Hash)
       def to_h
         hash = super
+        hash['acquiredAmount'] = @acquired_amount.to_h if @acquired_amount
         hash['amountOfMoney'] = @amount_of_money.to_h if @amount_of_money
         hash['amountPaid'] = @amount_paid unless @amount_paid.nil?
         hash['cardPaymentMethodSpecificOutput'] = @card_payment_method_specific_output.to_h if @card_payment_method_specific_output
@@ -49,6 +52,10 @@ module OnlinePayments::SDK
 
       def from_hash(hash)
         super
+        if hash.key? 'acquiredAmount'
+          raise TypeError, "value '%s' is not a Hash" % [hash['acquiredAmount']] unless hash['acquiredAmount'].is_a? Hash
+          @acquired_amount = OnlinePayments::SDK::Domain::AmountOfMoney.new_from_hash(hash['acquiredAmount'])
+        end
         if hash.key? 'amountOfMoney'
           raise TypeError, "value '%s' is not a Hash" % [hash['amountOfMoney']] unless hash['amountOfMoney'].is_a? Hash
           @amount_of_money = OnlinePayments::SDK::Domain::AmountOfMoney.new_from_hash(hash['amountOfMoney'])

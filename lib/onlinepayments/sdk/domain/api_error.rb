@@ -13,6 +13,7 @@ module OnlinePayments::SDK
     # @attr [String] id
     # @attr [String] message
     # @attr [String] property_name
+    # @attr [true/false] retriable
     class APIError < OnlinePayments::SDK::DataObject
       attr_accessor :category
       attr_accessor :code
@@ -21,6 +22,7 @@ module OnlinePayments::SDK
       attr_accessor :id
       attr_accessor :message
       attr_accessor :property_name
+      attr_accessor :retriable
 
       # @return (Hash)
       def to_h
@@ -32,6 +34,7 @@ module OnlinePayments::SDK
         hash['id'] = @id unless @id.nil?
         hash['message'] = @message unless @message.nil?
         hash['propertyName'] = @property_name unless @property_name.nil?
+        hash['retriable'] = @retriable unless @retriable.nil?
         hash
       end
 
@@ -44,6 +47,7 @@ module OnlinePayments::SDK
         @id = hash['id'] if hash.key? 'id'
         @message = hash['message'] if hash.key? 'message'
         @property_name = hash['propertyName'] if hash.key? 'propertyName'
+        @retriable = hash['retriable'] if hash.key? 'retriable'
       end
     end
   end

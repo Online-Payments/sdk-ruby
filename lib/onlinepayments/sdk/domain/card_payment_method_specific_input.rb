@@ -12,6 +12,8 @@ module OnlinePayments::SDK
 
     # @attr [String] authorization_mode
     # @attr [OnlinePayments::SDK::Domain::Card] card
+    # @attr [String] card_on_file_recurring_expiration
+    # @attr [String] card_on_file_recurring_frequency
     # @attr [String] initial_scheme_transaction_id
     # @attr [true/false] is_recurring
     # @attr [OnlinePayments::SDK::Domain::PaymentProduct130SpecificInput] payment_product130_specific_input
@@ -29,6 +31,8 @@ module OnlinePayments::SDK
     class CardPaymentMethodSpecificInput < OnlinePayments::SDK::DataObject
       attr_accessor :authorization_mode
       attr_accessor :card
+      attr_accessor :card_on_file_recurring_expiration
+      attr_accessor :card_on_file_recurring_frequency
       attr_accessor :initial_scheme_transaction_id
       attr_accessor :is_recurring
       attr_accessor :payment_product130_specific_input
@@ -49,6 +53,8 @@ module OnlinePayments::SDK
         hash = super
         hash['authorizationMode'] = @authorization_mode unless @authorization_mode.nil?
         hash['card'] = @card.to_h if @card
+        hash['cardOnFileRecurringExpiration'] = @card_on_file_recurring_expiration unless @card_on_file_recurring_expiration.nil?
+        hash['cardOnFileRecurringFrequency'] = @card_on_file_recurring_frequency unless @card_on_file_recurring_frequency.nil?
         hash['initialSchemeTransactionId'] = @initial_scheme_transaction_id unless @initial_scheme_transaction_id.nil?
         hash['isRecurring'] = @is_recurring unless @is_recurring.nil?
         hash['paymentProduct130SpecificInput'] = @payment_product130_specific_input.to_h if @payment_product130_specific_input
@@ -73,6 +79,8 @@ module OnlinePayments::SDK
           raise TypeError, "value '%s' is not a Hash" % [hash['card']] unless hash['card'].is_a? Hash
           @card = OnlinePayments::SDK::Domain::Card.new_from_hash(hash['card'])
         end
+        @card_on_file_recurring_expiration = hash['cardOnFileRecurringExpiration'] if hash.key? 'cardOnFileRecurringExpiration'
+        @card_on_file_recurring_frequency = hash['cardOnFileRecurringFrequency'] if hash.key? 'cardOnFileRecurringFrequency'
         @initial_scheme_transaction_id = hash['initialSchemeTransactionId'] if hash.key? 'initialSchemeTransactionId'
         @is_recurring = hash['isRecurring'] if hash.key? 'isRecurring'
         if hash.key? 'paymentProduct130SpecificInput'
