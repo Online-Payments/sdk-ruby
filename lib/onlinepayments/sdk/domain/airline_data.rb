@@ -11,6 +11,7 @@ module OnlinePayments::SDK
     # @attr [String] agent_numeric_code
     # @attr [String] code
     # @attr [String] flight_date
+    # @attr [String] flight_indicator
     # @attr [Array<OnlinePayments::SDK::Domain::AirlineFlightLeg>] flight_legs
     # @attr [String] invoice_number
     # @attr [true/false] is_e_ticket
@@ -25,6 +26,7 @@ module OnlinePayments::SDK
     # @attr [String] pnr
     # @attr [String] point_of_sale
     # @attr [String] pos_city_code
+    # @attr [String] ticket_currency
     # @attr [String] ticket_delivery_method
     # @attr [String] ticket_number
     # @attr [Integer] total_fare
@@ -35,6 +37,7 @@ module OnlinePayments::SDK
       attr_accessor :agent_numeric_code
       attr_accessor :code
       attr_accessor :flight_date
+      attr_accessor :flight_indicator
       attr_accessor :flight_legs
       attr_accessor :invoice_number
       attr_accessor :is_e_ticket
@@ -49,6 +52,7 @@ module OnlinePayments::SDK
       attr_accessor :pnr
       attr_accessor :point_of_sale
       attr_accessor :pos_city_code
+      attr_accessor :ticket_currency
       attr_accessor :ticket_delivery_method
       attr_accessor :ticket_number
       attr_accessor :total_fare
@@ -62,6 +66,7 @@ module OnlinePayments::SDK
         hash['agentNumericCode'] = @agent_numeric_code unless @agent_numeric_code.nil?
         hash['code'] = @code unless @code.nil?
         hash['flightDate'] = @flight_date unless @flight_date.nil?
+        hash['flightIndicator'] = @flight_indicator unless @flight_indicator.nil?
         hash['flightLegs'] = @flight_legs.collect(&:to_h) if @flight_legs
         hash['invoiceNumber'] = @invoice_number unless @invoice_number.nil?
         hash['isETicket'] = @is_e_ticket unless @is_e_ticket.nil?
@@ -76,6 +81,7 @@ module OnlinePayments::SDK
         hash['pnr'] = @pnr unless @pnr.nil?
         hash['pointOfSale'] = @point_of_sale unless @point_of_sale.nil?
         hash['posCityCode'] = @pos_city_code unless @pos_city_code.nil?
+        hash['ticketCurrency'] = @ticket_currency unless @ticket_currency.nil?
         hash['ticketDeliveryMethod'] = @ticket_delivery_method unless @ticket_delivery_method.nil?
         hash['ticketNumber'] = @ticket_number unless @ticket_number.nil?
         hash['totalFare'] = @total_fare unless @total_fare.nil?
@@ -90,6 +96,7 @@ module OnlinePayments::SDK
         @agent_numeric_code = hash['agentNumericCode'] if hash.key? 'agentNumericCode'
         @code = hash['code'] if hash.key? 'code'
         @flight_date = hash['flightDate'] if hash.key? 'flightDate'
+        @flight_indicator = hash['flightIndicator'] if hash.key? 'flightIndicator'
         if hash.key? 'flightLegs'
           raise TypeError, "value '%s' is not an Array" % [hash['flightLegs']] unless hash['flightLegs'].is_a? Array
           @flight_legs = []
@@ -116,6 +123,7 @@ module OnlinePayments::SDK
         @pnr = hash['pnr'] if hash.key? 'pnr'
         @point_of_sale = hash['pointOfSale'] if hash.key? 'pointOfSale'
         @pos_city_code = hash['posCityCode'] if hash.key? 'posCityCode'
+        @ticket_currency = hash['ticketCurrency'] if hash.key? 'ticketCurrency'
         @ticket_delivery_method = hash['ticketDeliveryMethod'] if hash.key? 'ticketDeliveryMethod'
         @ticket_number = hash['ticketNumber'] if hash.key? 'ticketNumber'
         @total_fare = hash['totalFare'] if hash.key? 'totalFare'
