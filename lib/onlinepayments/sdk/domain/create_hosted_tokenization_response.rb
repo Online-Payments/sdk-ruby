@@ -8,11 +8,13 @@ module OnlinePayments::SDK
 
     # @attr [Array<String>] expired_card_tokens
     # @attr [String] hosted_tokenization_id
+    # @attr [String] hosted_tokenization_url
     # @attr [Array<String>] invalid_tokens
     # @attr [String] partial_redirect_url
     class CreateHostedTokenizationResponse < OnlinePayments::SDK::DataObject
       attr_accessor :expired_card_tokens
       attr_accessor :hosted_tokenization_id
+      attr_accessor :hosted_tokenization_url
       attr_accessor :invalid_tokens
       attr_accessor :partial_redirect_url
 
@@ -21,6 +23,7 @@ module OnlinePayments::SDK
         hash = super
         hash['expiredCardTokens'] = @expired_card_tokens unless @expired_card_tokens.nil?
         hash['hostedTokenizationId'] = @hosted_tokenization_id unless @hosted_tokenization_id.nil?
+        hash['hostedTokenizationUrl'] = @hosted_tokenization_url unless @hosted_tokenization_url.nil?
         hash['invalidTokens'] = @invalid_tokens unless @invalid_tokens.nil?
         hash['partialRedirectUrl'] = @partial_redirect_url unless @partial_redirect_url.nil?
         hash
@@ -36,6 +39,7 @@ module OnlinePayments::SDK
           end
         end
         @hosted_tokenization_id = hash['hostedTokenizationId'] if hash.key? 'hostedTokenizationId'
+        @hosted_tokenization_url = hash['hostedTokenizationUrl'] if hash.key? 'hostedTokenizationUrl'
         if hash.key? 'invalidTokens'
           raise TypeError, "value '%s' is not an Array" % [hash['invalidTokens']] unless hash['invalidTokens'].is_a? Array
           @invalid_tokens = []
