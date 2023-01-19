@@ -10,6 +10,7 @@ require 'onlinepayments/sdk/domain/three_d_secure'
 module OnlinePayments::SDK
   module Domain
 
+    # @attr [true/false] allow_dynamic_linking
     # @attr [String] authorization_mode
     # @attr [OnlinePayments::SDK::Domain::Card] card
     # @attr [String] card_on_file_recurring_expiration
@@ -29,6 +30,7 @@ module OnlinePayments::SDK
     # @attr [String] unscheduled_card_on_file_requestor
     # @attr [String] unscheduled_card_on_file_sequence_indicator
     class CardPaymentMethodSpecificInput < OnlinePayments::SDK::DataObject
+      attr_accessor :allow_dynamic_linking
       attr_accessor :authorization_mode
       attr_accessor :card
       attr_accessor :card_on_file_recurring_expiration
@@ -51,6 +53,7 @@ module OnlinePayments::SDK
       # @return (Hash)
       def to_h
         hash = super
+        hash['allowDynamicLinking'] = @allow_dynamic_linking unless @allow_dynamic_linking.nil?
         hash['authorizationMode'] = @authorization_mode unless @authorization_mode.nil?
         hash['card'] = @card.to_h if @card
         hash['cardOnFileRecurringExpiration'] = @card_on_file_recurring_expiration unless @card_on_file_recurring_expiration.nil?
@@ -74,6 +77,7 @@ module OnlinePayments::SDK
 
       def from_hash(hash)
         super
+        @allow_dynamic_linking = hash['allowDynamicLinking'] if hash.key? 'allowDynamicLinking'
         @authorization_mode = hash['authorizationMode'] if hash.key? 'authorizationMode'
         if hash.key? 'card'
           raise TypeError, "value '%s' is not a Hash" % [hash['card']] unless hash['card'].is_a? Hash

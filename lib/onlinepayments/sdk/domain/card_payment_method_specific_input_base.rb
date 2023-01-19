@@ -10,6 +10,7 @@ require 'onlinepayments/sdk/domain/three_d_secure_base'
 module OnlinePayments::SDK
   module Domain
 
+    # @attr [true/false] allow_dynamic_linking
     # @attr [String] authorization_mode
     # @attr [String] initial_scheme_transaction_id
     # @attr [OnlinePayments::SDK::Domain::PaymentProduct130SpecificInput] payment_product130_specific_input
@@ -23,6 +24,7 @@ module OnlinePayments::SDK
     # @attr [String] unscheduled_card_on_file_requestor
     # @attr [String] unscheduled_card_on_file_sequence_indicator
     class CardPaymentMethodSpecificInputBase < OnlinePayments::SDK::DataObject
+      attr_accessor :allow_dynamic_linking
       attr_accessor :authorization_mode
       attr_accessor :initial_scheme_transaction_id
       attr_accessor :payment_product130_specific_input
@@ -39,6 +41,7 @@ module OnlinePayments::SDK
       # @return (Hash)
       def to_h
         hash = super
+        hash['allowDynamicLinking'] = @allow_dynamic_linking unless @allow_dynamic_linking.nil?
         hash['authorizationMode'] = @authorization_mode unless @authorization_mode.nil?
         hash['initialSchemeTransactionId'] = @initial_scheme_transaction_id unless @initial_scheme_transaction_id.nil?
         hash['paymentProduct130SpecificInput'] = @payment_product130_specific_input.to_h if @payment_product130_specific_input
@@ -56,6 +59,7 @@ module OnlinePayments::SDK
 
       def from_hash(hash)
         super
+        @allow_dynamic_linking = hash['allowDynamicLinking'] if hash.key? 'allowDynamicLinking'
         @authorization_mode = hash['authorizationMode'] if hash.key? 'authorizationMode'
         @initial_scheme_transaction_id = hash['initialSchemeTransactionId'] if hash.key? 'initialSchemeTransactionId'
         if hash.key? 'paymentProduct130SpecificInput'

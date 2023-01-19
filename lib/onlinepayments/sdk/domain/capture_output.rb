@@ -8,6 +8,7 @@ require 'onlinepayments/sdk/domain/mobile_payment_method_specific_output'
 require 'onlinepayments/sdk/domain/payment_references'
 require 'onlinepayments/sdk/domain/redirect_payment_method_specific_output'
 require 'onlinepayments/sdk/domain/sepa_direct_debit_payment_method_specific_output'
+require 'onlinepayments/sdk/domain/surcharge_specific_output'
 
 module OnlinePayments::SDK
   module Domain
@@ -22,6 +23,7 @@ module OnlinePayments::SDK
     # @attr [OnlinePayments::SDK::Domain::RedirectPaymentMethodSpecificOutput] redirect_payment_method_specific_output
     # @attr [OnlinePayments::SDK::Domain::PaymentReferences] references
     # @attr [OnlinePayments::SDK::Domain::SepaDirectDebitPaymentMethodSpecificOutput] sepa_direct_debit_payment_method_specific_output
+    # @attr [OnlinePayments::SDK::Domain::SurchargeSpecificOutput] surcharge_specific_output
     class CaptureOutput < OnlinePayments::SDK::DataObject
       attr_accessor :acquired_amount
       attr_accessor :amount_of_money
@@ -33,6 +35,7 @@ module OnlinePayments::SDK
       attr_accessor :redirect_payment_method_specific_output
       attr_accessor :references
       attr_accessor :sepa_direct_debit_payment_method_specific_output
+      attr_accessor :surcharge_specific_output
 
       # @return (Hash)
       def to_h
@@ -47,6 +50,7 @@ module OnlinePayments::SDK
         hash['redirectPaymentMethodSpecificOutput'] = @redirect_payment_method_specific_output.to_h if @redirect_payment_method_specific_output
         hash['references'] = @references.to_h if @references
         hash['sepaDirectDebitPaymentMethodSpecificOutput'] = @sepa_direct_debit_payment_method_specific_output.to_h if @sepa_direct_debit_payment_method_specific_output
+        hash['surchargeSpecificOutput'] = @surcharge_specific_output.to_h if @surcharge_specific_output
         hash
       end
 
@@ -82,6 +86,10 @@ module OnlinePayments::SDK
         if hash.key? 'sepaDirectDebitPaymentMethodSpecificOutput'
           raise TypeError, "value '%s' is not a Hash" % [hash['sepaDirectDebitPaymentMethodSpecificOutput']] unless hash['sepaDirectDebitPaymentMethodSpecificOutput'].is_a? Hash
           @sepa_direct_debit_payment_method_specific_output = OnlinePayments::SDK::Domain::SepaDirectDebitPaymentMethodSpecificOutput.new_from_hash(hash['sepaDirectDebitPaymentMethodSpecificOutput'])
+        end
+        if hash.key? 'surchargeSpecificOutput'
+          raise TypeError, "value '%s' is not a Hash" % [hash['surchargeSpecificOutput']] unless hash['surchargeSpecificOutput'].is_a? Hash
+          @surcharge_specific_output = OnlinePayments::SDK::Domain::SurchargeSpecificOutput.new_from_hash(hash['surchargeSpecificOutput'])
         end
       end
     end

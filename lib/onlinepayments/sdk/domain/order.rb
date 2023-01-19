@@ -8,6 +8,7 @@ require 'onlinepayments/sdk/domain/customer'
 require 'onlinepayments/sdk/domain/order_references'
 require 'onlinepayments/sdk/domain/shipping'
 require 'onlinepayments/sdk/domain/shopping_cart'
+require 'onlinepayments/sdk/domain/surcharge_specific_input'
 
 module OnlinePayments::SDK
   module Domain
@@ -18,6 +19,7 @@ module OnlinePayments::SDK
     # @attr [OnlinePayments::SDK::Domain::OrderReferences] references
     # @attr [OnlinePayments::SDK::Domain::Shipping] shipping
     # @attr [OnlinePayments::SDK::Domain::ShoppingCart] shopping_cart
+    # @attr [OnlinePayments::SDK::Domain::SurchargeSpecificInput] surcharge_specific_input
     class Order < OnlinePayments::SDK::DataObject
       attr_accessor :additional_input
       attr_accessor :amount_of_money
@@ -25,6 +27,7 @@ module OnlinePayments::SDK
       attr_accessor :references
       attr_accessor :shipping
       attr_accessor :shopping_cart
+      attr_accessor :surcharge_specific_input
 
       # @return (Hash)
       def to_h
@@ -35,6 +38,7 @@ module OnlinePayments::SDK
         hash['references'] = @references.to_h if @references
         hash['shipping'] = @shipping.to_h if @shipping
         hash['shoppingCart'] = @shopping_cart.to_h if @shopping_cart
+        hash['surchargeSpecificInput'] = @surcharge_specific_input.to_h if @surcharge_specific_input
         hash
       end
 
@@ -63,6 +67,10 @@ module OnlinePayments::SDK
         if hash.key? 'shoppingCart'
           raise TypeError, "value '%s' is not a Hash" % [hash['shoppingCart']] unless hash['shoppingCart'].is_a? Hash
           @shopping_cart = OnlinePayments::SDK::Domain::ShoppingCart.new_from_hash(hash['shoppingCart'])
+        end
+        if hash.key? 'surchargeSpecificInput'
+          raise TypeError, "value '%s' is not a Hash" % [hash['surchargeSpecificInput']] unless hash['surchargeSpecificInput'].is_a? Hash
+          @surcharge_specific_input = OnlinePayments::SDK::Domain::SurchargeSpecificInput.new_from_hash(hash['surchargeSpecificInput'])
         end
       end
     end
