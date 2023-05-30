@@ -8,6 +8,7 @@ require 'onlinepayments/sdk/domain/payment_product_filters_hosted_checkout'
 module OnlinePayments::SDK
   module Domain
 
+    # @attr [Integer] allowed_number_of_payment_attempts
     # @attr [OnlinePayments::SDK::Domain::CardPaymentMethodSpecificInputForHostedCheckout] card_payment_method_specific_input
     # @attr [true/false] is_recurring
     # @attr [String] locale
@@ -18,6 +19,7 @@ module OnlinePayments::SDK
     # @attr [String] tokens
     # @attr [String] variant
     class HostedCheckoutSpecificInput < OnlinePayments::SDK::DataObject
+      attr_accessor :allowed_number_of_payment_attempts
       attr_accessor :card_payment_method_specific_input
       attr_accessor :is_recurring
       attr_accessor :locale
@@ -31,6 +33,7 @@ module OnlinePayments::SDK
       # @return (Hash)
       def to_h
         hash = super
+        hash['allowedNumberOfPaymentAttempts'] = @allowed_number_of_payment_attempts unless @allowed_number_of_payment_attempts.nil?
         hash['cardPaymentMethodSpecificInput'] = @card_payment_method_specific_input.to_h if @card_payment_method_specific_input
         hash['isRecurring'] = @is_recurring unless @is_recurring.nil?
         hash['locale'] = @locale unless @locale.nil?
@@ -45,6 +48,7 @@ module OnlinePayments::SDK
 
       def from_hash(hash)
         super
+        @allowed_number_of_payment_attempts = hash['allowedNumberOfPaymentAttempts'] if hash.key? 'allowedNumberOfPaymentAttempts'
         if hash.key? 'cardPaymentMethodSpecificInput'
           raise TypeError, "value '%s' is not a Hash" % [hash['cardPaymentMethodSpecificInput']] unless hash['cardPaymentMethodSpecificInput'].is_a? Hash
           @card_payment_method_specific_input = OnlinePayments::SDK::Domain::CardPaymentMethodSpecificInputForHostedCheckout.new_from_hash(hash['cardPaymentMethodSpecificInput'])

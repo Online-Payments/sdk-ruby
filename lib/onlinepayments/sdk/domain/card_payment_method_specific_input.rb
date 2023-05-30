@@ -4,7 +4,10 @@
 require 'onlinepayments/sdk/data_object'
 require 'onlinepayments/sdk/domain/card'
 require 'onlinepayments/sdk/domain/card_recurrence_details'
+require 'onlinepayments/sdk/domain/currency_conversion_input'
 require 'onlinepayments/sdk/domain/payment_product130_specific_input'
+require 'onlinepayments/sdk/domain/payment_product3208_specific_input'
+require 'onlinepayments/sdk/domain/payment_product3209_specific_input'
 require 'onlinepayments/sdk/domain/three_d_secure'
 
 module OnlinePayments::SDK
@@ -15,9 +18,12 @@ module OnlinePayments::SDK
     # @attr [OnlinePayments::SDK::Domain::Card] card
     # @attr [String] card_on_file_recurring_expiration
     # @attr [String] card_on_file_recurring_frequency
+    # @attr [OnlinePayments::SDK::Domain::CurrencyConversionInput] currency_conversion
     # @attr [String] initial_scheme_transaction_id
     # @attr [true/false] is_recurring
     # @attr [OnlinePayments::SDK::Domain::PaymentProduct130SpecificInput] payment_product130_specific_input
+    # @attr [OnlinePayments::SDK::Domain::PaymentProduct3208SpecificInput] payment_product3208_specific_input
+    # @attr [OnlinePayments::SDK::Domain::PaymentProduct3209SpecificInput] payment_product3209_specific_input
     # @attr [Integer] payment_product_id
     # @attr [OnlinePayments::SDK::Domain::CardRecurrenceDetails] recurring
     # @attr [String] return_url
@@ -35,9 +41,12 @@ module OnlinePayments::SDK
       attr_accessor :card
       attr_accessor :card_on_file_recurring_expiration
       attr_accessor :card_on_file_recurring_frequency
+      attr_accessor :currency_conversion
       attr_accessor :initial_scheme_transaction_id
       attr_accessor :is_recurring
       attr_accessor :payment_product130_specific_input
+      attr_accessor :payment_product3208_specific_input
+      attr_accessor :payment_product3209_specific_input
       attr_accessor :payment_product_id
       attr_accessor :recurring
       attr_accessor :return_url
@@ -58,9 +67,12 @@ module OnlinePayments::SDK
         hash['card'] = @card.to_h if @card
         hash['cardOnFileRecurringExpiration'] = @card_on_file_recurring_expiration unless @card_on_file_recurring_expiration.nil?
         hash['cardOnFileRecurringFrequency'] = @card_on_file_recurring_frequency unless @card_on_file_recurring_frequency.nil?
+        hash['currencyConversion'] = @currency_conversion.to_h if @currency_conversion
         hash['initialSchemeTransactionId'] = @initial_scheme_transaction_id unless @initial_scheme_transaction_id.nil?
         hash['isRecurring'] = @is_recurring unless @is_recurring.nil?
         hash['paymentProduct130SpecificInput'] = @payment_product130_specific_input.to_h if @payment_product130_specific_input
+        hash['paymentProduct3208SpecificInput'] = @payment_product3208_specific_input.to_h if @payment_product3208_specific_input
+        hash['paymentProduct3209SpecificInput'] = @payment_product3209_specific_input.to_h if @payment_product3209_specific_input
         hash['paymentProductId'] = @payment_product_id unless @payment_product_id.nil?
         hash['recurring'] = @recurring.to_h if @recurring
         hash['returnUrl'] = @return_url unless @return_url.nil?
@@ -85,11 +97,23 @@ module OnlinePayments::SDK
         end
         @card_on_file_recurring_expiration = hash['cardOnFileRecurringExpiration'] if hash.key? 'cardOnFileRecurringExpiration'
         @card_on_file_recurring_frequency = hash['cardOnFileRecurringFrequency'] if hash.key? 'cardOnFileRecurringFrequency'
+        if hash.key? 'currencyConversion'
+          raise TypeError, "value '%s' is not a Hash" % [hash['currencyConversion']] unless hash['currencyConversion'].is_a? Hash
+          @currency_conversion = OnlinePayments::SDK::Domain::CurrencyConversionInput.new_from_hash(hash['currencyConversion'])
+        end
         @initial_scheme_transaction_id = hash['initialSchemeTransactionId'] if hash.key? 'initialSchemeTransactionId'
         @is_recurring = hash['isRecurring'] if hash.key? 'isRecurring'
         if hash.key? 'paymentProduct130SpecificInput'
           raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct130SpecificInput']] unless hash['paymentProduct130SpecificInput'].is_a? Hash
           @payment_product130_specific_input = OnlinePayments::SDK::Domain::PaymentProduct130SpecificInput.new_from_hash(hash['paymentProduct130SpecificInput'])
+        end
+        if hash.key? 'paymentProduct3208SpecificInput'
+          raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct3208SpecificInput']] unless hash['paymentProduct3208SpecificInput'].is_a? Hash
+          @payment_product3208_specific_input = OnlinePayments::SDK::Domain::PaymentProduct3208SpecificInput.new_from_hash(hash['paymentProduct3208SpecificInput'])
+        end
+        if hash.key? 'paymentProduct3209SpecificInput'
+          raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct3209SpecificInput']] unless hash['paymentProduct3209SpecificInput'].is_a? Hash
+          @payment_product3209_specific_input = OnlinePayments::SDK::Domain::PaymentProduct3209SpecificInput.new_from_hash(hash['paymentProduct3209SpecificInput'])
         end
         @payment_product_id = hash['paymentProductId'] if hash.key? 'paymentProductId'
         if hash.key? 'recurring'
