@@ -5,6 +5,7 @@ require 'onlinepayments/sdk/api_resource'
 require 'onlinepayments/sdk/merchant/hostedcheckout/hosted_checkout_client'
 require 'onlinepayments/sdk/merchant/hostedtokenization/hosted_tokenization_client'
 require 'onlinepayments/sdk/merchant/mandates/mandates_client'
+require 'onlinepayments/sdk/merchant/paymentlinks/payment_links_client'
 require 'onlinepayments/sdk/merchant/payments/payments_client'
 require 'onlinepayments/sdk/merchant/payouts/payouts_client'
 require 'onlinepayments/sdk/merchant/productgroups/product_groups_client'
@@ -41,6 +42,12 @@ module OnlinePayments::SDK
       # @return [OnlinePayments::SDK::Merchant::Mandates::MandatesClient]
       def mandates
         OnlinePayments::SDK::Merchant::Mandates::MandatesClient.new(self, nil)
+      end
+
+      # Resource /v2/!{merchantId}/paymentlinks
+      # @return [OnlinePayments::SDK::Merchant::PaymentLinks::PaymentLinksClient]
+      def payment_links
+        OnlinePayments::SDK::Merchant::PaymentLinks::PaymentLinksClient.new(self, nil)
       end
 
       # Resource /v2/!{merchantId}/payments

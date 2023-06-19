@@ -3,18 +3,22 @@
 #
 require 'onlinepayments/sdk/data_object'
 require 'onlinepayments/sdk/domain/payment_product5404'
+require 'onlinepayments/sdk/domain/payment_product5407'
 
 module OnlinePayments::SDK
   module Domain
 
     # @attr [OnlinePayments::SDK::Domain::PaymentProduct5404] payment_product5404
+    # @attr [OnlinePayments::SDK::Domain::PaymentProduct5407] payment_product5407
     class ShowFormData < OnlinePayments::SDK::DataObject
       attr_accessor :payment_product5404
+      attr_accessor :payment_product5407
 
       # @return (Hash)
       def to_h
         hash = super
         hash['paymentProduct5404'] = @payment_product5404.to_h if @payment_product5404
+        hash['paymentProduct5407'] = @payment_product5407.to_h if @payment_product5407
         hash
       end
 
@@ -23,6 +27,10 @@ module OnlinePayments::SDK
         if hash.key? 'paymentProduct5404'
           raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct5404']] unless hash['paymentProduct5404'].is_a? Hash
           @payment_product5404 = OnlinePayments::SDK::Domain::PaymentProduct5404.new_from_hash(hash['paymentProduct5404'])
+        end
+        if hash.key? 'paymentProduct5407'
+          raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct5407']] unless hash['paymentProduct5407'].is_a? Hash
+          @payment_product5407 = OnlinePayments::SDK::Domain::PaymentProduct5407.new_from_hash(hash['paymentProduct5407'])
         end
       end
     end
