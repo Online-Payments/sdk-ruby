@@ -2,6 +2,7 @@
 # This class was auto-generated.
 #
 require 'onlinepayments/sdk/data_object'
+require 'onlinepayments/sdk/domain/acquirer_information'
 require 'onlinepayments/sdk/domain/card_essentials'
 require 'onlinepayments/sdk/domain/card_fraud_results'
 require 'onlinepayments/sdk/domain/currency_conversion'
@@ -13,6 +14,7 @@ require 'onlinepayments/sdk/domain/three_d_secure_results'
 module OnlinePayments::SDK
   module Domain
 
+    # @attr [OnlinePayments::SDK::Domain::AcquirerInformation] acquirer_information
     # @attr [Long] authenticated_amount
     # @attr [String] authorisation_code
     # @attr [OnlinePayments::SDK::Domain::CardEssentials] card
@@ -28,6 +30,7 @@ module OnlinePayments::SDK
     # @attr [OnlinePayments::SDK::Domain::ThreeDSecureResults] three_d_secure_results
     # @attr [String] token
     class CardPaymentMethodSpecificOutput < OnlinePayments::SDK::DataObject
+      attr_accessor :acquirer_information
       attr_accessor :authenticated_amount
       attr_accessor :authorisation_code
       attr_accessor :card
@@ -46,6 +49,7 @@ module OnlinePayments::SDK
       # @return (Hash)
       def to_h
         hash = super
+        hash['acquirerInformation'] = @acquirer_information.to_h if @acquirer_information
         hash['authenticatedAmount'] = @authenticated_amount unless @authenticated_amount.nil?
         hash['authorisationCode'] = @authorisation_code unless @authorisation_code.nil?
         hash['card'] = @card.to_h if @card
@@ -65,6 +69,10 @@ module OnlinePayments::SDK
 
       def from_hash(hash)
         super
+        if hash.key? 'acquirerInformation'
+          raise TypeError, "value '%s' is not a Hash" % [hash['acquirerInformation']] unless hash['acquirerInformation'].is_a? Hash
+          @acquirer_information = OnlinePayments::SDK::Domain::AcquirerInformation.new_from_hash(hash['acquirerInformation'])
+        end
         @authenticated_amount = hash['authenticatedAmount'] if hash.key? 'authenticatedAmount'
         @authorisation_code = hash['authorisationCode'] if hash.key? 'authorisationCode'
         if hash.key? 'card'
