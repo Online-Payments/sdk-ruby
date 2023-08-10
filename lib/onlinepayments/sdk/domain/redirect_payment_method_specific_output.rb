@@ -2,6 +2,7 @@
 # This class was auto-generated.
 #
 require 'onlinepayments/sdk/data_object'
+require 'onlinepayments/sdk/domain/customer_bank_account'
 require 'onlinepayments/sdk/domain/fraud_results'
 require 'onlinepayments/sdk/domain/payment_product5001_specific_output'
 require 'onlinepayments/sdk/domain/payment_product5402_specific_output'
@@ -11,6 +12,7 @@ require 'onlinepayments/sdk/domain/payment_product840_specific_output'
 module OnlinePayments::SDK
   module Domain
 
+    # @attr [OnlinePayments::SDK::Domain::CustomerBankAccount] customer_bank_account
     # @attr [OnlinePayments::SDK::Domain::FraudResults] fraud_results
     # @attr [String] payment_option
     # @attr [OnlinePayments::SDK::Domain::PaymentProduct5001SpecificOutput] payment_product5001_specific_output
@@ -20,6 +22,7 @@ module OnlinePayments::SDK
     # @attr [Integer] payment_product_id
     # @attr [String] token
     class RedirectPaymentMethodSpecificOutput < OnlinePayments::SDK::DataObject
+      attr_accessor :customer_bank_account
       attr_accessor :fraud_results
       attr_accessor :payment_option
       attr_accessor :payment_product5001_specific_output
@@ -32,6 +35,7 @@ module OnlinePayments::SDK
       # @return (Hash)
       def to_h
         hash = super
+        hash['customerBankAccount'] = @customer_bank_account.to_h if @customer_bank_account
         hash['fraudResults'] = @fraud_results.to_h if @fraud_results
         hash['paymentOption'] = @payment_option unless @payment_option.nil?
         hash['paymentProduct5001SpecificOutput'] = @payment_product5001_specific_output.to_h if @payment_product5001_specific_output
@@ -45,6 +49,10 @@ module OnlinePayments::SDK
 
       def from_hash(hash)
         super
+        if hash.key? 'customerBankAccount'
+          raise TypeError, "value '%s' is not a Hash" % [hash['customerBankAccount']] unless hash['customerBankAccount'].is_a? Hash
+          @customer_bank_account = OnlinePayments::SDK::Domain::CustomerBankAccount.new_from_hash(hash['customerBankAccount'])
+        end
         if hash.key? 'fraudResults'
           raise TypeError, "value '%s' is not a Hash" % [hash['fraudResults']] unless hash['fraudResults'].is_a? Hash
           @fraud_results = OnlinePayments::SDK::Domain::FraudResults.new_from_hash(hash['fraudResults'])

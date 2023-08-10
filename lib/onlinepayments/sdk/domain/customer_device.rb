@@ -9,6 +9,7 @@ module OnlinePayments::SDK
 
     # @attr [String] accept_header
     # @attr [OnlinePayments::SDK::Domain::BrowserData] browser_data
+    # @attr [String] device_fingerprint
     # @attr [String] ip_address
     # @attr [String] locale
     # @attr [String] timezone_offset_utc_minutes
@@ -16,6 +17,7 @@ module OnlinePayments::SDK
     class CustomerDevice < OnlinePayments::SDK::DataObject
       attr_accessor :accept_header
       attr_accessor :browser_data
+      attr_accessor :device_fingerprint
       attr_accessor :ip_address
       attr_accessor :locale
       attr_accessor :timezone_offset_utc_minutes
@@ -26,6 +28,7 @@ module OnlinePayments::SDK
         hash = super
         hash['acceptHeader'] = @accept_header unless @accept_header.nil?
         hash['browserData'] = @browser_data.to_h if @browser_data
+        hash['deviceFingerprint'] = @device_fingerprint unless @device_fingerprint.nil?
         hash['ipAddress'] = @ip_address unless @ip_address.nil?
         hash['locale'] = @locale unless @locale.nil?
         hash['timezoneOffsetUtcMinutes'] = @timezone_offset_utc_minutes unless @timezone_offset_utc_minutes.nil?
@@ -40,6 +43,7 @@ module OnlinePayments::SDK
           raise TypeError, "value '%s' is not a Hash" % [hash['browserData']] unless hash['browserData'].is_a? Hash
           @browser_data = OnlinePayments::SDK::Domain::BrowserData.new_from_hash(hash['browserData'])
         end
+        @device_fingerprint = hash['deviceFingerprint'] if hash.key? 'deviceFingerprint'
         @ip_address = hash['ipAddress'] if hash.key? 'ipAddress'
         @locale = hash['locale'] if hash.key? 'locale'
         @timezone_offset_utc_minutes = hash['timezoneOffsetUtcMinutes'] if hash.key? 'timezoneOffsetUtcMinutes'
