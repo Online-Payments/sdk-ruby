@@ -12,6 +12,7 @@ require 'onlinepayments/sdk/domain/payment_product840_specific_output'
 module OnlinePayments::SDK
   module Domain
 
+    # @attr [String] authorisation_code
     # @attr [OnlinePayments::SDK::Domain::CustomerBankAccount] customer_bank_account
     # @attr [OnlinePayments::SDK::Domain::FraudResults] fraud_results
     # @attr [String] payment_option
@@ -22,6 +23,7 @@ module OnlinePayments::SDK
     # @attr [Integer] payment_product_id
     # @attr [String] token
     class RedirectPaymentMethodSpecificOutput < OnlinePayments::SDK::DataObject
+      attr_accessor :authorisation_code
       attr_accessor :customer_bank_account
       attr_accessor :fraud_results
       attr_accessor :payment_option
@@ -35,6 +37,7 @@ module OnlinePayments::SDK
       # @return (Hash)
       def to_h
         hash = super
+        hash['authorisationCode'] = @authorisation_code unless @authorisation_code.nil?
         hash['customerBankAccount'] = @customer_bank_account.to_h if @customer_bank_account
         hash['fraudResults'] = @fraud_results.to_h if @fraud_results
         hash['paymentOption'] = @payment_option unless @payment_option.nil?
@@ -49,6 +52,7 @@ module OnlinePayments::SDK
 
       def from_hash(hash)
         super
+        @authorisation_code = hash['authorisationCode'] if hash.key? 'authorisationCode'
         if hash.key? 'customerBankAccount'
           raise TypeError, "value '%s' is not a Hash" % [hash['customerBankAccount']] unless hash['customerBankAccount'].is_a? Hash
           @customer_bank_account = OnlinePayments::SDK::Domain::CustomerBankAccount.new_from_hash(hash['customerBankAccount'])
