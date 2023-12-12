@@ -19,6 +19,7 @@ module OnlinePayments::SDK
       using RefineHTTPClient
 
       CONTENT_TYPE = 'Content-Type'.freeze
+      X_REQUEST_ID_HEADER = 'X-Request-Id'.freeze
       JSON_CONTENT_TYPE = 'application/json'.freeze
 
       # @param args [Hash] the parameters to initialize the connection with
@@ -144,12 +145,16 @@ module OnlinePayments::SDK
       # @param method          [String] 'GET', 'DELETE', 'POST' or 'PUT' depending on the HTTP method being used.
       # @param uri             [URI::HTTP] full URI of the location the request is targeted at, including query parameters.
       # @param request_headers [Array<OnlinePayments::SDK::RequestHeader>] list of headers that should be used as HTTP headers in the request.
-      # @param body            [String] request body.
+      # @param body            [String, OnlinePayments::SDK::MultipartFormDataObject] request body.
       # @yield (Integer, Array<OnlinePayments::SDK::ResponseHeader>, IO) The status code, headers and body of the response.
       # @raise [OnlinePayments::SDK::CommunicationException] when communication with the Online Payments platform was not successful.
       def request(method, uri, request_headers, body = nil)
         request_headers = convert_from_headers(request_headers)
         request_id = SecureRandom.uuid
+
+        # set X-Request-Id for better traceability
+        request_headers[X_REQUEST_ID_HEADER] = request_id
+
         content_type = request_headers[CONTENT_TYPE]
 
         info = { headers: request_headers, content_type: content_type }
@@ -163,14 +168,29 @@ module OnlinePayments::SDK
           response_status_code = nil
           response_content_type = nil
           response_body = ''
-          raw_request(method, uri, request_headers, body) do |status_code, headers, r_content_type, r_body|
-            response_headers = headers
-            response_status_code = status_code
-            response_content_type = r_content_type
-            response_body = r_body.read.force_encoding('UTF-8')
-            r_body = StringIO.new(response_body)
 
-            yield status_code, headers, r_body
+          if body.is_a? OnlinePayments::SDK::MultipartFormDataObject
+            multipart_request(method, uri, request_headers, body) do |status_code, headers, r_content_type, r_body|
+              response_headers = headers
+              response_status_code = status_code
+              response_content_type = r_content_type
+              unless binary_content_type? response_content_type
+                response_body = r_body.read.force_encoding('UTF-8')
+                r_body = StringIO.new(response_body)
+              end
+
+              yield status_code, headers, r_body
+            end
+          else
+            raw_request(method, uri, request_headers, body) do |status_code, headers, r_content_type, r_body|
+              response_headers = headers
+              response_status_code = status_code
+              response_content_type = r_content_type
+              response_body = r_body.read.force_encoding('UTF-8')
+              r_body = StringIO.new(response_body)
+
+              yield status_code, headers, r_body
+            end
           end
 
           log_response(request_id, response_status_code, start_time,
@@ -289,6 +309,52 @@ module OnlinePayments::SDK
         ensure
           pipe.close
         end
+      end
+
+      # Makes a request using the specified method
+      #
+      # Yields a status code, an array of {OnlinePayments::SDK::ResponseHeader},
+      # the content_type and body
+      def multipart_request(method, uri, headers, body = nil)
+        unless body.is_a? OnlinePayments::SDK::MultipartFormDataObject
+          raise ArgumentError, 'body should be a MultipartFormDataObject'
+        end
+
+        if method != 'post' && method != 'put'
+          raise ArgumentError, "method #{method} is not supported"
+        end
+
+        connection = @http_client.send method + '_async',
+                                       uri,
+                                       body: multipart_request_body(body),
+                                       header: headers
+
+        response = connection.pop
+        pipe = response.content
+        response_headers = convert_to_sdk_response_headers(response.headers)
+
+        begin
+          yield response.status_code, response_headers, response.content_type, pipe
+        ensure
+          pipe.close
+        end
+      end
+
+      # Creates a request body for the multipart request
+      def multipart_request_body( body )
+        request_body = []
+        body.files.each do |k, v|
+          request_body.push :content => v.content,
+                            'Content-Type' => v.content_type,
+                            'Content-Disposition' => "form-data; name=\"#{k}\"; filename=\"#{v.file_name}\"",
+                            'Content-Transfer-Encoding' => 'binary'
+        end
+
+        body.values.each do |k, v|
+          request_body << { :content => v,
+                            'Content-Disposition' => "form-data; name=\"#{k}\"" }
+        end
+        request_body
       end
     end
   end

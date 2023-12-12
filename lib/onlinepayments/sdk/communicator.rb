@@ -104,7 +104,8 @@ module OnlinePayments::SDK
     # @param relative_path      [String] Path relative to the API endpoint
     # @param request_headers    [Array<OnlinePayments::SDK::RequestHeader>, nil] Optional array of request headers
     # @param request_parameters [OnlinePayments::SDK::ParamRequest, nil] Optional request parameters
-    # @param request_body       [OnlinePayments::SDK::DataObject] The optional request body
+    # @param request_body       [OnlinePayments::SDK::DataObject, OnlinePayments::SDK::MultipartFormDataObject, OnlinePayments::SDK::MultipartFormDataRequest] 
+    #                           The optional request body
     # @param response_type      [Type] The response type.
     # @param context            [OnlinePayments::SDK::CallContext, nil] Optional call context.
     # @return The response of the POST request as the given response type
@@ -119,7 +120,14 @@ module OnlinePayments::SDK
       request_headers ||= []
 
       body = nil
-      if request_body
+      if request_body.is_a? MultipartFormDataObject
+        request_headers.push(RequestHeader.new('Content-Type', request_body.content_type))
+        body = request_body
+      elsif request_body.is_a? MultipartFormDataRequest
+        multipart = request_body.to_multipart_form_data_object
+        request_headers.push(RequestHeader.new('Content-Type', multipart.content_type))
+        body = multipart
+      elsif request_body
         request_headers.push(RequestHeader.new('Content-Type', 'application/json'))
         body = @marshaller.marshal(request_body)
       else
