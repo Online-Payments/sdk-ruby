@@ -9,7 +9,7 @@ module OnlinePayments::SDK
 
     # @attr [OnlinePayments::SDK::Domain::AmountOfMoney] amount
     # @attr [String] merchant_reference
-    class PaymentLinkOrder < OnlinePayments::SDK::DataObject
+    class PaymentLinkOrderInput < OnlinePayments::SDK::DataObject
       attr_accessor :amount
       attr_accessor :merchant_reference
 

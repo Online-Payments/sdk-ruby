@@ -5,6 +5,7 @@ require 'onlinepayments/sdk/data_object'
 require 'onlinepayments/sdk/domain/additional_order_input'
 require 'onlinepayments/sdk/domain/amount_of_money'
 require 'onlinepayments/sdk/domain/customer'
+require 'onlinepayments/sdk/domain/discount'
 require 'onlinepayments/sdk/domain/order_references'
 require 'onlinepayments/sdk/domain/shipping'
 require 'onlinepayments/sdk/domain/shopping_cart'
@@ -16,6 +17,7 @@ module OnlinePayments::SDK
     # @attr [OnlinePayments::SDK::Domain::AdditionalOrderInput] additional_input
     # @attr [OnlinePayments::SDK::Domain::AmountOfMoney] amount_of_money
     # @attr [OnlinePayments::SDK::Domain::Customer] customer
+    # @attr [OnlinePayments::SDK::Domain::Discount] discount
     # @attr [OnlinePayments::SDK::Domain::OrderReferences] references
     # @attr [OnlinePayments::SDK::Domain::Shipping] shipping
     # @attr [OnlinePayments::SDK::Domain::ShoppingCart] shopping_cart
@@ -24,6 +26,7 @@ module OnlinePayments::SDK
       attr_accessor :additional_input
       attr_accessor :amount_of_money
       attr_accessor :customer
+      attr_accessor :discount
       attr_accessor :references
       attr_accessor :shipping
       attr_accessor :shopping_cart
@@ -35,6 +38,7 @@ module OnlinePayments::SDK
         hash['additionalInput'] = @additional_input.to_h if @additional_input
         hash['amountOfMoney'] = @amount_of_money.to_h if @amount_of_money
         hash['customer'] = @customer.to_h if @customer
+        hash['discount'] = @discount.to_h if @discount
         hash['references'] = @references.to_h if @references
         hash['shipping'] = @shipping.to_h if @shipping
         hash['shoppingCart'] = @shopping_cart.to_h if @shopping_cart
@@ -55,6 +59,10 @@ module OnlinePayments::SDK
         if hash.key? 'customer'
           raise TypeError, "value '%s' is not a Hash" % [hash['customer']] unless hash['customer'].is_a? Hash
           @customer = OnlinePayments::SDK::Domain::Customer.new_from_hash(hash['customer'])
+        end
+        if hash.key? 'discount'
+          raise TypeError, "value '%s' is not a Hash" % [hash['discount']] unless hash['discount'].is_a? Hash
+          @discount = OnlinePayments::SDK::Domain::Discount.new_from_hash(hash['discount'])
         end
         if hash.key? 'references'
           raise TypeError, "value '%s' is not a Hash" % [hash['references']] unless hash['references'].is_a? Hash

@@ -3,7 +3,7 @@
 #
 require 'onlinepayments/sdk/data_object'
 require 'onlinepayments/sdk/domain/payment_link_event'
-require 'onlinepayments/sdk/domain/payment_link_order'
+require 'onlinepayments/sdk/domain/payment_link_order_output'
 
 module OnlinePayments::SDK
   module Domain
@@ -12,7 +12,7 @@ module OnlinePayments::SDK
     # @attr [String] payment_id
     # @attr [Array<OnlinePayments::SDK::Domain::PaymentLinkEvent>] payment_link_events
     # @attr [String] payment_link_id
-    # @attr [OnlinePayments::SDK::Domain::PaymentLinkOrder] payment_link_order
+    # @attr [OnlinePayments::SDK::Domain::PaymentLinkOrderOutput] payment_link_order
     # @attr [String] recipient_name
     # @attr [String] redirection_url
     # @attr [String] status
@@ -54,7 +54,7 @@ module OnlinePayments::SDK
         @payment_link_id = hash['paymentLinkId'] if hash.key? 'paymentLinkId'
         if hash.key? 'paymentLinkOrder'
           raise TypeError, "value '%s' is not a Hash" % [hash['paymentLinkOrder']] unless hash['paymentLinkOrder'].is_a? Hash
-          @payment_link_order = OnlinePayments::SDK::Domain::PaymentLinkOrder.new_from_hash(hash['paymentLinkOrder'])
+          @payment_link_order = OnlinePayments::SDK::Domain::PaymentLinkOrderOutput.new_from_hash(hash['paymentLinkOrder'])
         end
         @recipient_name = hash['recipientName'] if hash.key? 'recipientName'
         @redirection_url = hash['redirectionUrl'] if hash.key? 'redirectionUrl'
