@@ -5,6 +5,7 @@ require 'onlinepayments/sdk/data_object'
 require 'onlinepayments/sdk/domain/amount_of_money'
 require 'onlinepayments/sdk/domain/card_payment_method_specific_output'
 require 'onlinepayments/sdk/domain/customer_output'
+require 'onlinepayments/sdk/domain/discount'
 require 'onlinepayments/sdk/domain/mobile_payment_method_specific_output'
 require 'onlinepayments/sdk/domain/payment_references'
 require 'onlinepayments/sdk/domain/redirect_payment_method_specific_output'
@@ -19,6 +20,7 @@ module OnlinePayments::SDK
     # @attr [Long] amount_paid
     # @attr [OnlinePayments::SDK::Domain::CardPaymentMethodSpecificOutput] card_payment_method_specific_output
     # @attr [OnlinePayments::SDK::Domain::CustomerOutput] customer
+    # @attr [OnlinePayments::SDK::Domain::Discount] discount
     # @attr [String] merchant_parameters
     # @attr [OnlinePayments::SDK::Domain::MobilePaymentMethodSpecificOutput] mobile_payment_method_specific_output
     # @attr [String] payment_method
@@ -32,6 +34,7 @@ module OnlinePayments::SDK
       attr_accessor :amount_paid
       attr_accessor :card_payment_method_specific_output
       attr_accessor :customer
+      attr_accessor :discount
       attr_accessor :merchant_parameters
       attr_accessor :mobile_payment_method_specific_output
       attr_accessor :payment_method
@@ -48,6 +51,7 @@ module OnlinePayments::SDK
         hash['amountPaid'] = @amount_paid unless @amount_paid.nil?
         hash['cardPaymentMethodSpecificOutput'] = @card_payment_method_specific_output.to_h if @card_payment_method_specific_output
         hash['customer'] = @customer.to_h if @customer
+        hash['discount'] = @discount.to_h if @discount
         hash['merchantParameters'] = @merchant_parameters unless @merchant_parameters.nil?
         hash['mobilePaymentMethodSpecificOutput'] = @mobile_payment_method_specific_output.to_h if @mobile_payment_method_specific_output
         hash['paymentMethod'] = @payment_method unless @payment_method.nil?
@@ -76,6 +80,10 @@ module OnlinePayments::SDK
         if hash.key? 'customer'
           raise TypeError, "value '%s' is not a Hash" % [hash['customer']] unless hash['customer'].is_a? Hash
           @customer = OnlinePayments::SDK::Domain::CustomerOutput.new_from_hash(hash['customer'])
+        end
+        if hash.key? 'discount'
+          raise TypeError, "value '%s' is not a Hash" % [hash['discount']] unless hash['discount'].is_a? Hash
+          @discount = OnlinePayments::SDK::Domain::Discount.new_from_hash(hash['discount'])
         end
         @merchant_parameters = hash['merchantParameters'] if hash.key? 'merchantParameters'
         if hash.key? 'mobilePaymentMethodSpecificOutput'

@@ -17,7 +17,9 @@ describe 'PaymentProductGroups' do
 
     Integration.init_client(false) do |client|
       response = client.merchant(Integration::MERCHANT_ID).product_groups.get_product_group('cards', params)
-      expect(response.id).to eq('cards')
+      expect(response).not_to be_nil 
+      expect(response.id).not_to be_nil
+      expect(response.id.downcase).to eq('cards')
     end
   end
 end

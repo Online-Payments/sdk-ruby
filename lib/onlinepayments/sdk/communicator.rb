@@ -1,4 +1,6 @@
 require 'uri'
+require 'onlinepayments/sdk/multipart_form_data_object'
+require 'onlinepayments/sdk/multipart_form_data_request'
 
 module OnlinePayments::SDK
   # Class responsible for facilitating communication with the Online Payments platform.

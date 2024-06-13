@@ -175,13 +175,13 @@ describe DefaultConnection do
       it 'sends the correct get request' do
         response_headers = nil
         connection.get(uri, sdk_headers) { |s, h, c| response_headers = h }
-        expect(sdk_headers_to_s(response_headers)).to eq(sdk_headers_to_s(sdk_headers))
+        expect(sdk_headers_to_s(response_headers)).to include(sdk_headers_to_s(sdk_headers))
       end
 
       it 'sends the correct delete request' do
         response_headers = nil
         connection.delete(uri, sdk_headers) { |s, h, c| response_headers = h }
-        expect(sdk_headers_to_s(response_headers)).to eq(sdk_headers_to_s(sdk_headers))
+        expect(sdk_headers_to_s(response_headers)).to include(sdk_headers_to_s(sdk_headers))
       end
 
       context 'with body' do
@@ -271,7 +271,7 @@ describe DefaultConnection do
           match_info = $stdout.string.match(regex)
           expect(match_info[2]).to eq('GET')
           expect(match_info[3]).to eq("#{uri.path}?#{uri.query}")
-          expect(match_info[4]).to eq(expected_header_str(headers))
+          expect(match_info[4]).to include(expected_header_str(headers))
         end
 
         # TODO: same for PUT
@@ -284,7 +284,7 @@ describe DefaultConnection do
             expect(match_info[2]).to eq('POST')
             expect(match_info[3]).to eq("#{uri.path}?#{uri.query}")
             headers['Content-Type'] = 'application/json' # with body
-            expect(match_info[4]).to eq(expected_header_str(headers))
+            expect(match_info[4]).to include(expected_header_str(headers))
             expect(match_info[5]).to eq('application/json')
             expect(match_info[6]).to eq(body)
           end

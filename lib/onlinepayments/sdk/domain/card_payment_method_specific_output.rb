@@ -7,6 +7,7 @@ require 'onlinepayments/sdk/domain/card_essentials'
 require 'onlinepayments/sdk/domain/card_fraud_results'
 require 'onlinepayments/sdk/domain/currency_conversion'
 require 'onlinepayments/sdk/domain/external_token_linked'
+require 'onlinepayments/sdk/domain/network_token_essentials'
 require 'onlinepayments/sdk/domain/payment_product3208_specific_output'
 require 'onlinepayments/sdk/domain/payment_product3209_specific_output'
 require 'onlinepayments/sdk/domain/three_d_secure_results'
@@ -22,6 +23,7 @@ module OnlinePayments::SDK
     # @attr [OnlinePayments::SDK::Domain::ExternalTokenLinked] external_token_linked
     # @attr [OnlinePayments::SDK::Domain::CardFraudResults] fraud_results
     # @attr [String] initial_scheme_transaction_id
+    # @attr [OnlinePayments::SDK::Domain::NetworkTokenEssentials] network_token_data
     # @attr [String] payment_account_reference
     # @attr [String] payment_option
     # @attr [OnlinePayments::SDK::Domain::PaymentProduct3208SpecificOutput] payment_product3208_specific_output
@@ -39,6 +41,7 @@ module OnlinePayments::SDK
       attr_accessor :external_token_linked
       attr_accessor :fraud_results
       attr_accessor :initial_scheme_transaction_id
+      attr_accessor :network_token_data
       attr_accessor :payment_account_reference
       attr_accessor :payment_option
       attr_accessor :payment_product3208_specific_output
@@ -59,6 +62,7 @@ module OnlinePayments::SDK
         hash['externalTokenLinked'] = @external_token_linked.to_h if @external_token_linked
         hash['fraudResults'] = @fraud_results.to_h if @fraud_results
         hash['initialSchemeTransactionId'] = @initial_scheme_transaction_id unless @initial_scheme_transaction_id.nil?
+        hash['networkTokenData'] = @network_token_data.to_h if @network_token_data
         hash['paymentAccountReference'] = @payment_account_reference unless @payment_account_reference.nil?
         hash['paymentOption'] = @payment_option unless @payment_option.nil?
         hash['paymentProduct3208SpecificOutput'] = @payment_product3208_specific_output.to_h if @payment_product3208_specific_output
@@ -95,6 +99,10 @@ module OnlinePayments::SDK
           @fraud_results = OnlinePayments::SDK::Domain::CardFraudResults.new_from_hash(hash['fraudResults'])
         end
         @initial_scheme_transaction_id = hash['initialSchemeTransactionId'] if hash.key? 'initialSchemeTransactionId'
+        if hash.key? 'networkTokenData'
+          raise TypeError, "value '%s' is not a Hash" % [hash['networkTokenData']] unless hash['networkTokenData'].is_a? Hash
+          @network_token_data = OnlinePayments::SDK::Domain::NetworkTokenEssentials.new_from_hash(hash['networkTokenData'])
+        end
         @payment_account_reference = hash['paymentAccountReference'] if hash.key? 'paymentAccountReference'
         @payment_option = hash['paymentOption'] if hash.key? 'paymentOption'
         if hash.key? 'paymentProduct3208SpecificOutput'

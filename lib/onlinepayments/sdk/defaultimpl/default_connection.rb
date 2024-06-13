@@ -1,6 +1,10 @@
 require 'securerandom'
 require 'uri'
 require 'httpclient'
+require 'onlinepayments/sdk/multipart_form_data_object'
+require 'onlinepayments/sdk/pooled_connection'
+require 'onlinepayments/sdk/communication_exception'
+require 'onlinepayments/sdk/response_header'
 
 # @private :nodoc: this is not our class
 module RefineHTTPClient
