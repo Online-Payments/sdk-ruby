@@ -5,11 +5,10 @@ require 'onlinepayments/sdk/data_object'
 require 'onlinepayments/sdk/domain/card'
 require 'onlinepayments/sdk/domain/card_recurrence_details'
 require 'onlinepayments/sdk/domain/currency_conversion_input'
+require 'onlinepayments/sdk/domain/multiple_payment_information'
 require 'onlinepayments/sdk/domain/payment_product130_specific_input'
-require 'onlinepayments/sdk/domain/payment_product3012_specific_input'
 require 'onlinepayments/sdk/domain/payment_product3208_specific_input'
 require 'onlinepayments/sdk/domain/payment_product3209_specific_input'
-require 'onlinepayments/sdk/domain/payment_product5002_specific_input'
 require 'onlinepayments/sdk/domain/three_d_secure'
 
 module OnlinePayments::SDK
@@ -23,11 +22,10 @@ module OnlinePayments::SDK
     # @attr [OnlinePayments::SDK::Domain::CurrencyConversionInput] currency_conversion
     # @attr [String] initial_scheme_transaction_id
     # @attr [true/false] is_recurring
+    # @attr [OnlinePayments::SDK::Domain::MultiplePaymentInformation] multiple_payment_information
     # @attr [OnlinePayments::SDK::Domain::PaymentProduct130SpecificInput] payment_product130_specific_input
-    # @attr [OnlinePayments::SDK::Domain::PaymentProduct3012SpecificInput] payment_product3012_specific_input
     # @attr [OnlinePayments::SDK::Domain::PaymentProduct3208SpecificInput] payment_product3208_specific_input
     # @attr [OnlinePayments::SDK::Domain::PaymentProduct3209SpecificInput] payment_product3209_specific_input
-    # @attr [OnlinePayments::SDK::Domain::PaymentProduct5002SpecificInput] payment_product5002_specific_input
     # @attr [Integer] payment_product_id
     # @attr [OnlinePayments::SDK::Domain::CardRecurrenceDetails] recurring
     # @attr [String] return_url
@@ -48,11 +46,10 @@ module OnlinePayments::SDK
       attr_accessor :currency_conversion
       attr_accessor :initial_scheme_transaction_id
       attr_accessor :is_recurring
+      attr_accessor :multiple_payment_information
       attr_accessor :payment_product130_specific_input
-      attr_accessor :payment_product3012_specific_input
       attr_accessor :payment_product3208_specific_input
       attr_accessor :payment_product3209_specific_input
-      attr_accessor :payment_product5002_specific_input
       attr_accessor :payment_product_id
       attr_accessor :recurring
       attr_accessor :return_url
@@ -76,11 +73,10 @@ module OnlinePayments::SDK
         hash['currencyConversion'] = @currency_conversion.to_h if @currency_conversion
         hash['initialSchemeTransactionId'] = @initial_scheme_transaction_id unless @initial_scheme_transaction_id.nil?
         hash['isRecurring'] = @is_recurring unless @is_recurring.nil?
+        hash['multiplePaymentInformation'] = @multiple_payment_information.to_h if @multiple_payment_information
         hash['paymentProduct130SpecificInput'] = @payment_product130_specific_input.to_h if @payment_product130_specific_input
-        hash['paymentProduct3012SpecificInput'] = @payment_product3012_specific_input.to_h if @payment_product3012_specific_input
         hash['paymentProduct3208SpecificInput'] = @payment_product3208_specific_input.to_h if @payment_product3208_specific_input
         hash['paymentProduct3209SpecificInput'] = @payment_product3209_specific_input.to_h if @payment_product3209_specific_input
-        hash['paymentProduct5002SpecificInput'] = @payment_product5002_specific_input.to_h if @payment_product5002_specific_input
         hash['paymentProductId'] = @payment_product_id unless @payment_product_id.nil?
         hash['recurring'] = @recurring.to_h if @recurring
         hash['returnUrl'] = @return_url unless @return_url.nil?
@@ -111,13 +107,13 @@ module OnlinePayments::SDK
         end
         @initial_scheme_transaction_id = hash['initialSchemeTransactionId'] if hash.key? 'initialSchemeTransactionId'
         @is_recurring = hash['isRecurring'] if hash.key? 'isRecurring'
+        if hash.key? 'multiplePaymentInformation'
+          raise TypeError, "value '%s' is not a Hash" % [hash['multiplePaymentInformation']] unless hash['multiplePaymentInformation'].is_a? Hash
+          @multiple_payment_information = OnlinePayments::SDK::Domain::MultiplePaymentInformation.new_from_hash(hash['multiplePaymentInformation'])
+        end
         if hash.key? 'paymentProduct130SpecificInput'
           raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct130SpecificInput']] unless hash['paymentProduct130SpecificInput'].is_a? Hash
           @payment_product130_specific_input = OnlinePayments::SDK::Domain::PaymentProduct130SpecificInput.new_from_hash(hash['paymentProduct130SpecificInput'])
-        end
-        if hash.key? 'paymentProduct3012SpecificInput'
-          raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct3012SpecificInput']] unless hash['paymentProduct3012SpecificInput'].is_a? Hash
-          @payment_product3012_specific_input = OnlinePayments::SDK::Domain::PaymentProduct3012SpecificInput.new_from_hash(hash['paymentProduct3012SpecificInput'])
         end
         if hash.key? 'paymentProduct3208SpecificInput'
           raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct3208SpecificInput']] unless hash['paymentProduct3208SpecificInput'].is_a? Hash
@@ -126,10 +122,6 @@ module OnlinePayments::SDK
         if hash.key? 'paymentProduct3209SpecificInput'
           raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct3209SpecificInput']] unless hash['paymentProduct3209SpecificInput'].is_a? Hash
           @payment_product3209_specific_input = OnlinePayments::SDK::Domain::PaymentProduct3209SpecificInput.new_from_hash(hash['paymentProduct3209SpecificInput'])
-        end
-        if hash.key? 'paymentProduct5002SpecificInput'
-          raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct5002SpecificInput']] unless hash['paymentProduct5002SpecificInput'].is_a? Hash
-          @payment_product5002_specific_input = OnlinePayments::SDK::Domain::PaymentProduct5002SpecificInput.new_from_hash(hash['paymentProduct5002SpecificInput'])
         end
         @payment_product_id = hash['paymentProductId'] if hash.key? 'paymentProductId'
         if hash.key? 'recurring'

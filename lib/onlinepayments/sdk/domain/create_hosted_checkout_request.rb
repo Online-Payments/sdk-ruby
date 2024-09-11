@@ -7,7 +7,6 @@ require 'onlinepayments/sdk/domain/fraud_fields'
 require 'onlinepayments/sdk/domain/hosted_checkout_specific_input'
 require 'onlinepayments/sdk/domain/mobile_payment_method_hosted_checkout_specific_input'
 require 'onlinepayments/sdk/domain/order'
-require 'onlinepayments/sdk/domain/page_customization'
 require 'onlinepayments/sdk/domain/redirect_payment_method_specific_input'
 require 'onlinepayments/sdk/domain/sepa_direct_debit_payment_method_specific_input_base'
 
@@ -19,7 +18,6 @@ module OnlinePayments::SDK
     # @attr [OnlinePayments::SDK::Domain::HostedCheckoutSpecificInput] hosted_checkout_specific_input
     # @attr [OnlinePayments::SDK::Domain::MobilePaymentMethodHostedCheckoutSpecificInput] mobile_payment_method_specific_input
     # @attr [OnlinePayments::SDK::Domain::Order] order
-    # @attr [OnlinePayments::SDK::Domain::PageCustomization] page_customization
     # @attr [OnlinePayments::SDK::Domain::RedirectPaymentMethodSpecificInput] redirect_payment_method_specific_input
     # @attr [OnlinePayments::SDK::Domain::SepaDirectDebitPaymentMethodSpecificInputBase] sepa_direct_debit_payment_method_specific_input
     class CreateHostedCheckoutRequest < OnlinePayments::SDK::DataObject
@@ -28,7 +26,6 @@ module OnlinePayments::SDK
       attr_accessor :hosted_checkout_specific_input
       attr_accessor :mobile_payment_method_specific_input
       attr_accessor :order
-      attr_accessor :page_customization
       attr_accessor :redirect_payment_method_specific_input
       attr_accessor :sepa_direct_debit_payment_method_specific_input
 
@@ -40,7 +37,6 @@ module OnlinePayments::SDK
         hash['hostedCheckoutSpecificInput'] = @hosted_checkout_specific_input.to_h if @hosted_checkout_specific_input
         hash['mobilePaymentMethodSpecificInput'] = @mobile_payment_method_specific_input.to_h if @mobile_payment_method_specific_input
         hash['order'] = @order.to_h if @order
-        hash['pageCustomization'] = @page_customization.to_h if @page_customization
         hash['redirectPaymentMethodSpecificInput'] = @redirect_payment_method_specific_input.to_h if @redirect_payment_method_specific_input
         hash['sepaDirectDebitPaymentMethodSpecificInput'] = @sepa_direct_debit_payment_method_specific_input.to_h if @sepa_direct_debit_payment_method_specific_input
         hash
@@ -67,10 +63,6 @@ module OnlinePayments::SDK
         if hash.key? 'order'
           raise TypeError, "value '%s' is not a Hash" % [hash['order']] unless hash['order'].is_a? Hash
           @order = OnlinePayments::SDK::Domain::Order.new_from_hash(hash['order'])
-        end
-        if hash.key? 'pageCustomization'
-          raise TypeError, "value '%s' is not a Hash" % [hash['pageCustomization']] unless hash['pageCustomization'].is_a? Hash
-          @page_customization = OnlinePayments::SDK::Domain::PageCustomization.new_from_hash(hash['pageCustomization'])
         end
         if hash.key? 'redirectPaymentMethodSpecificInput'
           raise TypeError, "value '%s' is not a Hash" % [hash['redirectPaymentMethodSpecificInput']] unless hash['redirectPaymentMethodSpecificInput'].is_a? Hash

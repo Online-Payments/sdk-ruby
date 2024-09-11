@@ -4,8 +4,8 @@
 require 'onlinepayments/sdk/data_object'
 require 'onlinepayments/sdk/domain/card_recurrence_details'
 require 'onlinepayments/sdk/domain/currency_conversion_specific_input'
+require 'onlinepayments/sdk/domain/multiple_payment_information'
 require 'onlinepayments/sdk/domain/payment_product130_specific_input'
-require 'onlinepayments/sdk/domain/payment_product3012_specific_input'
 require 'onlinepayments/sdk/domain/payment_product3208_specific_input'
 require 'onlinepayments/sdk/domain/payment_product3209_specific_input'
 require 'onlinepayments/sdk/domain/payment_product5100_specific_input'
@@ -18,8 +18,8 @@ module OnlinePayments::SDK
     # @attr [String] authorization_mode
     # @attr [OnlinePayments::SDK::Domain::CurrencyConversionSpecificInput] currency_conversion_specific_input
     # @attr [String] initial_scheme_transaction_id
+    # @attr [OnlinePayments::SDK::Domain::MultiplePaymentInformation] multiple_payment_information
     # @attr [OnlinePayments::SDK::Domain::PaymentProduct130SpecificInput] payment_product130_specific_input
-    # @attr [OnlinePayments::SDK::Domain::PaymentProduct3012SpecificInput] payment_product3012_specific_input
     # @attr [OnlinePayments::SDK::Domain::PaymentProduct3208SpecificInput] payment_product3208_specific_input
     # @attr [OnlinePayments::SDK::Domain::PaymentProduct3209SpecificInput] payment_product3209_specific_input
     # @attr [OnlinePayments::SDK::Domain::PaymentProduct5100SpecificInput] payment_product5100_specific_input
@@ -36,8 +36,8 @@ module OnlinePayments::SDK
       attr_accessor :authorization_mode
       attr_accessor :currency_conversion_specific_input
       attr_accessor :initial_scheme_transaction_id
+      attr_accessor :multiple_payment_information
       attr_accessor :payment_product130_specific_input
-      attr_accessor :payment_product3012_specific_input
       attr_accessor :payment_product3208_specific_input
       attr_accessor :payment_product3209_specific_input
       attr_accessor :payment_product5100_specific_input
@@ -57,8 +57,8 @@ module OnlinePayments::SDK
         hash['authorizationMode'] = @authorization_mode unless @authorization_mode.nil?
         hash['currencyConversionSpecificInput'] = @currency_conversion_specific_input.to_h if @currency_conversion_specific_input
         hash['initialSchemeTransactionId'] = @initial_scheme_transaction_id unless @initial_scheme_transaction_id.nil?
+        hash['multiplePaymentInformation'] = @multiple_payment_information.to_h if @multiple_payment_information
         hash['paymentProduct130SpecificInput'] = @payment_product130_specific_input.to_h if @payment_product130_specific_input
-        hash['paymentProduct3012SpecificInput'] = @payment_product3012_specific_input.to_h if @payment_product3012_specific_input
         hash['paymentProduct3208SpecificInput'] = @payment_product3208_specific_input.to_h if @payment_product3208_specific_input
         hash['paymentProduct3209SpecificInput'] = @payment_product3209_specific_input.to_h if @payment_product3209_specific_input
         hash['paymentProduct5100SpecificInput'] = @payment_product5100_specific_input.to_h if @payment_product5100_specific_input
@@ -82,13 +82,13 @@ module OnlinePayments::SDK
           @currency_conversion_specific_input = OnlinePayments::SDK::Domain::CurrencyConversionSpecificInput.new_from_hash(hash['currencyConversionSpecificInput'])
         end
         @initial_scheme_transaction_id = hash['initialSchemeTransactionId'] if hash.key? 'initialSchemeTransactionId'
+        if hash.key? 'multiplePaymentInformation'
+          raise TypeError, "value '%s' is not a Hash" % [hash['multiplePaymentInformation']] unless hash['multiplePaymentInformation'].is_a? Hash
+          @multiple_payment_information = OnlinePayments::SDK::Domain::MultiplePaymentInformation.new_from_hash(hash['multiplePaymentInformation'])
+        end
         if hash.key? 'paymentProduct130SpecificInput'
           raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct130SpecificInput']] unless hash['paymentProduct130SpecificInput'].is_a? Hash
           @payment_product130_specific_input = OnlinePayments::SDK::Domain::PaymentProduct130SpecificInput.new_from_hash(hash['paymentProduct130SpecificInput'])
-        end
-        if hash.key? 'paymentProduct3012SpecificInput'
-          raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct3012SpecificInput']] unless hash['paymentProduct3012SpecificInput'].is_a? Hash
-          @payment_product3012_specific_input = OnlinePayments::SDK::Domain::PaymentProduct3012SpecificInput.new_from_hash(hash['paymentProduct3012SpecificInput'])
         end
         if hash.key? 'paymentProduct3208SpecificInput'
           raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct3208SpecificInput']] unless hash['paymentProduct3208SpecificInput'].is_a? Hash

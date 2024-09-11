@@ -7,12 +7,14 @@ module OnlinePayments::SDK
   module Domain
 
     # @attr [String] authorization_mode
+    # @attr [Integer] payment_number
     # @attr [String] scheme_reference_data
     # @attr [String] subsequent_type
     # @attr [String] token
     # @attr [String] transaction_channel
     class SubsequentCardPaymentMethodSpecificInput < OnlinePayments::SDK::DataObject
       attr_accessor :authorization_mode
+      attr_accessor :payment_number
       attr_accessor :scheme_reference_data
       attr_accessor :subsequent_type
       attr_accessor :token
@@ -22,6 +24,7 @@ module OnlinePayments::SDK
       def to_h
         hash = super
         hash['authorizationMode'] = @authorization_mode unless @authorization_mode.nil?
+        hash['paymentNumber'] = @payment_number unless @payment_number.nil?
         hash['schemeReferenceData'] = @scheme_reference_data unless @scheme_reference_data.nil?
         hash['subsequentType'] = @subsequent_type unless @subsequent_type.nil?
         hash['token'] = @token unless @token.nil?
@@ -32,6 +35,7 @@ module OnlinePayments::SDK
       def from_hash(hash)
         super
         @authorization_mode = hash['authorizationMode'] if hash.key? 'authorizationMode'
+        @payment_number = hash['paymentNumber'] if hash.key? 'paymentNumber'
         @scheme_reference_data = hash['schemeReferenceData'] if hash.key? 'schemeReferenceData'
         @subsequent_type = hash['subsequentType'] if hash.key? 'subsequentType'
         @token = hash['token'] if hash.key? 'token'

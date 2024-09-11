@@ -2,7 +2,6 @@
 # This class was auto-generated.
 #
 require 'onlinepayments/sdk/data_object'
-require 'onlinepayments/sdk/domain/acquirer_information'
 require 'onlinepayments/sdk/domain/card_fraud_results'
 require 'onlinepayments/sdk/domain/mobile_payment_data'
 require 'onlinepayments/sdk/domain/three_d_secure_results'
@@ -10,7 +9,6 @@ require 'onlinepayments/sdk/domain/three_d_secure_results'
 module OnlinePayments::SDK
   module Domain
 
-    # @attr [OnlinePayments::SDK::Domain::AcquirerInformation] acquirer_information
     # @attr [String] authorisation_code
     # @attr [OnlinePayments::SDK::Domain::CardFraudResults] fraud_results
     # @attr [String] network
@@ -18,7 +16,6 @@ module OnlinePayments::SDK
     # @attr [Integer] payment_product_id
     # @attr [OnlinePayments::SDK::Domain::ThreeDSecureResults] three_d_secure_results
     class MobilePaymentMethodSpecificOutput < OnlinePayments::SDK::DataObject
-      attr_accessor :acquirer_information
       attr_accessor :authorisation_code
       attr_accessor :fraud_results
       attr_accessor :network
@@ -29,7 +26,6 @@ module OnlinePayments::SDK
       # @return (Hash)
       def to_h
         hash = super
-        hash['acquirerInformation'] = @acquirer_information.to_h if @acquirer_information
         hash['authorisationCode'] = @authorisation_code unless @authorisation_code.nil?
         hash['fraudResults'] = @fraud_results.to_h if @fraud_results
         hash['network'] = @network unless @network.nil?
@@ -41,10 +37,6 @@ module OnlinePayments::SDK
 
       def from_hash(hash)
         super
-        if hash.key? 'acquirerInformation'
-          raise TypeError, "value '%s' is not a Hash" % [hash['acquirerInformation']] unless hash['acquirerInformation'].is_a? Hash
-          @acquirer_information = OnlinePayments::SDK::Domain::AcquirerInformation.new_from_hash(hash['acquirerInformation'])
-        end
         @authorisation_code = hash['authorisationCode'] if hash.key? 'authorisationCode'
         if hash.key? 'fraudResults'
           raise TypeError, "value '%s' is not a Hash" % [hash['fraudResults']] unless hash['fraudResults'].is_a? Hash

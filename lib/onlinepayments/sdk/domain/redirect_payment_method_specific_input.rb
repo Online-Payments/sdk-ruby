@@ -2,6 +2,7 @@
 # This class was auto-generated.
 #
 require 'onlinepayments/sdk/data_object'
+require 'onlinepayments/sdk/domain/redirect_payment_product3203_specific_input'
 require 'onlinepayments/sdk/domain/redirect_payment_product3306_specific_input'
 require 'onlinepayments/sdk/domain/redirect_payment_product5001_specific_input'
 require 'onlinepayments/sdk/domain/redirect_payment_product5406_specific_input'
@@ -14,6 +15,7 @@ module OnlinePayments::SDK
   module Domain
 
     # @attr [String] payment_option
+    # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct3203SpecificInput] payment_product3203_specific_input
     # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct3306SpecificInput] payment_product3306_specific_input
     # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5001SpecificInput] payment_product5001_specific_input
     # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5406SpecificInput] payment_product5406_specific_input
@@ -27,6 +29,7 @@ module OnlinePayments::SDK
     # @attr [true/false] tokenize
     class RedirectPaymentMethodSpecificInput < OnlinePayments::SDK::DataObject
       attr_accessor :payment_option
+      attr_accessor :payment_product3203_specific_input
       attr_accessor :payment_product3306_specific_input
       attr_accessor :payment_product5001_specific_input
       attr_accessor :payment_product5406_specific_input
@@ -43,6 +46,7 @@ module OnlinePayments::SDK
       def to_h
         hash = super
         hash['paymentOption'] = @payment_option unless @payment_option.nil?
+        hash['paymentProduct3203SpecificInput'] = @payment_product3203_specific_input.to_h if @payment_product3203_specific_input
         hash['paymentProduct3306SpecificInput'] = @payment_product3306_specific_input.to_h if @payment_product3306_specific_input
         hash['paymentProduct5001SpecificInput'] = @payment_product5001_specific_input.to_h if @payment_product5001_specific_input
         hash['paymentProduct5406SpecificInput'] = @payment_product5406_specific_input.to_h if @payment_product5406_specific_input
@@ -60,6 +64,10 @@ module OnlinePayments::SDK
       def from_hash(hash)
         super
         @payment_option = hash['paymentOption'] if hash.key? 'paymentOption'
+        if hash.key? 'paymentProduct3203SpecificInput'
+          raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct3203SpecificInput']] unless hash['paymentProduct3203SpecificInput'].is_a? Hash
+          @payment_product3203_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct3203SpecificInput.new_from_hash(hash['paymentProduct3203SpecificInput'])
+        end
         if hash.key? 'paymentProduct3306SpecificInput'
           raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct3306SpecificInput']] unless hash['paymentProduct3306SpecificInput'].is_a? Hash
           @payment_product3306_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct3306SpecificInput.new_from_hash(hash['paymentProduct3306SpecificInput'])
