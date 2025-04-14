@@ -61,8 +61,8 @@ describe 'CommunicatorConfiguration' do
             onlinePayments.api.connectTimeout: 20
             onlinePayments.api.socketTimeout: 10
             onlinePayments.api.proxy.uri: http://proxy.example.org:3128
-            onlinePayments.api.proxy.username: username
-            onlinePayments.api.proxy.password: password'
+            onlinePayments.api.proxy.username: test-username
+            onlinePayments.api.proxy.password: test-password'
     config = YAML.load(yaml)
 
     communicator_config = CommunicatorConfiguration.new(properties: config)
@@ -79,8 +79,8 @@ describe 'CommunicatorConfiguration' do
     expect(proxy_config.scheme).to eq('http')
     expect(proxy_config.host).to eq('proxy.example.org')
     expect(proxy_config.port).to eq(3128)
-    expect(proxy_config.username).to eq('username')
-    expect(proxy_config.password).to eq('password')
+    expect(proxy_config.username).to eq('test-username')
+    expect(proxy_config.password).to eq('test-password')
   end
 
   it 'accepts a different number of maximum connections' do

@@ -1,29 +1,36 @@
 #
-# This class was auto-generated.
+# This file was automatically generated.
 #
-require 'onlinepayments/sdk/data_object'
+require 'onlinepayments/sdk/domain/data_object'
 
-module OnlinePayments::SDK
-  module Domain
+module OnlinePayments
+  module SDK
+    module Domain
+      # @attr [String] result
+      # @attr [String] result_reason
+      class CurrencyConversionResult < OnlinePayments::SDK::Domain::DataObject
 
-    # @attr [String] result
-    # @attr [String] result_reason
-    class CurrencyConversionResult < OnlinePayments::SDK::DataObject
-      attr_accessor :result
-      attr_accessor :result_reason
+        attr_accessor :result
 
-      # @return (Hash)
-      def to_h
-        hash = super
-        hash['result'] = @result unless @result.nil?
-        hash['resultReason'] = @result_reason unless @result_reason.nil?
-        hash
-      end
+        attr_accessor :result_reason
 
-      def from_hash(hash)
-        super
-        @result = hash['result'] if hash.key? 'result'
-        @result_reason = hash['resultReason'] if hash.key? 'resultReason'
+        # @return (Hash)
+        def to_h
+          hash = super
+          hash['result'] = @result unless @result.nil?
+          hash['resultReason'] = @result_reason unless @result_reason.nil?
+          hash
+        end
+
+        def from_hash(hash)
+          super
+          if hash.has_key? 'result'
+            @result = hash['result']
+          end
+          if hash.has_key? 'resultReason'
+            @result_reason = hash['resultReason']
+          end
+        end
       end
     end
   end

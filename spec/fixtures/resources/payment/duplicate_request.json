@@ -3,6 +3,7 @@
 	"errors": [
 		{
 			"code": "1409",
+			"errorCode": "1409",
 			"message": "DUPLICATE REQUEST IN PROGRESS",
 			"httpStatusCode": 409
 		}

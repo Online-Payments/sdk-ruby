@@ -1,29 +1,36 @@
 #
-# This class was auto-generated.
+# This file was automatically generated.
 #
-require 'onlinepayments/sdk/data_object'
+require 'onlinepayments/sdk/domain/data_object'
 
-module OnlinePayments::SDK
-  module Domain
+module OnlinePayments
+  module SDK
+    module Domain
+      # @attr [Integer] max_length
+      # @attr [Integer] min_length
+      class LengthValidator < OnlinePayments::SDK::Domain::DataObject
 
-    # @attr [Integer] max_length
-    # @attr [Integer] min_length
-    class LengthValidator < OnlinePayments::SDK::DataObject
-      attr_accessor :max_length
-      attr_accessor :min_length
+        attr_accessor :max_length
 
-      # @return (Hash)
-      def to_h
-        hash = super
-        hash['maxLength'] = @max_length unless @max_length.nil?
-        hash['minLength'] = @min_length unless @min_length.nil?
-        hash
-      end
+        attr_accessor :min_length
 
-      def from_hash(hash)
-        super
-        @max_length = hash['maxLength'] if hash.key? 'maxLength'
-        @min_length = hash['minLength'] if hash.key? 'minLength'
+        # @return (Hash)
+        def to_h
+          hash = super
+          hash['maxLength'] = @max_length unless @max_length.nil?
+          hash['minLength'] = @min_length unless @min_length.nil?
+          hash
+        end
+
+        def from_hash(hash)
+          super
+          if hash.has_key? 'maxLength'
+            @max_length = hash['maxLength']
+          end
+          if hash.has_key? 'minLength'
+            @min_length = hash['minLength']
+          end
+        end
       end
     end
   end

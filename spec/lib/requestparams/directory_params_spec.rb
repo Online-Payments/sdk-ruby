@@ -11,7 +11,7 @@ describe 'DirectoryParams' do
   it 'accepts parameters' do
     params.country_code = 'NL'
     params.currency_code = 'EUR'
-    expected = [OnlinePayments::SDK::RequestParam.new('countryCode', 'NL'), OnlinePayments::SDK::RequestParam.new('currencyCode', 'EUR')]
+    expected = [OnlinePayments::SDK::Communication::RequestParam.new('countryCode', 'NL'), OnlinePayments::SDK::Communication::RequestParam.new('currencyCode', 'EUR')]
 
     expect(params.to_request_parameters).to include(expected)
   end

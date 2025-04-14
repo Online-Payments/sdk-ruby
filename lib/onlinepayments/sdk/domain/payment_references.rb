@@ -1,29 +1,36 @@
 #
-# This class was auto-generated.
+# This file was automatically generated.
 #
-require 'onlinepayments/sdk/data_object'
+require 'onlinepayments/sdk/domain/data_object'
 
-module OnlinePayments::SDK
-  module Domain
+module OnlinePayments
+  module SDK
+    module Domain
+      # @attr [String] merchant_parameters
+      # @attr [String] merchant_reference
+      class PaymentReferences < OnlinePayments::SDK::Domain::DataObject
 
-    # @attr [String] merchant_parameters
-    # @attr [String] merchant_reference
-    class PaymentReferences < OnlinePayments::SDK::DataObject
-      attr_accessor :merchant_parameters
-      attr_accessor :merchant_reference
+        attr_accessor :merchant_parameters
 
-      # @return (Hash)
-      def to_h
-        hash = super
-        hash['merchantParameters'] = @merchant_parameters unless @merchant_parameters.nil?
-        hash['merchantReference'] = @merchant_reference unless @merchant_reference.nil?
-        hash
-      end
+        attr_accessor :merchant_reference
 
-      def from_hash(hash)
-        super
-        @merchant_parameters = hash['merchantParameters'] if hash.key? 'merchantParameters'
-        @merchant_reference = hash['merchantReference'] if hash.key? 'merchantReference'
+        # @return (Hash)
+        def to_h
+          hash = super
+          hash['merchantParameters'] = @merchant_parameters unless @merchant_parameters.nil?
+          hash['merchantReference'] = @merchant_reference unless @merchant_reference.nil?
+          hash
+        end
+
+        def from_hash(hash)
+          super
+          if hash.has_key? 'merchantParameters'
+            @merchant_parameters = hash['merchantParameters']
+          end
+          if hash.has_key? 'merchantReference'
+            @merchant_reference = hash['merchantReference']
+          end
+        end
       end
     end
   end

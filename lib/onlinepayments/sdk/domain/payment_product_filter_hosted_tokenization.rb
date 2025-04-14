@@ -1,29 +1,31 @@
 #
-# This class was auto-generated.
+# This file was automatically generated.
 #
-require 'onlinepayments/sdk/data_object'
+require 'onlinepayments/sdk/domain/data_object'
 
-module OnlinePayments::SDK
-  module Domain
+module OnlinePayments
+  module SDK
+    module Domain
+      # @attr [Array<Integer>] products
+      class PaymentProductFilterHostedTokenization < OnlinePayments::SDK::Domain::DataObject
 
-    # @attr [Array<Integer>] products
-    class PaymentProductFilterHostedTokenization < OnlinePayments::SDK::DataObject
-      attr_accessor :products
+        attr_accessor :products
 
-      # @return (Hash)
-      def to_h
-        hash = super
-        hash['products'] = @products unless @products.nil?
-        hash
-      end
+        # @return (Hash)
+        def to_h
+          hash = super
+          hash['products'] = @products unless @products.nil?
+          hash
+        end
 
-      def from_hash(hash)
-        super
-        if hash.key? 'products'
-          raise TypeError, "value '%s' is not an Array" % [hash['products']] unless hash['products'].is_a? Array
-          @products = []
-          hash['products'].each do |e|
-            @products << e
+        def from_hash(hash)
+          super
+          if hash.has_key? 'products'
+            raise TypeError, "value '%s' is not an Array" % [hash['products']] unless hash['products'].is_a? Array
+            @products = []
+            hash['products'].each do |e|
+              @products << e
+            end
           end
         end
       end

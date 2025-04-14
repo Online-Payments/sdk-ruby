@@ -1,6 +1,6 @@
-require 'onlinepayments/sdk/request_param'
+require 'onlinepayments/sdk/communication/request_param'
 
-module OnlinePayments::SDK
+module OnlinePayments::SDK::Communication
 
   # extension of the RequestParam object to support comparison
   class RequestParam

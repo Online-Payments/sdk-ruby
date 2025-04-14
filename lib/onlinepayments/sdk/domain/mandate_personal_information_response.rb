@@ -1,33 +1,38 @@
 #
-# This class was auto-generated.
+# This file was automatically generated.
 #
-require 'onlinepayments/sdk/data_object'
+require 'onlinepayments/sdk/domain/data_object'
 require 'onlinepayments/sdk/domain/mandate_personal_name_response'
 
-module OnlinePayments::SDK
-  module Domain
+module OnlinePayments
+  module SDK
+    module Domain
+      # @attr [OnlinePayments::SDK::Domain::MandatePersonalNameResponse] name
+      # @attr [String] title
+      class MandatePersonalInformationResponse < OnlinePayments::SDK::Domain::DataObject
 
-    # @attr [OnlinePayments::SDK::Domain::MandatePersonalNameResponse] name
-    # @attr [String] title
-    class MandatePersonalInformationResponse < OnlinePayments::SDK::DataObject
-      attr_accessor :name
-      attr_accessor :title
+        attr_accessor :name
 
-      # @return (Hash)
-      def to_h
-        hash = super
-        hash['name'] = @name.to_h if @name
-        hash['title'] = @title unless @title.nil?
-        hash
-      end
+        attr_accessor :title
 
-      def from_hash(hash)
-        super
-        if hash.key? 'name'
-          raise TypeError, "value '%s' is not a Hash" % [hash['name']] unless hash['name'].is_a? Hash
-          @name = OnlinePayments::SDK::Domain::MandatePersonalNameResponse.new_from_hash(hash['name'])
+        # @return (Hash)
+        def to_h
+          hash = super
+          hash['name'] = @name.to_h unless @name.nil?
+          hash['title'] = @title unless @title.nil?
+          hash
         end
-        @title = hash['title'] if hash.key? 'title'
+
+        def from_hash(hash)
+          super
+          if hash.has_key? 'name'
+            raise TypeError, "value '%s' is not a Hash" % [hash['name']] unless hash['name'].is_a? Hash
+            @name = OnlinePayments::SDK::Domain::MandatePersonalNameResponse.new_from_hash(hash['name'])
+          end
+          if hash.has_key? 'title'
+            @title = hash['title']
+          end
+        end
       end
     end
   end

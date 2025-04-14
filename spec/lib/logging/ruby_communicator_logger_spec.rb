@@ -2,8 +2,7 @@ require 'spec_helper'
 require 'logger'
 require 'English'
 
-ResponseLogMessageBuilder ||= OnlinePayments::SDK::Logging::ResponseLogMessageBuilder
-RubyCommunicatorLogger ||= OnlinePayments::SDK::Logging::RubyCommunicatorLogger
+RubyCommunicatorLogger = OnlinePayments::SDK::Logging::RubyCommunicatorLogger
 
 describe RubyCommunicatorLogger do
 
@@ -12,7 +11,7 @@ describe RubyCommunicatorLogger do
   let(:regex) { Regexp.new("#{tag}, .* -- : (.*)#{$RS}", Regexp::MULTILINE) }
   subject(:sample) { RubyCommunicatorLogger.new(logger, log_level, error_level) }
 
-  def expected_msg(msg, thrown = false)
+  def expected_msg(msg, thrown=false)
     return msg unless thrown
     msg + $RS + thrown.to_s + $RS + thrown.backtrace.join($RS)
   end
@@ -22,6 +21,7 @@ describe RubyCommunicatorLogger do
     logger.close
     File.delete(filename)
   end
+
 
   context 'logging without error' do
 
@@ -33,7 +33,7 @@ describe RubyCommunicatorLogger do
       let(:tag) { 'I' }
 
       it 'should not throw an exception when logging unicode strings' do
-        message = ResponseLogMessageBuilder.new("aaa", 2345, 45.32)
+        message =  OnlinePayments::SDK::Logging::ResponseLogMessageBuilder.new("aaa", 2345, 45.32)
         body = "Schröder"
         content = "JSON"
         message.set_body(body, content)

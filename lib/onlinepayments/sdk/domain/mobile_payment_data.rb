@@ -1,29 +1,36 @@
 #
-# This class was auto-generated.
+# This file was automatically generated.
 #
-require 'onlinepayments/sdk/data_object'
+require 'onlinepayments/sdk/domain/data_object'
 
-module OnlinePayments::SDK
-  module Domain
+module OnlinePayments
+  module SDK
+    module Domain
+      # @attr [String] dpan
+      # @attr [String] expiry_date
+      class MobilePaymentData < OnlinePayments::SDK::Domain::DataObject
 
-    # @attr [String] dpan
-    # @attr [String] expiry_date
-    class MobilePaymentData < OnlinePayments::SDK::DataObject
-      attr_accessor :dpan
-      attr_accessor :expiry_date
+        attr_accessor :dpan
 
-      # @return (Hash)
-      def to_h
-        hash = super
-        hash['dpan'] = @dpan unless @dpan.nil?
-        hash['expiryDate'] = @expiry_date unless @expiry_date.nil?
-        hash
-      end
+        attr_accessor :expiry_date
 
-      def from_hash(hash)
-        super
-        @dpan = hash['dpan'] if hash.key? 'dpan'
-        @expiry_date = hash['expiryDate'] if hash.key? 'expiryDate'
+        # @return (Hash)
+        def to_h
+          hash = super
+          hash['dpan'] = @dpan unless @dpan.nil?
+          hash['expiryDate'] = @expiry_date unless @expiry_date.nil?
+          hash
+        end
+
+        def from_hash(hash)
+          super
+          if hash.has_key? 'dpan'
+            @dpan = hash['dpan']
+          end
+          if hash.has_key? 'expiryDate'
+            @expiry_date = hash['expiryDate']
+          end
+        end
       end
     end
   end

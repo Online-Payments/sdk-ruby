@@ -9,8 +9,8 @@ describe 'Factory' do
 
     expect(configuration.api_endpoint).to eq('https://payment.preprod.online-payments.com')
     expect(configuration.authorization_type).to eq('v1HMAC')
-    expect(configuration.connect_timeout).to eq(-1)
-    expect(configuration.socket_timeout).to eq(-1)
+    expect(configuration.connect_timeout).to eq(1000)
+    expect(configuration.socket_timeout).to eq(1000)
     expect(configuration.max_connections).to eq(100)
     expect(configuration.api_key_id).to eq(API_KEY_ID)
     expect(configuration.secret_api_key).to eq(SECRET_API_KEY)
@@ -19,18 +19,16 @@ describe 'Factory' do
 
   it 'can initialize communicators' do
     communicator = Factory.create_communicator_from_file(PROPERTIES_URI, API_KEY_ID, SECRET_API_KEY)
-    connection = communicator.connection
-    authenticator = communicator.authenticator
-    meta_data_provider = communicator.meta_data_provider
-    request_headers = meta_data_provider.meta_data_headers
+    connection = communicator.instance_variable_get(:@connection)
+    authenticator = communicator.instance_variable_get(:@authenticator)
+    metadata_provider = communicator.instance_variable_get(:@metadata_provider)
+    request_headers = metadata_provider.metadata_headers
 
-    expect(communicator.marshaller).to be(OnlinePayments::SDK::DefaultImpl::DefaultMarshaller.INSTANCE)
-    expect(connection).to be_an_instance_of(OnlinePayments::SDK::DefaultImpl::DefaultConnection)
-    expect(authenticator).to be_an_instance_of(OnlinePayments::SDK::DefaultImpl::DefaultAuthenticator)
-    expect(meta_data_provider).to be_an_instance_of(OnlinePayments::SDK::MetaDataProvider)
+    expect(communicator.marshaller).to be(OnlinePayments::SDK::JSON::DefaultMarshaller.instance)
+    expect(connection).to be_an_instance_of(OnlinePayments::SDK::Communication::DefaultConnection)
+    expect(authenticator).to be_an_instance_of(OnlinePayments::SDK::Authentication::V1HmacAuthenticator)
+    expect(metadata_provider).to be_an_instance_of(OnlinePayments::SDK::Communication::MetadataProvider)
 
-    expect(authenticator.instance_variable_get(:@authorization_type))
-      .to eq(OnlinePayments::SDK::DefaultImpl::AuthorizationType::V1HMAC)
     expect(authenticator.instance_variable_get(:@api_key_id)).to eq(API_KEY_ID)
     expect(authenticator.instance_variable_get(:@secret_api_key)).to eq(SECRET_API_KEY)
 

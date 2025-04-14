@@ -13,13 +13,13 @@ describe StdoutCommunicatorLogger do
     $stdout = STDOUT
   end
 
-  subject(:sample) { StdoutCommunicatorLogger.INSTANCE }
+  subject(:sample) { StdoutCommunicatorLogger.instance }
   let(:regex) do
     Regexp.new("\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2} (.*)#{$RS}",
                Regexp::MULTILINE)
   end
 
-  def expected_msg(msg, thrown = false)
+  def expected_msg(msg, thrown=false)
     return msg unless thrown
     msg + $RS + thrown.to_s + $RS + thrown.backtrace.join($RS)
   end

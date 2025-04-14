@@ -1,12 +1,13 @@
 #
-# This class was auto-generated.
+# This file was automatically generated.
 #
-require 'onlinepayments/sdk/data_object'
+require 'onlinepayments/sdk/domain/data_object'
 
-module OnlinePayments::SDK
-  module Domain
-
-    class EmptyValidator < OnlinePayments::SDK::DataObject
+module OnlinePayments
+  module SDK
+    module Domain
+      class EmptyValidator < OnlinePayments::SDK::Domain::DataObject
+      end
     end
   end
 end

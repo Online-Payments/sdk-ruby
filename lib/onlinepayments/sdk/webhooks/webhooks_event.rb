@@ -1,57 +1,88 @@
-module OnlinePayments::SDK
-  module Webhooks
+require 'onlinepayments/sdk/domain/data_object'
+require 'onlinepayments/sdk/domain/payment_response'
+require 'onlinepayments/sdk/domain/payout_response'
+require 'onlinepayments/sdk/domain/refund_response'
+require 'onlinepayments/sdk/domain/token_response'
 
-    # @attr [String] api_version
-    # @attr [String] id
-    # @attr [String] created
-    # @attr [String] merchant_id
-    # @attr [String] type
-    # @attr [OnlinePayments::SDK::Domain::PaymentResponse] payment
-    # @attr [OnlinePayments::SDK::Domain::PayoutResponse] refund
-    # @attr [OnlinePayments::SDK::Domain::RefundResponse] payout
-    # @attr [OnlinePayments::SDK::Domain::TokenResponse] token
-    # @attr [OnlinePayments::SDK::Domain::DisputeResponse] dispute
-    class WebhooksEvent < OnlinePayments::SDK::DataObject
+module OnlinePayments
+  module SDK
+    module Webhooks
+      # @attr [String] api_version
+      # @attr [String] created
+      # @attr [String] id
+      # @attr [String] merchant_id
+      # @attr [String] type
+      # @attr [OnlinePayments::SDK::V2::Domain::PaymentResponse] payment
+      # @attr [OnlinePayments::SDK::V2::Domain::PayoutResponse] payout
+      # @attr [OnlinePayments::SDK::V2::Domain::RefundResponse] refund
+      # @attr [OnlinePayments::SDK::V2::Domain::TokenResponse] token
+      class WebhooksEvent < OnlinePayments::SDK::Domain::DataObject
 
-      attr_accessor :api_version
-      attr_accessor :id
-      attr_accessor :created
-      attr_accessor :merchant_id
-      attr_accessor :type
+        attr_accessor :api_version
 
-      attr_accessor :payment
-      attr_accessor :refund
-      attr_accessor :payout
-      attr_accessor :token
-      attr_accessor :dispute
+        attr_accessor :created
 
-      # @return [Hash]
-      def to_h
-        hash = super
-        hash['apiVersion'] = @api_version if @api_version
-        hash['id'] = @id if @id
-        hash['created'] = @created if @created
-        hash['merchantId'] = @merchant_id if @merchant_id
-        hash['type'] = @type if @type
-        hash['payment'] = @payment.to_h if @payment
-        hash['refund'] = @refund.to_h if @refund
-        hash['payout'] = @payout.to_h if @payout
-        hash['token'] = @token.to_h if @token
-        hash['dispute'] = @dispute.to_h if @dispute
-        hash
-      end
+        attr_accessor :dispute
 
-      def from_hash(hash)
-        super
-        @api_version = hash['apiVersion'] if hash.key? 'apiVersion'
-        @id = hash['id'] if hash.key? 'id'
-        @created = hash['created'] if hash.key? 'created'
-        @merchant_id = hash['merchantId'] if hash.key? 'merchantId'
-        @type = hash['type'] if hash.key? 'type'
-        @payment = OnlinePayments::SDK::Domain::PaymentResponse.new_from_hash(hash['payment']) if hash.key? 'payment'
-        @refund = OnlinePayments::SDK::Domain::RefundResponse.new_from_hash(hash['refund']) if hash.key? 'refund'
-        @payout = OnlinePayments::SDK::Domain::PayoutResponse.new_from_hash(hash['payout']) if hash.key? 'payout'
-        @token = OnlinePayments::SDK::Domain::TokenResponse.new_from_hash(hash['token']) if hash.key? 'token'
+        attr_accessor :id
+
+        attr_accessor :merchant_id
+
+        attr_accessor :type
+
+        attr_accessor :payment
+
+        attr_accessor :payout
+
+        attr_accessor :refund
+
+        attr_accessor :token
+
+        # @return (Hash)
+        def to_h
+          hash = super
+          hash['apiVersion'] = @api_version unless @api_version.nil?
+          hash['created'] = @created unless @created.nil?
+          hash['id'] = @id unless @id.nil?
+          hash['merchantId'] = @merchant_id unless @merchant_id.nil?
+          hash['type'] = @type unless @type.nil?
+          hash['payment'] = @payment.to_h unless @payment.nil?
+          hash['payout'] = @payout.to_h unless @payout.nil?
+          hash['refund'] = @refund.to_h unless @refund.nil?
+          hash['token'] = @token.to_h unless @token.nil?
+          hash
+        end
+
+        def from_hash(hash)
+          super
+          if hash.has_key? 'apiVersion'
+            @api_version = hash['apiVersion']
+          end
+          if hash.has_key? 'created'
+            @created = hash['created']
+          end
+          if hash.has_key? 'id'
+            @id = hash['id']
+          end
+          if hash.has_key? 'merchantId'
+            @merchant_id = hash['merchantId']
+          end
+          if hash.has_key? 'type'
+            @type = hash['type']
+          end
+          if hash.has_key? 'payment'
+            @payment = OnlinePayments::SDK::Domain::PaymentResponse.new_from_hash(hash['payment'])
+          end
+          if hash.has_key? 'payout'
+            @payout = OnlinePayments::SDK::Domain::PayoutResponse.new_from_hash(hash['payout'])
+          end
+          if hash.has_key? 'refund'
+            @refund = OnlinePayments::SDK::Domain::RefundResponse.new_from_hash(hash['refund'])
+          end
+          if hash.has_key? 'token'
+            @token = OnlinePayments::SDK::Domain::TokenResponse.new_from_hash(hash['token'])
+          end
+        end
       end
     end
   end

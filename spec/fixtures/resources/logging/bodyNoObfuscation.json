@@ -5,13 +5,13 @@
 			"amount": 1000
 		},
 		"customer": {
-			"locale": "fr_BE",
+			"locale": "nl_NL",
 			"billingAddress": {
-				"countryCode": "BE"
+				"countryCode": "NL"
 			}
 		}
 	},
-	"cardPaymentMethodSpecificInput": {
-		"paymentProductId": 1
+	"bankTransferPaymentMethodSpecificInput": {
+		"paymentProductId": 11
 	}
 }

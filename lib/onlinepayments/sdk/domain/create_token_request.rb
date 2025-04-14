@@ -1,33 +1,38 @@
 #
-# This class was auto-generated.
+# This file was automatically generated.
 #
-require 'onlinepayments/sdk/data_object'
+require 'onlinepayments/sdk/domain/data_object'
 require 'onlinepayments/sdk/domain/token_card_specific_input'
 
-module OnlinePayments::SDK
-  module Domain
+module OnlinePayments
+  module SDK
+    module Domain
+      # @attr [OnlinePayments::SDK::Domain::TokenCardSpecificInput] card
+      # @attr [Integer] payment_product_id
+      class CreateTokenRequest < OnlinePayments::SDK::Domain::DataObject
 
-    # @attr [OnlinePayments::SDK::Domain::TokenCardSpecificInput] card
-    # @attr [Integer] payment_product_id
-    class CreateTokenRequest < OnlinePayments::SDK::DataObject
-      attr_accessor :card
-      attr_accessor :payment_product_id
+        attr_accessor :card
 
-      # @return (Hash)
-      def to_h
-        hash = super
-        hash['card'] = @card.to_h if @card
-        hash['paymentProductId'] = @payment_product_id unless @payment_product_id.nil?
-        hash
-      end
+        attr_accessor :payment_product_id
 
-      def from_hash(hash)
-        super
-        if hash.key? 'card'
-          raise TypeError, "value '%s' is not a Hash" % [hash['card']] unless hash['card'].is_a? Hash
-          @card = OnlinePayments::SDK::Domain::TokenCardSpecificInput.new_from_hash(hash['card'])
+        # @return (Hash)
+        def to_h
+          hash = super
+          hash['card'] = @card.to_h unless @card.nil?
+          hash['paymentProductId'] = @payment_product_id unless @payment_product_id.nil?
+          hash
         end
-        @payment_product_id = hash['paymentProductId'] if hash.key? 'paymentProductId'
+
+        def from_hash(hash)
+          super
+          if hash.has_key? 'card'
+            raise TypeError, "value '%s' is not a Hash" % [hash['card']] unless hash['card'].is_a? Hash
+            @card = OnlinePayments::SDK::Domain::TokenCardSpecificInput.new_from_hash(hash['card'])
+          end
+          if hash.has_key? 'paymentProductId'
+            @payment_product_id = hash['paymentProductId']
+          end
+        end
       end
     end
   end

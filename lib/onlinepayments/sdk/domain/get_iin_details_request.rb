@@ -1,32 +1,37 @@
 #
-# This class was auto-generated.
+# This file was automatically generated.
 #
-require 'onlinepayments/sdk/data_object'
+require 'onlinepayments/sdk/domain/data_object'
 require 'onlinepayments/sdk/domain/payment_context'
 
-module OnlinePayments::SDK
-  module Domain
+module OnlinePayments
+  module SDK
+    module Domain
+      # @attr [String] bin
+      # @attr [OnlinePayments::SDK::Domain::PaymentContext] payment_context
+      class GetIINDetailsRequest < OnlinePayments::SDK::Domain::DataObject
 
-    # @attr [String] bin
-    # @attr [OnlinePayments::SDK::Domain::PaymentContext] payment_context
-    class GetIINDetailsRequest < OnlinePayments::SDK::DataObject
-      attr_accessor :bin
-      attr_accessor :payment_context
+        attr_accessor :bin
 
-      # @return (Hash)
-      def to_h
-        hash = super
-        hash['bin'] = @bin unless @bin.nil?
-        hash['paymentContext'] = @payment_context.to_h if @payment_context
-        hash
-      end
+        attr_accessor :payment_context
 
-      def from_hash(hash)
-        super
-        @bin = hash['bin'] if hash.key? 'bin'
-        if hash.key? 'paymentContext'
-          raise TypeError, "value '%s' is not a Hash" % [hash['paymentContext']] unless hash['paymentContext'].is_a? Hash
-          @payment_context = OnlinePayments::SDK::Domain::PaymentContext.new_from_hash(hash['paymentContext'])
+        # @return (Hash)
+        def to_h
+          hash = super
+          hash['bin'] = @bin unless @bin.nil?
+          hash['paymentContext'] = @payment_context.to_h unless @payment_context.nil?
+          hash
+        end
+
+        def from_hash(hash)
+          super
+          if hash.has_key? 'bin'
+            @bin = hash['bin']
+          end
+          if hash.has_key? 'paymentContext'
+            raise TypeError, "value '%s' is not a Hash" % [hash['paymentContext']] unless hash['paymentContext'].is_a? Hash
+            @payment_context = OnlinePayments::SDK::Domain::PaymentContext.new_from_hash(hash['paymentContext'])
+          end
         end
       end
     end

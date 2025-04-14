@@ -1,29 +1,36 @@
 #
-# This class was auto-generated.
+# This file was automatically generated.
 #
-require 'onlinepayments/sdk/data_object'
+require 'onlinepayments/sdk/domain/data_object'
 
-module OnlinePayments::SDK
-  module Domain
+module OnlinePayments
+  module SDK
+    module Domain
+      # @attr [String] eligibility
+      # @attr [String] type
+      class ProtectionEligibility < OnlinePayments::SDK::Domain::DataObject
 
-    # @attr [String] eligibility
-    # @attr [String] type
-    class ProtectionEligibility < OnlinePayments::SDK::DataObject
-      attr_accessor :eligibility
-      attr_accessor :type
+        attr_accessor :eligibility
 
-      # @return (Hash)
-      def to_h
-        hash = super
-        hash['eligibility'] = @eligibility unless @eligibility.nil?
-        hash['type'] = @type unless @type.nil?
-        hash
-      end
+        attr_accessor :type
 
-      def from_hash(hash)
-        super
-        @eligibility = hash['eligibility'] if hash.key? 'eligibility'
-        @type = hash['type'] if hash.key? 'type'
+        # @return (Hash)
+        def to_h
+          hash = super
+          hash['eligibility'] = @eligibility unless @eligibility.nil?
+          hash['type'] = @type unless @type.nil?
+          hash
+        end
+
+        def from_hash(hash)
+          super
+          if hash.has_key? 'eligibility'
+            @eligibility = hash['eligibility']
+          end
+          if hash.has_key? 'type'
+            @type = hash['type']
+          end
+        end
       end
     end
   end

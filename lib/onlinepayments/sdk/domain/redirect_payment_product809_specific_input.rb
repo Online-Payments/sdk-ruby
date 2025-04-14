@@ -1,25 +1,29 @@
 #
-# This class was auto-generated.
+# This file was automatically generated.
 #
-require 'onlinepayments/sdk/data_object'
+require 'onlinepayments/sdk/domain/data_object'
 
-module OnlinePayments::SDK
-  module Domain
+module OnlinePayments
+  module SDK
+    module Domain
+      # @attr [String] issuer_id
+      class RedirectPaymentProduct809SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
-    # @attr [String] issuer_id
-    class RedirectPaymentProduct809SpecificInput < OnlinePayments::SDK::DataObject
-      attr_accessor :issuer_id
+        attr_accessor :issuer_id
 
-      # @return (Hash)
-      def to_h
-        hash = super
-        hash['issuerId'] = @issuer_id unless @issuer_id.nil?
-        hash
-      end
+        # @return (Hash)
+        def to_h
+          hash = super
+          hash['issuerId'] = @issuer_id unless @issuer_id.nil?
+          hash
+        end
 
-      def from_hash(hash)
-        super
-        @issuer_id = hash['issuerId'] if hash.key? 'issuerId'
+        def from_hash(hash)
+          super
+          if hash.has_key? 'issuerId'
+            @issuer_id = hash['issuerId']
+          end
+        end
       end
     end
   end

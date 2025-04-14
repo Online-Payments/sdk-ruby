@@ -1,33 +1,50 @@
 #
-# This class was auto-generated.
+# This file was automatically generated.
 #
-require 'onlinepayments/sdk/data_object'
+require 'onlinepayments/sdk/domain/data_object'
 
-module OnlinePayments::SDK
-  module Domain
+module OnlinePayments
+  module SDK
+    module Domain
+      # @attr [String] entity_id
+      # @attr [String] payment_end_date
+      # @attr [String] payment_reference
+      # @attr [String] payment_start_date
+      class PaymentProduct5500SpecificOutput < OnlinePayments::SDK::Domain::DataObject
 
-    # @attr [String] payment_end_date
-    # @attr [String] payment_reference
-    # @attr [String] payment_start_date
-    class PaymentProduct5500SpecificOutput < OnlinePayments::SDK::DataObject
-      attr_accessor :payment_end_date
-      attr_accessor :payment_reference
-      attr_accessor :payment_start_date
+        attr_accessor :entity_id
 
-      # @return (Hash)
-      def to_h
-        hash = super
-        hash['paymentEndDate'] = @payment_end_date unless @payment_end_date.nil?
-        hash['paymentReference'] = @payment_reference unless @payment_reference.nil?
-        hash['paymentStartDate'] = @payment_start_date unless @payment_start_date.nil?
-        hash
-      end
+        attr_accessor :payment_end_date
 
-      def from_hash(hash)
-        super
-        @payment_end_date = hash['paymentEndDate'] if hash.key? 'paymentEndDate'
-        @payment_reference = hash['paymentReference'] if hash.key? 'paymentReference'
-        @payment_start_date = hash['paymentStartDate'] if hash.key? 'paymentStartDate'
+        attr_accessor :payment_reference
+
+        attr_accessor :payment_start_date
+
+        # @return (Hash)
+        def to_h
+          hash = super
+          hash['entityId'] = @entity_id unless @entity_id.nil?
+          hash['paymentEndDate'] = @payment_end_date unless @payment_end_date.nil?
+          hash['paymentReference'] = @payment_reference unless @payment_reference.nil?
+          hash['paymentStartDate'] = @payment_start_date unless @payment_start_date.nil?
+          hash
+        end
+
+        def from_hash(hash)
+          super
+          if hash.has_key? 'entityId'
+            @entity_id = hash['entityId']
+          end
+          if hash.has_key? 'paymentEndDate'
+            @payment_end_date = hash['paymentEndDate']
+          end
+          if hash.has_key? 'paymentReference'
+            @payment_reference = hash['paymentReference']
+          end
+          if hash.has_key? 'paymentStartDate'
+            @payment_start_date = hash['paymentStartDate']
+          end
+        end
       end
     end
   end

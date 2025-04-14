@@ -1,13 +1,19 @@
-module OnlinePayments::SDK
+#
+# This file was automatically generated.
+#
+require_relative 'api_exception'
 
-  # This exception is thrown when a request sent to the Online Payments platform is not correctly authenticated.
-  # Corresponds to a HTTP status code of 403.
-  # @see ApiException#initialize
-  class AuthorizationException < ApiException
+module OnlinePayments
+  module SDK
+    # Represents an error response from the payment platform when authorization failed.
+    class AuthorizationException < ApiException
 
-    def initialize(status_code, response_body, error_id, errors,
-                   message = 'the Online Payments platform returned an authorization error response')
-      super(status_code, response_body, error_id, errors, message)
+      # Create a new AuthorizationException.
+      # @see ApiException#initialize
+      def initialize(status_code, response_body, error_id, errors,
+                     message='the payment platform returned an authorization error response')
+        super(status_code, response_body, error_id, errors, message)
+      end
     end
   end
 end

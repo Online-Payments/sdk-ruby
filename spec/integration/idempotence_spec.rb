@@ -13,8 +13,8 @@ require 'onlinepayments/sdk/call_context'
 
 describe 'Idempotence with the server' do
 
-  before(:context) { WebMock.allow_net_connect! }
-  after(:context) { WebMock.disable_net_connect! }
+  before(:context){WebMock.allow_net_connect!}
+  after(:context){WebMock.disable_net_connect!}
 
   it 'realises when an idempotent request is sent twice' do
     amount_of_money = OnlinePayments::SDK::Domain::AmountOfMoney.new

@@ -1,31 +1,36 @@
-require 'onlinepayments/sdk/declined_transaction_exception'
+#
+# This file was automatically generated.
+#
+require_relative 'declined_transaction_exception'
 
-module OnlinePayments::SDK
+module OnlinePayments
+  module SDK
+    # Represents an error response from a payout call.
+    class DeclinedPayoutException < DeclinedTransactionException
 
-  # Indicates that a payout is declined by the Online Payments platform or one of its downstream partners/acquirers.
-  class DeclinedPayoutException < DeclinedTransactionException
+      # Create a new DeclinedPayoutException.
+      # @see ApiException#initialize
+      def initialize(status_code, response_body, response)
+        super(status_code, response_body, response&.error_id, response&.errors, build_message(response))
+        @response = response
+      end
 
-    # Create a new DeclinedPayoutException
-    # @see ApiException#initialize
-    def initialize(status_code, response_body, errors)
-      super(status_code, response_body, errors&.error_id, errors&.errors, build_message(errors))
-      @errors = errors
-    end
+      # The result of creating a payout
+      # @return [OnlinePayments::SDK::Domain::PayoutResult, nil]
+      def payout_result
+        @response&.payout_result
+      end
 
-    # The declined payout result as returned by the Online Payments platform.
-    # @return [OnlinePayments::SDK::Domain::PayoutResult, nil]
-    def payout_result
-      @errors&.payout_result
-    end
+      private
 
-    private
-
-    def build_message(errors)
-      payout = errors&.payout_result
-      if payout
-        "declined payout '#{payout.id}' with status '#{payout.status}'"
-      else
-        'the Online Payments platform returned a declined payout response'
+      # @param response [OnlinePayments::SDK::Domain::PayoutErrorResponse, nil]
+      def build_message(response)
+        payout_result = response&.payout_result
+        if payout_result.nil?
+          'the payment platform returned a declined payout response'
+        else
+          "declined payout '#{payout_result.id}' with status '#{payout_result.status}'"
+        end
       end
     end
   end

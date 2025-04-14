@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'onlinepayments/sdk/merchant/products/get_payment_products_params'
 require 'onlinepayments/sdk/merchant/productgroups/get_product_groups_params'
 
-RequestParam ||= OnlinePayments::SDK::RequestParam
+RequestParam ||= OnlinePayments::SDK::Communication::RequestParam
 
 shared_examples_for 'GetPaymentProduct(Group)sParams' do
 

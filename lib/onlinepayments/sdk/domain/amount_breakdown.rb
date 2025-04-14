@@ -1,29 +1,36 @@
 #
-# This class was auto-generated.
+# This file was automatically generated.
 #
-require 'onlinepayments/sdk/data_object'
+require 'onlinepayments/sdk/domain/data_object'
 
-module OnlinePayments::SDK
-  module Domain
+module OnlinePayments
+  module SDK
+    module Domain
+      # @attr [Integer] amount
+      # @attr [String] type
+      class AmountBreakdown < OnlinePayments::SDK::Domain::DataObject
 
-    # @attr [Long] amount
-    # @attr [String] type
-    class AmountBreakdown < OnlinePayments::SDK::DataObject
-      attr_accessor :amount
-      attr_accessor :type
+        attr_accessor :amount
 
-      # @return (Hash)
-      def to_h
-        hash = super
-        hash['amount'] = @amount unless @amount.nil?
-        hash['type'] = @type unless @type.nil?
-        hash
-      end
+        attr_accessor :type
 
-      def from_hash(hash)
-        super
-        @amount = hash['amount'] if hash.key? 'amount'
-        @type = hash['type'] if hash.key? 'type'
+        # @return (Hash)
+        def to_h
+          hash = super
+          hash['amount'] = @amount unless @amount.nil?
+          hash['type'] = @type unless @type.nil?
+          hash
+        end
+
+        def from_hash(hash)
+          super
+          if hash.has_key? 'amount'
+            @amount = hash['amount']
+          end
+          if hash.has_key? 'type'
+            @type = hash['type']
+          end
+        end
       end
     end
   end

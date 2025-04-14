@@ -1,16 +1,21 @@
 require 'spec_helper'
 
 include OnlinePayments::SDK
+
+DefaultMarshaller ||= OnlinePayments::SDK::JSON::DefaultMarshaller
+
+require 'onlinepayments/sdk/webhooks/webhooks_helper'
+
 describe Webhooks::WebhooksHelper do
 
   # define constants for the testbench
   SIGNATURE_HEADER = "X-GCS-Signature"
-  SIGNATURE = "iD0beEVLCQJBn/WfBeAaLpahd8Z6msSEbJguxEa+BXU="
+  SIGNATURE = "2S7doBj/GnJnacIjSJzr5fxGM5xmfQyFAwxv1I53ZEk="
   KEY_ID_HEADER = "X-GCS-KeyId"
   KEY_ID = "dummy-key-id"
   SECRET_KEY = "hello+world"
 
-  def create_helper(marshaller = DefaultImpl::DefaultMarshaller.INSTANCE)
+  def create_helper(marshaller = DefaultMarshaller.instance)
     Webhooks::WebhooksHelper.new(marshaller, Webhooks::InMemorySecretKeyStore.instance)
   end
 
@@ -36,28 +41,28 @@ describe Webhooks::WebhooksHelper do
 
     it 'should raise ApiVersionMismatchException when API version does not match' do
       # mock marshaller once to return an event with a wrong API version number
-      expect(DefaultImpl::DefaultMarshaller.INSTANCE).to receive(:unmarshal) do |body, klass|
-        event = klass.new_from_hash(JSON.parse(body))
+      expect(DefaultMarshaller.instance).to receive(:unmarshal) do |body, klass|
+        event = klass.new_from_hash(JSON.load(body))
         event.api_version = 'v0' # wrong version
         event
       end
       Webhooks::InMemorySecretKeyStore.instance.store_secret_key(KEY_ID, SECRET_KEY)
-      expect { helper.unmarshal(body, request_headers) }.to raise_error(Webhooks::ApiVersionMismatchException)
+      expect{helper.unmarshal(body, request_headers)}.to raise_error(Webhooks::ApiVersionMismatchException)
     end
 
     it 'should raise SecretKeyNotAvailableException when no secret key exists' do
-      expect { helper.unmarshal(body, request_headers) }.to raise_error(Webhooks::SecretKeyNotAvailableException)
+      expect{helper.unmarshal(body, request_headers)}.to raise_error(Webhooks::SecretKeyNotAvailableException)
     end
 
     it 'should raise SignatureValidationException when the signature is missing' do
       Webhooks::InMemorySecretKeyStore.instance.store_secret_key(KEY_ID, SECRET_KEY)
-      expect { helper.unmarshal(body, []) }.to raise_error(Webhooks::SignatureValidationException)
+      expect{helper.unmarshal(body, [])}.to raise_error(Webhooks::SignatureValidationException)
     end
 
     it 'should raise SignatureValidationException when there are duplicate headers' do
       Webhooks::InMemorySecretKeyStore.instance.store_secret_key(KEY_ID, SECRET_KEY)
       request_headers = [sig_header, key_header, sig_header]
-      expect { helper.unmarshal(body, request_headers) }.to raise_error(Webhooks::SignatureValidationException)
+      expect{helper.unmarshal(body, request_headers)}.to raise_error(Webhooks::SignatureValidationException)
     end
 
     it 'should work when everything is correct' do
@@ -98,18 +103,18 @@ describe Webhooks::WebhooksHelper do
     it 'should raise SignatureValidationException when the body is invalid' do
       Webhooks::InMemorySecretKeyStore.instance.store_secret_key(KEY_ID, SECRET_KEY)
       body = read_resource('invalid-body')
-      expect { helper.unmarshal(body, request_headers) }.to raise_error(Webhooks::SignatureValidationException)
+      expect{helper.unmarshal(body, request_headers)}.to raise_error(Webhooks::SignatureValidationException)
     end
 
     it 'should raise SignatureValidationException when the secret key is invalid' do
-      Webhooks::InMemorySecretKeyStore.instance.store_secret_key(KEY_ID, '1' + SECRET_KEY) # wrong key
-      expect { helper.unmarshal(body, request_headers) }.to raise_error(Webhooks::SignatureValidationException)
+      Webhooks::InMemorySecretKeyStore.instance.store_secret_key(KEY_ID, '1'+SECRET_KEY) # wrong key
+      expect{helper.unmarshal(body, request_headers)}.to raise_error(Webhooks::SignatureValidationException)
     end
 
     it 'should raise SignatureValidationException when the signature is invalid' do
       Webhooks::InMemorySecretKeyStore.instance.store_secret_key(KEY_ID, SECRET_KEY)
-      request_headers = [RequestHeader.new(SIGNATURE_HEADER, '1' + SIGNATURE), key_header] # wrong signature
-      expect { helper.unmarshal(body, request_headers) }.to raise_error(Webhooks::SignatureValidationException)
+      request_headers = [RequestHeader.new(SIGNATURE_HEADER, '1'+SIGNATURE), key_header] # wrong signature
+      expect{helper.unmarshal(body, request_headers)}.to raise_error(Webhooks::SignatureValidationException)
     end
   end
 end

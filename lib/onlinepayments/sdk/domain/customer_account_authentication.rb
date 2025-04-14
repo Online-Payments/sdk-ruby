@@ -1,29 +1,43 @@
 #
-# This class was auto-generated.
+# This file was automatically generated.
 #
-require 'onlinepayments/sdk/data_object'
+require 'onlinepayments/sdk/domain/data_object'
 
-module OnlinePayments::SDK
-  module Domain
+module OnlinePayments
+  module SDK
+    module Domain
+      # @attr [String] data
+      # @attr [String] method
+      # @attr [String] utc_timestamp
+      class CustomerAccountAuthentication < OnlinePayments::SDK::Domain::DataObject
 
-    # @attr [String] method
-    # @attr [String] utc_timestamp
-    class CustomerAccountAuthentication < OnlinePayments::SDK::DataObject
-      attr_accessor :method
-      attr_accessor :utc_timestamp
+        attr_accessor :data
 
-      # @return (Hash)
-      def to_h
-        hash = super
-        hash['method'] = @method unless @method.nil?
-        hash['utcTimestamp'] = @utc_timestamp unless @utc_timestamp.nil?
-        hash
-      end
+        attr_accessor :method
 
-      def from_hash(hash)
-        super
-        @method = hash['method'] if hash.key? 'method'
-        @utc_timestamp = hash['utcTimestamp'] if hash.key? 'utcTimestamp'
+        attr_accessor :utc_timestamp
+
+        # @return (Hash)
+        def to_h
+          hash = super
+          hash['data'] = @data unless @data.nil?
+          hash['method'] = @method unless @method.nil?
+          hash['utcTimestamp'] = @utc_timestamp unless @utc_timestamp.nil?
+          hash
+        end
+
+        def from_hash(hash)
+          super
+          if hash.has_key? 'data'
+            @data = hash['data']
+          end
+          if hash.has_key? 'method'
+            @method = hash['method']
+          end
+          if hash.has_key? 'utcTimestamp'
+            @utc_timestamp = hash['utcTimestamp']
+          end
+        end
       end
     end
   end

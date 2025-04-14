@@ -1,25 +1,29 @@
 #
-# This class was auto-generated.
+# This file was automatically generated.
 #
-require 'onlinepayments/sdk/data_object'
+require 'onlinepayments/sdk/domain/data_object'
 
-module OnlinePayments::SDK
-  module Domain
+module OnlinePayments
+  module SDK
+    module Domain
+      # @attr [String] result
+      class TestConnection < OnlinePayments::SDK::Domain::DataObject
 
-    # @attr [String] result
-    class TestConnection < OnlinePayments::SDK::DataObject
-      attr_accessor :result
+        attr_accessor :result
 
-      # @return (Hash)
-      def to_h
-        hash = super
-        hash['result'] = @result unless @result.nil?
-        hash
-      end
+        # @return (Hash)
+        def to_h
+          hash = super
+          hash['result'] = @result unless @result.nil?
+          hash
+        end
 
-      def from_hash(hash)
-        super
-        @result = hash['result'] if hash.key? 'result'
+        def from_hash(hash)
+          super
+          if hash.has_key? 'result'
+            @result = hash['result']
+          end
+        end
       end
     end
   end
