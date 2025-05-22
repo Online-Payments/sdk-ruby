@@ -11,6 +11,7 @@ module OnlinePayments
   module SDK
     module Domain
       # @attr [DateTime] expiration_date
+      # @attr [true/false] is_reusable_link
       # @attr [String] payment_id
       # @attr [Array<OnlinePayments::SDK::Domain::PaymentLinkEvent>] payment_link_events
       # @attr [String] payment_link_id
@@ -21,6 +22,8 @@ module OnlinePayments
       class PaymentLinkResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :expiration_date
+
+        attr_accessor :is_reusable_link
 
         attr_accessor :payment_id
 
@@ -40,6 +43,7 @@ module OnlinePayments
         def to_h
           hash = super
           hash['expirationDate'] = @expiration_date.iso8601(3) unless @expiration_date.nil?
+          hash['isReusableLink'] = @is_reusable_link unless @is_reusable_link.nil?
           hash['paymentId'] = @payment_id unless @payment_id.nil?
           hash['paymentLinkEvents'] = @payment_link_events.collect{|val| val.to_h} unless @payment_link_events.nil?
           hash['paymentLinkId'] = @payment_link_id unless @payment_link_id.nil?
@@ -54,6 +58,9 @@ module OnlinePayments
           super
           if hash.has_key? 'expirationDate'
             @expiration_date = DateTime.parse(hash['expirationDate'])
+          end
+          if hash.has_key? 'isReusableLink'
+            @is_reusable_link = hash['isReusableLink']
           end
           if hash.has_key? 'paymentId'
             @payment_id = hash['paymentId']

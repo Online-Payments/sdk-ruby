@@ -9,6 +9,7 @@ require 'onlinepayments/sdk/domain/data_object'
 require 'onlinepayments/sdk/domain/external_token_linked'
 require 'onlinepayments/sdk/domain/payment_product3208_specific_output'
 require 'onlinepayments/sdk/domain/payment_product3209_specific_output'
+require 'onlinepayments/sdk/domain/reattempt_instructions'
 require 'onlinepayments/sdk/domain/three_d_secure_results'
 
 module OnlinePayments
@@ -27,6 +28,7 @@ module OnlinePayments
       # @attr [OnlinePayments::SDK::Domain::PaymentProduct3208SpecificOutput] payment_product3208_specific_output
       # @attr [OnlinePayments::SDK::Domain::PaymentProduct3209SpecificOutput] payment_product3209_specific_output
       # @attr [Integer] payment_product_id
+      # @attr [OnlinePayments::SDK::Domain::ReattemptInstructions] reattempt_instructions
       # @attr [String] scheme_reference_data
       # @attr [OnlinePayments::SDK::Domain::ThreeDSecureResults] three_d_secure_results
       # @attr [String] token
@@ -58,6 +60,8 @@ module OnlinePayments
 
         attr_accessor :payment_product_id
 
+        attr_accessor :reattempt_instructions
+
         attr_accessor :scheme_reference_data
 
         attr_accessor :three_d_secure_results
@@ -80,6 +84,7 @@ module OnlinePayments
           hash['paymentProduct3208SpecificOutput'] = @payment_product3208_specific_output.to_h unless @payment_product3208_specific_output.nil?
           hash['paymentProduct3209SpecificOutput'] = @payment_product3209_specific_output.to_h unless @payment_product3209_specific_output.nil?
           hash['paymentProductId'] = @payment_product_id unless @payment_product_id.nil?
+          hash['reattemptInstructions'] = @reattempt_instructions.to_h unless @reattempt_instructions.nil?
           hash['schemeReferenceData'] = @scheme_reference_data unless @scheme_reference_data.nil?
           hash['threeDSecureResults'] = @three_d_secure_results.to_h unless @three_d_secure_results.nil?
           hash['token'] = @token unless @token.nil?
@@ -133,6 +138,10 @@ module OnlinePayments
           end
           if hash.has_key? 'paymentProductId'
             @payment_product_id = hash['paymentProductId']
+          end
+          if hash.has_key? 'reattemptInstructions'
+            raise TypeError, "value '%s' is not a Hash" % [hash['reattemptInstructions']] unless hash['reattemptInstructions'].is_a? Hash
+            @reattempt_instructions = OnlinePayments::SDK::Domain::ReattemptInstructions.new_from_hash(hash['reattemptInstructions'])
           end
           if hash.has_key? 'schemeReferenceData'
             @scheme_reference_data = hash['schemeReferenceData']

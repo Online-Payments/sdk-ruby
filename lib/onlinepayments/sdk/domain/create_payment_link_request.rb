@@ -24,6 +24,7 @@ module OnlinePayments
       # @attr [OnlinePayments::SDK::Domain::Feedbacks] feedbacks
       # @attr [OnlinePayments::SDK::Domain::FraudFields] fraud_fields
       # @attr [OnlinePayments::SDK::Domain::HostedCheckoutSpecificInput] hosted_checkout_specific_input
+      # @attr [true/false] is_reusable_link
       # @attr [OnlinePayments::SDK::Domain::MobilePaymentMethodHostedCheckoutSpecificInput] mobile_payment_method_specific_input
       # @attr [OnlinePayments::SDK::Domain::Order] order
       # @attr [OnlinePayments::SDK::Domain::PaymentLinkOrderInput] payment_link_order
@@ -46,6 +47,8 @@ module OnlinePayments
         attr_accessor :fraud_fields
 
         attr_accessor :hosted_checkout_specific_input
+
+        attr_accessor :is_reusable_link
 
         attr_accessor :mobile_payment_method_specific_input
 
@@ -71,6 +74,7 @@ module OnlinePayments
           hash['feedbacks'] = @feedbacks.to_h unless @feedbacks.nil?
           hash['fraudFields'] = @fraud_fields.to_h unless @fraud_fields.nil?
           hash['hostedCheckoutSpecificInput'] = @hosted_checkout_specific_input.to_h unless @hosted_checkout_specific_input.nil?
+          hash['isReusableLink'] = @is_reusable_link unless @is_reusable_link.nil?
           hash['mobilePaymentMethodSpecificInput'] = @mobile_payment_method_specific_input.to_h unless @mobile_payment_method_specific_input.nil?
           hash['order'] = @order.to_h unless @order.nil?
           hash['paymentLinkOrder'] = @payment_link_order.to_h unless @payment_link_order.nil?
@@ -104,6 +108,9 @@ module OnlinePayments
           if hash.has_key? 'hostedCheckoutSpecificInput'
             raise TypeError, "value '%s' is not a Hash" % [hash['hostedCheckoutSpecificInput']] unless hash['hostedCheckoutSpecificInput'].is_a? Hash
             @hosted_checkout_specific_input = OnlinePayments::SDK::Domain::HostedCheckoutSpecificInput.new_from_hash(hash['hostedCheckoutSpecificInput'])
+          end
+          if hash.has_key? 'isReusableLink'
+            @is_reusable_link = hash['isReusableLink']
           end
           if hash.has_key? 'mobilePaymentMethodSpecificInput'
             raise TypeError, "value '%s' is not a Hash" % [hash['mobilePaymentMethodSpecificInput']] unless hash['mobilePaymentMethodSpecificInput'].is_a? Hash

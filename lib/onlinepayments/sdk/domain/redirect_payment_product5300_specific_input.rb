@@ -1,8 +1,6 @@
 #
 # This file was automatically generated.
 #
-require 'date'
-
 require 'onlinepayments/sdk/domain/data_object'
 
 module OnlinePayments
@@ -13,7 +11,7 @@ module OnlinePayments
       # @attr [String] birth_zip_code
       # @attr [String] channel
       # @attr [String] loyalty_card_number
-      # @attr [Date] second_installment_payment_date
+      # @attr [String] second_installment_payment_date
       # @attr [Integer] session_duration
       class RedirectPaymentProduct5300SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
@@ -39,7 +37,7 @@ module OnlinePayments
           hash['birthZipCode'] = @birth_zip_code unless @birth_zip_code.nil?
           hash['channel'] = @channel unless @channel.nil?
           hash['loyaltyCardNumber'] = @loyalty_card_number unless @loyalty_card_number.nil?
-          hash['secondInstallmentPaymentDate'] = @second_installment_payment_date.iso8601 unless @second_installment_payment_date.nil?
+          hash['secondInstallmentPaymentDate'] = @second_installment_payment_date unless @second_installment_payment_date.nil?
           hash['sessionDuration'] = @session_duration unless @session_duration.nil?
           hash
         end
@@ -62,7 +60,7 @@ module OnlinePayments
             @loyalty_card_number = hash['loyaltyCardNumber']
           end
           if hash.has_key? 'secondInstallmentPaymentDate'
-            @second_installment_payment_date = Date.parse(hash['secondInstallmentPaymentDate'])
+            @second_installment_payment_date = hash['secondInstallmentPaymentDate']
           end
           if hash.has_key? 'sessionDuration'
             @session_duration = hash['sessionDuration']
