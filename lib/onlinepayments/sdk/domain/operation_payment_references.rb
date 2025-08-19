@@ -7,14 +7,18 @@ module OnlinePayments
   module SDK
     module Domain
       # @attr [String] merchant_reference
+      # @attr [String] operation_group_reference
       class OperationPaymentReferences < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :merchant_reference
+
+        attr_accessor :operation_group_reference
 
         # @return (Hash)
         def to_h
           hash = super
           hash['merchantReference'] = @merchant_reference unless @merchant_reference.nil?
+          hash['operationGroupReference'] = @operation_group_reference unless @operation_group_reference.nil?
           hash
         end
 
@@ -22,6 +26,9 @@ module OnlinePayments
           super
           if hash.has_key? 'merchantReference'
             @merchant_reference = hash['merchantReference']
+          end
+          if hash.has_key? 'operationGroupReference'
+            @operation_group_reference = hash['operationGroupReference']
           end
         end
       end

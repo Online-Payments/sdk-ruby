@@ -4,6 +4,7 @@
 require 'onlinepayments/sdk/domain/acquirer_information'
 require 'onlinepayments/sdk/domain/card_essentials'
 require 'onlinepayments/sdk/domain/card_fraud_results'
+require 'onlinepayments/sdk/domain/click_to_pay'
 require 'onlinepayments/sdk/domain/currency_conversion'
 require 'onlinepayments/sdk/domain/data_object'
 require 'onlinepayments/sdk/domain/external_token_linked'
@@ -19,6 +20,7 @@ module OnlinePayments
       # @attr [Integer] authenticated_amount
       # @attr [String] authorisation_code
       # @attr [OnlinePayments::SDK::Domain::CardEssentials] card
+      # @attr [OnlinePayments::SDK::Domain::ClickToPay] click_to_pay
       # @attr [OnlinePayments::SDK::Domain::CurrencyConversion] currency_conversion
       # @attr [OnlinePayments::SDK::Domain::ExternalTokenLinked] external_token_linked
       # @attr [OnlinePayments::SDK::Domain::CardFraudResults] fraud_results
@@ -41,6 +43,8 @@ module OnlinePayments
         attr_accessor :authorisation_code
 
         attr_accessor :card
+
+        attr_accessor :click_to_pay
 
         attr_accessor :currency_conversion
 
@@ -75,6 +79,7 @@ module OnlinePayments
           hash['authenticatedAmount'] = @authenticated_amount unless @authenticated_amount.nil?
           hash['authorisationCode'] = @authorisation_code unless @authorisation_code.nil?
           hash['card'] = @card.to_h unless @card.nil?
+          hash['clickToPay'] = @click_to_pay.to_h unless @click_to_pay.nil?
           hash['currencyConversion'] = @currency_conversion.to_h unless @currency_conversion.nil?
           hash['externalTokenLinked'] = @external_token_linked.to_h unless @external_token_linked.nil?
           hash['fraudResults'] = @fraud_results.to_h unless @fraud_results.nil?
@@ -106,6 +111,10 @@ module OnlinePayments
           if hash.has_key? 'card'
             raise TypeError, "value '%s' is not a Hash" % [hash['card']] unless hash['card'].is_a? Hash
             @card = OnlinePayments::SDK::Domain::CardEssentials.new_from_hash(hash['card'])
+          end
+          if hash.has_key? 'clickToPay'
+            raise TypeError, "value '%s' is not a Hash" % [hash['clickToPay']] unless hash['clickToPay'].is_a? Hash
+            @click_to_pay = OnlinePayments::SDK::Domain::ClickToPay.new_from_hash(hash['clickToPay'])
           end
           if hash.has_key? 'currencyConversion'
             raise TypeError, "value '%s' is not a Hash" % [hash['currencyConversion']] unless hash['currencyConversion'].is_a? Hash

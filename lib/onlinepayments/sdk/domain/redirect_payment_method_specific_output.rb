@@ -5,6 +5,7 @@ require 'onlinepayments/sdk/domain/customer_bank_account'
 require 'onlinepayments/sdk/domain/data_object'
 require 'onlinepayments/sdk/domain/fraud_results'
 require 'onlinepayments/sdk/domain/payment_product3203_specific_output'
+require 'onlinepayments/sdk/domain/payment_product3204_specific_output'
 require 'onlinepayments/sdk/domain/payment_product5001_specific_output'
 require 'onlinepayments/sdk/domain/payment_product5402_specific_output'
 require 'onlinepayments/sdk/domain/payment_product5500_specific_output'
@@ -16,6 +17,7 @@ module OnlinePayments
       # @attr [String] authorisation_code
       # @attr [OnlinePayments::SDK::Domain::CustomerBankAccount] customer_bank_account
       # @attr [OnlinePayments::SDK::Domain::FraudResults] fraud_results
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct3204SpecificOutput] payment_method3204_specific_output
       # @attr [String] payment_option
       # @attr [OnlinePayments::SDK::Domain::PaymentProduct3203SpecificOutput] payment_product3203_specific_output
       # @attr [OnlinePayments::SDK::Domain::PaymentProduct5001SpecificOutput] payment_product5001_specific_output
@@ -31,6 +33,8 @@ module OnlinePayments
         attr_accessor :customer_bank_account
 
         attr_accessor :fraud_results
+
+        attr_accessor :payment_method3204_specific_output
 
         attr_accessor :payment_option
 
@@ -54,6 +58,7 @@ module OnlinePayments
           hash['authorisationCode'] = @authorisation_code unless @authorisation_code.nil?
           hash['customerBankAccount'] = @customer_bank_account.to_h unless @customer_bank_account.nil?
           hash['fraudResults'] = @fraud_results.to_h unless @fraud_results.nil?
+          hash['paymentMethod3204SpecificOutput'] = @payment_method3204_specific_output.to_h unless @payment_method3204_specific_output.nil?
           hash['paymentOption'] = @payment_option unless @payment_option.nil?
           hash['paymentProduct3203SpecificOutput'] = @payment_product3203_specific_output.to_h unless @payment_product3203_specific_output.nil?
           hash['paymentProduct5001SpecificOutput'] = @payment_product5001_specific_output.to_h unless @payment_product5001_specific_output.nil?
@@ -77,6 +82,10 @@ module OnlinePayments
           if hash.has_key? 'fraudResults'
             raise TypeError, "value '%s' is not a Hash" % [hash['fraudResults']] unless hash['fraudResults'].is_a? Hash
             @fraud_results = OnlinePayments::SDK::Domain::FraudResults.new_from_hash(hash['fraudResults'])
+          end
+          if hash.has_key? 'paymentMethod3204SpecificOutput'
+            raise TypeError, "value '%s' is not a Hash" % [hash['paymentMethod3204SpecificOutput']] unless hash['paymentMethod3204SpecificOutput'].is_a? Hash
+            @payment_method3204_specific_output = OnlinePayments::SDK::Domain::PaymentProduct3204SpecificOutput.new_from_hash(hash['paymentMethod3204SpecificOutput'])
           end
           if hash.has_key? 'paymentOption'
             @payment_option = hash['paymentOption']

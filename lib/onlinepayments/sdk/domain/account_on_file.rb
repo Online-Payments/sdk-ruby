@@ -10,7 +10,7 @@ module OnlinePayments
     module Domain
       # @attr [Array<OnlinePayments::SDK::Domain::AccountOnFileAttribute>] attributes
       # @attr [OnlinePayments::SDK::Domain::AccountOnFileDisplayHints] display_hints
-      # @attr [Integer] id
+      # @attr [String] id
       # @attr [Integer] payment_product_id
       class AccountOnFile < OnlinePayments::SDK::Domain::DataObject
 

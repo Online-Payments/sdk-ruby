@@ -6,6 +6,7 @@ require 'onlinepayments/sdk/domain/card_recurrence_details'
 require 'onlinepayments/sdk/domain/currency_conversion_input'
 require 'onlinepayments/sdk/domain/data_object'
 require 'onlinepayments/sdk/domain/multiple_payment_information'
+require 'onlinepayments/sdk/domain/network_token_data'
 require 'onlinepayments/sdk/domain/payment_product130_specific_input'
 require 'onlinepayments/sdk/domain/payment_product3012_specific_input'
 require 'onlinepayments/sdk/domain/payment_product3208_specific_input'
@@ -25,6 +26,7 @@ module OnlinePayments
       # @attr [String] initial_scheme_transaction_id
       # @attr [true/false] is_recurring
       # @attr [OnlinePayments::SDK::Domain::MultiplePaymentInformation] multiple_payment_information
+      # @attr [OnlinePayments::SDK::Domain::NetworkTokenData] network_token_data
       # @attr [OnlinePayments::SDK::Domain::PaymentProduct130SpecificInput] payment_product130_specific_input
       # @attr [OnlinePayments::SDK::Domain::PaymentProduct3012SpecificInput] payment_product3012_specific_input
       # @attr [OnlinePayments::SDK::Domain::PaymentProduct3208SpecificInput] payment_product3208_specific_input
@@ -61,6 +63,8 @@ module OnlinePayments
         attr_accessor :is_recurring
 
         attr_accessor :multiple_payment_information
+
+        attr_accessor :network_token_data
 
         attr_accessor :payment_product130_specific_input
 
@@ -106,6 +110,7 @@ module OnlinePayments
           hash['initialSchemeTransactionId'] = @initial_scheme_transaction_id unless @initial_scheme_transaction_id.nil?
           hash['isRecurring'] = @is_recurring unless @is_recurring.nil?
           hash['multiplePaymentInformation'] = @multiple_payment_information.to_h unless @multiple_payment_information.nil?
+          hash['networkTokenData'] = @network_token_data.to_h unless @network_token_data.nil?
           hash['paymentProduct130SpecificInput'] = @payment_product130_specific_input.to_h unless @payment_product130_specific_input.nil?
           hash['paymentProduct3012SpecificInput'] = @payment_product3012_specific_input.to_h unless @payment_product3012_specific_input.nil?
           hash['paymentProduct3208SpecificInput'] = @payment_product3208_specific_input.to_h unless @payment_product3208_specific_input.nil?
@@ -158,6 +163,10 @@ module OnlinePayments
           if hash.has_key? 'multiplePaymentInformation'
             raise TypeError, "value '%s' is not a Hash" % [hash['multiplePaymentInformation']] unless hash['multiplePaymentInformation'].is_a? Hash
             @multiple_payment_information = OnlinePayments::SDK::Domain::MultiplePaymentInformation.new_from_hash(hash['multiplePaymentInformation'])
+          end
+          if hash.has_key? 'networkTokenData'
+            raise TypeError, "value '%s' is not a Hash" % [hash['networkTokenData']] unless hash['networkTokenData'].is_a? Hash
+            @network_token_data = OnlinePayments::SDK::Domain::NetworkTokenData.new_from_hash(hash['networkTokenData'])
           end
           if hash.has_key? 'paymentProduct130SpecificInput'
             raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct130SpecificInput']] unless hash['paymentProduct130SpecificInput'].is_a? Hash

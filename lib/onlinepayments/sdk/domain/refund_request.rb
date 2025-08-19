@@ -12,6 +12,7 @@ module OnlinePayments
       # @attr [OnlinePayments::SDK::Domain::AmountOfMoney] amount_of_money
       # @attr [String] capture_id
       # @attr [OnlinePayments::SDK::Domain::OperationPaymentReferences] operation_references
+      # @attr [String] reason
       # @attr [OnlinePayments::SDK::Domain::PaymentReferences] references
       class RefundRequest < OnlinePayments::SDK::Domain::DataObject
 
@@ -21,6 +22,8 @@ module OnlinePayments
 
         attr_accessor :operation_references
 
+        attr_accessor :reason
+
         attr_accessor :references
 
         # @return (Hash)
@@ -29,6 +32,7 @@ module OnlinePayments
           hash['amountOfMoney'] = @amount_of_money.to_h unless @amount_of_money.nil?
           hash['captureId'] = @capture_id unless @capture_id.nil?
           hash['operationReferences'] = @operation_references.to_h unless @operation_references.nil?
+          hash['reason'] = @reason unless @reason.nil?
           hash['references'] = @references.to_h unless @references.nil?
           hash
         end
@@ -45,6 +49,9 @@ module OnlinePayments
           if hash.has_key? 'operationReferences'
             raise TypeError, "value '%s' is not a Hash" % [hash['operationReferences']] unless hash['operationReferences'].is_a? Hash
             @operation_references = OnlinePayments::SDK::Domain::OperationPaymentReferences.new_from_hash(hash['operationReferences'])
+          end
+          if hash.has_key? 'reason'
+            @reason = hash['reason']
           end
           if hash.has_key? 'references'
             raise TypeError, "value '%s' is not a Hash" % [hash['references']] unless hash['references'].is_a? Hash

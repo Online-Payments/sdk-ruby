@@ -148,6 +148,7 @@ module OnlinePayments
           # Resource /v2/!{merchantId}/mandates/!{uniqueMandateReference}/revoke - Revoke mandate
           #
           # @param unique_mandate_reference [String]
+          # @param body                     [OnlinePayments::SDK::Domain::RevokeMandateRequest]
           # @param context                  [OnlinePayments::SDK::CallContext, nil]
           # @return [OnlinePayments::SDK::Domain::GetMandateResponse]
           # @raise [OnlinePayments::SDK::IdempotenceException] if an idempotent request caused a conflict (HTTP status code 409)
@@ -159,7 +160,7 @@ module OnlinePayments
           #        the payment platform was unable to process a message from a downstream partner/acquirer,
           #        or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
           # @raise [OnlinePayments::SDK::ApiException] if the payment platform returned any other error
-          def revoke_mandate(unique_mandate_reference, context = nil)
+          def revoke_mandate(unique_mandate_reference, body, context = nil)
             path_context = {
               'uniqueMandateReference'.freeze => unique_mandate_reference,
             }
@@ -168,7 +169,7 @@ module OnlinePayments
               uri,
               client_headers,
               nil,
-              nil,
+              body,
               OnlinePayments::SDK::Domain::GetMandateResponse,
               context)
           rescue OnlinePayments::SDK::Communication::ResponseException => e

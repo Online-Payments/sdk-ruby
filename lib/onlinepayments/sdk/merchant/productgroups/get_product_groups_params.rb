@@ -22,6 +22,7 @@ module OnlinePayments
 
           attr_accessor :currency_code
 
+          # @deprecated This field has no effect.
           attr_accessor :locale
 
           attr_accessor :amount

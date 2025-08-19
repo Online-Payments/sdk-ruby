@@ -7,6 +7,7 @@ module OnlinePayments
   module SDK
     module Domain
       # @attr [String] issuer_id
+      # @deprecated Deprecated, this is no longer used.
       class RedirectPaymentProduct809SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :issuer_id
