@@ -4,7 +4,6 @@
 require 'date'
 
 require 'onlinepayments/sdk/domain/data_object'
-require 'onlinepayments/sdk/domain/iin_detail'
 
 module OnlinePayments
   module SDK
@@ -18,9 +17,7 @@ module OnlinePayments
       # @attr [String] card_product_usage_label
       # @attr [String] card_scheme
       # @attr [String] card_type
-      # @attr [Array<OnlinePayments::SDK::Domain::IINDetail>] co_brands
       # @attr [String] country_code
-      # @attr [true/false] is_allowed_in_context
       # @attr [String] issuer_code
       # @attr [String] issuer_name
       # @attr [String] issuer_region_code
@@ -28,9 +25,8 @@ module OnlinePayments
       # @attr [Integer] pan_length_max
       # @attr [Integer] pan_length_min
       # @attr [true/false] pan_luhn_check
-      # @attr [Integer] payment_product_id
       # @attr [true/false] virtual_card_indicator
-      class GetIINDetailsResponse < OnlinePayments::SDK::Domain::DataObject
+      class CardBinDetails < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :card_corporate_indicator
 
@@ -50,11 +46,7 @@ module OnlinePayments
 
         attr_accessor :card_type
 
-        attr_accessor :co_brands
-
         attr_accessor :country_code
-
-        attr_accessor :is_allowed_in_context
 
         attr_accessor :issuer_code
 
@@ -70,8 +62,6 @@ module OnlinePayments
 
         attr_accessor :pan_luhn_check
 
-        attr_accessor :payment_product_id
-
         attr_accessor :virtual_card_indicator
 
         # @return (Hash)
@@ -86,9 +76,7 @@ module OnlinePayments
           hash['cardProductUsageLabel'] = @card_product_usage_label unless @card_product_usage_label.nil?
           hash['cardScheme'] = @card_scheme unless @card_scheme.nil?
           hash['cardType'] = @card_type unless @card_type.nil?
-          hash['coBrands'] = @co_brands.collect{|val| val.to_h} unless @co_brands.nil?
           hash['countryCode'] = @country_code unless @country_code.nil?
-          hash['isAllowedInContext'] = @is_allowed_in_context unless @is_allowed_in_context.nil?
           hash['issuerCode'] = @issuer_code unless @issuer_code.nil?
           hash['issuerName'] = @issuer_name unless @issuer_name.nil?
           hash['issuerRegionCode'] = @issuer_region_code unless @issuer_region_code.nil?
@@ -96,7 +84,6 @@ module OnlinePayments
           hash['panLengthMax'] = @pan_length_max unless @pan_length_max.nil?
           hash['panLengthMin'] = @pan_length_min unless @pan_length_min.nil?
           hash['panLuhnCheck'] = @pan_luhn_check unless @pan_luhn_check.nil?
-          hash['paymentProductId'] = @payment_product_id unless @payment_product_id.nil?
           hash['virtualCardIndicator'] = @virtual_card_indicator unless @virtual_card_indicator.nil?
           hash
         end
@@ -130,18 +117,8 @@ module OnlinePayments
           if hash.has_key? 'cardType'
             @card_type = hash['cardType']
           end
-          if hash.has_key? 'coBrands'
-            raise TypeError, "value '%s' is not an Array" % [hash['coBrands']] unless hash['coBrands'].is_a? Array
-            @co_brands = []
-            hash['coBrands'].each do |e|
-              @co_brands << OnlinePayments::SDK::Domain::IINDetail.new_from_hash(e)
-            end
-          end
           if hash.has_key? 'countryCode'
             @country_code = hash['countryCode']
-          end
-          if hash.has_key? 'isAllowedInContext'
-            @is_allowed_in_context = hash['isAllowedInContext']
           end
           if hash.has_key? 'issuerCode'
             @issuer_code = hash['issuerCode']
@@ -163,9 +140,6 @@ module OnlinePayments
           end
           if hash.has_key? 'panLuhnCheck'
             @pan_luhn_check = hash['panLuhnCheck']
-          end
-          if hash.has_key? 'paymentProductId'
-            @payment_product_id = hash['paymentProductId']
           end
           if hash.has_key? 'virtualCardIndicator'
             @virtual_card_indicator = hash['virtualCardIndicator']

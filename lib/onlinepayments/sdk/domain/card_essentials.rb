@@ -15,6 +15,7 @@ module OnlinePayments
       # @attr [String] card_number
       # @attr [String] card_pan_type
       # @attr [String] card_product_code
+      # @attr [String] card_product_name
       # @attr [String] card_product_usage_label
       # @attr [String] card_scheme
       # @attr [String] card_type
@@ -22,10 +23,12 @@ module OnlinePayments
       # @attr [String] expiry_date
       # @attr [String] issuer_code
       # @attr [String] issuer_name
+      # @attr [String] issuer_region_code
       # @attr [String] issuing_country_code
       # @attr [Integer] pan_length_max
       # @attr [Integer] pan_length_min
       # @attr [true/false] pan_luhn_check
+      # @attr [true/false] virtual_card_indicator
       class CardEssentials < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :bin
@@ -42,6 +45,8 @@ module OnlinePayments
 
         attr_accessor :card_product_code
 
+        attr_accessor :card_product_name
+
         attr_accessor :card_product_usage_label
 
         attr_accessor :card_scheme
@@ -56,6 +61,8 @@ module OnlinePayments
 
         attr_accessor :issuer_name
 
+        attr_accessor :issuer_region_code
+
         attr_accessor :issuing_country_code
 
         attr_accessor :pan_length_max
@@ -63,6 +70,8 @@ module OnlinePayments
         attr_accessor :pan_length_min
 
         attr_accessor :pan_luhn_check
+
+        attr_accessor :virtual_card_indicator
 
         # @return (Hash)
         def to_h
@@ -74,6 +83,7 @@ module OnlinePayments
           hash['cardNumber'] = @card_number unless @card_number.nil?
           hash['cardPanType'] = @card_pan_type unless @card_pan_type.nil?
           hash['cardProductCode'] = @card_product_code unless @card_product_code.nil?
+          hash['cardProductName'] = @card_product_name unless @card_product_name.nil?
           hash['cardProductUsageLabel'] = @card_product_usage_label unless @card_product_usage_label.nil?
           hash['cardScheme'] = @card_scheme unless @card_scheme.nil?
           hash['cardType'] = @card_type unless @card_type.nil?
@@ -81,10 +91,12 @@ module OnlinePayments
           hash['expiryDate'] = @expiry_date unless @expiry_date.nil?
           hash['issuerCode'] = @issuer_code unless @issuer_code.nil?
           hash['issuerName'] = @issuer_name unless @issuer_name.nil?
+          hash['issuerRegionCode'] = @issuer_region_code unless @issuer_region_code.nil?
           hash['issuingCountryCode'] = @issuing_country_code unless @issuing_country_code.nil?
           hash['panLengthMax'] = @pan_length_max unless @pan_length_max.nil?
           hash['panLengthMin'] = @pan_length_min unless @pan_length_min.nil?
           hash['panLuhnCheck'] = @pan_luhn_check unless @pan_luhn_check.nil?
+          hash['virtualCardIndicator'] = @virtual_card_indicator unless @virtual_card_indicator.nil?
           hash
         end
 
@@ -111,6 +123,9 @@ module OnlinePayments
           if hash.has_key? 'cardProductCode'
             @card_product_code = hash['cardProductCode']
           end
+          if hash.has_key? 'cardProductName'
+            @card_product_name = hash['cardProductName']
+          end
           if hash.has_key? 'cardProductUsageLabel'
             @card_product_usage_label = hash['cardProductUsageLabel']
           end
@@ -132,6 +147,9 @@ module OnlinePayments
           if hash.has_key? 'issuerName'
             @issuer_name = hash['issuerName']
           end
+          if hash.has_key? 'issuerRegionCode'
+            @issuer_region_code = hash['issuerRegionCode']
+          end
           if hash.has_key? 'issuingCountryCode'
             @issuing_country_code = hash['issuingCountryCode']
           end
@@ -143,6 +161,9 @@ module OnlinePayments
           end
           if hash.has_key? 'panLuhnCheck'
             @pan_luhn_check = hash['panLuhnCheck']
+          end
+          if hash.has_key? 'virtualCardIndicator'
+            @virtual_card_indicator = hash['virtualCardIndicator']
           end
         end
       end

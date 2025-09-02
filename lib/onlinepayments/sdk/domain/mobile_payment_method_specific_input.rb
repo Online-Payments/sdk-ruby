@@ -3,6 +3,7 @@
 #
 require 'onlinepayments/sdk/domain/data_object'
 require 'onlinepayments/sdk/domain/decrypted_payment_data'
+require 'onlinepayments/sdk/domain/mobile_payment_product302_specific_input'
 require 'onlinepayments/sdk/domain/mobile_payment_product320_specific_input'
 
 module OnlinePayments
@@ -12,6 +13,7 @@ module OnlinePayments
       # @attr [OnlinePayments::SDK::Domain::DecryptedPaymentData] decrypted_payment_data
       # @attr [String] encrypted_payment_data
       # @attr [String] ephemeral_key
+      # @attr [OnlinePayments::SDK::Domain::MobilePaymentProduct302SpecificInput] payment_product302_specific_input
       # @attr [OnlinePayments::SDK::Domain::MobilePaymentProduct320SpecificInput] payment_product320_specific_input
       # @attr [Integer] payment_product_id
       # @attr [String] public_key_hash
@@ -25,6 +27,8 @@ module OnlinePayments
         attr_accessor :encrypted_payment_data
 
         attr_accessor :ephemeral_key
+
+        attr_accessor :payment_product302_specific_input
 
         attr_accessor :payment_product320_specific_input
 
@@ -41,6 +45,7 @@ module OnlinePayments
           hash['decryptedPaymentData'] = @decrypted_payment_data.to_h unless @decrypted_payment_data.nil?
           hash['encryptedPaymentData'] = @encrypted_payment_data unless @encrypted_payment_data.nil?
           hash['ephemeralKey'] = @ephemeral_key unless @ephemeral_key.nil?
+          hash['paymentProduct302SpecificInput'] = @payment_product302_specific_input.to_h unless @payment_product302_specific_input.nil?
           hash['paymentProduct320SpecificInput'] = @payment_product320_specific_input.to_h unless @payment_product320_specific_input.nil?
           hash['paymentProductId'] = @payment_product_id unless @payment_product_id.nil?
           hash['publicKeyHash'] = @public_key_hash unless @public_key_hash.nil?
@@ -62,6 +67,10 @@ module OnlinePayments
           end
           if hash.has_key? 'ephemeralKey'
             @ephemeral_key = hash['ephemeralKey']
+          end
+          if hash.has_key? 'paymentProduct302SpecificInput'
+            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct302SpecificInput']] unless hash['paymentProduct302SpecificInput'].is_a? Hash
+            @payment_product302_specific_input = OnlinePayments::SDK::Domain::MobilePaymentProduct302SpecificInput.new_from_hash(hash['paymentProduct302SpecificInput'])
           end
           if hash.has_key? 'paymentProduct320SpecificInput'
             raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct320SpecificInput']] unless hash['paymentProduct320SpecificInput'].is_a? Hash
