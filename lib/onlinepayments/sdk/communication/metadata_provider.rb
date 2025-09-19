@@ -13,7 +13,7 @@ module OnlinePayments
       class MetadataProvider
         private
 
-        SDK_VERSION = '6.1.0'.freeze
+        SDK_VERSION = '6.2.0'.freeze
         SERVER_META_INFO_HEADER = 'X-GCS-ServerMetaInfo'.freeze
         PROHIBITED_HEADERS = [SERVER_META_INFO_HEADER, 'X-GCS-Idempotence-Key', 'Date', 'Content-Type', 'Authorization'].sort!.freeze
         CHARSET = 'utf-8'.freeze

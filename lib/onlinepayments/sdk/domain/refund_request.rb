@@ -3,6 +3,7 @@
 #
 require 'onlinepayments/sdk/domain/amount_of_money'
 require 'onlinepayments/sdk/domain/data_object'
+require 'onlinepayments/sdk/domain/omnichannel_refund_specific_input'
 require 'onlinepayments/sdk/domain/operation_payment_references'
 require 'onlinepayments/sdk/domain/payment_references'
 
@@ -11,6 +12,7 @@ module OnlinePayments
     module Domain
       # @attr [OnlinePayments::SDK::Domain::AmountOfMoney] amount_of_money
       # @attr [String] capture_id
+      # @attr [OnlinePayments::SDK::Domain::OmnichannelRefundSpecificInput] omnichannel_refund_specific_input
       # @attr [OnlinePayments::SDK::Domain::OperationPaymentReferences] operation_references
       # @attr [String] reason
       # @attr [OnlinePayments::SDK::Domain::PaymentReferences] references
@@ -19,6 +21,8 @@ module OnlinePayments
         attr_accessor :amount_of_money
 
         attr_accessor :capture_id
+
+        attr_accessor :omnichannel_refund_specific_input
 
         attr_accessor :operation_references
 
@@ -31,6 +35,7 @@ module OnlinePayments
           hash = super
           hash['amountOfMoney'] = @amount_of_money.to_h unless @amount_of_money.nil?
           hash['captureId'] = @capture_id unless @capture_id.nil?
+          hash['omnichannelRefundSpecificInput'] = @omnichannel_refund_specific_input.to_h unless @omnichannel_refund_specific_input.nil?
           hash['operationReferences'] = @operation_references.to_h unless @operation_references.nil?
           hash['reason'] = @reason unless @reason.nil?
           hash['references'] = @references.to_h unless @references.nil?
@@ -45,6 +50,10 @@ module OnlinePayments
           end
           if hash.has_key? 'captureId'
             @capture_id = hash['captureId']
+          end
+          if hash.has_key? 'omnichannelRefundSpecificInput'
+            raise TypeError, "value '%s' is not a Hash" % [hash['omnichannelRefundSpecificInput']] unless hash['omnichannelRefundSpecificInput'].is_a? Hash
+            @omnichannel_refund_specific_input = OnlinePayments::SDK::Domain::OmnichannelRefundSpecificInput.new_from_hash(hash['omnichannelRefundSpecificInput'])
           end
           if hash.has_key? 'operationReferences'
             raise TypeError, "value '%s' is not a Hash" % [hash['operationReferences']] unless hash['operationReferences'].is_a? Hash
