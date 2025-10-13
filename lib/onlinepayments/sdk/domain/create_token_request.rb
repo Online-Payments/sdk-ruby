@@ -8,10 +8,13 @@ module OnlinePayments
   module SDK
     module Domain
       # @attr [OnlinePayments::SDK::Domain::TokenCardSpecificInput] card
+      # @attr [String] encrypted_customer_input
       # @attr [Integer] payment_product_id
       class CreateTokenRequest < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :card
+
+        attr_accessor :encrypted_customer_input
 
         attr_accessor :payment_product_id
 
@@ -19,6 +22,7 @@ module OnlinePayments
         def to_h
           hash = super
           hash['card'] = @card.to_h unless @card.nil?
+          hash['encryptedCustomerInput'] = @encrypted_customer_input unless @encrypted_customer_input.nil?
           hash['paymentProductId'] = @payment_product_id unless @payment_product_id.nil?
           hash
         end
@@ -28,6 +32,9 @@ module OnlinePayments
           if hash.has_key? 'card'
             raise TypeError, "value '%s' is not a Hash" % [hash['card']] unless hash['card'].is_a? Hash
             @card = OnlinePayments::SDK::Domain::TokenCardSpecificInput.new_from_hash(hash['card'])
+          end
+          if hash.has_key? 'encryptedCustomerInput'
+            @encrypted_customer_input = hash['encryptedCustomerInput']
           end
           if hash.has_key? 'paymentProductId'
             @payment_product_id = hash['paymentProductId']

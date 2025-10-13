@@ -1,4 +1,5 @@
 require 'onlinepayments/sdk/domain/data_object'
+require 'onlinepayments/sdk/domain/payment_link_response'
 require 'onlinepayments/sdk/domain/payment_response'
 require 'onlinepayments/sdk/domain/payout_response'
 require 'onlinepayments/sdk/domain/refund_response'
@@ -12,6 +13,7 @@ module OnlinePayments
       # @attr [String] id
       # @attr [String] merchant_id
       # @attr [String] type
+      # @attr [OnlinePayments::SDK::V2::Domain::PaymentLinkResponse] paymentlink
       # @attr [OnlinePayments::SDK::V2::Domain::PaymentResponse] payment
       # @attr [OnlinePayments::SDK::V2::Domain::PayoutResponse] payout
       # @attr [OnlinePayments::SDK::V2::Domain::RefundResponse] refund
@@ -30,6 +32,8 @@ module OnlinePayments
 
         attr_accessor :type
 
+        attr_accessor :paymentlink
+
         attr_accessor :payment
 
         attr_accessor :payout
@@ -46,6 +50,7 @@ module OnlinePayments
           hash['id'] = @id unless @id.nil?
           hash['merchantId'] = @merchant_id unless @merchant_id.nil?
           hash['type'] = @type unless @type.nil?
+          hash['paymentlink'] = @paymentlink.to_h unless @paymentlink.nil?
           hash['payment'] = @payment.to_h unless @payment.nil?
           hash['payout'] = @payout.to_h unless @payout.nil?
           hash['refund'] = @refund.to_h unless @refund.nil?
@@ -69,6 +74,9 @@ module OnlinePayments
           end
           if hash.has_key? 'type'
             @type = hash['type']
+          end
+          if hash.has_key? 'paymentlink'
+            @paymentlink = OnlinePayments::SDK::Domain::PaymentLinkResponse.new_from_hash(hash['paymentlink'])
           end
           if hash.has_key? 'payment'
             @payment = OnlinePayments::SDK::Domain::PaymentResponse.new_from_hash(hash['payment'])

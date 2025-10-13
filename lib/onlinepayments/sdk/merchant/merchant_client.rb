@@ -16,6 +16,7 @@ require 'onlinepayments/sdk/merchant/products/products_client'
 require 'onlinepayments/sdk/merchant/refunds/refunds_client'
 require 'onlinepayments/sdk/merchant/services/services_client'
 require 'onlinepayments/sdk/merchant/sessions/sessions_client'
+require 'onlinepayments/sdk/merchant/subsequent/subsequent_client'
 require 'onlinepayments/sdk/merchant/tokens/tokens_client'
 require 'onlinepayments/sdk/merchant/webhooks/webhooks_client'
 
@@ -71,6 +72,13 @@ module OnlinePayments
         # @return [OnlinePayments::SDK::Merchant::Complete::CompleteClient]
         def complete
           OnlinePayments::SDK::Merchant::Complete::CompleteClient.new(self, nil)
+        end
+
+        # Resource /v2/{merchantId}/payments/{paymentId}/subsequent
+        #
+        # @return [OnlinePayments::SDK::Merchant::Subsequent::SubsequentClient]
+        def subsequent
+          OnlinePayments::SDK::Merchant::Subsequent::SubsequentClient.new(self, nil)
         end
 
         # Resource /v2/{merchantId}/productgroups

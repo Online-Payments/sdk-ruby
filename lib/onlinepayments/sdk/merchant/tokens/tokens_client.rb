@@ -82,7 +82,7 @@ module OnlinePayments
             raise OnlinePayments::SDK.create_exception(e.status_code, e.body, error_object, context)
           end
 
-          # Resource /v2/!{merchantId}/tokens - Create token
+          # Resource /v2/!{merchantId}/tokens - Please create a token.
           #
           # @param body    [OnlinePayments::SDK::Domain::CreateTokenRequest]
           # @param context [OnlinePayments::SDK::CallContext, nil]

@@ -22,6 +22,7 @@ module OnlinePayments
       # @attr [OnlinePayments::SDK::Domain::Shipping] shipping
       # @attr [OnlinePayments::SDK::Domain::ShoppingCart] shopping_cart
       # @attr [OnlinePayments::SDK::Domain::SurchargeSpecificInput] surcharge_specific_input
+      # @attr [Integer] total_tax_amount
       class Order < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :additional_input
@@ -40,6 +41,8 @@ module OnlinePayments
 
         attr_accessor :surcharge_specific_input
 
+        attr_accessor :total_tax_amount
+
         # @return (Hash)
         def to_h
           hash = super
@@ -51,6 +54,7 @@ module OnlinePayments
           hash['shipping'] = @shipping.to_h unless @shipping.nil?
           hash['shoppingCart'] = @shopping_cart.to_h unless @shopping_cart.nil?
           hash['surchargeSpecificInput'] = @surcharge_specific_input.to_h unless @surcharge_specific_input.nil?
+          hash['totalTaxAmount'] = @total_tax_amount unless @total_tax_amount.nil?
           hash
         end
 
@@ -87,6 +91,9 @@ module OnlinePayments
           if hash.has_key? 'surchargeSpecificInput'
             raise TypeError, "value '%s' is not a Hash" % [hash['surchargeSpecificInput']] unless hash['surchargeSpecificInput'].is_a? Hash
             @surcharge_specific_input = OnlinePayments::SDK::Domain::SurchargeSpecificInput.new_from_hash(hash['surchargeSpecificInput'])
+          end
+          if hash.has_key? 'totalTaxAmount'
+            @total_tax_amount = hash['totalTaxAmount']
           end
         end
       end
