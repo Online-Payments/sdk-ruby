@@ -13,7 +13,7 @@ module OnlinePayments
       # @attr [String] id
       # @attr [String] merchant_id
       # @attr [String] type
-      # @attr [OnlinePayments::SDK::V2::Domain::PaymentLinkResponse] paymentlink
+      # @attr [OnlinePayments::SDK::V2::Domain::PaymentLinkResponse] payment_link
       # @attr [OnlinePayments::SDK::V2::Domain::PaymentResponse] payment
       # @attr [OnlinePayments::SDK::V2::Domain::PayoutResponse] payout
       # @attr [OnlinePayments::SDK::V2::Domain::RefundResponse] refund
@@ -32,7 +32,7 @@ module OnlinePayments
 
         attr_accessor :type
 
-        attr_accessor :paymentlink
+        attr_accessor :payment_link
 
         attr_accessor :payment
 
@@ -50,7 +50,7 @@ module OnlinePayments
           hash['id'] = @id unless @id.nil?
           hash['merchantId'] = @merchant_id unless @merchant_id.nil?
           hash['type'] = @type unless @type.nil?
-          hash['paymentlink'] = @paymentlink.to_h unless @paymentlink.nil?
+          hash['paymentLink'] = @payment_link.to_h unless @payment_link.nil?
           hash['payment'] = @payment.to_h unless @payment.nil?
           hash['payout'] = @payout.to_h unless @payout.nil?
           hash['refund'] = @refund.to_h unless @refund.nil?
@@ -75,8 +75,8 @@ module OnlinePayments
           if hash.has_key? 'type'
             @type = hash['type']
           end
-          if hash.has_key? 'paymentlink'
-            @paymentlink = OnlinePayments::SDK::Domain::PaymentLinkResponse.new_from_hash(hash['paymentlink'])
+          if hash.has_key? 'paymentLink'
+            @payment_link = OnlinePayments::SDK::Domain::PaymentLinkResponse.new_from_hash(hash['paymentLink'])
           end
           if hash.has_key? 'payment'
             @payment = OnlinePayments::SDK::Domain::PaymentResponse.new_from_hash(hash['payment'])
