@@ -44,9 +44,9 @@ module OnlinePayments
         raise ArgumentError('marshaller is required') if marshaller.nil?
 
         uri = URI(api_endpoint)
-        raise RuntimeError('api_endpoint should not contain a path') unless uri.path.nil? || uri.path.empty?
+        raise RuntimeError, 'api_endpoint should not contain a path' unless uri.path.nil? || uri.path.empty?
         unless uri.userinfo.nil? && uri.query.nil? && uri.fragment.nil?
-          raise RuntimeError('api_endpoint should not contain user info, query or fragment')
+          raise RuntimeError, 'api_endpoint should not contain user info, query or fragment'
         end
         @api_endpoint = uri
         @connection = connection
