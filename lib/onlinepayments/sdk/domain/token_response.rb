@@ -3,6 +3,7 @@
 #
 require 'onlinepayments/sdk/domain/data_object'
 require 'onlinepayments/sdk/domain/external_token_linked'
+require 'onlinepayments/sdk/domain/network_token_linked'
 require 'onlinepayments/sdk/domain/token_card'
 require 'onlinepayments/sdk/domain/token_e_wallet'
 
@@ -14,6 +15,7 @@ module OnlinePayments
       # @attr [OnlinePayments::SDK::Domain::ExternalTokenLinked] external_token_linked
       # @attr [String] id
       # @attr [true/false] is_temporary
+      # @attr [OnlinePayments::SDK::Domain::NetworkTokenLinked] network_token_linked
       # @attr [Integer] payment_product_id
       class TokenResponse < OnlinePayments::SDK::Domain::DataObject
 
@@ -27,6 +29,8 @@ module OnlinePayments
 
         attr_accessor :is_temporary
 
+        attr_accessor :network_token_linked
+
         attr_accessor :payment_product_id
 
         # @return (Hash)
@@ -37,6 +41,7 @@ module OnlinePayments
           hash['externalTokenLinked'] = @external_token_linked.to_h unless @external_token_linked.nil?
           hash['id'] = @id unless @id.nil?
           hash['isTemporary'] = @is_temporary unless @is_temporary.nil?
+          hash['networkTokenLinked'] = @network_token_linked.to_h unless @network_token_linked.nil?
           hash['paymentProductId'] = @payment_product_id unless @payment_product_id.nil?
           hash
         end
@@ -60,6 +65,10 @@ module OnlinePayments
           end
           if hash.has_key? 'isTemporary'
             @is_temporary = hash['isTemporary']
+          end
+          if hash.has_key? 'networkTokenLinked'
+            raise TypeError, "value '%s' is not a Hash" % [hash['networkTokenLinked']] unless hash['networkTokenLinked'].is_a? Hash
+            @network_token_linked = OnlinePayments::SDK::Domain::NetworkTokenLinked.new_from_hash(hash['networkTokenLinked'])
           end
           if hash.has_key? 'paymentProductId'
             @payment_product_id = hash['paymentProductId']

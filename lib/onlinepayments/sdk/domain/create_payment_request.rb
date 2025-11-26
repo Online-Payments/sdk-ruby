@@ -17,6 +17,7 @@ module OnlinePayments
       # @attr [String] encrypted_customer_input
       # @attr [OnlinePayments::SDK::Domain::Feedbacks] feedbacks
       # @attr [OnlinePayments::SDK::Domain::FraudFields] fraud_fields
+      # @attr [String] hosted_fields_session_id
       # @attr [String] hosted_tokenization_id
       # @attr [OnlinePayments::SDK::Domain::MobilePaymentMethodSpecificInput] mobile_payment_method_specific_input
       # @attr [OnlinePayments::SDK::Domain::Order] order
@@ -31,6 +32,8 @@ module OnlinePayments
         attr_accessor :feedbacks
 
         attr_accessor :fraud_fields
+
+        attr_accessor :hosted_fields_session_id
 
         attr_accessor :hosted_tokenization_id
 
@@ -49,6 +52,7 @@ module OnlinePayments
           hash['encryptedCustomerInput'] = @encrypted_customer_input unless @encrypted_customer_input.nil?
           hash['feedbacks'] = @feedbacks.to_h unless @feedbacks.nil?
           hash['fraudFields'] = @fraud_fields.to_h unless @fraud_fields.nil?
+          hash['hostedFieldsSessionId'] = @hosted_fields_session_id unless @hosted_fields_session_id.nil?
           hash['hostedTokenizationId'] = @hosted_tokenization_id unless @hosted_tokenization_id.nil?
           hash['mobilePaymentMethodSpecificInput'] = @mobile_payment_method_specific_input.to_h unless @mobile_payment_method_specific_input.nil?
           hash['order'] = @order.to_h unless @order.nil?
@@ -73,6 +77,9 @@ module OnlinePayments
           if hash.has_key? 'fraudFields'
             raise TypeError, "value '%s' is not a Hash" % [hash['fraudFields']] unless hash['fraudFields'].is_a? Hash
             @fraud_fields = OnlinePayments::SDK::Domain::FraudFields.new_from_hash(hash['fraudFields'])
+          end
+          if hash.has_key? 'hostedFieldsSessionId'
+            @hosted_fields_session_id = hash['hostedFieldsSessionId']
           end
           if hash.has_key? 'hostedTokenizationId'
             @hosted_tokenization_id = hash['hostedTokenizationId']

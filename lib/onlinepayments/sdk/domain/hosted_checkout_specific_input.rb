@@ -10,6 +10,7 @@ module OnlinePayments
     module Domain
       # @attr [Integer] allowed_number_of_payment_attempts
       # @attr [OnlinePayments::SDK::Domain::CardPaymentMethodSpecificInputForHostedCheckout] card_payment_method_specific_input
+      # @attr [true/false] is_new_unscheduled_card_on_file_series
       # @attr [true/false] is_recurring
       # @attr [String] locale
       # @attr [OnlinePayments::SDK::Domain::PaymentProductFiltersHostedCheckout] payment_product_filters
@@ -23,6 +24,8 @@ module OnlinePayments
         attr_accessor :allowed_number_of_payment_attempts
 
         attr_accessor :card_payment_method_specific_input
+
+        attr_accessor :is_new_unscheduled_card_on_file_series
 
         attr_accessor :is_recurring
 
@@ -45,6 +48,7 @@ module OnlinePayments
           hash = super
           hash['allowedNumberOfPaymentAttempts'] = @allowed_number_of_payment_attempts unless @allowed_number_of_payment_attempts.nil?
           hash['cardPaymentMethodSpecificInput'] = @card_payment_method_specific_input.to_h unless @card_payment_method_specific_input.nil?
+          hash['isNewUnscheduledCardOnFileSeries'] = @is_new_unscheduled_card_on_file_series unless @is_new_unscheduled_card_on_file_series.nil?
           hash['isRecurring'] = @is_recurring unless @is_recurring.nil?
           hash['locale'] = @locale unless @locale.nil?
           hash['paymentProductFilters'] = @payment_product_filters.to_h unless @payment_product_filters.nil?
@@ -64,6 +68,9 @@ module OnlinePayments
           if hash.has_key? 'cardPaymentMethodSpecificInput'
             raise TypeError, "value '%s' is not a Hash" % [hash['cardPaymentMethodSpecificInput']] unless hash['cardPaymentMethodSpecificInput'].is_a? Hash
             @card_payment_method_specific_input = OnlinePayments::SDK::Domain::CardPaymentMethodSpecificInputForHostedCheckout.new_from_hash(hash['cardPaymentMethodSpecificInput'])
+          end
+          if hash.has_key? 'isNewUnscheduledCardOnFileSeries'
+            @is_new_unscheduled_card_on_file_series = hash['isNewUnscheduledCardOnFileSeries']
           end
           if hash.has_key? 'isRecurring'
             @is_recurring = hash['isRecurring']

@@ -16,6 +16,7 @@ module OnlinePayments
         CONTENT_TYPE = 'Content-Type'.freeze
         DATE = 'Date'.freeze
         XGCS = 'X-GCS'.freeze
+        XGCS_LOWER = XGCS.downcase.freeze
 
         # Constructs a new V1HmacAuthenticator instance using the provided CommunicatorConfiguration.
         #
@@ -66,7 +67,7 @@ module OnlinePayments
               content_type = value
             when name.casecmp(DATE).zero?
               date = value
-            when to_canonical_header_name(name).start_with?("X-GCS")
+            when to_canonical_header_name(name).start_with?(XGCS_LOWER)
               xgc_http_headers << [to_canonical_header_name(name), to_canonical_header_value(value)]
             end
           end

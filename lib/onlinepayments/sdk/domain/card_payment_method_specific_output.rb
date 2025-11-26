@@ -8,6 +8,7 @@ require 'onlinepayments/sdk/domain/click_to_pay'
 require 'onlinepayments/sdk/domain/currency_conversion'
 require 'onlinepayments/sdk/domain/data_object'
 require 'onlinepayments/sdk/domain/external_token_linked'
+require 'onlinepayments/sdk/domain/network_token_essentials'
 require 'onlinepayments/sdk/domain/payment_product3208_specific_output'
 require 'onlinepayments/sdk/domain/payment_product3209_specific_output'
 require 'onlinepayments/sdk/domain/reattempt_instructions'
@@ -21,10 +22,12 @@ module OnlinePayments
       # @attr [String] authorisation_code
       # @attr [OnlinePayments::SDK::Domain::CardEssentials] card
       # @attr [OnlinePayments::SDK::Domain::ClickToPay] click_to_pay
+      # @attr [String] cobrand_selection_indicator
       # @attr [OnlinePayments::SDK::Domain::CurrencyConversion] currency_conversion
       # @attr [OnlinePayments::SDK::Domain::ExternalTokenLinked] external_token_linked
       # @attr [OnlinePayments::SDK::Domain::CardFraudResults] fraud_results
       # @attr [String] initial_scheme_transaction_id
+      # @attr [OnlinePayments::SDK::Domain::NetworkTokenEssentials] network_token_data
       # @attr [String] payment_account_reference
       # @attr [String] payment_option
       # @attr [OnlinePayments::SDK::Domain::PaymentProduct3208SpecificOutput] payment_product3208_specific_output
@@ -46,6 +49,8 @@ module OnlinePayments
 
         attr_accessor :click_to_pay
 
+        attr_accessor :cobrand_selection_indicator
+
         attr_accessor :currency_conversion
 
         attr_accessor :external_token_linked
@@ -53,6 +58,8 @@ module OnlinePayments
         attr_accessor :fraud_results
 
         attr_accessor :initial_scheme_transaction_id
+
+        attr_accessor :network_token_data
 
         attr_accessor :payment_account_reference
 
@@ -80,10 +87,12 @@ module OnlinePayments
           hash['authorisationCode'] = @authorisation_code unless @authorisation_code.nil?
           hash['card'] = @card.to_h unless @card.nil?
           hash['clickToPay'] = @click_to_pay.to_h unless @click_to_pay.nil?
+          hash['cobrandSelectionIndicator'] = @cobrand_selection_indicator unless @cobrand_selection_indicator.nil?
           hash['currencyConversion'] = @currency_conversion.to_h unless @currency_conversion.nil?
           hash['externalTokenLinked'] = @external_token_linked.to_h unless @external_token_linked.nil?
           hash['fraudResults'] = @fraud_results.to_h unless @fraud_results.nil?
           hash['initialSchemeTransactionId'] = @initial_scheme_transaction_id unless @initial_scheme_transaction_id.nil?
+          hash['networkTokenData'] = @network_token_data.to_h unless @network_token_data.nil?
           hash['paymentAccountReference'] = @payment_account_reference unless @payment_account_reference.nil?
           hash['paymentOption'] = @payment_option unless @payment_option.nil?
           hash['paymentProduct3208SpecificOutput'] = @payment_product3208_specific_output.to_h unless @payment_product3208_specific_output.nil?
@@ -116,6 +125,9 @@ module OnlinePayments
             raise TypeError, "value '%s' is not a Hash" % [hash['clickToPay']] unless hash['clickToPay'].is_a? Hash
             @click_to_pay = OnlinePayments::SDK::Domain::ClickToPay.new_from_hash(hash['clickToPay'])
           end
+          if hash.has_key? 'cobrandSelectionIndicator'
+            @cobrand_selection_indicator = hash['cobrandSelectionIndicator']
+          end
           if hash.has_key? 'currencyConversion'
             raise TypeError, "value '%s' is not a Hash" % [hash['currencyConversion']] unless hash['currencyConversion'].is_a? Hash
             @currency_conversion = OnlinePayments::SDK::Domain::CurrencyConversion.new_from_hash(hash['currencyConversion'])
@@ -130,6 +142,10 @@ module OnlinePayments
           end
           if hash.has_key? 'initialSchemeTransactionId'
             @initial_scheme_transaction_id = hash['initialSchemeTransactionId']
+          end
+          if hash.has_key? 'networkTokenData'
+            raise TypeError, "value '%s' is not a Hash" % [hash['networkTokenData']] unless hash['networkTokenData'].is_a? Hash
+            @network_token_data = OnlinePayments::SDK::Domain::NetworkTokenEssentials.new_from_hash(hash['networkTokenData'])
           end
           if hash.has_key? 'paymentAccountReference'
             @payment_account_reference = hash['paymentAccountReference']
