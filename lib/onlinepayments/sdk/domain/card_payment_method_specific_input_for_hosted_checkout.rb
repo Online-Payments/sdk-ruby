@@ -9,6 +9,7 @@ module OnlinePayments
       # @attr [true/false] click_to_pay
       # @attr [true/false] group_cards
       # @attr [Array<Integer>] payment_product_preferred_order
+      # @attr [String] tokenization_mode
       class CardPaymentMethodSpecificInputForHostedCheckout < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :click_to_pay
@@ -17,12 +18,15 @@ module OnlinePayments
 
         attr_accessor :payment_product_preferred_order
 
+        attr_accessor :tokenization_mode
+
         # @return (Hash)
         def to_h
           hash = super
           hash['clickToPay'] = @click_to_pay unless @click_to_pay.nil?
           hash['groupCards'] = @group_cards unless @group_cards.nil?
           hash['paymentProductPreferredOrder'] = @payment_product_preferred_order unless @payment_product_preferred_order.nil?
+          hash['tokenizationMode'] = @tokenization_mode unless @tokenization_mode.nil?
           hash
         end
 
@@ -40,6 +44,9 @@ module OnlinePayments
             hash['paymentProductPreferredOrder'].each do |e|
               @payment_product_preferred_order << e
             end
+          end
+          if hash.has_key? 'tokenizationMode'
+            @tokenization_mode = hash['tokenizationMode']
           end
         end
       end

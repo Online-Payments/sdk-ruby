@@ -14,7 +14,9 @@ module OnlinePayments
       # @attr [OnlinePayments::SDK::Domain::AddressPersonal] billing_personal_address
       # @attr [OnlinePayments::SDK::Domain::PaymentProduct840CustomerAccount] customer_account
       # @attr [OnlinePayments::SDK::Domain::Address] customer_address
+      # @attr [String] pay_pal_transaction_id
       # @attr [OnlinePayments::SDK::Domain::ProtectionEligibility] protection_eligibility
+      # @attr [OnlinePayments::SDK::Domain::AddressPersonal] shipping_address
       class PaymentProduct840SpecificOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :billing_address
@@ -25,7 +27,11 @@ module OnlinePayments
 
         attr_accessor :customer_address
 
+        attr_accessor :pay_pal_transaction_id
+
         attr_accessor :protection_eligibility
+
+        attr_accessor :shipping_address
 
         # @return (Hash)
         def to_h
@@ -34,7 +40,9 @@ module OnlinePayments
           hash['billingPersonalAddress'] = @billing_personal_address.to_h unless @billing_personal_address.nil?
           hash['customerAccount'] = @customer_account.to_h unless @customer_account.nil?
           hash['customerAddress'] = @customer_address.to_h unless @customer_address.nil?
+          hash['payPalTransactionId'] = @pay_pal_transaction_id unless @pay_pal_transaction_id.nil?
           hash['protectionEligibility'] = @protection_eligibility.to_h unless @protection_eligibility.nil?
+          hash['shippingAddress'] = @shipping_address.to_h unless @shipping_address.nil?
           hash
         end
 
@@ -56,9 +64,16 @@ module OnlinePayments
             raise TypeError, "value '%s' is not a Hash" % [hash['customerAddress']] unless hash['customerAddress'].is_a? Hash
             @customer_address = OnlinePayments::SDK::Domain::Address.new_from_hash(hash['customerAddress'])
           end
+          if hash.has_key? 'payPalTransactionId'
+            @pay_pal_transaction_id = hash['payPalTransactionId']
+          end
           if hash.has_key? 'protectionEligibility'
             raise TypeError, "value '%s' is not a Hash" % [hash['protectionEligibility']] unless hash['protectionEligibility'].is_a? Hash
             @protection_eligibility = OnlinePayments::SDK::Domain::ProtectionEligibility.new_from_hash(hash['protectionEligibility'])
+          end
+          if hash.has_key? 'shippingAddress'
+            raise TypeError, "value '%s' is not a Hash" % [hash['shippingAddress']] unless hash['shippingAddress'].is_a? Hash
+            @shipping_address = OnlinePayments::SDK::Domain::AddressPersonal.new_from_hash(hash['shippingAddress'])
           end
         end
       end

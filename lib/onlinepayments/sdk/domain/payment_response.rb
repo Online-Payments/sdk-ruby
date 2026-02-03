@@ -5,6 +5,7 @@ require 'onlinepayments/sdk/domain/data_object'
 require 'onlinepayments/sdk/domain/hosted_checkout_specific_output'
 require 'onlinepayments/sdk/domain/payment_output'
 require 'onlinepayments/sdk/domain/payment_status_output'
+require 'onlinepayments/sdk/domain/session_details'
 
 module OnlinePayments
   module SDK
@@ -12,6 +13,7 @@ module OnlinePayments
       # @attr [OnlinePayments::SDK::Domain::HostedCheckoutSpecificOutput] hosted_checkout_specific_output
       # @attr [String] id
       # @attr [OnlinePayments::SDK::Domain::PaymentOutput] payment_output
+      # @attr [OnlinePayments::SDK::Domain::SessionDetails] session_details
       # @attr [String] status
       # @attr [OnlinePayments::SDK::Domain::PaymentStatusOutput] status_output
       class PaymentResponse < OnlinePayments::SDK::Domain::DataObject
@@ -21,6 +23,8 @@ module OnlinePayments
         attr_accessor :id
 
         attr_accessor :payment_output
+
+        attr_accessor :session_details
 
         attr_accessor :status
 
@@ -32,6 +36,7 @@ module OnlinePayments
           hash['hostedCheckoutSpecificOutput'] = @hosted_checkout_specific_output.to_h unless @hosted_checkout_specific_output.nil?
           hash['id'] = @id unless @id.nil?
           hash['paymentOutput'] = @payment_output.to_h unless @payment_output.nil?
+          hash['sessionDetails'] = @session_details.to_h unless @session_details.nil?
           hash['status'] = @status unless @status.nil?
           hash['statusOutput'] = @status_output.to_h unless @status_output.nil?
           hash
@@ -49,6 +54,10 @@ module OnlinePayments
           if hash.has_key? 'paymentOutput'
             raise TypeError, "value '%s' is not a Hash" % [hash['paymentOutput']] unless hash['paymentOutput'].is_a? Hash
             @payment_output = OnlinePayments::SDK::Domain::PaymentOutput.new_from_hash(hash['paymentOutput'])
+          end
+          if hash.has_key? 'sessionDetails'
+            raise TypeError, "value '%s' is not a Hash" % [hash['sessionDetails']] unless hash['sessionDetails'].is_a? Hash
+            @session_details = OnlinePayments::SDK::Domain::SessionDetails.new_from_hash(hash['sessionDetails'])
           end
           if hash.has_key? 'status'
             @status = hash['status']

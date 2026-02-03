@@ -12,6 +12,7 @@ module OnlinePayments
       # @attr [String] exemption_request
       # @attr [OnlinePayments::SDK::Domain::RedirectionData] redirection_data
       # @attr [true/false] skip_authentication
+      # @attr [true/false] skip_soft_decline
       class GPayThreeDSecure < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :challenge_canvas_size
@@ -24,6 +25,8 @@ module OnlinePayments
 
         attr_accessor :skip_authentication
 
+        attr_accessor :skip_soft_decline
+
         # @return (Hash)
         def to_h
           hash = super
@@ -32,6 +35,7 @@ module OnlinePayments
           hash['exemptionRequest'] = @exemption_request unless @exemption_request.nil?
           hash['redirectionData'] = @redirection_data.to_h unless @redirection_data.nil?
           hash['skipAuthentication'] = @skip_authentication unless @skip_authentication.nil?
+          hash['skipSoftDecline'] = @skip_soft_decline unless @skip_soft_decline.nil?
           hash
         end
 
@@ -52,6 +56,9 @@ module OnlinePayments
           end
           if hash.has_key? 'skipAuthentication'
             @skip_authentication = hash['skipAuthentication']
+          end
+          if hash.has_key? 'skipSoftDecline'
+            @skip_soft_decline = hash['skipSoftDecline']
           end
         end
       end

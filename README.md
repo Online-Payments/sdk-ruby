@@ -10,7 +10,7 @@ The Ruby SDK helps you to communicate with the payment platform server API. Its 
 * handling of all the details concerning authentication
 * handling of required metadata
 
-Its use is demonstrated by an example for each possible call. The examples execute a call using the provided API keys. 
+See the [Online Payments Developer Hub](https://github.com/Online-Payments/sdk-ruby/) for more information on how to use the SDK.
 
 ## Structure of this repository
 

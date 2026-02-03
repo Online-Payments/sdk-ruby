@@ -16,6 +16,7 @@ module OnlinePayments
       # @attr [Array<OnlinePayments::SDK::Domain::PaymentLinkEvent>] payment_link_events
       # @attr [String] payment_link_id
       # @attr [OnlinePayments::SDK::Domain::PaymentLinkOrderOutput] payment_link_order
+      # @attr [String] qr_code_base64
       # @attr [String] recipient_name
       # @attr [String] redirection_url
       # @attr [String] status
@@ -33,6 +34,8 @@ module OnlinePayments
 
         attr_accessor :payment_link_order
 
+        attr_accessor :qr_code_base64
+
         attr_accessor :recipient_name
 
         attr_accessor :redirection_url
@@ -48,6 +51,7 @@ module OnlinePayments
           hash['paymentLinkEvents'] = @payment_link_events.collect{|val| val.to_h} unless @payment_link_events.nil?
           hash['paymentLinkId'] = @payment_link_id unless @payment_link_id.nil?
           hash['paymentLinkOrder'] = @payment_link_order.to_h unless @payment_link_order.nil?
+          hash['qrCodeBase64'] = @qr_code_base64 unless @qr_code_base64.nil?
           hash['recipientName'] = @recipient_name unless @recipient_name.nil?
           hash['redirectionUrl'] = @redirection_url unless @redirection_url.nil?
           hash['status'] = @status unless @status.nil?
@@ -78,6 +82,9 @@ module OnlinePayments
           if hash.has_key? 'paymentLinkOrder'
             raise TypeError, "value '%s' is not a Hash" % [hash['paymentLinkOrder']] unless hash['paymentLinkOrder'].is_a? Hash
             @payment_link_order = OnlinePayments::SDK::Domain::PaymentLinkOrderOutput.new_from_hash(hash['paymentLinkOrder'])
+          end
+          if hash.has_key? 'qrCodeBase64'
+            @qr_code_base64 = hash['qrCodeBase64']
           end
           if hash.has_key? 'recipientName'
             @recipient_name = hash['recipientName']

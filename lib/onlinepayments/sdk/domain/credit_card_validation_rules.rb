@@ -8,7 +8,7 @@ module OnlinePayments
     module Domain
       # @attr [true/false] cvv_mandatory_for_existing_token
       # @attr [true/false] cvv_mandatory_for_new_token
-      class CreditCardValidationRulesHostedTokenization < OnlinePayments::SDK::Domain::DataObject
+      class CreditCardValidationRules < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :cvv_mandatory_for_existing_token
 

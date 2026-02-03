@@ -13,6 +13,7 @@ module OnlinePayments
       # @attr [String] loyalty_card_number
       # @attr [String] second_installment_payment_date
       # @attr [Integer] session_duration
+      # @attr [String] title
       class RedirectPaymentProduct5300SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :birth_city
@@ -29,6 +30,8 @@ module OnlinePayments
 
         attr_accessor :session_duration
 
+        attr_accessor :title
+
         # @return (Hash)
         def to_h
           hash = super
@@ -39,6 +42,7 @@ module OnlinePayments
           hash['loyaltyCardNumber'] = @loyalty_card_number unless @loyalty_card_number.nil?
           hash['secondInstallmentPaymentDate'] = @second_installment_payment_date unless @second_installment_payment_date.nil?
           hash['sessionDuration'] = @session_duration unless @session_duration.nil?
+          hash['title'] = @title unless @title.nil?
           hash
         end
 
@@ -64,6 +68,9 @@ module OnlinePayments
           end
           if hash.has_key? 'sessionDuration'
             @session_duration = hash['sessionDuration']
+          end
+          if hash.has_key? 'title'
+            @title = hash['title']
           end
         end
       end

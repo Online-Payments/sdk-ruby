@@ -20,6 +20,7 @@ module OnlinePayments
     module Domain
       # @attr [OnlinePayments::SDK::Domain::CardPaymentMethodSpecificInputBase] card_payment_method_specific_input
       # @attr [String] description
+      # @attr [true/false] display_qr_code
       # @attr [DateTime] expiration_date
       # @attr [OnlinePayments::SDK::Domain::Feedbacks] feedbacks
       # @attr [OnlinePayments::SDK::Domain::FraudFields] fraud_fields
@@ -38,6 +39,8 @@ module OnlinePayments
 
         # @deprecated A note related to the created payment link.  Use paymentLinkSpecificInput/description instead.
         attr_accessor :description
+
+        attr_accessor :display_qr_code
 
         # @deprecated The date after which the payment link will not be usable to complete the payment. The date sent cannot be more than 6 months in the future or a past date. It must also contain the UTC offset.  Use paymentLinkSpecificInput/expirationDate instead.
         attr_accessor :expiration_date
@@ -70,6 +73,7 @@ module OnlinePayments
           hash = super
           hash['cardPaymentMethodSpecificInput'] = @card_payment_method_specific_input.to_h unless @card_payment_method_specific_input.nil?
           hash['description'] = @description unless @description.nil?
+          hash['displayQRCode'] = @display_qr_code unless @display_qr_code.nil?
           hash['expirationDate'] = @expiration_date.iso8601(3) unless @expiration_date.nil?
           hash['feedbacks'] = @feedbacks.to_h unless @feedbacks.nil?
           hash['fraudFields'] = @fraud_fields.to_h unless @fraud_fields.nil?
@@ -93,6 +97,9 @@ module OnlinePayments
           end
           if hash.has_key? 'description'
             @description = hash['description']
+          end
+          if hash.has_key? 'displayQRCode'
+            @display_qr_code = hash['displayQRCode']
           end
           if hash.has_key? 'expirationDate'
             @expiration_date = DateTime.parse(hash['expirationDate'])

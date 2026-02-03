@@ -4,6 +4,7 @@
 require 'onlinepayments/sdk/domain/card_payment_method_specific_input_for_hosted_checkout'
 require 'onlinepayments/sdk/domain/data_object'
 require 'onlinepayments/sdk/domain/payment_product_filters_hosted_checkout'
+require 'onlinepayments/sdk/domain/split_payment_product_filters_hosted_checkout'
 
 module OnlinePayments
   module SDK
@@ -17,6 +18,7 @@ module OnlinePayments
       # @attr [String] return_url
       # @attr [Integer] session_timeout
       # @attr [true/false] show_result_page
+      # @attr [OnlinePayments::SDK::Domain::SplitPaymentProductFiltersHostedCheckout] split_payment_product_filters
       # @attr [String] tokens
       # @attr [String] variant
       class HostedCheckoutSpecificInput < OnlinePayments::SDK::Domain::DataObject
@@ -39,6 +41,8 @@ module OnlinePayments
 
         attr_accessor :show_result_page
 
+        attr_accessor :split_payment_product_filters
+
         attr_accessor :tokens
 
         attr_accessor :variant
@@ -55,6 +59,7 @@ module OnlinePayments
           hash['returnUrl'] = @return_url unless @return_url.nil?
           hash['sessionTimeout'] = @session_timeout unless @session_timeout.nil?
           hash['showResultPage'] = @show_result_page unless @show_result_page.nil?
+          hash['splitPaymentProductFilters'] = @split_payment_product_filters.to_h unless @split_payment_product_filters.nil?
           hash['tokens'] = @tokens unless @tokens.nil?
           hash['variant'] = @variant unless @variant.nil?
           hash
@@ -90,6 +95,10 @@ module OnlinePayments
           end
           if hash.has_key? 'showResultPage'
             @show_result_page = hash['showResultPage']
+          end
+          if hash.has_key? 'splitPaymentProductFilters'
+            raise TypeError, "value '%s' is not a Hash" % [hash['splitPaymentProductFilters']] unless hash['splitPaymentProductFilters'].is_a? Hash
+            @split_payment_product_filters = OnlinePayments::SDK::Domain::SplitPaymentProductFiltersHostedCheckout.new_from_hash(hash['splitPaymentProductFilters'])
           end
           if hash.has_key? 'tokens'
             @tokens = hash['tokens']

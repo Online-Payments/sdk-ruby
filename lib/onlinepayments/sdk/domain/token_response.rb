@@ -1,6 +1,7 @@
 #
 # This file was automatically generated.
 #
+require 'onlinepayments/sdk/domain/crm_token'
 require 'onlinepayments/sdk/domain/data_object'
 require 'onlinepayments/sdk/domain/external_token_linked'
 require 'onlinepayments/sdk/domain/network_token_linked'
@@ -11,6 +12,7 @@ module OnlinePayments
   module SDK
     module Domain
       # @attr [OnlinePayments::SDK::Domain::TokenCard] card
+      # @attr [OnlinePayments::SDK::Domain::CrmToken] crm_token
       # @attr [OnlinePayments::SDK::Domain::TokenEWallet] e_wallet
       # @attr [OnlinePayments::SDK::Domain::ExternalTokenLinked] external_token_linked
       # @attr [String] id
@@ -20,6 +22,8 @@ module OnlinePayments
       class TokenResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :card
+
+        attr_accessor :crm_token
 
         attr_accessor :e_wallet
 
@@ -37,6 +41,7 @@ module OnlinePayments
         def to_h
           hash = super
           hash['card'] = @card.to_h unless @card.nil?
+          hash['crmToken'] = @crm_token.to_h unless @crm_token.nil?
           hash['eWallet'] = @e_wallet.to_h unless @e_wallet.nil?
           hash['externalTokenLinked'] = @external_token_linked.to_h unless @external_token_linked.nil?
           hash['id'] = @id unless @id.nil?
@@ -51,6 +56,10 @@ module OnlinePayments
           if hash.has_key? 'card'
             raise TypeError, "value '%s' is not a Hash" % [hash['card']] unless hash['card'].is_a? Hash
             @card = OnlinePayments::SDK::Domain::TokenCard.new_from_hash(hash['card'])
+          end
+          if hash.has_key? 'crmToken'
+            raise TypeError, "value '%s' is not a Hash" % [hash['crmToken']] unless hash['crmToken'].is_a? Hash
+            @crm_token = OnlinePayments::SDK::Domain::CrmToken.new_from_hash(hash['crmToken'])
           end
           if hash.has_key? 'eWallet'
             raise TypeError, "value '%s' is not a Hash" % [hash['eWallet']] unless hash['eWallet'].is_a? Hash

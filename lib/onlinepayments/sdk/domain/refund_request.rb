@@ -6,6 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 require 'onlinepayments/sdk/domain/omnichannel_refund_specific_input'
 require 'onlinepayments/sdk/domain/operation_payment_references'
 require 'onlinepayments/sdk/domain/payment_references'
+require 'onlinepayments/sdk/domain/refund_redirect_payment_method_specific_input'
 
 module OnlinePayments
   module SDK
@@ -16,6 +17,7 @@ module OnlinePayments
       # @attr [OnlinePayments::SDK::Domain::OperationPaymentReferences] operation_references
       # @attr [String] reason
       # @attr [OnlinePayments::SDK::Domain::PaymentReferences] references
+      # @attr [OnlinePayments::SDK::Domain::RefundRedirectPaymentMethodSpecificInput] refund_redirect_payment_method_specific_input
       class RefundRequest < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :amount_of_money
@@ -30,6 +32,8 @@ module OnlinePayments
 
         attr_accessor :references
 
+        attr_accessor :refund_redirect_payment_method_specific_input
+
         # @return (Hash)
         def to_h
           hash = super
@@ -39,6 +43,7 @@ module OnlinePayments
           hash['operationReferences'] = @operation_references.to_h unless @operation_references.nil?
           hash['reason'] = @reason unless @reason.nil?
           hash['references'] = @references.to_h unless @references.nil?
+          hash['refundRedirectPaymentMethodSpecificInput'] = @refund_redirect_payment_method_specific_input.to_h unless @refund_redirect_payment_method_specific_input.nil?
           hash
         end
 
@@ -65,6 +70,10 @@ module OnlinePayments
           if hash.has_key? 'references'
             raise TypeError, "value '%s' is not a Hash" % [hash['references']] unless hash['references'].is_a? Hash
             @references = OnlinePayments::SDK::Domain::PaymentReferences.new_from_hash(hash['references'])
+          end
+          if hash.has_key? 'refundRedirectPaymentMethodSpecificInput'
+            raise TypeError, "value '%s' is not a Hash" % [hash['refundRedirectPaymentMethodSpecificInput']] unless hash['refundRedirectPaymentMethodSpecificInput'].is_a? Hash
+            @refund_redirect_payment_method_specific_input = OnlinePayments::SDK::Domain::RefundRedirectPaymentMethodSpecificInput.new_from_hash(hash['refundRedirectPaymentMethodSpecificInput'])
           end
         end
       end

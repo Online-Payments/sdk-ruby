@@ -5,6 +5,7 @@ require 'onlinepayments/sdk/domain/card'
 require 'onlinepayments/sdk/domain/card_recurrence_details'
 require 'onlinepayments/sdk/domain/currency_conversion_input'
 require 'onlinepayments/sdk/domain/data_object'
+require 'onlinepayments/sdk/domain/market_place'
 require 'onlinepayments/sdk/domain/multiple_payment_information'
 require 'onlinepayments/sdk/domain/network_token_data'
 require 'onlinepayments/sdk/domain/payment_product130_specific_input'
@@ -26,6 +27,7 @@ module OnlinePayments
       # @attr [OnlinePayments::SDK::Domain::CurrencyConversionInput] currency_conversion
       # @attr [String] initial_scheme_transaction_id
       # @attr [true/false] is_recurring
+      # @attr [OnlinePayments::SDK::Domain::MarketPlace] market_place
       # @attr [OnlinePayments::SDK::Domain::MultiplePaymentInformation] multiple_payment_information
       # @attr [OnlinePayments::SDK::Domain::NetworkTokenData] network_token_data
       # @attr [OnlinePayments::SDK::Domain::PaymentProduct130SpecificInput] payment_product130_specific_input
@@ -63,6 +65,8 @@ module OnlinePayments
         attr_accessor :initial_scheme_transaction_id
 
         attr_accessor :is_recurring
+
+        attr_accessor :market_place
 
         attr_accessor :multiple_payment_information
 
@@ -113,6 +117,7 @@ module OnlinePayments
           hash['currencyConversion'] = @currency_conversion.to_h unless @currency_conversion.nil?
           hash['initialSchemeTransactionId'] = @initial_scheme_transaction_id unless @initial_scheme_transaction_id.nil?
           hash['isRecurring'] = @is_recurring unless @is_recurring.nil?
+          hash['marketPlace'] = @market_place.to_h unless @market_place.nil?
           hash['multiplePaymentInformation'] = @multiple_payment_information.to_h unless @multiple_payment_information.nil?
           hash['networkTokenData'] = @network_token_data.to_h unless @network_token_data.nil?
           hash['paymentProduct130SpecificInput'] = @payment_product130_specific_input.to_h unless @payment_product130_specific_input.nil?
@@ -164,6 +169,10 @@ module OnlinePayments
           end
           if hash.has_key? 'isRecurring'
             @is_recurring = hash['isRecurring']
+          end
+          if hash.has_key? 'marketPlace'
+            raise TypeError, "value '%s' is not a Hash" % [hash['marketPlace']] unless hash['marketPlace'].is_a? Hash
+            @market_place = OnlinePayments::SDK::Domain::MarketPlace.new_from_hash(hash['marketPlace'])
           end
           if hash.has_key? 'multiplePaymentInformation'
             raise TypeError, "value '%s' is not a Hash" % [hash['multiplePaymentInformation']] unless hash['multiplePaymentInformation'].is_a? Hash

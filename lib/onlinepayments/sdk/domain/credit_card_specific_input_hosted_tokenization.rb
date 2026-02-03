@@ -1,13 +1,13 @@
 #
 # This file was automatically generated.
 #
-require 'onlinepayments/sdk/domain/credit_card_validation_rules_hosted_tokenization'
+require 'onlinepayments/sdk/domain/credit_card_validation_rules'
 require 'onlinepayments/sdk/domain/data_object'
 
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::CreditCardValidationRulesHostedTokenization] validation_rules
+      # @attr [OnlinePayments::SDK::Domain::CreditCardValidationRules] validation_rules
       # @attr [Array<Integer>] payment_product_preferred_order
       class CreditCardSpecificInputHostedTokenization < OnlinePayments::SDK::Domain::DataObject
 
@@ -27,7 +27,7 @@ module OnlinePayments
           super
           if hash.has_key? 'ValidationRules'
             raise TypeError, "value '%s' is not a Hash" % [hash['ValidationRules']] unless hash['ValidationRules'].is_a? Hash
-            @validation_rules = OnlinePayments::SDK::Domain::CreditCardValidationRulesHostedTokenization.new_from_hash(hash['ValidationRules'])
+            @validation_rules = OnlinePayments::SDK::Domain::CreditCardValidationRules.new_from_hash(hash['ValidationRules'])
           end
           if hash.has_key? 'paymentProductPreferredOrder'
             raise TypeError, "value '%s' is not an Array" % [hash['paymentProductPreferredOrder']] unless hash['paymentProductPreferredOrder'].is_a? Array

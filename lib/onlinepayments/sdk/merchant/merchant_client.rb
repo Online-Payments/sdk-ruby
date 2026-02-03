@@ -116,14 +116,14 @@ module OnlinePayments
           OnlinePayments::SDK::Merchant::Sessions::SessionsClient.new(self, nil)
         end
 
-        # Resource /v2/{merchantId}/tokens/{tokenId}
+        # Resource /v2/{merchantId}/tokens
         #
         # @return [OnlinePayments::SDK::Merchant::Tokens::TokensClient]
         def tokens
           OnlinePayments::SDK::Merchant::Tokens::TokensClient.new(self, nil)
         end
 
-        # Resource /v2/{merchantId}/payouts/{payoutId}
+        # Resource /v2/{merchantId}/payouts
         #
         # @return [OnlinePayments::SDK::Merchant::Payouts::PayoutsClient]
         def payouts

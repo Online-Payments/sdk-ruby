@@ -4,6 +4,7 @@
 require 'onlinepayments/sdk/domain/card_recurrence_details'
 require 'onlinepayments/sdk/domain/currency_conversion_specific_input'
 require 'onlinepayments/sdk/domain/data_object'
+require 'onlinepayments/sdk/domain/market_place'
 require 'onlinepayments/sdk/domain/multiple_payment_information'
 require 'onlinepayments/sdk/domain/payment_product130_specific_input'
 require 'onlinepayments/sdk/domain/payment_product3012_specific_input'
@@ -20,6 +21,7 @@ module OnlinePayments
       # @attr [String] authorization_mode
       # @attr [OnlinePayments::SDK::Domain::CurrencyConversionSpecificInput] currency_conversion_specific_input
       # @attr [String] initial_scheme_transaction_id
+      # @attr [OnlinePayments::SDK::Domain::MarketPlace] market_place
       # @attr [OnlinePayments::SDK::Domain::MultiplePaymentInformation] multiple_payment_information
       # @attr [OnlinePayments::SDK::Domain::PaymentProduct130SpecificInput] payment_product130_specific_input
       # @attr [OnlinePayments::SDK::Domain::PaymentProduct3012SpecificInput] payment_product3012_specific_input
@@ -44,6 +46,8 @@ module OnlinePayments
         attr_accessor :currency_conversion_specific_input
 
         attr_accessor :initial_scheme_transaction_id
+
+        attr_accessor :market_place
 
         attr_accessor :multiple_payment_information
 
@@ -82,6 +86,7 @@ module OnlinePayments
           hash['authorizationMode'] = @authorization_mode unless @authorization_mode.nil?
           hash['currencyConversionSpecificInput'] = @currency_conversion_specific_input.to_h unless @currency_conversion_specific_input.nil?
           hash['initialSchemeTransactionId'] = @initial_scheme_transaction_id unless @initial_scheme_transaction_id.nil?
+          hash['marketPlace'] = @market_place.to_h unless @market_place.nil?
           hash['multiplePaymentInformation'] = @multiple_payment_information.to_h unless @multiple_payment_information.nil?
           hash['paymentProduct130SpecificInput'] = @payment_product130_specific_input.to_h unless @payment_product130_specific_input.nil?
           hash['paymentProduct3012SpecificInput'] = @payment_product3012_specific_input.to_h unless @payment_product3012_specific_input.nil?
@@ -114,6 +119,10 @@ module OnlinePayments
           end
           if hash.has_key? 'initialSchemeTransactionId'
             @initial_scheme_transaction_id = hash['initialSchemeTransactionId']
+          end
+          if hash.has_key? 'marketPlace'
+            raise TypeError, "value '%s' is not a Hash" % [hash['marketPlace']] unless hash['marketPlace'].is_a? Hash
+            @market_place = OnlinePayments::SDK::Domain::MarketPlace.new_from_hash(hash['marketPlace'])
           end
           if hash.has_key? 'multiplePaymentInformation'
             raise TypeError, "value '%s' is not a Hash" % [hash['multiplePaymentInformation']] unless hash['multiplePaymentInformation'].is_a? Hash
