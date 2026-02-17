@@ -6,6 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 require 'onlinepayments/sdk/domain/feedbacks'
 require 'onlinepayments/sdk/domain/fraud_fields'
 require 'onlinepayments/sdk/domain/mobile_payment_method_specific_input'
+require 'onlinepayments/sdk/domain/omnichannel_payment_specific_input'
 require 'onlinepayments/sdk/domain/order'
 require 'onlinepayments/sdk/domain/redirect_payment_method_specific_input'
 require 'onlinepayments/sdk/domain/sepa_direct_debit_payment_method_specific_input'
@@ -20,6 +21,7 @@ module OnlinePayments
       # @attr [String] hosted_fields_session_id
       # @attr [String] hosted_tokenization_id
       # @attr [OnlinePayments::SDK::Domain::MobilePaymentMethodSpecificInput] mobile_payment_method_specific_input
+      # @attr [OnlinePayments::SDK::Domain::OmnichannelPaymentSpecificInput] omnichannel_payment_specific_input
       # @attr [OnlinePayments::SDK::Domain::Order] order
       # @attr [OnlinePayments::SDK::Domain::RedirectPaymentMethodSpecificInput] redirect_payment_method_specific_input
       # @attr [OnlinePayments::SDK::Domain::SepaDirectDebitPaymentMethodSpecificInput] sepa_direct_debit_payment_method_specific_input
@@ -39,6 +41,8 @@ module OnlinePayments
 
         attr_accessor :mobile_payment_method_specific_input
 
+        attr_accessor :omnichannel_payment_specific_input
+
         attr_accessor :order
 
         attr_accessor :redirect_payment_method_specific_input
@@ -55,6 +59,7 @@ module OnlinePayments
           hash['hostedFieldsSessionId'] = @hosted_fields_session_id unless @hosted_fields_session_id.nil?
           hash['hostedTokenizationId'] = @hosted_tokenization_id unless @hosted_tokenization_id.nil?
           hash['mobilePaymentMethodSpecificInput'] = @mobile_payment_method_specific_input.to_h unless @mobile_payment_method_specific_input.nil?
+          hash['omnichannelPaymentSpecificInput'] = @omnichannel_payment_specific_input.to_h unless @omnichannel_payment_specific_input.nil?
           hash['order'] = @order.to_h unless @order.nil?
           hash['redirectPaymentMethodSpecificInput'] = @redirect_payment_method_specific_input.to_h unless @redirect_payment_method_specific_input.nil?
           hash['sepaDirectDebitPaymentMethodSpecificInput'] = @sepa_direct_debit_payment_method_specific_input.to_h unless @sepa_direct_debit_payment_method_specific_input.nil?
@@ -87,6 +92,10 @@ module OnlinePayments
           if hash.has_key? 'mobilePaymentMethodSpecificInput'
             raise TypeError, "value '%s' is not a Hash" % [hash['mobilePaymentMethodSpecificInput']] unless hash['mobilePaymentMethodSpecificInput'].is_a? Hash
             @mobile_payment_method_specific_input = OnlinePayments::SDK::Domain::MobilePaymentMethodSpecificInput.new_from_hash(hash['mobilePaymentMethodSpecificInput'])
+          end
+          if hash.has_key? 'omnichannelPaymentSpecificInput'
+            raise TypeError, "value '%s' is not a Hash" % [hash['omnichannelPaymentSpecificInput']] unless hash['omnichannelPaymentSpecificInput'].is_a? Hash
+            @omnichannel_payment_specific_input = OnlinePayments::SDK::Domain::OmnichannelPaymentSpecificInput.new_from_hash(hash['omnichannelPaymentSpecificInput'])
           end
           if hash.has_key? 'order'
             raise TypeError, "value '%s' is not a Hash" % [hash['order']] unless hash['order'].is_a? Hash

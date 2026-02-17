@@ -3,8 +3,10 @@
 #
 require 'onlinepayments/sdk/api_resource'
 require 'onlinepayments/sdk/merchant/captures/captures_client'
+require 'onlinepayments/sdk/merchant/cofseries/cof_series_client'
 require 'onlinepayments/sdk/merchant/complete/complete_client'
 require 'onlinepayments/sdk/merchant/hostedcheckout/hosted_checkout_client'
+require 'onlinepayments/sdk/merchant/hostedfields/hosted_fields_client'
 require 'onlinepayments/sdk/merchant/hostedtokenization/hosted_tokenization_client'
 require 'onlinepayments/sdk/merchant/mandates/mandates_client'
 require 'onlinepayments/sdk/merchant/paymentlinks/payment_links_client'
@@ -17,6 +19,7 @@ require 'onlinepayments/sdk/merchant/refunds/refunds_client'
 require 'onlinepayments/sdk/merchant/services/services_client'
 require 'onlinepayments/sdk/merchant/sessions/sessions_client'
 require 'onlinepayments/sdk/merchant/subsequent/subsequent_client'
+require 'onlinepayments/sdk/merchant/tokenization/tokenization_client'
 require 'onlinepayments/sdk/merchant/tokens/tokens_client'
 require 'onlinepayments/sdk/merchant/webhooks/webhooks_client'
 
@@ -44,6 +47,13 @@ module OnlinePayments
         # @return [OnlinePayments::SDK::Merchant::HostedTokenization::HostedTokenizationClient]
         def hosted_tokenization
           OnlinePayments::SDK::Merchant::HostedTokenization::HostedTokenizationClient.new(self, nil)
+        end
+
+        # Resource /v2/{merchantId}/hostedfields/sessions
+        #
+        # @return [OnlinePayments::SDK::Merchant::HostedFields::HostedFieldsClient]
+        def hosted_fields
+          OnlinePayments::SDK::Merchant::HostedFields::HostedFieldsClient.new(self, nil)
         end
 
         # Resource /v2/{merchantId}/payments
@@ -121,6 +131,20 @@ module OnlinePayments
         # @return [OnlinePayments::SDK::Merchant::Tokens::TokensClient]
         def tokens
           OnlinePayments::SDK::Merchant::Tokens::TokensClient.new(self, nil)
+        end
+
+        # Resource /v2/{merchantId}/tokens/importCofSeries
+        #
+        # @return [OnlinePayments::SDK::Merchant::CofSeries::CofSeriesClient]
+        def cof_series
+          OnlinePayments::SDK::Merchant::CofSeries::CofSeriesClient.new(self, nil)
+        end
+
+        # Resource /v2/{merchantId}/detokenize/csr
+        #
+        # @return [OnlinePayments::SDK::Merchant::Tokenization::TokenizationClient]
+        def tokenization
+          OnlinePayments::SDK::Merchant::Tokenization::TokenizationClient.new(self, nil)
         end
 
         # Resource /v2/{merchantId}/payouts
