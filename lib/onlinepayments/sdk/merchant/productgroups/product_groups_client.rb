@@ -37,6 +37,8 @@ module OnlinePayments
           # @raise [OnlinePayments::SDK::ApiException] if the payment platform returned any other error
           def get_product_groups(query, context = nil)
             uri = instantiate_uri('/v2/{merchantId}/productgroups', nil)
+
+
             @communicator.get(
               uri,
               client_headers,
@@ -69,6 +71,8 @@ module OnlinePayments
               'paymentProductGroupId'.freeze => payment_product_group_id,
             }
             uri = instantiate_uri('/v2/{merchantId}/productgroups/{paymentProductGroupId}', path_context)
+
+
             @communicator.get(
               uri,
               client_headers,

@@ -38,7 +38,7 @@ module OnlinePayments
           return Client.new(@communicator, nil)
         else
           # Checking to see if this is valid JSON (no JSON parse exceptions)
-          @communicator.marshaller.unmarshal(client_meta_info, DataObject)
+          @communicator.marshaller.unmarshal(client_meta_info, OnlinePayments::SDK::Domain::DataObject)
           client_meta_info = Base64.strict_encode64(client_meta_info)
           if @client_meta_info == client_meta_info
             self

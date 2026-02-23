@@ -1,6 +1,8 @@
 #
 # This file was automatically generated.
 #
+require 'date'
+
 require 'onlinepayments/sdk/domain/amount_of_money'
 require 'onlinepayments/sdk/domain/card_payment_method_specific_output'
 require 'onlinepayments/sdk/domain/customer_output'
@@ -30,6 +32,7 @@ module OnlinePayments
       # @attr [OnlinePayments::SDK::Domain::SepaDirectDebitPaymentMethodSpecificOutput] sepa_direct_debit_payment_method_specific_output
       # @attr [OnlinePayments::SDK::Domain::ShoppingCartOutput] shopping_cart_output
       # @attr [OnlinePayments::SDK::Domain::SurchargeSpecificOutput] surcharge_specific_output
+      # @attr [DateTime] transaction_date
       class PaymentOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :acquired_amount
@@ -61,6 +64,8 @@ module OnlinePayments
 
         attr_accessor :surcharge_specific_output
 
+        attr_accessor :transaction_date
+
         # @return (Hash)
         def to_h
           hash = super
@@ -78,6 +83,7 @@ module OnlinePayments
           hash['sepaDirectDebitPaymentMethodSpecificOutput'] = @sepa_direct_debit_payment_method_specific_output.to_h unless @sepa_direct_debit_payment_method_specific_output.nil?
           hash['shoppingCartOutput'] = @shopping_cart_output.to_h unless @shopping_cart_output.nil?
           hash['surchargeSpecificOutput'] = @surcharge_specific_output.to_h unless @surcharge_specific_output.nil?
+          hash['transactionDate'] = @transaction_date.iso8601(3) unless @transaction_date.nil?
           hash
         end
 
@@ -135,6 +141,9 @@ module OnlinePayments
           if hash.has_key? 'surchargeSpecificOutput'
             raise TypeError, "value '%s' is not a Hash" % [hash['surchargeSpecificOutput']] unless hash['surchargeSpecificOutput'].is_a? Hash
             @surcharge_specific_output = OnlinePayments::SDK::Domain::SurchargeSpecificOutput.new_from_hash(hash['surchargeSpecificOutput'])
+          end
+          if hash.has_key? 'transactionDate'
+            @transaction_date = DateTime.parse(hash['transactionDate'])
           end
         end
       end

@@ -37,6 +37,8 @@ module OnlinePayments
           # @raise [OnlinePayments::SDK::ApiException] if the payment platform returned any other error
           def create_hosted_checkout(body, context = nil)
             uri = instantiate_uri('/v2/{merchantId}/hostedcheckouts', nil)
+
+
             @communicator.post(
               uri,
               client_headers,
@@ -69,6 +71,8 @@ module OnlinePayments
               'hostedCheckoutId'.freeze => hosted_checkout_id,
             }
             uri = instantiate_uri('/v2/{merchantId}/hostedcheckouts/{hostedCheckoutId}', path_context)
+
+
             @communicator.get(
               uri,
               client_headers,

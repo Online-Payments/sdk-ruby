@@ -36,6 +36,8 @@ module OnlinePayments
           # @raise [OnlinePayments::SDK::ApiException] if the payment platform returned any other error
           def get_privacy_policy(query, context = nil)
             uri = instantiate_uri('/v2/{merchantId}/services/privacypolicy', nil)
+
+
             @communicator.get(
               uri,
               client_headers,

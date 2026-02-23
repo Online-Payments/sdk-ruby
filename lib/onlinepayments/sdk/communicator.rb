@@ -1,5 +1,6 @@
 require 'date'
 require 'uri'
+require 'onlinepayments/sdk/domain/data_object'
 require 'onlinepayments/sdk/communication/communication_exception'
 require 'onlinepayments/sdk/communication/multipart_form_data_object'
 require 'onlinepayments/sdk/communication/multipart_form_data_request'
@@ -202,6 +203,11 @@ module OnlinePayments
         elsif !request_body.nil?
           request_headers.push(Communication::RequestHeader.new('Content-Type', 'application/json'))
           body = @marshaller.marshal(request_body)
+
+          if context&.gzip
+            request_headers.push(Communication::RequestHeader.new('Content-Encoding', 'gzip'))
+          end
+
         else
           # Set the content-type, even though there is no body, to prevent the httpClient from
           # adding a content-type header after authentication has been generated.
@@ -249,6 +255,11 @@ module OnlinePayments
         elsif !request_body.nil?
           request_headers.push(Communication::RequestHeader.new('Content-Type', 'application/json'))
           body = @marshaller.marshal(request_body)
+
+          if context&.gzip
+            request_headers.push(Communication::RequestHeader.new('Content-Encoding', 'gzip'))
+          end
+
         else
           # Set the content-type, even though there is no body, to prevent the httpClient from
           # adding a content-type header after authentication has been generated.
@@ -461,7 +472,7 @@ module OnlinePayments
       end
 
       def process_binary_response(status, body, headers, context)
-        update_context(response.headers, context) unless context.nil?
+        update_context(headers, context) unless context.nil?
 
         if status < 400
           yield headers, body
@@ -492,7 +503,7 @@ module OnlinePayments
             cause = Communication::ResponseException.new(status_code, headers, body)
             if status_code == 404
               raise Communication::NotFoundException.new(cause, 'The requested resource was not found; invalid path: ' +
-                request_path)
+                                                                request_path)
             else
               raise Communication::CommunicationException, cause
             end

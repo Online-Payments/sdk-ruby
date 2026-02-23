@@ -218,8 +218,8 @@ describe 'DefaultConnectionLogging' do
     response_body = IO.read(resource_prefix + 'getWithoutQueryParams.json')
 
     stub_request(:get, 'https://payment.preprod.online-payments.com/v1/get')
-        .to_return(status: 200, body: response_body,
-                   headers: base_headers.merge({'Content-Type' => 'application/json'}))
+      .to_return(status: 200, body: response_body,
+                 headers: base_headers.merge({'Content-Type' => 'application/json'}))
 
     COMMUNICATOR.enable_logging(logger)
     response = COMMUNICATOR.get('/v1/get', nil, nil, TestObject, nil)
@@ -239,9 +239,9 @@ describe 'DefaultConnectionLogging' do
                    headers: base_headers.merge({'Content-Type' => 'application/json'}))
 
     query_params = TestParamRequest.new([
-                                          RequestParam.new('source', 'EUR'),
-                                          RequestParam.new('target', 'USD'),
-                                          RequestParam.new('amount', '1000'),
+                                          OnlinePayments::SDK::Communication::RequestParam.new('source', 'EUR'),
+                                          OnlinePayments::SDK::Communication::RequestParam.new('target', 'USD'),
+                                          OnlinePayments::SDK::Communication::RequestParam.new('amount', '1000'),
                                         ])
     COMMUNICATOR.enable_logging(logger)
 

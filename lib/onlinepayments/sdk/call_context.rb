@@ -30,6 +30,7 @@ module OnlinePayments
       attr_reader :idempotence_key
       attr_accessor :idempotence_request_timestamp
       attr_accessor :idempotence_response_date_time
+      attr_accessor :gzip
     end
   end
 end

@@ -38,6 +38,8 @@ module OnlinePayments
           # @raise [OnlinePayments::SDK::ApiException] if the payment platform returned any other error
           def test_connection(context = nil)
             uri = instantiate_uri('/v2/{merchantId}/services/testconnection', nil)
+
+
             @communicator.get(
               uri,
               client_headers,
@@ -66,6 +68,8 @@ module OnlinePayments
           # @raise [OnlinePayments::SDK::ApiException] if the payment platform returned any other error
           def get_iin_details(body, context = nil)
             uri = instantiate_uri('/v2/{merchantId}/services/getIINdetails', nil)
+
+
             @communicator.post(
               uri,
               client_headers,
@@ -95,6 +99,8 @@ module OnlinePayments
           # @raise [OnlinePayments::SDK::ApiException] if the payment platform returned any other error
           def get_dcc_rate_inquiry(body, context = nil)
             uri = instantiate_uri('/v2/{merchantId}/services/dccrate', nil)
+
+
             @communicator.post(
               uri,
               client_headers,
@@ -124,6 +130,8 @@ module OnlinePayments
           # @raise [OnlinePayments::SDK::ApiException] if the payment platform returned any other error
           def surcharge_calculation(body, context = nil)
             uri = instantiate_uri('/v2/{merchantId}/services/surchargecalculation', nil)
+
+
             @communicator.post(
               uri,
               client_headers,

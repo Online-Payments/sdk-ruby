@@ -37,6 +37,8 @@ module OnlinePayments
           # @raise [OnlinePayments::SDK::ApiException] if the payment platform returned any other error
           def create_certificate(body, context = nil)
             uri = instantiate_uri('/v2/{merchantId}/detokenize/csr', nil)
+
+
             @communicator.post(
               uri,
               client_headers,
@@ -66,6 +68,8 @@ module OnlinePayments
           # @raise [OnlinePayments::SDK::ApiException] if the payment platform returned any other error
           def get_card_data_by_tokens(query, context = nil)
             uri = instantiate_uri('/v2/{merchantId}/detokenize/tokens', nil)
+
+
             @communicator.get(
               uri,
               client_headers,
@@ -94,6 +98,8 @@ module OnlinePayments
           # @raise [OnlinePayments::SDK::ApiException] if the payment platform returned any other error
           def get_card_data_by_payments(query, context = nil)
             uri = instantiate_uri('/v2/{merchantId}/detokenize/payments', nil)
+
+
             @communicator.get(
               uri,
               client_headers,

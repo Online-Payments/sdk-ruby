@@ -36,6 +36,8 @@ module OnlinePayments
           # @raise [OnlinePayments::SDK::ApiException] if the payment platform returned any other error
           def create_payment_link(body, context = nil)
             uri = instantiate_uri('/v2/{merchantId}/paymentlinks', nil)
+
+
             @communicator.post(
               uri,
               client_headers,
@@ -68,6 +70,8 @@ module OnlinePayments
               'paymentLinkId'.freeze => payment_link_id,
             }
             uri = instantiate_uri('/v2/{merchantId}/paymentlinks/{paymentLinkId}', path_context)
+
+
             @communicator.get(
               uri,
               client_headers,
@@ -98,6 +102,8 @@ module OnlinePayments
               'paymentLinkId'.freeze => payment_link_id,
             }
             uri = instantiate_uri('/v2/{merchantId}/paymentlinks/{paymentLinkId}/cancel', path_context)
+
+
             @communicator.post(
               uri,
               client_headers,

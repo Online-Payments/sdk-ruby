@@ -38,6 +38,8 @@ module OnlinePayments
           # @raise [OnlinePayments::SDK::ApiException] if the payment platform returned any other error
           def create_payout(body, context = nil)
             uri = instantiate_uri('/v2/{merchantId}/payouts', nil)
+
+
             @communicator.post(
               uri,
               client_headers,
@@ -70,6 +72,8 @@ module OnlinePayments
               'payoutId'.freeze => payout_id,
             }
             uri = instantiate_uri('/v2/{merchantId}/payouts/{payoutId}', path_context)
+
+
             @communicator.get(
               uri,
               client_headers,

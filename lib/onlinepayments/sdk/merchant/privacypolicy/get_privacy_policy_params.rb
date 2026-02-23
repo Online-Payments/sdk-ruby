@@ -21,8 +21,8 @@ module OnlinePayments
           # @return [Array<OnlinePayments::SDK::Communication::RequestParam>] representing the attributes of this class
           def to_request_parameters
             result = []
-            result << RequestParam.new('locale', @locale) unless @locale.nil?
-            result << RequestParam.new('paymentProductId', @payment_product_id.to_s) unless @payment_product_id.nil?
+            result << OnlinePayments::SDK::Communication::RequestParam.new('locale', @locale) unless @locale.nil?
+            result << OnlinePayments::SDK::Communication::RequestParam.new('paymentProductId', @payment_product_id.to_s) unless @payment_product_id.nil?
             result
           end
         end

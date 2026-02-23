@@ -29,7 +29,7 @@ module OnlinePayments
           def to_request_parameters
             result = []
             unless @tokens.nil?
-              @tokens.each {|e| result << RequestParam.new('tokens', e)}
+              @tokens.each {|e| result << OnlinePayments::SDK::Communication::RequestParam.new('tokens', e)}
             end
             result
           end

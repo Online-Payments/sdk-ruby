@@ -37,6 +37,8 @@ module OnlinePayments
           # @raise [OnlinePayments::SDK::ApiException] if the payment platform returned any other error
           def create_mandate(body, context = nil)
             uri = instantiate_uri('/v2/{merchantId}/mandates', nil)
+
+
             @communicator.post(
               uri,
               client_headers,
@@ -69,6 +71,8 @@ module OnlinePayments
               'uniqueMandateReference'.freeze => unique_mandate_reference,
             }
             uri = instantiate_uri('/v2/{merchantId}/mandates/{uniqueMandateReference}', path_context)
+
+
             @communicator.get(
               uri,
               client_headers,
@@ -100,6 +104,8 @@ module OnlinePayments
               'uniqueMandateReference'.freeze => unique_mandate_reference,
             }
             uri = instantiate_uri('/v2/{merchantId}/mandates/{uniqueMandateReference}/block', path_context)
+
+
             @communicator.post(
               uri,
               client_headers,
@@ -132,6 +138,8 @@ module OnlinePayments
               'uniqueMandateReference'.freeze => unique_mandate_reference,
             }
             uri = instantiate_uri('/v2/{merchantId}/mandates/{uniqueMandateReference}/unblock', path_context)
+
+
             @communicator.post(
               uri,
               client_headers,
@@ -165,6 +173,8 @@ module OnlinePayments
               'uniqueMandateReference'.freeze => unique_mandate_reference,
             }
             uri = instantiate_uri('/v2/{merchantId}/mandates/{uniqueMandateReference}/revoke', path_context)
+
+
             @communicator.post(
               uri,
               client_headers,

@@ -36,6 +36,8 @@ module OnlinePayments
           # @raise [OnlinePayments::SDK::ApiException] if the payment platform returned any other error
           def create_hosted_fields_session(body, context = nil)
             uri = instantiate_uri('/v2/{merchantId}/hostedfields/sessions', nil)
+
+
             @communicator.post(
               uri,
               client_headers,

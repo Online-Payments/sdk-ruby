@@ -9,6 +9,7 @@ require 'onlinepayments/sdk/merchant/hostedcheckout/hosted_checkout_client'
 require 'onlinepayments/sdk/merchant/hostedfields/hosted_fields_client'
 require 'onlinepayments/sdk/merchant/hostedtokenization/hosted_tokenization_client'
 require 'onlinepayments/sdk/merchant/mandates/mandates_client'
+require 'onlinepayments/sdk/merchant/merchantbatch/merchant_batch_client'
 require 'onlinepayments/sdk/merchant/paymentlinks/payment_links_client'
 require 'onlinepayments/sdk/merchant/payments/payments_client'
 require 'onlinepayments/sdk/merchant/payouts/payouts_client'
@@ -173,6 +174,13 @@ module OnlinePayments
         # @return [OnlinePayments::SDK::Merchant::PaymentLinks::PaymentLinksClient]
         def payment_links
           OnlinePayments::SDK::Merchant::PaymentLinks::PaymentLinksClient.new(self, nil)
+        end
+
+        # Resource /v2/{merchantId}/merchant-batches
+        #
+        # @return [OnlinePayments::SDK::Merchant::MerchantBatch::MerchantBatchClient]
+        def merchant_batch
+          OnlinePayments::SDK::Merchant::MerchantBatch::MerchantBatchClient.new(self, nil)
         end
       end
     end

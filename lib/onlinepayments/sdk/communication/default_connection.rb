@@ -1,6 +1,8 @@
 require 'httpclient'
 require 'securerandom'
 require 'uri'
+require 'zlib'
+require 'stringio'
 require 'onlinepayments/sdk/communication/communication_exception'
 require 'onlinepayments/sdk/communication/multipart_form_data_object'
 require 'onlinepayments/sdk/communication/pooled_connection'
@@ -31,6 +33,7 @@ module OnlinePayments
 
         CONTENT_TYPE = 'Content-Type'.freeze
         JSON_CONTENT_TYPE = 'application/json'.freeze
+        CONTENT_ENCODING = 'Content-Encoding'.freeze
 
         public
 
@@ -104,7 +107,7 @@ module OnlinePayments
 
         # HTTPClient automatically closes expired connections so _close_expired_connections_ is a no-operation.
         def close_expired_connections
-          # By default the keep alive timeout is 15 sec, which is the HTTP 1.1
+          # By default, the keep alive timeout is 15 sec, which is the HTTP 1.1
           # standard. To change the value, use keep_alive_timeout= method
           # do nothing, handled by HTTPClient
         end
@@ -165,8 +168,22 @@ module OnlinePayments
           request_id = SecureRandom.uuid
           content_type = request_headers[CONTENT_TYPE]
 
-          info = { headers: request_headers, content_type: content_type }
-          info[:body] = body unless body.nil?
+          original_body_for_logging = body
+
+          encoding_present = request_headers.keys.any? { |k| k.casecmp(CONTENT_ENCODING).zero? }
+
+          if body.is_a?(String) &&
+             content_type && content_type.downcase.start_with?(JSON_CONTENT_TYPE) &&
+             encoding_present
+
+            gzip_buffer  = StringIO.new
+            gzip = Zlib::GzipWriter.new(gzip_buffer)
+            gzip.write(body)
+            gzip.close
+            body = gzip_buffer.string
+          end
+
+          info = { headers: request_headers, content_type: content_type, body: original_body_for_logging }
 
           log_request(request_id, method.upcase, uri, info)
 
@@ -335,12 +352,11 @@ module OnlinePayments
 
         # @param headers [Hash]
         def binary?(headers)
-          unless headers.nil?
-            content_type = nil
-            headers.each { |k, v| content_type = v if k.casecmp(CONTENT_TYPE).zero? }
+          return false if headers.nil?
 
-            binary_content_type?(content_type)
-          end
+          content_type = nil
+          headers.each { |k, v| content_type = v if k.casecmp(CONTENT_TYPE).zero? }
+          binary_content_type?(content_type)
         end
 
         # @param content_type [String, nil]
@@ -348,8 +364,8 @@ module OnlinePayments
           unless content_type.nil?
             content_type = content_type.downcase
             return !content_type.start_with?('text/') &&
-              !content_type.include?('json') &&
-              !content_type.include?('xml')
+                   !content_type.include?('json') &&
+                   !content_type.include?('xml')
           end
           false
         end

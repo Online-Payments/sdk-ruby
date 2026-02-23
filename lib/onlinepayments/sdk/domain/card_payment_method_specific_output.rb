@@ -1,6 +1,7 @@
 #
 # This file was automatically generated.
 #
+require 'onlinepayments/sdk/domain/acceptance'
 require 'onlinepayments/sdk/domain/acquirer_information'
 require 'onlinepayments/sdk/domain/card_essentials'
 require 'onlinepayments/sdk/domain/card_fraud_results'
@@ -17,6 +18,7 @@ require 'onlinepayments/sdk/domain/three_d_secure_results'
 module OnlinePayments
   module SDK
     module Domain
+      # @attr [OnlinePayments::SDK::Domain::Acceptance] acceptance
       # @attr [OnlinePayments::SDK::Domain::AcquirerInformation] acquirer_information
       # @attr [Integer] authenticated_amount
       # @attr [String] authorisation_code
@@ -38,6 +40,8 @@ module OnlinePayments
       # @attr [OnlinePayments::SDK::Domain::ThreeDSecureResults] three_d_secure_results
       # @attr [String] token
       class CardPaymentMethodSpecificOutput < OnlinePayments::SDK::Domain::DataObject
+
+        attr_accessor :acceptance
 
         attr_accessor :acquirer_information
 
@@ -82,6 +86,7 @@ module OnlinePayments
         # @return (Hash)
         def to_h
           hash = super
+          hash['acceptance'] = @acceptance.to_h unless @acceptance.nil?
           hash['acquirerInformation'] = @acquirer_information.to_h unless @acquirer_information.nil?
           hash['authenticatedAmount'] = @authenticated_amount unless @authenticated_amount.nil?
           hash['authorisationCode'] = @authorisation_code unless @authorisation_code.nil?
@@ -107,6 +112,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
+          if hash.has_key? 'acceptance'
+            raise TypeError, "value '%s' is not a Hash" % [hash['acceptance']] unless hash['acceptance'].is_a? Hash
+            @acceptance = OnlinePayments::SDK::Domain::Acceptance.new_from_hash(hash['acceptance'])
+          end
           if hash.has_key? 'acquirerInformation'
             raise TypeError, "value '%s' is not a Hash" % [hash['acquirerInformation']] unless hash['acquirerInformation'].is_a? Hash
             @acquirer_information = OnlinePayments::SDK::Domain::AcquirerInformation.new_from_hash(hash['acquirerInformation'])

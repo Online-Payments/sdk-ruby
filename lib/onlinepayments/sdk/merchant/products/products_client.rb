@@ -39,6 +39,8 @@ module OnlinePayments
           # @raise [OnlinePayments::SDK::ApiException] if the payment platform returned any other error
           def get_payment_products(query, context = nil)
             uri = instantiate_uri('/v2/{merchantId}/products', nil)
+
+
             @communicator.get(
               uri,
               client_headers,
@@ -71,6 +73,8 @@ module OnlinePayments
               'paymentProductId'.freeze => payment_product_id.to_s,
             }
             uri = instantiate_uri('/v2/{merchantId}/products/{paymentProductId}', path_context)
+
+
             @communicator.get(
               uri,
               client_headers,
@@ -103,6 +107,8 @@ module OnlinePayments
               'paymentProductId'.freeze => payment_product_id.to_s,
             }
             uri = instantiate_uri('/v2/{merchantId}/products/{paymentProductId}/networks', path_context)
+
+
             @communicator.get(
               uri,
               client_headers,
@@ -135,6 +141,8 @@ module OnlinePayments
               'paymentProductId'.freeze => payment_product_id.to_s,
             }
             uri = instantiate_uri('/v2/{merchantId}/products/{paymentProductId}/directory', path_context)
+
+
             @communicator.get(
               uri,
               client_headers,

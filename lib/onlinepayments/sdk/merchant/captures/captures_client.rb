@@ -39,6 +39,8 @@ module OnlinePayments
               'paymentId'.freeze => payment_id,
             }
             uri = instantiate_uri('/v2/{merchantId}/payments/{paymentId}/captures', path_context)
+
+
             @communicator.get(
               uri,
               client_headers,
