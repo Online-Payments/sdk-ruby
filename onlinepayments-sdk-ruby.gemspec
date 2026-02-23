@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name           = 'onlinepayments-sdk-ruby'
-  spec.version        = '7.2.0'
+  spec.version        = '7.2.1'
   spec.authors        = ['Online Payments support team']
   spec.email          = ['96182451+online-payments-support-team@users.noreply.github.com']
   spec.summary        = %q{SDK to communicate with the Online Payments platform using the Online Payments Server API}
