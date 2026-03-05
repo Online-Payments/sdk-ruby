@@ -89,7 +89,7 @@ module OnlinePayments
 
         private
 
-        # Returns the encoded URI path without the HTTP method and including all decoded query parameters.
+        # Returns the URI path without the HTTP method and including all decoded query parameters.
         def to_canonical_resource(resource_uri)
           return "#{resource_uri.path}?#{resource_uri.query}" if resource_uri.query
           resource_uri.path
