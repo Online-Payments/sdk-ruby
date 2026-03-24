@@ -6,6 +6,7 @@ require 'onlinepayments/sdk/domain/acquirer_information'
 require 'onlinepayments/sdk/domain/card_essentials'
 require 'onlinepayments/sdk/domain/card_fraud_results'
 require 'onlinepayments/sdk/domain/click_to_pay'
+require 'onlinepayments/sdk/domain/crm_token'
 require 'onlinepayments/sdk/domain/currency_conversion'
 require 'onlinepayments/sdk/domain/data_object'
 require 'onlinepayments/sdk/domain/external_token_linked'
@@ -25,6 +26,7 @@ module OnlinePayments
       # @attr [OnlinePayments::SDK::Domain::CardEssentials] card
       # @attr [OnlinePayments::SDK::Domain::ClickToPay] click_to_pay
       # @attr [String] cobrand_selection_indicator
+      # @attr [OnlinePayments::SDK::Domain::CrmToken] crm_token
       # @attr [OnlinePayments::SDK::Domain::CurrencyConversion] currency_conversion
       # @attr [OnlinePayments::SDK::Domain::ExternalTokenLinked] external_token_linked
       # @attr [OnlinePayments::SDK::Domain::CardFraudResults] fraud_results
@@ -54,6 +56,8 @@ module OnlinePayments
         attr_accessor :click_to_pay
 
         attr_accessor :cobrand_selection_indicator
+
+        attr_accessor :crm_token
 
         attr_accessor :currency_conversion
 
@@ -93,6 +97,7 @@ module OnlinePayments
           hash['card'] = @card.to_h unless @card.nil?
           hash['clickToPay'] = @click_to_pay.to_h unless @click_to_pay.nil?
           hash['cobrandSelectionIndicator'] = @cobrand_selection_indicator unless @cobrand_selection_indicator.nil?
+          hash['crmToken'] = @crm_token.to_h unless @crm_token.nil?
           hash['currencyConversion'] = @currency_conversion.to_h unless @currency_conversion.nil?
           hash['externalTokenLinked'] = @external_token_linked.to_h unless @external_token_linked.nil?
           hash['fraudResults'] = @fraud_results.to_h unless @fraud_results.nil?
@@ -136,6 +141,10 @@ module OnlinePayments
           end
           if hash.has_key? 'cobrandSelectionIndicator'
             @cobrand_selection_indicator = hash['cobrandSelectionIndicator']
+          end
+          if hash.has_key? 'crmToken'
+            raise TypeError, "value '%s' is not a Hash" % [hash['crmToken']] unless hash['crmToken'].is_a? Hash
+            @crm_token = OnlinePayments::SDK::Domain::CrmToken.new_from_hash(hash['crmToken'])
           end
           if hash.has_key? 'currencyConversion'
             raise TypeError, "value '%s' is not a Hash" % [hash['currencyConversion']] unless hash['currencyConversion'].is_a? Hash

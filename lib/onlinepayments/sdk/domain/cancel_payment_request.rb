@@ -5,6 +5,7 @@ require 'onlinepayments/sdk/domain/amount_of_money'
 require 'onlinepayments/sdk/domain/data_object'
 require 'onlinepayments/sdk/domain/line_item_detail'
 require 'onlinepayments/sdk/domain/operation_payment_references'
+require 'onlinepayments/sdk/domain/shipping_detail'
 
 module OnlinePayments
   module SDK
@@ -13,6 +14,7 @@ module OnlinePayments
       # @attr [true/false] is_final
       # @attr [Array<OnlinePayments::SDK::Domain::LineItemDetail>] line_item_details
       # @attr [OnlinePayments::SDK::Domain::OperationPaymentReferences] operation_references
+      # @attr [OnlinePayments::SDK::Domain::ShippingDetail] shipping
       class CancelPaymentRequest < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :amount_of_money
@@ -23,6 +25,8 @@ module OnlinePayments
 
         attr_accessor :operation_references
 
+        attr_accessor :shipping
+
         # @return (Hash)
         def to_h
           hash = super
@@ -30,6 +34,7 @@ module OnlinePayments
           hash['isFinal'] = @is_final unless @is_final.nil?
           hash['lineItemDetails'] = @line_item_details.collect{|val| val.to_h} unless @line_item_details.nil?
           hash['operationReferences'] = @operation_references.to_h unless @operation_references.nil?
+          hash['shipping'] = @shipping.to_h unless @shipping.nil?
           hash
         end
 
@@ -52,6 +57,10 @@ module OnlinePayments
           if hash.has_key? 'operationReferences'
             raise TypeError, "value '%s' is not a Hash" % [hash['operationReferences']] unless hash['operationReferences'].is_a? Hash
             @operation_references = OnlinePayments::SDK::Domain::OperationPaymentReferences.new_from_hash(hash['operationReferences'])
+          end
+          if hash.has_key? 'shipping'
+            raise TypeError, "value '%s' is not a Hash" % [hash['shipping']] unless hash['shipping'].is_a? Hash
+            @shipping = OnlinePayments::SDK::Domain::ShippingDetail.new_from_hash(hash['shipping'])
           end
         end
       end
