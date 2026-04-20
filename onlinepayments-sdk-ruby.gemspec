@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name           = 'onlinepayments-sdk-ruby'
-  spec.version        = '7.4.0'
+  spec.version        = '7.4.1'
   spec.authors        = ['Online Payments support team']
   spec.email          = ['96182451+online-payments-support-team@users.noreply.github.com']
   spec.summary        = %q{SDK to communicate with the Online Payments platform using the Online Payments Server API}
@@ -17,14 +17,15 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 2.0'
 
-  spec.add_dependency 'httpclient', '~> 2.8'
-  spec.add_dependency 'concurrent-ruby', '~>1.0'
+  spec.add_dependency 'httpclient', '~> 2.9'
+  spec.add_dependency 'concurrent-ruby', '~> 1.3'
 
+  spec.add_development_dependency 'base64'
   spec.add_development_dependency 'yard', '~> 0.9'
-  spec.add_development_dependency 'rspec', '~> 3.5'
-  spec.add_development_dependency 'webmock', '~> 2.1'
-  spec.add_development_dependency 'sinatra', '~> 2.1'
-  spec.add_development_dependency 'webrick', '~> 1.7'
-  spec.add_development_dependency 'rake', '~> 12.3', '>= 12.3.3'
+  spec.add_development_dependency 'rspec', '~> 3.13'
+  spec.add_development_dependency 'webmock', '~> 3.0'
+  spec.add_development_dependency 'sinatra', '~> 3.2'
+  spec.add_development_dependency 'webrick', '~> 1.8'
+  spec.add_development_dependency 'rake', '~> 13.0'
   # spec.metadata['yard.run'] = 'yri'  # compiles yard doc on install
 end
