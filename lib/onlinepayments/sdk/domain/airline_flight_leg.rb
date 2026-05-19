@@ -19,6 +19,7 @@ module OnlinePayments
       # @attr [String] fare
       # @attr [String] fare_basis
       # @attr [Integer] fee
+      # @attr [String] flight_code
       # @attr [String] flight_number
       # @attr [Integer] leg_fare
       # @attr [Integer] number
@@ -55,6 +56,8 @@ module OnlinePayments
 
         attr_accessor :fee
 
+        attr_accessor :flight_code
+
         attr_accessor :flight_number
 
         attr_accessor :leg_fare
@@ -86,6 +89,7 @@ module OnlinePayments
           hash['fare'] = @fare unless @fare.nil?
           hash['fareBasis'] = @fare_basis unless @fare_basis.nil?
           hash['fee'] = @fee unless @fee.nil?
+          hash['flightCode'] = @flight_code unless @flight_code.nil?
           hash['flightNumber'] = @flight_number unless @flight_number.nil?
           hash['legFare'] = @leg_fare unless @leg_fare.nil?
           hash['number'] = @number unless @number.nil?
@@ -136,6 +140,9 @@ module OnlinePayments
           end
           if hash.has_key? 'fee'
             @fee = hash['fee']
+          end
+          if hash.has_key? 'flightCode'
+            @flight_code = hash['flightCode']
           end
           if hash.has_key? 'flightNumber'
             @flight_number = hash['flightNumber']

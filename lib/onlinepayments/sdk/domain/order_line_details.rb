@@ -14,6 +14,7 @@ module OnlinePayments
       # @attr [String] product_type
       # @attr [Integer] quantity
       # @attr [Integer] tax_amount
+      # @attr [float] tax_percentage
       # @attr [String] unit
       class OrderLineDetails < OnlinePayments::SDK::Domain::DataObject
 
@@ -33,6 +34,8 @@ module OnlinePayments
 
         attr_accessor :tax_amount
 
+        attr_accessor :tax_percentage
+
         attr_accessor :unit
 
         # @return (Hash)
@@ -46,6 +49,7 @@ module OnlinePayments
           hash['productType'] = @product_type unless @product_type.nil?
           hash['quantity'] = @quantity unless @quantity.nil?
           hash['taxAmount'] = @tax_amount unless @tax_amount.nil?
+          hash['taxPercentage'] = @tax_percentage unless @tax_percentage.nil?
           hash['unit'] = @unit unless @unit.nil?
           hash
         end
@@ -75,6 +79,9 @@ module OnlinePayments
           end
           if hash.has_key? 'taxAmount'
             @tax_amount = hash['taxAmount']
+          end
+          if hash.has_key? 'taxPercentage'
+            @tax_percentage = hash['taxPercentage']
           end
           if hash.has_key? 'unit'
             @unit = hash['unit']

@@ -1,6 +1,7 @@
 #
 # This file was automatically generated.
 #
+require 'onlinepayments/sdk/domain/auto_capture'
 require 'onlinepayments/sdk/domain/card'
 require 'onlinepayments/sdk/domain/card_recurrence_details'
 require 'onlinepayments/sdk/domain/currency_conversion_input'
@@ -20,6 +21,7 @@ module OnlinePayments
     module Domain
       # @attr [true/false] allow_dynamic_linking
       # @attr [String] authorization_mode
+      # @attr [OnlinePayments::SDK::Domain::AutoCapture] auto_capture
       # @attr [OnlinePayments::SDK::Domain::Card] card
       # @attr [String] card_on_file_recurring_expiration
       # @attr [String] card_on_file_recurring_frequency
@@ -51,6 +53,8 @@ module OnlinePayments
         attr_accessor :allow_dynamic_linking
 
         attr_accessor :authorization_mode
+
+        attr_accessor :auto_capture
 
         attr_accessor :card
 
@@ -110,6 +114,7 @@ module OnlinePayments
           hash = super
           hash['allowDynamicLinking'] = @allow_dynamic_linking unless @allow_dynamic_linking.nil?
           hash['authorizationMode'] = @authorization_mode unless @authorization_mode.nil?
+          hash['autoCapture'] = @auto_capture.to_h unless @auto_capture.nil?
           hash['card'] = @card.to_h unless @card.nil?
           hash['cardOnFileRecurringExpiration'] = @card_on_file_recurring_expiration unless @card_on_file_recurring_expiration.nil?
           hash['cardOnFileRecurringFrequency'] = @card_on_file_recurring_frequency unless @card_on_file_recurring_frequency.nil?
@@ -146,6 +151,10 @@ module OnlinePayments
           end
           if hash.has_key? 'authorizationMode'
             @authorization_mode = hash['authorizationMode']
+          end
+          if hash.has_key? 'autoCapture'
+            raise TypeError, "value '%s' is not a Hash" % [hash['autoCapture']] unless hash['autoCapture'].is_a? Hash
+            @auto_capture = OnlinePayments::SDK::Domain::AutoCapture.new_from_hash(hash['autoCapture'])
           end
           if hash.has_key? 'card'
             raise TypeError, "value '%s' is not a Hash" % [hash['card']] unless hash['card'].is_a? Hash

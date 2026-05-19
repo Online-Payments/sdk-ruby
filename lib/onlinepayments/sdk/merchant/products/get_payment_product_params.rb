@@ -16,6 +16,7 @@ module OnlinePayments
         # @attr [Integer] amount
         # @attr [true/false] is_recurring
         # @attr [Array<String>] hide
+        # @attr [String] operation_type
         class GetPaymentProductParams < OnlinePayments::SDK::Communication::ParamRequest
 
           attr_accessor :country_code
@@ -29,6 +30,8 @@ module OnlinePayments
           attr_accessor :is_recurring
 
           attr_accessor :hide
+
+          attr_accessor :operation_type
 
           # Adds the parameter _value_ to the _hide_ Array
           #
@@ -51,6 +54,7 @@ module OnlinePayments
             unless @hide.nil?
               @hide.each {|e| result << OnlinePayments::SDK::Communication::RequestParam.new('hide', e)}
             end
+            result << OnlinePayments::SDK::Communication::RequestParam.new('operationType', @operation_type) unless @operation_type.nil?
             result
           end
         end

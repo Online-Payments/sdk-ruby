@@ -13,9 +13,11 @@ require 'onlinepayments/sdk/domain/redirect_payment_product3306_specific_input'
 require 'onlinepayments/sdk/domain/redirect_payment_product3307_specific_input'
 require 'onlinepayments/sdk/domain/redirect_payment_product5001_specific_input'
 require 'onlinepayments/sdk/domain/redirect_payment_product5300_specific_input'
+require 'onlinepayments/sdk/domain/redirect_payment_product5301_specific_input'
 require 'onlinepayments/sdk/domain/redirect_payment_product5402_specific_input'
 require 'onlinepayments/sdk/domain/redirect_payment_product5403_specific_input'
 require 'onlinepayments/sdk/domain/redirect_payment_product5406_specific_input'
+require 'onlinepayments/sdk/domain/redirect_payment_product5407_specific_input'
 require 'onlinepayments/sdk/domain/redirect_payment_product5408_specific_input'
 require 'onlinepayments/sdk/domain/redirect_payment_product5410_specific_input'
 require 'onlinepayments/sdk/domain/redirect_payment_product5412_specific_input'
@@ -39,9 +41,11 @@ module OnlinePayments
       # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct3307SpecificInput] payment_product3307_specific_input
       # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5001SpecificInput] payment_product5001_specific_input
       # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5300SpecificInput] payment_product5300_specific_input
+      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5301SpecificInput] payment_product5301_specific_input
       # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5402SpecificInput] payment_product5402_specific_input
       # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5403SpecificInput] payment_product5403_specific_input
       # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5406SpecificInput] payment_product5406_specific_input
+      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5407SpecificInput] payment_product5407_specific_input
       # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5408SpecificInput] payment_product5408_specific_input
       # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5410SpecificInput] payment_product5410_specific_input
       # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5412SpecificInput] payment_product5412_specific_input
@@ -79,11 +83,15 @@ module OnlinePayments
 
         attr_accessor :payment_product5300_specific_input
 
+        attr_accessor :payment_product5301_specific_input
+
         attr_accessor :payment_product5402_specific_input
 
         attr_accessor :payment_product5403_specific_input
 
         attr_accessor :payment_product5406_specific_input
+
+        attr_accessor :payment_product5407_specific_input
 
         attr_accessor :payment_product5408_specific_input
 
@@ -122,9 +130,11 @@ module OnlinePayments
           hash['paymentProduct3307SpecificInput'] = @payment_product3307_specific_input.to_h unless @payment_product3307_specific_input.nil?
           hash['paymentProduct5001SpecificInput'] = @payment_product5001_specific_input.to_h unless @payment_product5001_specific_input.nil?
           hash['paymentProduct5300SpecificInput'] = @payment_product5300_specific_input.to_h unless @payment_product5300_specific_input.nil?
+          hash['paymentProduct5301SpecificInput'] = @payment_product5301_specific_input.to_h unless @payment_product5301_specific_input.nil?
           hash['paymentProduct5402SpecificInput'] = @payment_product5402_specific_input.to_h unless @payment_product5402_specific_input.nil?
           hash['paymentProduct5403SpecificInput'] = @payment_product5403_specific_input.to_h unless @payment_product5403_specific_input.nil?
           hash['paymentProduct5406SpecificInput'] = @payment_product5406_specific_input.to_h unless @payment_product5406_specific_input.nil?
+          hash['paymentProduct5407SpecificInput'] = @payment_product5407_specific_input.to_h unless @payment_product5407_specific_input.nil?
           hash['paymentProduct5408SpecificInput'] = @payment_product5408_specific_input.to_h unless @payment_product5408_specific_input.nil?
           hash['paymentProduct5410SpecificInput'] = @payment_product5410_specific_input.to_h unless @payment_product5410_specific_input.nil?
           hash['paymentProduct5412SpecificInput'] = @payment_product5412_specific_input.to_h unless @payment_product5412_specific_input.nil?
@@ -188,6 +198,10 @@ module OnlinePayments
             raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct5300SpecificInput']] unless hash['paymentProduct5300SpecificInput'].is_a? Hash
             @payment_product5300_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct5300SpecificInput.new_from_hash(hash['paymentProduct5300SpecificInput'])
           end
+          if hash.has_key? 'paymentProduct5301SpecificInput'
+            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct5301SpecificInput']] unless hash['paymentProduct5301SpecificInput'].is_a? Hash
+            @payment_product5301_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct5301SpecificInput.new_from_hash(hash['paymentProduct5301SpecificInput'])
+          end
           if hash.has_key? 'paymentProduct5402SpecificInput'
             raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct5402SpecificInput']] unless hash['paymentProduct5402SpecificInput'].is_a? Hash
             @payment_product5402_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct5402SpecificInput.new_from_hash(hash['paymentProduct5402SpecificInput'])
@@ -199,6 +213,10 @@ module OnlinePayments
           if hash.has_key? 'paymentProduct5406SpecificInput'
             raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct5406SpecificInput']] unless hash['paymentProduct5406SpecificInput'].is_a? Hash
             @payment_product5406_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct5406SpecificInput.new_from_hash(hash['paymentProduct5406SpecificInput'])
+          end
+          if hash.has_key? 'paymentProduct5407SpecificInput'
+            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct5407SpecificInput']] unless hash['paymentProduct5407SpecificInput'].is_a? Hash
+            @payment_product5407_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct5407SpecificInput.new_from_hash(hash['paymentProduct5407SpecificInput'])
           end
           if hash.has_key? 'paymentProduct5408SpecificInput'
             raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct5408SpecificInput']] unless hash['paymentProduct5408SpecificInput'].is_a? Hash

@@ -1,6 +1,7 @@
 #
 # This file was automatically generated.
 #
+require 'onlinepayments/sdk/domain/auto_capture'
 require 'onlinepayments/sdk/domain/card_recurrence_details'
 require 'onlinepayments/sdk/domain/currency_conversion_specific_input'
 require 'onlinepayments/sdk/domain/data_object'
@@ -19,6 +20,7 @@ module OnlinePayments
     module Domain
       # @attr [true/false] allow_dynamic_linking
       # @attr [String] authorization_mode
+      # @attr [OnlinePayments::SDK::Domain::AutoCapture] auto_capture
       # @attr [OnlinePayments::SDK::Domain::CurrencyConversionSpecificInput] currency_conversion_specific_input
       # @attr [String] initial_scheme_transaction_id
       # @attr [OnlinePayments::SDK::Domain::MarketPlace] market_place
@@ -42,6 +44,8 @@ module OnlinePayments
         attr_accessor :allow_dynamic_linking
 
         attr_accessor :authorization_mode
+
+        attr_accessor :auto_capture
 
         attr_accessor :currency_conversion_specific_input
 
@@ -84,6 +88,7 @@ module OnlinePayments
           hash = super
           hash['allowDynamicLinking'] = @allow_dynamic_linking unless @allow_dynamic_linking.nil?
           hash['authorizationMode'] = @authorization_mode unless @authorization_mode.nil?
+          hash['autoCapture'] = @auto_capture.to_h unless @auto_capture.nil?
           hash['currencyConversionSpecificInput'] = @currency_conversion_specific_input.to_h unless @currency_conversion_specific_input.nil?
           hash['initialSchemeTransactionId'] = @initial_scheme_transaction_id unless @initial_scheme_transaction_id.nil?
           hash['marketPlace'] = @market_place.to_h unless @market_place.nil?
@@ -112,6 +117,10 @@ module OnlinePayments
           end
           if hash.has_key? 'authorizationMode'
             @authorization_mode = hash['authorizationMode']
+          end
+          if hash.has_key? 'autoCapture'
+            raise TypeError, "value '%s' is not a Hash" % [hash['autoCapture']] unless hash['autoCapture'].is_a? Hash
+            @auto_capture = OnlinePayments::SDK::Domain::AutoCapture.new_from_hash(hash['autoCapture'])
           end
           if hash.has_key? 'currencyConversionSpecificInput'
             raise TypeError, "value '%s' is not a Hash" % [hash['currencyConversionSpecificInput']] unless hash['currencyConversionSpecificInput'].is_a? Hash

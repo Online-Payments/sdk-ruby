@@ -12,7 +12,6 @@ require 'onlinepayments/sdk/domain/mobile_payment_method_specific_output'
 require 'onlinepayments/sdk/domain/payment_references'
 require 'onlinepayments/sdk/domain/redirect_payment_method_specific_output'
 require 'onlinepayments/sdk/domain/sepa_direct_debit_payment_method_specific_output'
-require 'onlinepayments/sdk/domain/shopping_cart_output'
 require 'onlinepayments/sdk/domain/surcharge_specific_output'
 
 module OnlinePayments
@@ -30,7 +29,6 @@ module OnlinePayments
       # @attr [OnlinePayments::SDK::Domain::RedirectPaymentMethodSpecificOutput] redirect_payment_method_specific_output
       # @attr [OnlinePayments::SDK::Domain::PaymentReferences] references
       # @attr [OnlinePayments::SDK::Domain::SepaDirectDebitPaymentMethodSpecificOutput] sepa_direct_debit_payment_method_specific_output
-      # @attr [OnlinePayments::SDK::Domain::ShoppingCartOutput] shopping_cart_output
       # @attr [OnlinePayments::SDK::Domain::SurchargeSpecificOutput] surcharge_specific_output
       # @attr [DateTime] transaction_date
       class PaymentOutput < OnlinePayments::SDK::Domain::DataObject
@@ -60,8 +58,6 @@ module OnlinePayments
 
         attr_accessor :sepa_direct_debit_payment_method_specific_output
 
-        attr_accessor :shopping_cart_output
-
         attr_accessor :surcharge_specific_output
 
         attr_accessor :transaction_date
@@ -81,7 +77,6 @@ module OnlinePayments
           hash['redirectPaymentMethodSpecificOutput'] = @redirect_payment_method_specific_output.to_h unless @redirect_payment_method_specific_output.nil?
           hash['references'] = @references.to_h unless @references.nil?
           hash['sepaDirectDebitPaymentMethodSpecificOutput'] = @sepa_direct_debit_payment_method_specific_output.to_h unless @sepa_direct_debit_payment_method_specific_output.nil?
-          hash['shoppingCartOutput'] = @shopping_cart_output.to_h unless @shopping_cart_output.nil?
           hash['surchargeSpecificOutput'] = @surcharge_specific_output.to_h unless @surcharge_specific_output.nil?
           hash['transactionDate'] = @transaction_date.iso8601(3) unless @transaction_date.nil?
           hash
@@ -133,10 +128,6 @@ module OnlinePayments
           if hash.has_key? 'sepaDirectDebitPaymentMethodSpecificOutput'
             raise TypeError, "value '%s' is not a Hash" % [hash['sepaDirectDebitPaymentMethodSpecificOutput']] unless hash['sepaDirectDebitPaymentMethodSpecificOutput'].is_a? Hash
             @sepa_direct_debit_payment_method_specific_output = OnlinePayments::SDK::Domain::SepaDirectDebitPaymentMethodSpecificOutput.new_from_hash(hash['sepaDirectDebitPaymentMethodSpecificOutput'])
-          end
-          if hash.has_key? 'shoppingCartOutput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['shoppingCartOutput']] unless hash['shoppingCartOutput'].is_a? Hash
-            @shopping_cart_output = OnlinePayments::SDK::Domain::ShoppingCartOutput.new_from_hash(hash['shoppingCartOutput'])
           end
           if hash.has_key? 'surchargeSpecificOutput'
             raise TypeError, "value '%s' is not a Hash" % [hash['surchargeSpecificOutput']] unless hash['surchargeSpecificOutput'].is_a? Hash
