@@ -12,6 +12,7 @@ module OnlinePayments
       # @attr [Integer] payment_product_id
       # @attr [String] scheme_reference_data
       # @attr [String] token_id
+      # @attr [String] transaction_link_identifier
       class ImportCofSeriesRequest < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :card
@@ -24,6 +25,8 @@ module OnlinePayments
 
         attr_accessor :token_id
 
+        attr_accessor :transaction_link_identifier
+
         # @return (Hash)
         def to_h
           hash = super
@@ -32,6 +35,7 @@ module OnlinePayments
           hash['paymentProductId'] = @payment_product_id unless @payment_product_id.nil?
           hash['schemeReferenceData'] = @scheme_reference_data unless @scheme_reference_data.nil?
           hash['tokenId'] = @token_id unless @token_id.nil?
+          hash['transactionLinkIdentifier'] = @transaction_link_identifier unless @transaction_link_identifier.nil?
           hash
         end
 
@@ -52,6 +56,9 @@ module OnlinePayments
           end
           if hash.has_key? 'tokenId'
             @token_id = hash['tokenId']
+          end
+          if hash.has_key? 'transactionLinkIdentifier'
+            @transaction_link_identifier = hash['transactionLinkIdentifier']
           end
         end
       end

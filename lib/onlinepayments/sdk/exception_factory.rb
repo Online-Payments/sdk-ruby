@@ -8,12 +8,14 @@ require_relative 'declined_payout_exception'
 require_relative 'declined_refund_exception'
 require_relative 'idempotence_exception'
 require_relative 'platform_exception'
+require_relative 'problem_details_exception'
 require_relative 'reference_exception'
 require_relative 'validation_exception'
 
 require 'onlinepayments/sdk/domain/error_response'
 require 'onlinepayments/sdk/domain/payment_error_response'
 require 'onlinepayments/sdk/domain/payout_error_response'
+require 'onlinepayments/sdk/domain/problem_details_response'
 require 'onlinepayments/sdk/domain/refund_error_response'
 
 module OnlinePayments
@@ -30,6 +32,9 @@ module OnlinePayments
       if error_object.is_a?(OnlinePayments::SDK::Domain::RefundErrorResponse)
         return DeclinedRefundException.new(status_code, response_body, error_object) unless error_object.refund_result.nil?
         return create_exception_from_response_fields(status_code, response_body, error_object.error_id, error_object.errors, context)
+      end
+      if error_object.is_a?(OnlinePayments::SDK::Domain::ProblemDetailsResponse)
+        return ProblemDetailsException.new(status_code, response_body, error_object)
       end
       raise ArgumentError.new("unsupported error object type: " + error_object.class.name) unless error_object.is_a?(OnlinePayments::SDK::Domain::ErrorResponse)
       create_exception_from_response_fields(status_code, response_body, error_object.error_id, error_object.errors, context)

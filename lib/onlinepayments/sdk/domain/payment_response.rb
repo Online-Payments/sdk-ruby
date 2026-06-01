@@ -3,6 +3,7 @@
 #
 require 'onlinepayments/sdk/domain/data_object'
 require 'onlinepayments/sdk/domain/hosted_checkout_specific_output'
+require 'onlinepayments/sdk/domain/operation_output'
 require 'onlinepayments/sdk/domain/payment_output'
 require 'onlinepayments/sdk/domain/payment_status_output'
 require 'onlinepayments/sdk/domain/session_details'
@@ -12,6 +13,7 @@ module OnlinePayments
     module Domain
       # @attr [OnlinePayments::SDK::Domain::HostedCheckoutSpecificOutput] hosted_checkout_specific_output
       # @attr [String] id
+      # @attr [OnlinePayments::SDK::Domain::OperationOutput] operation_output
       # @attr [OnlinePayments::SDK::Domain::PaymentOutput] payment_output
       # @attr [OnlinePayments::SDK::Domain::SessionDetails] session_details
       # @attr [String] status
@@ -21,6 +23,8 @@ module OnlinePayments
         attr_accessor :hosted_checkout_specific_output
 
         attr_accessor :id
+
+        attr_accessor :operation_output
 
         attr_accessor :payment_output
 
@@ -35,6 +39,7 @@ module OnlinePayments
           hash = super
           hash['hostedCheckoutSpecificOutput'] = @hosted_checkout_specific_output.to_h unless @hosted_checkout_specific_output.nil?
           hash['id'] = @id unless @id.nil?
+          hash['operationOutput'] = @operation_output.to_h unless @operation_output.nil?
           hash['paymentOutput'] = @payment_output.to_h unless @payment_output.nil?
           hash['sessionDetails'] = @session_details.to_h unless @session_details.nil?
           hash['status'] = @status unless @status.nil?
@@ -50,6 +55,10 @@ module OnlinePayments
           end
           if hash.has_key? 'id'
             @id = hash['id']
+          end
+          if hash.has_key? 'operationOutput'
+            raise TypeError, "value '%s' is not a Hash" % [hash['operationOutput']] unless hash['operationOutput'].is_a? Hash
+            @operation_output = OnlinePayments::SDK::Domain::OperationOutput.new_from_hash(hash['operationOutput'])
           end
           if hash.has_key? 'paymentOutput'
             raise TypeError, "value '%s' is not a Hash" % [hash['paymentOutput']] unless hash['paymentOutput'].is_a? Hash
