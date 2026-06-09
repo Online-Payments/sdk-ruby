@@ -1,6 +1,7 @@
 #
 # This file was automatically generated.
 #
+require 'onlinepayments/sdk/domain/auto_capture'
 require 'onlinepayments/sdk/domain/data_object'
 require 'onlinepayments/sdk/domain/market_place'
 
@@ -8,6 +9,7 @@ module OnlinePayments
   module SDK
     module Domain
       # @attr [String] authorization_mode
+      # @attr [OnlinePayments::SDK::Domain::AutoCapture] auto_capture
       # @attr [OnlinePayments::SDK::Domain::MarketPlace] market_place
       # @attr [Integer] payment_number
       # @attr [String] scheme_reference_data
@@ -17,6 +19,8 @@ module OnlinePayments
       class SubsequentCardPaymentMethodSpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :authorization_mode
+
+        attr_accessor :auto_capture
 
         attr_accessor :market_place
 
@@ -36,6 +40,7 @@ module OnlinePayments
         def to_h
           hash = super
           hash['authorizationMode'] = @authorization_mode unless @authorization_mode.nil?
+          hash['autoCapture'] = @auto_capture.to_h unless @auto_capture.nil?
           hash['marketPlace'] = @market_place.to_h unless @market_place.nil?
           hash['paymentNumber'] = @payment_number unless @payment_number.nil?
           hash['schemeReferenceData'] = @scheme_reference_data unless @scheme_reference_data.nil?
@@ -49,6 +54,10 @@ module OnlinePayments
           super
           if hash.has_key? 'authorizationMode'
             @authorization_mode = hash['authorizationMode']
+          end
+          if hash.has_key? 'autoCapture'
+            raise TypeError, "value '%s' is not a Hash" % [hash['autoCapture']] unless hash['autoCapture'].is_a? Hash
+            @auto_capture = OnlinePayments::SDK::Domain::AutoCapture.new_from_hash(hash['autoCapture'])
           end
           if hash.has_key? 'marketPlace'
             raise TypeError, "value '%s' is not a Hash" % [hash['marketPlace']] unless hash['marketPlace'].is_a? Hash
