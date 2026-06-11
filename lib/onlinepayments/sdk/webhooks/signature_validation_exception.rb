@@ -10,7 +10,9 @@ module OnlinePayments
         # @option args [String] :message the error message
         # @option args [RuntimeError] :cause an Error object that causes the Exception
         def initialize(args)
-          super(args[:message]) # NOTE: can be nil
+          msg = args[:message]
+          msg = args[:cause].to_s if msg.nil? && !args[:cause].nil?
+          super(msg)
           # store backtrace info if exception given
           set_backtrace(args[:cause].backtrace) unless args[:cause].nil?
         end

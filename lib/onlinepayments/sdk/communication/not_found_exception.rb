@@ -8,7 +8,7 @@ module OnlinePayments
       class NotFoundException < RuntimeError
 
         def initialize(cause, message = nil)
-          super(message)
+          super(message.nil? ? cause.to_s : message)
           @cause = cause
         end
 

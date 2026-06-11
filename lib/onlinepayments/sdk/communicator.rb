@@ -42,12 +42,12 @@ module OnlinePayments
         raise ArgumentError.new('connection is required') unless connection
         raise ArgumentError.new('authenticator is required') unless authenticator
         raise ArgumentError.new('metadata_provider is required') unless metadata_provider
-        raise ArgumentError('marshaller is required') if marshaller.nil?
+        raise ArgumentError.new('marshaller is required') if marshaller.nil?
 
         uri = URI(api_endpoint)
-        raise RuntimeError('api_endpoint should not contain a path') unless uri.path.nil? || uri.path.empty?
+        raise RuntimeError.new('api_endpoint should not contain a path') unless uri.path.nil? || uri.path.empty?
         unless uri.userinfo.nil? && uri.query.nil? && uri.fragment.nil?
-          raise RuntimeError('api_endpoint should not contain user info, query or fragment')
+          raise RuntimeError.new('api_endpoint should not contain user info, query or fragment')
         end
         @api_endpoint = uri
         @connection = connection
@@ -499,7 +499,7 @@ module OnlinePayments
 
       def throw_exception_if_necessary(body, status_code, headers, request_path)
         if status_code < 200 || status_code >= 300
-          if !body.nil? && !is_json(headers)
+          if !body.nil? && !body.empty? && !is_json(headers)
             cause = Communication::ResponseException.new(status_code, headers, body)
             if status_code == 404
               raise Communication::NotFoundException.new(cause, 'The requested resource was not found; invalid path: ' +

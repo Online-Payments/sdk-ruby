@@ -20,12 +20,12 @@ module OnlinePayments
         # Constructs and returns a log message based on the request data. The log message is a string.
         def get_message
           msg_template_without_body = "Outgoing request (requestId='%s'):\n" +
-            "  method:       '%s'\n" +
-            "  uri:          '%s'\n" +
-            "  headers:      '%s'"
+                                      "  method:       '%s'\n" +
+                                      "  uri:          '%s'\n" +
+                                      "  headers:      '%s'"
           msg_template_with_body = msg_template_without_body + "\n" +
-            "  content-type: '%s'\n" +
-            "  body:         '%s'"
+                                   "  content-type: '%s'\n" +
+                                   "  body:         '%s'"
 
           return sprintf(msg_template_without_body, @request_id, empty_if_null(@method),
                          format_uri, @headers) if @body.nil?
@@ -36,13 +36,12 @@ module OnlinePayments
         private
 
         def format_uri
-          '' unless @uri && @uri.path
+          return '' unless @uri && @uri.path
           if @uri.query.nil?
             @uri.path
           else
-            "#{@uri.path}?#{@uri.query}" unless @uri.query.nil?
+            "#{@uri.path}?#{@uri.query}"
           end
-          # @uri.path + '?' + empty_if_null(@uri.query)
         end
       end
     end

@@ -51,8 +51,8 @@ module OnlinePayments
         def self.get_disposition_filename(headers)
           header_value = get_header_value(headers, "Content-Disposition")
           unless header_value.nil?
-            if header_value =~ /(?:^|;)\s*filename\s*=\s*(.*?)\s*(?:;|$)i/
-              return trim_quotes($2)
+            if header_value =~ /(?:^|;)\s*filename\s*=\s*(.*?)\s*(?:;|$)/i
+              return trim_quotes($1)
             end
           end
 
@@ -63,10 +63,10 @@ module OnlinePayments
 
         # Trims the single or double quotes at the beginning and end of parameter _filename_ if they exist
         # If they don't exist, it returns the original _filename_ instead
-        def trim_quotes(filename)
+        def self.trim_quotes(filename)
           unless filename.length < 2
-            if (filename.chars.first == '\'' && filename.chars.last == '\"') ||
-              (filename.chars.first == '"' && filename.chars.last == '"')
+            if (filename.chars.first == '\'' && filename.chars.last == '\'') ||
+               (filename.chars.first == '"' && filename.chars.last == '"')
               return filename[1...-1]
             end
           end

@@ -261,7 +261,7 @@ describe 'DefaultConnectionLogging' do
     COMMUNICATOR.enable_logging(logger)
     response = COMMUNICATOR.delete('/v1/void', nil, nil, nil, nil)
 
-    expect(response).to_not be_nil
+    expect(response).to be_nil
 
     validate_request_and_response(logger.entries[0], logger.entries[1], 'deleteWithVoidResponse')
   end

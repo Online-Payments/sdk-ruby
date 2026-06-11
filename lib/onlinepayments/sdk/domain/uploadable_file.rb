@@ -13,9 +13,9 @@ module OnlinePayments
       class UploadableFile
 
         def initialize(file_name, content, content_type, content_length = -1)
-          raise ArgumentError.new("file_name is required") if file_name.nil? or !file_name.strip
+          raise ArgumentError.new("file_name is required") if file_name.nil? || file_name.strip.empty?
           raise ArgumentError.new("content is required") if content.nil?
-          raise ArgumentError.new("content_type is required") if content_type.nil? or !content_type.strip
+          raise ArgumentError.new("content_type is required") if content_type.nil? || content_type.strip.empty?
 
           @file_name = file_name
           @content = content
