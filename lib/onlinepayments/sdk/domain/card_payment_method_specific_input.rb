@@ -14,6 +14,7 @@ require 'onlinepayments/sdk/domain/payment_product3012_specific_input'
 require 'onlinepayments/sdk/domain/payment_product3013_specific_input'
 require 'onlinepayments/sdk/domain/payment_product3208_specific_input'
 require 'onlinepayments/sdk/domain/payment_product3209_specific_input'
+require 'onlinepayments/sdk/domain/sub_merchant'
 require 'onlinepayments/sdk/domain/three_d_secure'
 
 module OnlinePayments
@@ -42,6 +43,7 @@ module OnlinePayments
       # @attr [String] return_url
       # @attr [String] scheme_reference_data
       # @attr [true/false] skip_authentication
+      # @attr [OnlinePayments::SDK::Domain::SubMerchant] sub_merchant
       # @attr [OnlinePayments::SDK::Domain::ThreeDSecure] three_d_secure
       # @attr [String] token
       # @attr [true/false] tokenize
@@ -97,6 +99,8 @@ module OnlinePayments
         # @deprecated Use threeDSecure.skipAuthentication instead.  * true = 3D Secure authentication will be skipped for this transaction. This setting should be used when isRecurring is set to true and recurringPaymentSequenceIndicator is set to recurring.  * false = 3D Secure authentication will not be skipped for this transaction.    Note: This is only possible if your account in our system is setup for 3D Secure authentication and if your configuration in our system allows you to override it per transaction.
         attr_accessor :skip_authentication
 
+        attr_accessor :sub_merchant
+
         attr_accessor :three_d_secure
 
         attr_accessor :token
@@ -135,6 +139,7 @@ module OnlinePayments
           hash['returnUrl'] = @return_url unless @return_url.nil?
           hash['schemeReferenceData'] = @scheme_reference_data unless @scheme_reference_data.nil?
           hash['skipAuthentication'] = @skip_authentication unless @skip_authentication.nil?
+          hash['subMerchant'] = @sub_merchant.to_h unless @sub_merchant.nil?
           hash['threeDSecure'] = @three_d_secure.to_h unless @three_d_secure.nil?
           hash['token'] = @token unless @token.nil?
           hash['tokenize'] = @tokenize unless @tokenize.nil?
@@ -226,6 +231,10 @@ module OnlinePayments
           end
           if hash.has_key? 'skipAuthentication'
             @skip_authentication = hash['skipAuthentication']
+          end
+          if hash.has_key? 'subMerchant'
+            raise TypeError, "value '%s' is not a Hash" % [hash['subMerchant']] unless hash['subMerchant'].is_a? Hash
+            @sub_merchant = OnlinePayments::SDK::Domain::SubMerchant.new_from_hash(hash['subMerchant'])
           end
           if hash.has_key? 'threeDSecure'
             raise TypeError, "value '%s' is not a Hash" % [hash['threeDSecure']] unless hash['threeDSecure'].is_a? Hash

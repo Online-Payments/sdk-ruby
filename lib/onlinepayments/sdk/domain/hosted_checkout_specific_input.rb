@@ -10,6 +10,7 @@ module OnlinePayments
   module SDK
     module Domain
       # @attr [Integer] allowed_number_of_payment_attempts
+      # @attr [true/false] auto_refund_split_payments
       # @attr [OnlinePayments::SDK::Domain::CardPaymentMethodSpecificInputForHostedCheckout] card_payment_method_specific_input
       # @attr [true/false] is_new_unscheduled_card_on_file_series
       # @attr [true/false] is_recurring
@@ -24,6 +25,8 @@ module OnlinePayments
       class HostedCheckoutSpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :allowed_number_of_payment_attempts
+
+        attr_accessor :auto_refund_split_payments
 
         attr_accessor :card_payment_method_specific_input
 
@@ -51,6 +54,7 @@ module OnlinePayments
         def to_h
           hash = super
           hash['allowedNumberOfPaymentAttempts'] = @allowed_number_of_payment_attempts unless @allowed_number_of_payment_attempts.nil?
+          hash['autoRefundSplitPayments'] = @auto_refund_split_payments unless @auto_refund_split_payments.nil?
           hash['cardPaymentMethodSpecificInput'] = @card_payment_method_specific_input.to_h unless @card_payment_method_specific_input.nil?
           hash['isNewUnscheduledCardOnFileSeries'] = @is_new_unscheduled_card_on_file_series unless @is_new_unscheduled_card_on_file_series.nil?
           hash['isRecurring'] = @is_recurring unless @is_recurring.nil?
@@ -69,6 +73,9 @@ module OnlinePayments
           super
           if hash.has_key? 'allowedNumberOfPaymentAttempts'
             @allowed_number_of_payment_attempts = hash['allowedNumberOfPaymentAttempts']
+          end
+          if hash.has_key? 'autoRefundSplitPayments'
+            @auto_refund_split_payments = hash['autoRefundSplitPayments']
           end
           if hash.has_key? 'cardPaymentMethodSpecificInput'
             raise TypeError, "value '%s' is not a Hash" % [hash['cardPaymentMethodSpecificInput']] unless hash['cardPaymentMethodSpecificInput'].is_a? Hash

@@ -13,6 +13,7 @@ require 'onlinepayments/sdk/domain/payment_product3013_specific_input'
 require 'onlinepayments/sdk/domain/payment_product3208_specific_input'
 require 'onlinepayments/sdk/domain/payment_product3209_specific_input'
 require 'onlinepayments/sdk/domain/payment_product5100_specific_input'
+require 'onlinepayments/sdk/domain/sub_merchant'
 require 'onlinepayments/sdk/domain/three_d_secure_base'
 
 module OnlinePayments
@@ -33,6 +34,7 @@ module OnlinePayments
       # @attr [OnlinePayments::SDK::Domain::PaymentProduct5100SpecificInput] payment_product5100_specific_input
       # @attr [Integer] payment_product_id
       # @attr [OnlinePayments::SDK::Domain::CardRecurrenceDetails] recurring
+      # @attr [OnlinePayments::SDK::Domain::SubMerchant] sub_merchant
       # @attr [OnlinePayments::SDK::Domain::ThreeDSecureBase] three_d_secure
       # @attr [String] token
       # @attr [true/false] tokenize
@@ -71,6 +73,8 @@ module OnlinePayments
 
         attr_accessor :recurring
 
+        attr_accessor :sub_merchant
+
         attr_accessor :three_d_secure
 
         attr_accessor :token
@@ -101,6 +105,7 @@ module OnlinePayments
           hash['paymentProduct5100SpecificInput'] = @payment_product5100_specific_input.to_h unless @payment_product5100_specific_input.nil?
           hash['paymentProductId'] = @payment_product_id unless @payment_product_id.nil?
           hash['recurring'] = @recurring.to_h unless @recurring.nil?
+          hash['subMerchant'] = @sub_merchant.to_h unless @sub_merchant.nil?
           hash['threeDSecure'] = @three_d_secure.to_h unless @three_d_secure.nil?
           hash['token'] = @token unless @token.nil?
           hash['tokenize'] = @tokenize unless @tokenize.nil?
@@ -167,6 +172,10 @@ module OnlinePayments
           if hash.has_key? 'recurring'
             raise TypeError, "value '%s' is not a Hash" % [hash['recurring']] unless hash['recurring'].is_a? Hash
             @recurring = OnlinePayments::SDK::Domain::CardRecurrenceDetails.new_from_hash(hash['recurring'])
+          end
+          if hash.has_key? 'subMerchant'
+            raise TypeError, "value '%s' is not a Hash" % [hash['subMerchant']] unless hash['subMerchant'].is_a? Hash
+            @sub_merchant = OnlinePayments::SDK::Domain::SubMerchant.new_from_hash(hash['subMerchant'])
           end
           if hash.has_key? 'threeDSecure'
             raise TypeError, "value '%s' is not a Hash" % [hash['threeDSecure']] unless hash['threeDSecure'].is_a? Hash

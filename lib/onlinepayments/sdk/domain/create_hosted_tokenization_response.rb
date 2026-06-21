@@ -11,6 +11,7 @@ module OnlinePayments
       # @attr [String] hosted_tokenization_url
       # @attr [Array<String>] invalid_tokens
       # @attr [String] partial_redirect_url
+      # @attr [String] sri
       class CreateHostedTokenizationResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :expired_card_tokens
@@ -24,6 +25,8 @@ module OnlinePayments
         # @deprecated Deprecated
         attr_accessor :partial_redirect_url
 
+        attr_accessor :sri
+
         # @return (Hash)
         def to_h
           hash = super
@@ -32,6 +35,7 @@ module OnlinePayments
           hash['hostedTokenizationUrl'] = @hosted_tokenization_url unless @hosted_tokenization_url.nil?
           hash['invalidTokens'] = @invalid_tokens unless @invalid_tokens.nil?
           hash['partialRedirectUrl'] = @partial_redirect_url unless @partial_redirect_url.nil?
+          hash['sri'] = @sri unless @sri.nil?
           hash
         end
 
@@ -59,6 +63,9 @@ module OnlinePayments
           end
           if hash.has_key? 'partialRedirectUrl'
             @partial_redirect_url = hash['partialRedirectUrl']
+          end
+          if hash.has_key? 'sri'
+            @sri = hash['sri']
           end
         end
       end
