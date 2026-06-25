@@ -1,9 +1,13 @@
 require 'spec_helper'
+require 'onlinepayments/sdk/merchant/merchant_client'
+require 'onlinepayments/sdk/logging/obfuscation/body_obfuscator'
+require 'onlinepayments/sdk/logging/obfuscation/header_obfuscator'
 
 describe 'Client' do
   Factory ||= OnlinePayments::SDK::Factory
   Connection ||= OnlinePayments::SDK::Communication::Connection
   PooledConnection ||= OnlinePayments::SDK::Communication::PooledConnection
+  MerchantClient ||= OnlinePayments::SDK::Merchant::MerchantClient
 
   it 'should return properly modified clients from *with_client_meta_info*' do
     client1 = Factory.create_client_from_file(PROPERTIES_URI, API_KEY_ID, SECRET_API_KEY)
@@ -14,7 +18,7 @@ describe 'Client' do
     client5 = client3.with_client_meta_info(nil)
 
 
-    expect(client1.instance_variable_get(:@client_headers)).to be_nil
+    expect(client1.instance_variable_get(:@client_meta_info)).to be_nil
     expect(client1).to be(client2)
     expect(client1).to_not be(client3)
     # Check if client3 has the meta_info stored
@@ -24,7 +28,7 @@ describe 'Client' do
 
     expect(client3).to be(client4)
     expect(client3).to_not be(client5)
-    expect(client5.instance_variable_get(:@client_headers)).to be_nil
+    expect(client5.instance_variable_get(:@client_meta_info)).to be_nil
   end
 
   it 'should not close idle connections of an unpooled connection' do
@@ -65,5 +69,49 @@ describe 'Client' do
     expect(communicator.instance_variable_get(:@connection)).to receive(:close_expired_connections)
 
     client.close_expired_connections
+  end
+
+  it 'delegates enable_logging to communicator' do
+    communicator = Factory.create_communicator_from_file(PROPERTIES_URI, API_KEY_ID, SECRET_API_KEY)
+    client = Factory.create_client_from_communicator(communicator)
+    logger = double('CommunicatorLogger')
+    expect(communicator).to receive(:enable_logging).with(logger)
+    client.enable_logging(logger)
+  end
+
+  it 'delegates disable_logging to communicator' do
+    communicator = Factory.create_communicator_from_file(PROPERTIES_URI, API_KEY_ID, SECRET_API_KEY)
+    client = Factory.create_client_from_communicator(communicator)
+    expect(communicator).to receive(:disable_logging)
+    client.disable_logging
+  end
+
+  it 'delegates set_body_obfuscator to communicator' do
+    communicator = Factory.create_communicator_from_file(PROPERTIES_URI, API_KEY_ID, SECRET_API_KEY)
+    client = Factory.create_client_from_communicator(communicator)
+    obfuscator = OnlinePayments::SDK::Logging::Obfuscation::BodyObfuscator.default_obfuscator
+    expect(communicator).to receive(:set_body_obfuscator).with(obfuscator)
+    client.set_body_obfuscator(obfuscator)
+  end
+
+  it 'delegates set_header_obfuscator to communicator' do
+    communicator = Factory.create_communicator_from_file(PROPERTIES_URI, API_KEY_ID, SECRET_API_KEY)
+    client = Factory.create_client_from_communicator(communicator)
+    obfuscator = OnlinePayments::SDK::Logging::Obfuscation::HeaderObfuscator.default_obfuscator
+    expect(communicator).to receive(:set_header_obfuscator).with(obfuscator)
+    client.set_header_obfuscator(obfuscator)
+  end
+
+  it 'delegates close to communicator' do
+    communicator = Factory.create_communicator_from_file(PROPERTIES_URI, API_KEY_ID, SECRET_API_KEY)
+    client = Factory.create_client_from_communicator(communicator)
+    expect(communicator).to receive(:close)
+    client.close
+  end
+
+  it 'merchant returns a MerchantClient' do
+    client = Factory.create_client_from_file(PROPERTIES_URI, API_KEY_ID, SECRET_API_KEY)
+    mc = client.merchant('M123')
+    expect(mc).to be_a(MerchantClient)
   end
 end

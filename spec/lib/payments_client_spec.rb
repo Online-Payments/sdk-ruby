@@ -7,6 +7,8 @@ require 'onlinepayments/sdk/domain/order'
 require 'onlinepayments/sdk/merchant/payments/payments_client'
 
 PaymentsClient ||= OnlinePayments::SDK::Merchant::Payments::PaymentsClient
+Factory          ||= OnlinePayments::SDK::Factory
+MetadataProvider ||= OnlinePayments::SDK::Communication::MetadataProvider
 Domain ||= OnlinePayments::SDK::Domain
 ResponseHeader ||= OnlinePayments::SDK::Communication::ResponseHeader
 

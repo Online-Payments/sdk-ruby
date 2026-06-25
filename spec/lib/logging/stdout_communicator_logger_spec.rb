@@ -39,6 +39,18 @@ describe StdoutCommunicatorLogger do
       ).to eq(expected_msg(msg))
     end
 
+    it 'should log an empty message' do
+      sample.log('')
+
+      expect(
+        $stdout.string
+      ).to match(regex)
+
+      expect(
+        regex.match($stdout.string)[1] # first capture
+      ).to eq(expected_msg(''))
+    end
+
     it 'should log the backtrace of the exception' do
 
       def dummy_method
@@ -59,6 +71,23 @@ describe StdoutCommunicatorLogger do
         regex.match($stdout.string)[1] # first capture
       ).to eq(expected_msg(msg, exception))
 
+    end
+
+    it 'should only log the top-level exception details for nested causes' do
+      begin
+        begin
+          raise 'Root cause'
+        rescue => cause
+          raise 'Top level'
+        end
+      rescue => exception
+        expect(exception.cause.message).to eq('Root cause')
+        sample.log(msg, exception)
+        expect($stdout.string).to match(regex)
+        expect(regex.match($stdout.string)[1]).to eq(expected_msg(msg, exception))
+        expect($stdout.string).not_to include('Caused by')
+        expect($stdout.string).not_to include('Root cause')
+      end
     end
   end
 end

@@ -13,7 +13,6 @@ describe 'MetadataProvider' do
 
     request_headers = metadata_provider.metadata_headers
     expect(request_headers.length).to eq(1)
-    expect(request_headers.length).to eq(1)
 
     # Server meta info is stored in json format and encoded using utf-8 and base64
     server_meta_info_json = Base64.strict_decode64(request_headers[0].value).force_encoding('utf-8')
@@ -33,7 +32,6 @@ describe 'MetadataProvider' do
     metadata_provider = MetadataProvider.new('OnlinePayments', shopping_cart_extension: shopping_cart_extension)
 
     request_headers = metadata_provider.metadata_headers
-    expect(request_headers.length).to eq(1)
     expect(request_headers.length).to eq(1)
 
     # Server meta info is stored in json format and encoded using utf-8 and base64

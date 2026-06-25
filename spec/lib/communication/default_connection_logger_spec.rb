@@ -218,8 +218,8 @@ describe 'DefaultConnectionLogging' do
     response_body = IO.read(resource_prefix + 'getWithoutQueryParams.json')
 
     stub_request(:get, 'https://payment.preprod.online-payments.com/v1/get')
-      .to_return(status: 200, body: response_body,
-                 headers: base_headers.merge({'Content-Type' => 'application/json'}))
+        .to_return(status: 200, body: response_body,
+                   headers: base_headers.merge({'Content-Type' => 'application/json'}))
 
     COMMUNICATOR.enable_logging(logger)
     response = COMMUNICATOR.get('/v1/get', nil, nil, TestObject, nil)

@@ -24,6 +24,8 @@ module OnlinePayments
           else
             raise NotImplementedError
           end
+        rescue ::JSON::ParserError => e
+          raise MarshallerSyntaxException, e.message
         end
       end
     end

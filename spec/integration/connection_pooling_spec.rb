@@ -3,10 +3,10 @@ require 'integration_setup'
 require 'onlinepayments/sdk/factory'
 require 'yaml'
 
-describe 'connection pooling with the server' do
+RSpec.describe 'ConnectionPooling' do
 
-  before(:context){WebMock.allow_net_connect!}
-  after(:context){WebMock.disable_net_connect!}
+  before(:context) { WebMock.allow_net_connect! }
+  after(:context) { WebMock.disable_net_connect! }
 
   it 'runs with one connection per request' do
     run_connection_pooling_test(10, 10)
@@ -21,7 +21,7 @@ describe 'connection pooling with the server' do
   end
 end
 
-class Event  # as per https://emptysqua.re/blog/an-event-synchronization-primitive-for-ruby/
+class Event # as per https://emptysqua.re/blog/an-event-synchronization-primitive-for-ruby/
   def initialize
     @lock = Mutex.new
     @cond = ConditionVariable.new
@@ -50,12 +50,12 @@ def run_connection_pooling_test(request_count, max_connections)
   begin
     communicator = OnlinePayments::SDK::Factory.create_communicator_from_configuration(configuration)
     flag = Event.new
-    runner_threads = Array.new(request_count){ |i| Thread.new{run_request(i, communicator, flag)} }
+    runner_threads = Array.new(request_count) { |i| Thread.new { run_request(i, communicator, flag) } }
     flag.set
   ensure
     communicator.close unless communicator.nil?
   end
-  results = Array.new(request_count){ |i| runner_threads[i].value }  # returned values are arrays of size 2
+  results = Array.new(request_count) { |i| runner_threads[i].value } # returned values are arrays of size 2
   puts "running times of #{request_count} threads using #{max_connections} connections:"
   puts "each pair is the thread's start and end time in milliseconds"
   results.each do |pair|
@@ -67,6 +67,8 @@ def run_request(i, communicator, flag)
   client = OnlinePayments::SDK::Factory.create_client_from_communicator(communicator)
   flag.wait
   start_time = Time.now
-  client.merchant(Integration::MERCHANT_ID).services.test_connection
-  [start_time.to_i*1000, Time.now.to_i*1000]
+  result = client.merchant(Integration::MERCHANT_ID).services.test_connection
+  expect(result).not_to be_nil
+  expect(result.result).not_to be_nil
+  [start_time.to_i * 1000, Time.now.to_i * 1000]
 end

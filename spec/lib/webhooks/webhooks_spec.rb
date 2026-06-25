@@ -1,14 +1,7 @@
 require 'spec_helper'
 
-include OnlinePayments::SDK
-
-module OnlinePayments::SDK::Webhooks
-  module Webhooks
-  end
-end
-
-describe Webhooks::Webhooks do
-  let(:webhooks_helper) { Webhooks::WebhooksHelper.new(OnlinePayments::SDK::JSON::DefaultMarshaller.instance, Webhooks::InMemorySecretKeyStore.instance) }
+describe OnlinePayments::SDK::Webhooks::WebhooksHelper do
+  let(:webhooks_helper) { OnlinePayments::SDK::Webhooks::WebhooksHelper.new(OnlinePayments::SDK::JSON::DefaultMarshaller.instance, OnlinePayments::SDK::Webhooks::InMemorySecretKeyStore.instance) }
 
   context 'construction' do
     it 'uses the default marshaller' do
@@ -17,7 +10,7 @@ describe Webhooks::Webhooks do
 
     it 'uses the given key store' do
       signature_validator = webhooks_helper.instance_variable_get(:@signature_validator)
-      expect(signature_validator.instance_variable_get(:@secret_key_store)).to eq(Webhooks::InMemorySecretKeyStore.instance)
+      expect(signature_validator.instance_variable_get(:@secret_key_store)).to eq(OnlinePayments::SDK::Webhooks::InMemorySecretKeyStore.instance)
     end
   end
 end

@@ -55,4 +55,4 @@ describe GetProductGroupsParams do
   let(:params) { GetProductGroupsParams.new }
 
   it_behaves_like 'GetPaymentProduct(Group)sParams'
-end\
+end

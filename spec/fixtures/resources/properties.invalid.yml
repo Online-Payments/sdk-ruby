@@ -1,0 +1,2 @@
+onlinePayments.api.endpoint.host: payment.preprod.online-payments.com
+onlinePayments.api.authorizationType: [v1HMAC
