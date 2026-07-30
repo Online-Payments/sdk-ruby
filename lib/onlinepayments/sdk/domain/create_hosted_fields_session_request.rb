@@ -7,10 +7,13 @@ module OnlinePayments
   module SDK
     module Domain
       # @attr [String] locale
+      # @attr [String] origin
       # @attr [Array<String>] tokens
       class CreateHostedFieldsSessionRequest < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :locale
+
+        attr_accessor :origin
 
         attr_accessor :tokens
 
@@ -18,6 +21,7 @@ module OnlinePayments
         def to_h
           hash = super
           hash['locale'] = @locale unless @locale.nil?
+          hash['origin'] = @origin unless @origin.nil?
           hash['tokens'] = @tokens unless @tokens.nil?
           hash
         end
@@ -26,6 +30,9 @@ module OnlinePayments
           super
           if hash.has_key? 'locale'
             @locale = hash['locale']
+          end
+          if hash.has_key? 'origin'
+            @origin = hash['origin']
           end
           if hash.has_key? 'tokens'
             raise TypeError, "value '%s' is not an Array" % [hash['tokens']] unless hash['tokens'].is_a? Array

@@ -7,11 +7,14 @@ require 'onlinepayments/sdk/domain/session_data'
 module OnlinePayments
   module SDK
     module Domain
+      # @attr [String] hosted_fields_session_id
       # @attr [Array<String>] invalid_tokens
       # @attr [String] sdk_sri
       # @attr [String] sdk_url
       # @attr [OnlinePayments::SDK::Domain::SessionData] session_data
       class CreateHostedFieldsSessionResponse < OnlinePayments::SDK::Domain::DataObject
+
+        attr_accessor :hosted_fields_session_id
 
         attr_accessor :invalid_tokens
 
@@ -24,6 +27,7 @@ module OnlinePayments
         # @return (Hash)
         def to_h
           hash = super
+          hash['hostedFieldsSessionId'] = @hosted_fields_session_id unless @hosted_fields_session_id.nil?
           hash['invalidTokens'] = @invalid_tokens unless @invalid_tokens.nil?
           hash['sdkSri'] = @sdk_sri unless @sdk_sri.nil?
           hash['sdkUrl'] = @sdk_url unless @sdk_url.nil?
@@ -33,6 +37,9 @@ module OnlinePayments
 
         def from_hash(hash)
           super
+          if hash.has_key? 'hostedFieldsSessionId'
+            @hosted_fields_session_id = hash['hostedFieldsSessionId']
+          end
           if hash.has_key? 'invalidTokens'
             raise TypeError, "value '%s' is not an Array" % [hash['invalidTokens']] unless hash['invalidTokens'].is_a? Array
             @invalid_tokens = []

@@ -7,14 +7,18 @@ module OnlinePayments
   module SDK
     module Domain
       # @attr [String] email_address
+      # @attr [String] phone_number
       class MandateContactDetails < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :email_address
+
+        attr_accessor :phone_number
 
         # @return (Hash)
         def to_h
           hash = super
           hash['emailAddress'] = @email_address unless @email_address.nil?
+          hash['phoneNumber'] = @phone_number unless @phone_number.nil?
           hash
         end
 
@@ -22,6 +26,9 @@ module OnlinePayments
           super
           if hash.has_key? 'emailAddress'
             @email_address = hash['emailAddress']
+          end
+          if hash.has_key? 'phoneNumber'
+            @phone_number = hash['phoneNumber']
           end
         end
       end

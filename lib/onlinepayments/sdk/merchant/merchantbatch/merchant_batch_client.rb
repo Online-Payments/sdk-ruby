@@ -6,6 +6,7 @@ require 'onlinepayments/sdk/exception_factory'
 require 'onlinepayments/sdk/communication/response_exception'
 require 'onlinepayments/sdk/domain/error_response'
 require 'onlinepayments/sdk/domain/get_batch_status_response'
+require 'onlinepayments/sdk/domain/payments_report_response'
 require 'onlinepayments/sdk/domain/submit_batch_response'
 
 module OnlinePayments
@@ -113,6 +114,40 @@ module OnlinePayments
               client_headers,
               nil,
               OnlinePayments::SDK::Domain::GetBatchStatusResponse,
+              context)
+          rescue OnlinePayments::SDK::Communication::ResponseException => e
+            error_type = OnlinePayments::SDK::Domain::ErrorResponse
+            error_object = @communicator.marshaller.unmarshal(e.body, error_type)
+            raise OnlinePayments::SDK.create_exception(e.status_code, e.body, error_object, context)
+          end
+
+          # Resource /v2/!{merchantId}/merchant-batches/!{merchantBatchReference}/reports/payments - Get payments report
+          #
+          # @param merchant_batch_reference [String]
+          # @param query                    [OnlinePayments::SDK::Merchant::MerchantBatch::GetPaymentsReportParams]
+          # @param context                  [OnlinePayments::SDK::CallContext, nil]
+          # @return [OnlinePayments::SDK::Domain::PaymentsReportResponse]
+          # @raise [OnlinePayments::SDK::IdempotenceException] if an idempotent request caused a conflict (HTTP status code 409)
+          # @raise [OnlinePayments::SDK::ValidationException] if the request was not correct and couldn't be processed (HTTP status code 400)
+          # @raise [OnlinePayments::SDK::AuthorizationException] if the request was not allowed (HTTP status code 403)
+          # @raise [OnlinePayments::SDK::ReferenceException] if an object was attempted to be referenced that doesn't exist or has been removed,
+          #        or there was a conflict (HTTP status code 404, 409 or 410)
+          # @raise [OnlinePayments::SDK::PlatformException] if something went wrong at the payment platform,
+          #        the payment platform was unable to process a message from a downstream partner/acquirer,
+          #        or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
+          # @raise [OnlinePayments::SDK::ApiException] if the payment platform returned any other error
+          def get_payments_report(merchant_batch_reference, query, context = nil)
+            path_context = {
+              'merchantBatchReference'.freeze => merchant_batch_reference,
+            }
+            uri = instantiate_uri('/v2/{merchantId}/merchant-batches/{merchantBatchReference}/reports/payments', path_context)
+
+
+            @communicator.get(
+              uri,
+              client_headers,
+              query,
+              OnlinePayments::SDK::Domain::PaymentsReportResponse,
               context)
           rescue OnlinePayments::SDK::Communication::ResponseException => e
             error_type = OnlinePayments::SDK::Domain::ErrorResponse

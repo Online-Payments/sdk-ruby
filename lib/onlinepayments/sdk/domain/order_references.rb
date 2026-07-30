@@ -7,19 +7,28 @@ module OnlinePayments
   module SDK
     module Domain
       # @attr [String] descriptor
+      # @attr [String] merchant_comment
       # @attr [String] merchant_parameters
+      # @attr [String] merchant_reconciliation_reference
       # @attr [String] merchant_reference
       # @attr [String] operation_group_reference
+      # @attr [String] soft_descriptor
       # @attr [String] structured_creditor_reference
       class OrderReferences < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :descriptor
 
+        attr_accessor :merchant_comment
+
         attr_accessor :merchant_parameters
+
+        attr_accessor :merchant_reconciliation_reference
 
         attr_accessor :merchant_reference
 
         attr_accessor :operation_group_reference
+
+        attr_accessor :soft_descriptor
 
         attr_accessor :structured_creditor_reference
 
@@ -27,9 +36,12 @@ module OnlinePayments
         def to_h
           hash = super
           hash['descriptor'] = @descriptor unless @descriptor.nil?
+          hash['merchantComment'] = @merchant_comment unless @merchant_comment.nil?
           hash['merchantParameters'] = @merchant_parameters unless @merchant_parameters.nil?
+          hash['merchantReconciliationReference'] = @merchant_reconciliation_reference unless @merchant_reconciliation_reference.nil?
           hash['merchantReference'] = @merchant_reference unless @merchant_reference.nil?
           hash['operationGroupReference'] = @operation_group_reference unless @operation_group_reference.nil?
+          hash['softDescriptor'] = @soft_descriptor unless @soft_descriptor.nil?
           hash['structuredCreditorReference'] = @structured_creditor_reference unless @structured_creditor_reference.nil?
           hash
         end
@@ -39,14 +51,23 @@ module OnlinePayments
           if hash.has_key? 'descriptor'
             @descriptor = hash['descriptor']
           end
+          if hash.has_key? 'merchantComment'
+            @merchant_comment = hash['merchantComment']
+          end
           if hash.has_key? 'merchantParameters'
             @merchant_parameters = hash['merchantParameters']
+          end
+          if hash.has_key? 'merchantReconciliationReference'
+            @merchant_reconciliation_reference = hash['merchantReconciliationReference']
           end
           if hash.has_key? 'merchantReference'
             @merchant_reference = hash['merchantReference']
           end
           if hash.has_key? 'operationGroupReference'
             @operation_group_reference = hash['operationGroupReference']
+          end
+          if hash.has_key? 'softDescriptor'
+            @soft_descriptor = hash['softDescriptor']
           end
           if hash.has_key? 'structuredCreditorReference'
             @structured_creditor_reference = hash['structuredCreditorReference']
