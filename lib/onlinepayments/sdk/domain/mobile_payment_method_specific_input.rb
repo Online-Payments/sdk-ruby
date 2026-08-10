@@ -1,6 +1,7 @@
 #
 # This file was automatically generated.
 #
+require 'onlinepayments/sdk/domain/auto_capture'
 require 'onlinepayments/sdk/domain/data_object'
 require 'onlinepayments/sdk/domain/decrypted_payment_data'
 require 'onlinepayments/sdk/domain/mobile_payment_product302_specific_input'
@@ -10,6 +11,7 @@ module OnlinePayments
   module SDK
     module Domain
       # @attr [String] authorization_mode
+      # @attr [OnlinePayments::SDK::Domain::AutoCapture] auto_capture
       # @attr [OnlinePayments::SDK::Domain::DecryptedPaymentData] decrypted_payment_data
       # @attr [String] encrypted_payment_data
       # @attr [String] ephemeral_key
@@ -21,6 +23,8 @@ module OnlinePayments
       class MobilePaymentMethodSpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :authorization_mode
+
+        attr_accessor :auto_capture
 
         attr_accessor :decrypted_payment_data
 
@@ -42,6 +46,7 @@ module OnlinePayments
         def to_h
           hash = super
           hash['authorizationMode'] = @authorization_mode unless @authorization_mode.nil?
+          hash['autoCapture'] = @auto_capture.to_h unless @auto_capture.nil?
           hash['decryptedPaymentData'] = @decrypted_payment_data.to_h unless @decrypted_payment_data.nil?
           hash['encryptedPaymentData'] = @encrypted_payment_data unless @encrypted_payment_data.nil?
           hash['ephemeralKey'] = @ephemeral_key unless @ephemeral_key.nil?
@@ -57,6 +62,10 @@ module OnlinePayments
           super
           if hash.has_key? 'authorizationMode'
             @authorization_mode = hash['authorizationMode']
+          end
+          if hash.has_key? 'autoCapture'
+            raise TypeError, "value '%s' is not a Hash" % [hash['autoCapture']] unless hash['autoCapture'].is_a? Hash
+            @auto_capture = OnlinePayments::SDK::Domain::AutoCapture.new_from_hash(hash['autoCapture'])
           end
           if hash.has_key? 'decryptedPaymentData'
             raise TypeError, "value '%s' is not a Hash" % [hash['decryptedPaymentData']] unless hash['decryptedPaymentData'].is_a? Hash

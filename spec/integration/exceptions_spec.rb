@@ -116,6 +116,25 @@ RSpec.describe 'Exceptions' do
         expect(error.http_status_code).to eq(400)
       end
     end
+
+    it 'throws ValidationException for invalid payout' do
+      request = Integration::Util::Payout::CreatePayoutRequestBuilder.new
+                                                                     .with_card_number(DECLINED_CARD_NUMBER)
+                                                                     .build
+
+      exception = nil
+      expect { @payouts.create_payout(request) }
+        .to raise_error(OnlinePayments::SDK::ValidationException) { |e| exception = e }
+
+      expect(exception).not_to be_nil
+      expect(exception.status_code).to be >= 400
+      expect(exception.response_body).not_to be_empty
+
+      exception.errors.each do |error|
+        expect(error.id).not_to be_nil
+        expect(error.id).to eq('INVALID_CARD')
+      end
+    end
   end
 
   describe 'when testing AuthorizationException' do
@@ -170,29 +189,6 @@ RSpec.describe 'Exceptions' do
       expect(payment_result.payment.id).not_to be_nil
       expect(payment_result.payment.status).not_to be_nil
       expect(payment_result.payment.status).to eq('REJECTED')
-    end
-  end
-
-  describe 'when testing DeclinedPayoutException' do
-
-    it 'throws DeclinedPayoutException for invalid payout' do
-      request = Integration::Util::Payout::CreatePayoutRequestBuilder.new
-                                                                     .with_card_number(DECLINED_CARD_NUMBER)
-                                                                     .build
-
-      exception = nil
-      expect { @payouts.create_payout(request) }
-        .to raise_error(OnlinePayments::SDK::DeclinedPayoutException) { |e| exception = e }
-
-      expect(exception).not_to be_nil
-      expect(exception.status_code).to be >= 400
-      expect(exception.response_body).not_to be_nil
-
-      payout_result = exception.payout_result
-      expect(payout_result).not_to be_nil
-      expect(payout_result.id).not_to be_nil
-      expect(payout_result.status).not_to be_nil
-      expect(payout_result.status).to eq('REJECTED_CREDIT')
     end
   end
 
