@@ -1,18 +1,22 @@
 #
 # This file was automatically generated.
 #
+require 'onlinepayments/sdk/domain/card_token'
 require 'onlinepayments/sdk/domain/data_object'
 require 'onlinepayments/sdk/domain/session_data'
 
 module OnlinePayments
   module SDK
     module Domain
+      # @attr [Array<OnlinePayments::SDK::Domain::CardToken>] card_tokens
       # @attr [String] hosted_fields_session_id
       # @attr [Array<String>] invalid_tokens
       # @attr [String] sdk_sri
       # @attr [String] sdk_url
       # @attr [OnlinePayments::SDK::Domain::SessionData] session_data
       class CreateHostedFieldsSessionResponse < OnlinePayments::SDK::Domain::DataObject
+
+        attr_accessor :card_tokens
 
         attr_accessor :hosted_fields_session_id
 
@@ -27,6 +31,7 @@ module OnlinePayments
         # @return (Hash)
         def to_h
           hash = super
+          hash['cardTokens'] = @card_tokens.collect{|val| val.to_h} unless @card_tokens.nil?
           hash['hostedFieldsSessionId'] = @hosted_fields_session_id unless @hosted_fields_session_id.nil?
           hash['invalidTokens'] = @invalid_tokens unless @invalid_tokens.nil?
           hash['sdkSri'] = @sdk_sri unless @sdk_sri.nil?
@@ -37,6 +42,13 @@ module OnlinePayments
 
         def from_hash(hash)
           super
+          if hash.has_key? 'cardTokens'
+            raise TypeError, "value '%s' is not an Array" % [hash['cardTokens']] unless hash['cardTokens'].is_a? Array
+            @card_tokens = []
+            hash['cardTokens'].each do |e|
+              @card_tokens << OnlinePayments::SDK::Domain::CardToken.new_from_hash(e)
+            end
+          end
           if hash.has_key? 'hostedFieldsSessionId'
             @hosted_fields_session_id = hash['hostedFieldsSessionId']
           end

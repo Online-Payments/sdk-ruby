@@ -8,12 +8,15 @@ module OnlinePayments
   module SDK
     module Domain
       # @attr [OnlinePayments::SDK::Domain::Card] card
+      # @attr [String] hosted_fields_session_id
       # @attr [Integer] payment_product_id
       # @attr [String] payout_reason
       # @attr [String] token
       class CardPayoutMethodSpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :card
+
+        attr_accessor :hosted_fields_session_id
 
         attr_accessor :payment_product_id
 
@@ -25,6 +28,7 @@ module OnlinePayments
         def to_h
           hash = super
           hash['card'] = @card.to_h unless @card.nil?
+          hash['hostedFieldsSessionId'] = @hosted_fields_session_id unless @hosted_fields_session_id.nil?
           hash['paymentProductId'] = @payment_product_id unless @payment_product_id.nil?
           hash['payoutReason'] = @payout_reason unless @payout_reason.nil?
           hash['token'] = @token unless @token.nil?
@@ -36,6 +40,9 @@ module OnlinePayments
           if hash.has_key? 'card'
             raise TypeError, "value '%s' is not a Hash" % [hash['card']] unless hash['card'].is_a? Hash
             @card = OnlinePayments::SDK::Domain::Card.new_from_hash(hash['card'])
+          end
+          if hash.has_key? 'hostedFieldsSessionId'
+            @hosted_fields_session_id = hash['hostedFieldsSessionId']
           end
           if hash.has_key? 'paymentProductId'
             @payment_product_id = hash['paymentProductId']

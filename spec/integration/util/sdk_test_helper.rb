@@ -72,6 +72,14 @@ module Integration
                         .submit_batch(request)
                         .merchant_batch_reference
       end
+
+      def submit_and_process_batch_and_get_reference(payment_requests, operation_type, item_count)
+        merchant_batch_reference = submit_batch_and_get_reference(payment_requests, operation_type, item_count)
+
+        @merchant_client.merchant_batch.process_batch(merchant_batch_reference)
+
+        merchant_batch_reference
+      end
     end
   end
 end

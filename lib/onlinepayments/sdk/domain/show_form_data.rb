@@ -2,6 +2,7 @@
 # This file was automatically generated.
 #
 require 'onlinepayments/sdk/domain/data_object'
+require 'onlinepayments/sdk/domain/payment_product11'
 require 'onlinepayments/sdk/domain/payment_product3012'
 require 'onlinepayments/sdk/domain/payment_product350'
 require 'onlinepayments/sdk/domain/payment_product5001'
@@ -14,6 +15,7 @@ require 'onlinepayments/sdk/domain/pending_authentication'
 module OnlinePayments
   module SDK
     module Domain
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct11] payment_product11
       # @attr [OnlinePayments::SDK::Domain::PaymentProduct3012] payment_product3012
       # @attr [OnlinePayments::SDK::Domain::PaymentProduct350] payment_product350
       # @attr [OnlinePayments::SDK::Domain::PaymentProduct5001] payment_product5001
@@ -23,6 +25,8 @@ module OnlinePayments
       # @attr [OnlinePayments::SDK::Domain::PaymentProduct840] payment_product840
       # @attr [OnlinePayments::SDK::Domain::PendingAuthentication] pending_authentication
       class ShowFormData < OnlinePayments::SDK::Domain::DataObject
+
+        attr_accessor :payment_product11
 
         attr_accessor :payment_product3012
 
@@ -43,6 +47,7 @@ module OnlinePayments
         # @return (Hash)
         def to_h
           hash = super
+          hash['paymentProduct11'] = @payment_product11.to_h unless @payment_product11.nil?
           hash['paymentProduct3012'] = @payment_product3012.to_h unless @payment_product3012.nil?
           hash['paymentProduct350'] = @payment_product350.to_h unless @payment_product350.nil?
           hash['paymentProduct5001'] = @payment_product5001.to_h unless @payment_product5001.nil?
@@ -56,6 +61,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
+          if hash.has_key? 'paymentProduct11'
+            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct11']] unless hash['paymentProduct11'].is_a? Hash
+            @payment_product11 = OnlinePayments::SDK::Domain::PaymentProduct11.new_from_hash(hash['paymentProduct11'])
+          end
           if hash.has_key? 'paymentProduct3012'
             raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct3012']] unless hash['paymentProduct3012'].is_a? Hash
             @payment_product3012 = OnlinePayments::SDK::Domain::PaymentProduct3012.new_from_hash(hash['paymentProduct3012'])
