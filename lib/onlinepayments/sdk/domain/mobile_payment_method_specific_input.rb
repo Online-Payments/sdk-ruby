@@ -10,16 +10,16 @@ require 'onlinepayments/sdk/domain/mobile_payment_product320_specific_input'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] authorization_mode
-      # @attr [OnlinePayments::SDK::Domain::AutoCapture] auto_capture
-      # @attr [OnlinePayments::SDK::Domain::DecryptedPaymentData] decrypted_payment_data
-      # @attr [String] encrypted_payment_data
-      # @attr [String] ephemeral_key
-      # @attr [OnlinePayments::SDK::Domain::MobilePaymentProduct302SpecificInput] payment_product302_specific_input
-      # @attr [OnlinePayments::SDK::Domain::MobilePaymentProduct320SpecificInput] payment_product320_specific_input
-      # @attr [Integer] payment_product_id
-      # @attr [String] public_key_hash
-      # @attr [true/false] requires_approval
+      # @attr [String, nil] authorization_mode
+      # @attr [OnlinePayments::SDK::Domain::AutoCapture, nil] auto_capture
+      # @attr [OnlinePayments::SDK::Domain::DecryptedPaymentData, nil] decrypted_payment_data
+      # @attr [String, nil] encrypted_payment_data
+      # @attr [String, nil] ephemeral_key
+      # @attr [OnlinePayments::SDK::Domain::MobilePaymentProduct302SpecificInput, nil] payment_product302_specific_input
+      # @attr [OnlinePayments::SDK::Domain::MobilePaymentProduct320SpecificInput, nil] payment_product320_specific_input
+      # @attr [Integer, nil] payment_product_id
+      # @attr [String, nil] public_key_hash
+      # @attr [true/false, nil] requires_approval
       class MobilePaymentMethodSpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :authorization_mode

@@ -14,16 +14,16 @@ require 'onlinepayments/sdk/domain/surcharge_specific_input'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::AdditionalOrderInput] additional_input
-      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney] amount_of_money
-      # @attr [OnlinePayments::SDK::Domain::Customer] customer
-      # @attr [OnlinePayments::SDK::Domain::Discount] discount
-      # @attr [OnlinePayments::SDK::Domain::OrderReferences] references
-      # @attr [OnlinePayments::SDK::Domain::Shipping] shipping
-      # @attr [OnlinePayments::SDK::Domain::ShoppingCart] shopping_cart
-      # @attr [OnlinePayments::SDK::Domain::SurchargeSpecificInput] surcharge_specific_input
-      # @attr [float] tax_percentage
-      # @attr [Integer] total_tax_amount
+      # @attr [OnlinePayments::SDK::Domain::AdditionalOrderInput, nil] additional_input
+      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney, nil] amount_of_money
+      # @attr [OnlinePayments::SDK::Domain::Customer, nil] customer
+      # @attr [OnlinePayments::SDK::Domain::Discount, nil] discount
+      # @attr [OnlinePayments::SDK::Domain::OrderReferences, nil] references
+      # @attr [OnlinePayments::SDK::Domain::Shipping, nil] shipping
+      # @attr [OnlinePayments::SDK::Domain::ShoppingCart, nil] shopping_cart
+      # @attr [OnlinePayments::SDK::Domain::SurchargeSpecificInput, nil] surcharge_specific_input
+      # @attr [float, nil] tax_percentage
+      # @attr [Integer, nil] total_tax_amount
       class Order < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :additional_input

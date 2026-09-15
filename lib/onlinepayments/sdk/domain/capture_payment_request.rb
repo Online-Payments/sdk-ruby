@@ -10,12 +10,12 @@ require 'onlinepayments/sdk/domain/shipping_detail'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Integer] amount
-      # @attr [true/false] is_final
-      # @attr [Array<OnlinePayments::SDK::Domain::LineItemDetail>] line_item_details
-      # @attr [OnlinePayments::SDK::Domain::OperationPaymentReferences] operation_references
-      # @attr [OnlinePayments::SDK::Domain::PaymentReferences] references
-      # @attr [OnlinePayments::SDK::Domain::ShippingDetail] shipping
+      # @attr [Integer, nil] amount
+      # @attr [true/false, nil] is_final
+      # @attr [Array<OnlinePayments::SDK::Domain::LineItemDetail>, nil] line_item_details
+      # @attr [OnlinePayments::SDK::Domain::OperationPaymentReferences, nil] operation_references
+      # @attr [OnlinePayments::SDK::Domain::PaymentReferences, nil] references
+      # @attr [OnlinePayments::SDK::Domain::ShippingDetail, nil] shipping
       class CapturePaymentRequest < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :amount

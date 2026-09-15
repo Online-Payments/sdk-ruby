@@ -7,7 +7,7 @@ require 'onlinepayments/sdk/domain/directory_entry'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Array<OnlinePayments::SDK::Domain::DirectoryEntry>] entries
+      # @attr [Array<OnlinePayments::SDK::Domain::DirectoryEntry>, nil] entries
       class ProductDirectory < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :entries

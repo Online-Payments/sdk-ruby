@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Integer] max_value
-      # @attr [Integer] min_value
+      # @attr [Integer, nil] max_value
+      # @attr [Integer, nil] min_value
       class RangeValidator < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :max_value

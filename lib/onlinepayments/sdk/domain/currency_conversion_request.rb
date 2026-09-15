@@ -8,8 +8,8 @@ require 'onlinepayments/sdk/domain/transaction'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::DccCardSource] card_source
-      # @attr [OnlinePayments::SDK::Domain::Transaction] transaction
+      # @attr [OnlinePayments::SDK::Domain::DccCardSource, nil] card_source
+      # @attr [OnlinePayments::SDK::Domain::Transaction, nil] transaction
       class CurrencyConversionRequest < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :card_source

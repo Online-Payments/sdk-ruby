@@ -7,7 +7,7 @@ require 'onlinepayments/sdk/domain/payment_product130_specific_three_d_secure'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct130SpecificThreeDSecure] three_d_secure
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct130SpecificThreeDSecure, nil] three_d_secure
       class PaymentProduct130SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :three_d_secure

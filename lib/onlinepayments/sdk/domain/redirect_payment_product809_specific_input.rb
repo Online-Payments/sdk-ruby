@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] issuer_id
+      # @attr [String, nil] issuer_id
       # @deprecated Deprecated, this is no longer used.
       class RedirectPaymentProduct809SpecificInput < OnlinePayments::SDK::Domain::DataObject
 

@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/mandate_redirect_data'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] action_type
-      # @attr [OnlinePayments::SDK::Domain::MandateRedirectData] redirect_data
+      # @attr [String, nil] action_type
+      # @attr [OnlinePayments::SDK::Domain::MandateRedirectData, nil] redirect_data
       class MandateMerchantAction < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :action_type

@@ -7,13 +7,13 @@ require 'onlinepayments/sdk/domain/mandate_customer_response'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] alias
-      # @attr [OnlinePayments::SDK::Domain::MandateCustomerResponse] customer
-      # @attr [String] customer_reference
-      # @attr [String] mandate_pdf
-      # @attr [String] recurrence_type
-      # @attr [String] status
-      # @attr [String] unique_mandate_reference
+      # @attr [String, nil] alias
+      # @attr [OnlinePayments::SDK::Domain::MandateCustomerResponse, nil] customer
+      # @attr [String, nil] customer_reference
+      # @attr [String, nil] mandate_pdf
+      # @attr [String, nil] recurrence_type
+      # @attr [String, nil] status
+      # @attr [String, nil] unique_mandate_reference
       class MandateResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :alias

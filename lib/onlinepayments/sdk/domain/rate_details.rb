@@ -6,11 +6,11 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [float] exchange_rate
-      # @attr [float] inverted_exchange_rate
-      # @attr [float] mark_up_rate
-      # @attr [String] quotation_date_time
-      # @attr [String] source
+      # @attr [float, nil] exchange_rate
+      # @attr [float, nil] inverted_exchange_rate
+      # @attr [float, nil] mark_up_rate
+      # @attr [String, nil] quotation_date_time
+      # @attr [String, nil] source
       class RateDetails < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :exchange_rate

@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [true/false] dcc_enabled
+      # @attr [true/false, nil] dcc_enabled
       class CurrencyConversionSpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :dcc_enabled

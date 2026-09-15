@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] hosted_checkout_id
-      # @attr [String] variant
+      # @attr [String, nil] hosted_checkout_id
+      # @attr [String, nil] variant
       class HostedCheckoutSpecificOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :hosted_checkout_id

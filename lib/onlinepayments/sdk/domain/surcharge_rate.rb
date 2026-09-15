@@ -6,10 +6,10 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [float] ad_valorem_rate
-      # @attr [Integer] specific_rate
-      # @attr [String] surcharge_product_type_id
-      # @attr [String] surcharge_product_type_version
+      # @attr [float, nil] ad_valorem_rate
+      # @attr [Integer, nil] specific_rate
+      # @attr [String, nil] surcharge_product_type_id
+      # @attr [String, nil] surcharge_product_type_version
       class SurchargeRate < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :ad_valorem_rate

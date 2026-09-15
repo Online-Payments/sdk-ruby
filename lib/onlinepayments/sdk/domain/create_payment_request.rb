@@ -14,17 +14,17 @@ require 'onlinepayments/sdk/domain/sepa_direct_debit_payment_method_specific_inp
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::CardPaymentMethodSpecificInput] card_payment_method_specific_input
-      # @attr [String] encrypted_customer_input
-      # @attr [OnlinePayments::SDK::Domain::Feedbacks] feedbacks
-      # @attr [OnlinePayments::SDK::Domain::FraudFields] fraud_fields
-      # @attr [String] hosted_fields_session_id
-      # @attr [String] hosted_tokenization_id
-      # @attr [OnlinePayments::SDK::Domain::MobilePaymentMethodSpecificInput] mobile_payment_method_specific_input
-      # @attr [OnlinePayments::SDK::Domain::OmnichannelPaymentSpecificInput] omnichannel_payment_specific_input
-      # @attr [OnlinePayments::SDK::Domain::Order] order
-      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentMethodSpecificInput] redirect_payment_method_specific_input
-      # @attr [OnlinePayments::SDK::Domain::SepaDirectDebitPaymentMethodSpecificInput] sepa_direct_debit_payment_method_specific_input
+      # @attr [OnlinePayments::SDK::Domain::CardPaymentMethodSpecificInput, nil] card_payment_method_specific_input
+      # @attr [String, nil] encrypted_customer_input
+      # @attr [OnlinePayments::SDK::Domain::Feedbacks, nil] feedbacks
+      # @attr [OnlinePayments::SDK::Domain::FraudFields, nil] fraud_fields
+      # @attr [String, nil] hosted_fields_session_id
+      # @attr [String, nil] hosted_tokenization_id
+      # @attr [OnlinePayments::SDK::Domain::MobilePaymentMethodSpecificInput, nil] mobile_payment_method_specific_input
+      # @attr [OnlinePayments::SDK::Domain::OmnichannelPaymentSpecificInput, nil] omnichannel_payment_specific_input
+      # @attr [OnlinePayments::SDK::Domain::Order, nil] order
+      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentMethodSpecificInput, nil] redirect_payment_method_specific_input
+      # @attr [OnlinePayments::SDK::Domain::SepaDirectDebitPaymentMethodSpecificInput, nil] sepa_direct_debit_payment_method_specific_input
       class CreatePaymentRequest < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :card_payment_method_specific_input

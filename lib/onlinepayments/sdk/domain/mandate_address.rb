@@ -6,11 +6,11 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] city
-      # @attr [String] country_code
-      # @attr [String] house_number
-      # @attr [String] street
-      # @attr [String] zip
+      # @attr [String, nil] city
+      # @attr [String, nil] country_code
+      # @attr [String, nil] house_number
+      # @attr [String, nil] street
+      # @attr [String, nil] zip
       class MandateAddress < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :city

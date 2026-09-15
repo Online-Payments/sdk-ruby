@@ -8,12 +8,12 @@ require 'onlinepayments/sdk/domain/payment_product_filters_hosted_tokenization'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [true/false] ask_consumer_consent
-      # @attr [OnlinePayments::SDK::Domain::CreditCardSpecificInputHostedTokenization] credit_card_specific_input
-      # @attr [String] locale
-      # @attr [OnlinePayments::SDK::Domain::PaymentProductFiltersHostedTokenization] payment_product_filters
-      # @attr [String] tokens
-      # @attr [String] variant
+      # @attr [true/false, nil] ask_consumer_consent
+      # @attr [OnlinePayments::SDK::Domain::CreditCardSpecificInputHostedTokenization, nil] credit_card_specific_input
+      # @attr [String, nil] locale
+      # @attr [OnlinePayments::SDK::Domain::PaymentProductFiltersHostedTokenization, nil] payment_product_filters
+      # @attr [String, nil] tokens
+      # @attr [String, nil] variant
       class CreateHostedTokenizationRequest < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :ask_consumer_consent

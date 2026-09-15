@@ -11,14 +11,14 @@ require 'onlinepayments/sdk/domain/token_e_wallet'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::TokenCard] card
-      # @attr [OnlinePayments::SDK::Domain::CrmToken] crm_token
-      # @attr [OnlinePayments::SDK::Domain::TokenEWallet] e_wallet
-      # @attr [OnlinePayments::SDK::Domain::ExternalTokenLinked] external_token_linked
-      # @attr [String] id
-      # @attr [true/false] is_temporary
-      # @attr [OnlinePayments::SDK::Domain::NetworkTokenLinked] network_token_linked
-      # @attr [Integer] payment_product_id
+      # @attr [OnlinePayments::SDK::Domain::TokenCard, nil] card
+      # @attr [OnlinePayments::SDK::Domain::CrmToken, nil] crm_token
+      # @attr [OnlinePayments::SDK::Domain::TokenEWallet, nil] e_wallet
+      # @attr [OnlinePayments::SDK::Domain::ExternalTokenLinked, nil] external_token_linked
+      # @attr [String, nil] id
+      # @attr [true/false, nil] is_temporary
+      # @attr [OnlinePayments::SDK::Domain::NetworkTokenLinked, nil] network_token_linked
+      # @attr [Integer, nil] payment_product_id
       class TokenResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :card

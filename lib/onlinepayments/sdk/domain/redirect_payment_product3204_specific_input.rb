@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] alias_label
-      # @attr [String] blik_code
+      # @attr [String, nil] alias_label
+      # @attr [String, nil] blik_code
       class RedirectPaymentProduct3204SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :alias_label

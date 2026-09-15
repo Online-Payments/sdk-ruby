@@ -8,10 +8,10 @@ require 'onlinepayments/sdk/domain/payment_product_field_display_hints'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::PaymentProductFieldDataRestrictions] data_restrictions
-      # @attr [OnlinePayments::SDK::Domain::PaymentProductFieldDisplayHints] display_hints
-      # @attr [String] id
-      # @attr [String] type
+      # @attr [OnlinePayments::SDK::Domain::PaymentProductFieldDataRestrictions, nil] data_restrictions
+      # @attr [OnlinePayments::SDK::Domain::PaymentProductFieldDisplayHints, nil] display_hints
+      # @attr [String, nil] id
+      # @attr [String, nil] type
       class PaymentProductField < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :data_restrictions

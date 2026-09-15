@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] alias
-      # @attr [OnlinePayments::SDK::Domain::CustomerToken] customer
+      # @attr [String, nil] alias
+      # @attr [OnlinePayments::SDK::Domain::CustomerToken, nil] customer
       class TokenEWallet < OnlinePayments::SDK::Domain::DataObject
 
         # @deprecated This field is not used by any payment product An alias for the token. This can be used to visually represent the token.

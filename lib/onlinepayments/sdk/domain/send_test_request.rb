@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] url
+      # @attr [String, nil] url
       class SendTestRequest < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :url

@@ -6,14 +6,14 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] descriptor
-      # @attr [String] merchant_comment
-      # @attr [String] merchant_parameters
-      # @attr [String] merchant_reconciliation_reference
-      # @attr [String] merchant_reference
-      # @attr [String] operation_group_reference
-      # @attr [String] soft_descriptor
-      # @attr [String] structured_creditor_reference
+      # @attr [String, nil] descriptor
+      # @attr [String, nil] merchant_comment
+      # @attr [String, nil] merchant_parameters
+      # @attr [String, nil] merchant_reconciliation_reference
+      # @attr [String, nil] merchant_reference
+      # @attr [String, nil] operation_group_reference
+      # @attr [String, nil] soft_descriptor
+      # @attr [String, nil] structured_creditor_reference
       class OrderReferences < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :descriptor

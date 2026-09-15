@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Integer] total_amount_paid
-      # @attr [Integer] total_amount_refunded
+      # @attr [Integer, nil] total_amount_paid
+      # @attr [Integer, nil] total_amount_refunded
       class RefundRedirectMethodSpecificOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :total_amount_paid

@@ -6,9 +6,9 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] account_holder_name
-      # @attr [String] bic
-      # @attr [String] iban
+      # @attr [String, nil] account_holder_name
+      # @attr [String, nil] bic
+      # @attr [String, nil] iban
       class CustomerBankAccount < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :account_holder_name

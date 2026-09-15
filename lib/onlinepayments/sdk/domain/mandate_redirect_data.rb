@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] returnmac
-      # @attr [String] redirect_url
+      # @attr [String, nil] returnmac
+      # @attr [String, nil] redirect_url
       class MandateRedirectData < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :returnmac

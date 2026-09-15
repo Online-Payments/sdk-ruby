@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::CreditCardValidationRules] validation_rules
-      # @attr [Array<Integer>] payment_product_preferred_order
+      # @attr [OnlinePayments::SDK::Domain::CreditCardValidationRules, nil] validation_rules
+      # @attr [Array<Integer>, nil] payment_product_preferred_order
       class CreditCardSpecificInputHostedTokenization < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :validation_rules

@@ -6,9 +6,9 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] acs_transaction_id
-      # @attr [String] method
-      # @attr [String] utc_timestamp
+      # @attr [String, nil] acs_transaction_id
+      # @attr [String, nil] method
+      # @attr [String, nil] utc_timestamp
       class ThreeDSecureData < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :acs_transaction_id

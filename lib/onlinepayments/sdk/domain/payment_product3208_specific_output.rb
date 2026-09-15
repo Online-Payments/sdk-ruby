@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] buyer_compliant_bank_message
+      # @attr [String, nil] buyer_compliant_bank_message
       class PaymentProduct3208SpecificOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :buyer_compliant_bank_message

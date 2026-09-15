@@ -7,7 +7,7 @@ require 'onlinepayments/sdk/domain/refund_redirect_payment_product900_specific_i
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::RefundRedirectPaymentProduct900SpecificInput] refund_redirect_payment_product900_specific_input
+      # @attr [OnlinePayments::SDK::Domain::RefundRedirectPaymentProduct900SpecificInput, nil] refund_redirect_payment_product900_specific_input
       class RefundRedirectPaymentMethodSpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :refund_redirect_payment_product900_specific_input

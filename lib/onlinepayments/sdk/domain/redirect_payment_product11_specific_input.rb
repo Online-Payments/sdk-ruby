@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [true/false] skip_email_validation
+      # @attr [true/false, nil] skip_email_validation
       class RedirectPaymentProduct11SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :skip_email_validation

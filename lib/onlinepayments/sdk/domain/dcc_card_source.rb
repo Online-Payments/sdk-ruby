@@ -7,10 +7,10 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::CardInfo] card
-      # @attr [String] encrypted_customer_input
-      # @attr [String] hosted_tokenization_id
-      # @attr [String] token
+      # @attr [OnlinePayments::SDK::Domain::CardInfo, nil] card
+      # @attr [String, nil] encrypted_customer_input
+      # @attr [String, nil] hosted_tokenization_id
+      # @attr [String, nil] token
       class DccCardSource < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :card

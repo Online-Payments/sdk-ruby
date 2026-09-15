@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/mandate_personal_name_response'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::MandatePersonalNameResponse] name
-      # @attr [String] title
+      # @attr [OnlinePayments::SDK::Domain::MandatePersonalNameResponse, nil] name
+      # @attr [String, nil] title
       class MandatePersonalInformationResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :name

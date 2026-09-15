@@ -8,9 +8,9 @@ require 'onlinepayments/sdk/domain/surcharge_rate'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] mode
-      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney] surcharge_amount
-      # @attr [OnlinePayments::SDK::Domain::SurchargeRate] surcharge_rate
+      # @attr [String, nil] mode
+      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney, nil] surcharge_amount
+      # @attr [OnlinePayments::SDK::Domain::SurchargeRate, nil] surcharge_rate
       class SurchargeSpecificOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :mode

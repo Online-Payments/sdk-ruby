@@ -6,10 +6,10 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [true/false] force_authentication
-      # @attr [true/false] is_deferred_payment
-      # @attr [true/false] is_wip_transaction
-      # @attr [String] wip_merchant_authentication_method
+      # @attr [true/false, nil] force_authentication
+      # @attr [true/false, nil] is_deferred_payment
+      # @attr [true/false, nil] is_wip_transaction
+      # @attr [String, nil] wip_merchant_authentication_method
       class PaymentProduct3012SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :force_authentication

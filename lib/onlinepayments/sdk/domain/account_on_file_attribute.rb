@@ -6,10 +6,10 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] key
-      # @attr [String] must_write_reason
-      # @attr [String] status
-      # @attr [String] value
+      # @attr [String, nil] key
+      # @attr [String, nil] must_write_reason
+      # @attr [String, nil] status
+      # @attr [String, nil] value
       class AccountOnFileAttribute < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :key

@@ -10,12 +10,12 @@ require 'onlinepayments/sdk/domain/payment_status_output'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Array<OnlinePayments::SDK::Domain::OperationOutput>] operations
-      # @attr [OnlinePayments::SDK::Domain::HostedCheckoutSpecificOutput] hosted_checkout_specific_output
-      # @attr [String] id
-      # @attr [OnlinePayments::SDK::Domain::PaymentOutput] payment_output
-      # @attr [String] status
-      # @attr [OnlinePayments::SDK::Domain::PaymentStatusOutput] status_output
+      # @attr [Array<OnlinePayments::SDK::Domain::OperationOutput>, nil] operations
+      # @attr [OnlinePayments::SDK::Domain::HostedCheckoutSpecificOutput, nil] hosted_checkout_specific_output
+      # @attr [String, nil] id
+      # @attr [OnlinePayments::SDK::Domain::PaymentOutput, nil] payment_output
+      # @attr [String, nil] status
+      # @attr [OnlinePayments::SDK::Domain::PaymentStatusOutput, nil] status_output
       class PaymentDetailsResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :operations

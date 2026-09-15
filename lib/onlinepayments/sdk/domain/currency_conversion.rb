@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/dcc_proposal'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [true/false] accepted_by_user
-      # @attr [OnlinePayments::SDK::Domain::DccProposal] proposal
+      # @attr [true/false, nil] accepted_by_user
+      # @attr [OnlinePayments::SDK::Domain::DccProposal, nil] proposal
       class CurrencyConversion < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :accepted_by_user

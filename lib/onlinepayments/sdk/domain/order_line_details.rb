@@ -6,16 +6,16 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Integer] discount_amount
-      # @attr [String] product_brand
-      # @attr [String] product_code
-      # @attr [String] product_name
-      # @attr [Integer] product_price
-      # @attr [String] product_type
-      # @attr [Integer] quantity
-      # @attr [Integer] tax_amount
-      # @attr [float] tax_percentage
-      # @attr [String] unit
+      # @attr [Integer, nil] discount_amount
+      # @attr [String, nil] product_brand
+      # @attr [String, nil] product_code
+      # @attr [String, nil] product_name
+      # @attr [Integer, nil] product_price
+      # @attr [String, nil] product_type
+      # @attr [Integer, nil] quantity
+      # @attr [Integer, nil] tax_amount
+      # @attr [float, nil] tax_percentage
+      # @attr [String, nil] unit
       class OrderLineDetails < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :discount_amount

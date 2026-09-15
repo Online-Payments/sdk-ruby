@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] operator_id
+      # @attr [String, nil] operator_id
       class OmnichannelSubsequentSpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :operator_id

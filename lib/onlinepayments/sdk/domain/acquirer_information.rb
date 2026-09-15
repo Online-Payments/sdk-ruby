@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::AcquirerSelectionInformation] acquirer_selection_information
-      # @attr [String] name
+      # @attr [OnlinePayments::SDK::Domain::AcquirerSelectionInformation, nil] acquirer_selection_information
+      # @attr [String, nil] name
       class AcquirerInformation < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :acquirer_selection_information

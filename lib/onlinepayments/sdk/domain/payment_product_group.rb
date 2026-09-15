@@ -8,10 +8,10 @@ require 'onlinepayments/sdk/domain/payment_product_display_hints'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::AccountOnFile] account_on_file
-      # @attr [OnlinePayments::SDK::Domain::PaymentProductDisplayHints] display_hints
-      # @attr [Array<OnlinePayments::SDK::Domain::PaymentProductDisplayHints>] display_hints_list
-      # @attr [String] id
+      # @attr [OnlinePayments::SDK::Domain::AccountOnFile, nil] account_on_file
+      # @attr [OnlinePayments::SDK::Domain::PaymentProductDisplayHints, nil] display_hints
+      # @attr [Array<OnlinePayments::SDK::Domain::PaymentProductDisplayHints>, nil] display_hints_list
+      # @attr [String, nil] id
       class PaymentProductGroup < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :account_on_file

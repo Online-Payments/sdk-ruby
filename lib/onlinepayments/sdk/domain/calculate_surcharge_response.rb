@@ -7,7 +7,7 @@ require 'onlinepayments/sdk/domain/surcharge'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Array<OnlinePayments::SDK::Domain::Surcharge>] surcharges
+      # @attr [Array<OnlinePayments::SDK::Domain::Surcharge>, nil] surcharges
       class CalculateSurchargeResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :surcharges

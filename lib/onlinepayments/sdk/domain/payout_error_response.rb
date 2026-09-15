@@ -8,9 +8,9 @@ require 'onlinepayments/sdk/domain/payout_result'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] error_id
-      # @attr [Array<OnlinePayments::SDK::Domain::APIError>] errors
-      # @attr [OnlinePayments::SDK::Domain::PayoutResult] payout_result
+      # @attr [String, nil] error_id
+      # @attr [Array<OnlinePayments::SDK::Domain::APIError>, nil] errors
+      # @attr [OnlinePayments::SDK::Domain::PayoutResult, nil] payout_result
       class PayoutErrorResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :error_id

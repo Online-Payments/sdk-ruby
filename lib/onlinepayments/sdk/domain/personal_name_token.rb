@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] first_name
-      # @attr [String] surname
+      # @attr [String, nil] first_name
+      # @attr [String, nil] surname
       class PersonalNameToken < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :first_name

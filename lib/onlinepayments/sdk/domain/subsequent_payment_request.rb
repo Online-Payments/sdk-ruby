@@ -10,10 +10,10 @@ require 'onlinepayments/sdk/domain/subsequent_payment_product5001_specific_input
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::OmnichannelSubsequentSpecificInput] omnichannel_subsequent_specific_input
-      # @attr [OnlinePayments::SDK::Domain::Order] order
-      # @attr [OnlinePayments::SDK::Domain::SubsequentPaymentProduct5001SpecificInput] subsequent_payment_product5001_specific_input
-      # @attr [OnlinePayments::SDK::Domain::SubsequentCardPaymentMethodSpecificInput] subsequentcard_payment_method_specific_input
+      # @attr [OnlinePayments::SDK::Domain::OmnichannelSubsequentSpecificInput, nil] omnichannel_subsequent_specific_input
+      # @attr [OnlinePayments::SDK::Domain::Order, nil] order
+      # @attr [OnlinePayments::SDK::Domain::SubsequentPaymentProduct5001SpecificInput, nil] subsequent_payment_product5001_specific_input
+      # @attr [OnlinePayments::SDK::Domain::SubsequentCardPaymentMethodSpecificInput, nil] subsequentcard_payment_method_specific_input
       class SubsequentPaymentRequest < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :omnichannel_subsequent_specific_input

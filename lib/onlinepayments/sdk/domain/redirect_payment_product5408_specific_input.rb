@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::CustomerBankAccount] customer_bank_account
-      # @attr [true/false] instant_payment_only
+      # @attr [OnlinePayments::SDK::Domain::CustomerBankAccount, nil] customer_bank_account
+      # @attr [true/false, nil] instant_payment_only
       class RedirectPaymentProduct5408SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :customer_bank_account

@@ -7,10 +7,10 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Array<OnlinePayments::SDK::Domain::APIError>] errors
-      # @attr [String] status_category
-      # @attr [Integer] status_code
-      # @attr [String] status_code_change_date_time
+      # @attr [Array<OnlinePayments::SDK::Domain::APIError>, nil] errors
+      # @attr [String, nil] status_category
+      # @attr [Integer, nil] status_code
+      # @attr [String, nil] status_code_change_date_time
       class PaymentStatusOutputSummary < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :errors

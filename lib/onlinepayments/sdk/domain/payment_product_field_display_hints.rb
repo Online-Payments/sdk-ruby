@@ -8,16 +8,16 @@ require 'onlinepayments/sdk/domain/payment_product_field_tooltip'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [true/false] always_show
-      # @attr [Integer] display_order
-      # @attr [OnlinePayments::SDK::Domain::PaymentProductFieldFormElement] form_element
-      # @attr [String] label
-      # @attr [String] link
-      # @attr [String] mask
-      # @attr [true/false] obfuscate
-      # @attr [String] placeholder_label
-      # @attr [String] preferred_input_type
-      # @attr [OnlinePayments::SDK::Domain::PaymentProductFieldTooltip] tooltip
+      # @attr [true/false, nil] always_show
+      # @attr [Integer, nil] display_order
+      # @attr [OnlinePayments::SDK::Domain::PaymentProductFieldFormElement, nil] form_element
+      # @attr [String, nil] label
+      # @attr [String, nil] link
+      # @attr [String, nil] mask
+      # @attr [true/false, nil] obfuscate
+      # @attr [String, nil] placeholder_label
+      # @attr [String, nil] preferred_input_type
+      # @attr [OnlinePayments::SDK::Domain::PaymentProductFieldTooltip, nil] tooltip
       class PaymentProductFieldDisplayHints < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :always_show

@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::CreatedPaymentOutput] created_payment_output
-      # @attr [String] status
+      # @attr [OnlinePayments::SDK::Domain::CreatedPaymentOutput, nil] created_payment_output
+      # @attr [String, nil] status
       class GetHostedCheckoutResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :created_payment_output

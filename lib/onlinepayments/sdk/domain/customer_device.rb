@@ -7,13 +7,13 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] accept_header
-      # @attr [OnlinePayments::SDK::Domain::BrowserData] browser_data
-      # @attr [String] device_fingerprint
-      # @attr [String] ip_address
-      # @attr [String] locale
-      # @attr [String] timezone_offset_utc_minutes
-      # @attr [String] user_agent
+      # @attr [String, nil] accept_header
+      # @attr [OnlinePayments::SDK::Domain::BrowserData, nil] browser_data
+      # @attr [String, nil] device_fingerprint
+      # @attr [String, nil] ip_address
+      # @attr [String, nil] locale
+      # @attr [String, nil] timezone_offset_utc_minutes
+      # @attr [String, nil] user_agent
       class CustomerDevice < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :accept_header

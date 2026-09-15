@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] qr_code
-      # @attr [String] url_intent
+      # @attr [String, nil] qr_code
+      # @attr [String, nil] url_intent
       class PaymentProduct3012 < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :qr_code

@@ -6,9 +6,9 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] computed_token
-      # @attr [String] gts_computed_token
-      # @attr [String] generated_token
+      # @attr [String, nil] computed_token
+      # @attr [String, nil] gts_computed_token
+      # @attr [String, nil] generated_token
       class ExternalTokenLinked < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :computed_token

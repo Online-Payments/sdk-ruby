@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/token_card_data'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] alias
-      # @attr [OnlinePayments::SDK::Domain::TokenCardData] data
+      # @attr [String, nil] alias
+      # @attr [OnlinePayments::SDK::Domain::TokenCardData, nil] data
       class TokenCard < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :alias

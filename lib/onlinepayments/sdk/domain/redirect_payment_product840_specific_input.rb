@@ -6,10 +6,10 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [true/false] java_script_sdk_flow
-      # @attr [true/false] address_selection_at_pay_pal
-      # @attr [String] custom
-      # @attr [true/false] pay_later
+      # @attr [true/false, nil] java_script_sdk_flow
+      # @attr [true/false, nil] address_selection_at_pay_pal
+      # @attr [String, nil] custom
+      # @attr [true/false, nil] pay_later
       class RedirectPaymentProduct840SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :java_script_sdk_flow

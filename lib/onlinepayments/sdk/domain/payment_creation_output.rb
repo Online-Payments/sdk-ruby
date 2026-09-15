@@ -6,10 +6,10 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] external_reference
-      # @attr [true/false] is_new_token
-      # @attr [String] token
-      # @attr [true/false] tokenization_succeeded
+      # @attr [String, nil] external_reference
+      # @attr [true/false, nil] is_new_token
+      # @attr [String, nil] token
+      # @attr [true/false, nil] tokenization_succeeded
       class PaymentCreationOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :external_reference

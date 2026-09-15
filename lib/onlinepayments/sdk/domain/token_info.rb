@@ -6,10 +6,10 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] expiry_date
-      # @attr [true/false] is_temporary
-      # @attr [String] masked_pan
-      # @attr [String] token_id
+      # @attr [String, nil] expiry_date
+      # @attr [true/false, nil] is_temporary
+      # @attr [String, nil] masked_pan
+      # @attr [String, nil] token_id
       class TokenInfo < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :expiry_date

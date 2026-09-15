@@ -8,9 +8,9 @@ require 'onlinepayments/sdk/domain/surcharge_for_payment_link'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney] amount
-      # @attr [String] merchant_reference
-      # @attr [OnlinePayments::SDK::Domain::SurchargeForPaymentLink] surcharge_specific_output
+      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney, nil] amount
+      # @attr [String, nil] merchant_reference
+      # @attr [OnlinePayments::SDK::Domain::SurchargeForPaymentLink, nil] surcharge_specific_output
       class PaymentLinkOrderOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :amount

@@ -8,7 +8,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Date] second_installment_payment_date
+      # @attr [Date, nil] second_installment_payment_date
       class RedirectPaymentProduct5410SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :second_installment_payment_date

@@ -15,15 +15,15 @@ require 'onlinepayments/sdk/domain/pending_authentication'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct11] payment_product11
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct3012] payment_product3012
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct350] payment_product350
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct5001] payment_product5001
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct5404] payment_product5404
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct5407] payment_product5407
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct5412] payment_product5412
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct840] payment_product840
-      # @attr [OnlinePayments::SDK::Domain::PendingAuthentication] pending_authentication
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct11, nil] payment_product11
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct3012, nil] payment_product3012
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct350, nil] payment_product350
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct5001, nil] payment_product5001
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct5404, nil] payment_product5404
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct5407, nil] payment_product5407
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct5412, nil] payment_product5412
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct840, nil] payment_product840
+      # @attr [OnlinePayments::SDK::Domain::PendingAuthentication, nil] pending_authentication
       class ShowFormData < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :payment_product11

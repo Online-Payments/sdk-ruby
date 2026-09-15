@@ -6,9 +6,9 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Integer] discount_amount
-      # @attr [String] line_item_id
-      # @attr [Integer] quantity
+      # @attr [Integer, nil] discount_amount
+      # @attr [String, nil] line_item_id
+      # @attr [Integer, nil] quantity
       class LineItemDetail < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :discount_amount

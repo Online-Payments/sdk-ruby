@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] message
-      # @attr [String] polling_url
+      # @attr [String, nil] message
+      # @attr [String, nil] polling_url
       # @deprecated Deprecated by pendingAuthentication. Contains the third party data for payment product 5001 (Bizum)
       class PaymentProduct5001 < OnlinePayments::SDK::Domain::DataObject
 

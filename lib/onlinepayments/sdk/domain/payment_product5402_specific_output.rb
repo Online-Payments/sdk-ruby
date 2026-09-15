@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] brand
+      # @attr [String, nil] brand
       class PaymentProduct5402SpecificOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :brand

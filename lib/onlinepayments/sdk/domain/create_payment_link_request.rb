@@ -18,21 +18,21 @@ require 'onlinepayments/sdk/domain/sepa_direct_debit_payment_method_specific_inp
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::CardPaymentMethodSpecificInputBase] card_payment_method_specific_input
-      # @attr [String] description
-      # @attr [true/false] display_qr_code
-      # @attr [DateTime] expiration_date
-      # @attr [OnlinePayments::SDK::Domain::Feedbacks] feedbacks
-      # @attr [OnlinePayments::SDK::Domain::FraudFields] fraud_fields
-      # @attr [OnlinePayments::SDK::Domain::HostedCheckoutSpecificInput] hosted_checkout_specific_input
-      # @attr [true/false] is_reusable_link
-      # @attr [OnlinePayments::SDK::Domain::MobilePaymentMethodHostedCheckoutSpecificInput] mobile_payment_method_specific_input
-      # @attr [OnlinePayments::SDK::Domain::Order] order
-      # @attr [OnlinePayments::SDK::Domain::PaymentLinkOrderInput] payment_link_order
-      # @attr [OnlinePayments::SDK::Domain::PaymentLinkSpecificInput] payment_link_specific_input
-      # @attr [String] recipient_name
-      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentMethodSpecificInput] redirect_payment_method_specific_input
-      # @attr [OnlinePayments::SDK::Domain::SepaDirectDebitPaymentMethodSpecificInputBase] sepa_direct_debit_payment_method_specific_input
+      # @attr [OnlinePayments::SDK::Domain::CardPaymentMethodSpecificInputBase, nil] card_payment_method_specific_input
+      # @attr [String, nil] description
+      # @attr [true/false, nil] display_qr_code
+      # @attr [DateTime, nil] expiration_date
+      # @attr [OnlinePayments::SDK::Domain::Feedbacks, nil] feedbacks
+      # @attr [OnlinePayments::SDK::Domain::FraudFields, nil] fraud_fields
+      # @attr [OnlinePayments::SDK::Domain::HostedCheckoutSpecificInput, nil] hosted_checkout_specific_input
+      # @attr [true/false, nil] is_reusable_link
+      # @attr [OnlinePayments::SDK::Domain::MobilePaymentMethodHostedCheckoutSpecificInput, nil] mobile_payment_method_specific_input
+      # @attr [OnlinePayments::SDK::Domain::Order, nil] order
+      # @attr [OnlinePayments::SDK::Domain::PaymentLinkOrderInput, nil] payment_link_order
+      # @attr [OnlinePayments::SDK::Domain::PaymentLinkSpecificInput, nil] payment_link_specific_input
+      # @attr [String, nil] recipient_name
+      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentMethodSpecificInput, nil] redirect_payment_method_specific_input
+      # @attr [OnlinePayments::SDK::Domain::SepaDirectDebitPaymentMethodSpecificInputBase, nil] sepa_direct_debit_payment_method_specific_input
       class CreatePaymentLinkRequest < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :card_payment_method_specific_input

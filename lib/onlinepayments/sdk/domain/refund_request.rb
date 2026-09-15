@@ -12,15 +12,15 @@ require 'onlinepayments/sdk/domain/refund_redirect_payment_method_specific_input
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney] amount_of_money
-      # @attr [String] capture_id
-      # @attr [true/false] is_final
-      # @attr [Array<OnlinePayments::SDK::Domain::LineItemDetail>] line_item_details
-      # @attr [OnlinePayments::SDK::Domain::OmnichannelRefundSpecificInput] omnichannel_refund_specific_input
-      # @attr [OnlinePayments::SDK::Domain::OperationPaymentReferences] operation_references
-      # @attr [String] reason
-      # @attr [OnlinePayments::SDK::Domain::PaymentReferences] references
-      # @attr [OnlinePayments::SDK::Domain::RefundRedirectPaymentMethodSpecificInput] refund_redirect_payment_method_specific_input
+      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney, nil] amount_of_money
+      # @attr [String, nil] capture_id
+      # @attr [true/false, nil] is_final
+      # @attr [Array<OnlinePayments::SDK::Domain::LineItemDetail>, nil] line_item_details
+      # @attr [OnlinePayments::SDK::Domain::OmnichannelRefundSpecificInput, nil] omnichannel_refund_specific_input
+      # @attr [OnlinePayments::SDK::Domain::OperationPaymentReferences, nil] operation_references
+      # @attr [String, nil] reason
+      # @attr [OnlinePayments::SDK::Domain::PaymentReferences, nil] references
+      # @attr [OnlinePayments::SDK::Domain::RefundRedirectPaymentMethodSpecificInput, nil] refund_redirect_payment_method_specific_input
       class RefundRequest < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :amount_of_money

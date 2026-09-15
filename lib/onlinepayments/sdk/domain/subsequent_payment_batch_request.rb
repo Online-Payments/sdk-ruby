@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/subsequent_payment_request'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] payment_id
-      # @attr [OnlinePayments::SDK::Domain::SubsequentPaymentRequest] subsequent
+      # @attr [String, nil] payment_id
+      # @attr [OnlinePayments::SDK::Domain::SubsequentPaymentRequest, nil] subsequent
       class SubsequentPaymentBatchRequest < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :payment_id

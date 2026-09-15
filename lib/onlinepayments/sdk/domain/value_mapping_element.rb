@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/payment_product_field_display_element'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Array<OnlinePayments::SDK::Domain::PaymentProductFieldDisplayElement>] display_elements
-      # @attr [String] value
+      # @attr [Array<OnlinePayments::SDK::Domain::PaymentProductFieldDisplayElement>, nil] display_elements
+      # @attr [String, nil] value
       class ValueMappingElement < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :display_elements

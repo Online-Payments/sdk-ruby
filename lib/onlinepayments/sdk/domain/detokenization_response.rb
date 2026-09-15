@@ -7,7 +7,7 @@ require 'onlinepayments/sdk/domain/detokenized_token_response'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Array<OnlinePayments::SDK::Domain::DetokenizedTokenResponse>] tokens
+      # @attr [Array<OnlinePayments::SDK::Domain::DetokenizedTokenResponse>, nil] tokens
       class DetokenizationResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :tokens

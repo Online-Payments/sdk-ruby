@@ -12,16 +12,16 @@ require 'onlinepayments/sdk/domain/personal_information'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::CustomerAccount] account
-      # @attr [String] account_type
-      # @attr [OnlinePayments::SDK::Domain::Address] billing_address
-      # @attr [OnlinePayments::SDK::Domain::CompanyInformation] company_information
-      # @attr [OnlinePayments::SDK::Domain::ContactDetails] contact_details
-      # @attr [OnlinePayments::SDK::Domain::CustomerDevice] device
-      # @attr [String] fiscal_number
-      # @attr [String] locale
-      # @attr [String] merchant_customer_id
-      # @attr [OnlinePayments::SDK::Domain::PersonalInformation] personal_information
+      # @attr [OnlinePayments::SDK::Domain::CustomerAccount, nil] account
+      # @attr [String, nil] account_type
+      # @attr [OnlinePayments::SDK::Domain::Address, nil] billing_address
+      # @attr [OnlinePayments::SDK::Domain::CompanyInformation, nil] company_information
+      # @attr [OnlinePayments::SDK::Domain::ContactDetails, nil] contact_details
+      # @attr [OnlinePayments::SDK::Domain::CustomerDevice, nil] device
+      # @attr [String, nil] fiscal_number
+      # @attr [String, nil] locale
+      # @attr [String, nil] merchant_customer_id
+      # @attr [OnlinePayments::SDK::Domain::PersonalInformation, nil] personal_information
       class Customer < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :account

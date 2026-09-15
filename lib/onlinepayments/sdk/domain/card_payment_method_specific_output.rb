@@ -19,28 +19,28 @@ require 'onlinepayments/sdk/domain/three_d_secure_results'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::Acceptance] acceptance
-      # @attr [OnlinePayments::SDK::Domain::AcquirerInformation] acquirer_information
-      # @attr [Integer] authenticated_amount
-      # @attr [String] authorisation_code
-      # @attr [OnlinePayments::SDK::Domain::CardEssentials] card
-      # @attr [OnlinePayments::SDK::Domain::ClickToPay] click_to_pay
-      # @attr [String] cobrand_selection_indicator
-      # @attr [OnlinePayments::SDK::Domain::CrmToken] crm_token
-      # @attr [OnlinePayments::SDK::Domain::CurrencyConversion] currency_conversion
-      # @attr [OnlinePayments::SDK::Domain::ExternalTokenLinked] external_token_linked
-      # @attr [OnlinePayments::SDK::Domain::CardFraudResults] fraud_results
-      # @attr [String] initial_scheme_transaction_id
-      # @attr [OnlinePayments::SDK::Domain::NetworkTokenEssentials] network_token_data
-      # @attr [String] payment_account_reference
-      # @attr [String] payment_option
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct3208SpecificOutput] payment_product3208_specific_output
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct3209SpecificOutput] payment_product3209_specific_output
-      # @attr [Integer] payment_product_id
-      # @attr [OnlinePayments::SDK::Domain::ReattemptInstructions] reattempt_instructions
-      # @attr [String] scheme_reference_data
-      # @attr [OnlinePayments::SDK::Domain::ThreeDSecureResults] three_d_secure_results
-      # @attr [String] token
+      # @attr [OnlinePayments::SDK::Domain::Acceptance, nil] acceptance
+      # @attr [OnlinePayments::SDK::Domain::AcquirerInformation, nil] acquirer_information
+      # @attr [Integer, nil] authenticated_amount
+      # @attr [String, nil] authorisation_code
+      # @attr [OnlinePayments::SDK::Domain::CardEssentials, nil] card
+      # @attr [OnlinePayments::SDK::Domain::ClickToPay, nil] click_to_pay
+      # @attr [String, nil] cobrand_selection_indicator
+      # @attr [OnlinePayments::SDK::Domain::CrmToken, nil] crm_token
+      # @attr [OnlinePayments::SDK::Domain::CurrencyConversion, nil] currency_conversion
+      # @attr [OnlinePayments::SDK::Domain::ExternalTokenLinked, nil] external_token_linked
+      # @attr [OnlinePayments::SDK::Domain::CardFraudResults, nil] fraud_results
+      # @attr [String, nil] initial_scheme_transaction_id
+      # @attr [OnlinePayments::SDK::Domain::NetworkTokenEssentials, nil] network_token_data
+      # @attr [String, nil] payment_account_reference
+      # @attr [String, nil] payment_option
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct3208SpecificOutput, nil] payment_product3208_specific_output
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct3209SpecificOutput, nil] payment_product3209_specific_output
+      # @attr [Integer, nil] payment_product_id
+      # @attr [OnlinePayments::SDK::Domain::ReattemptInstructions, nil] reattempt_instructions
+      # @attr [String, nil] scheme_reference_data
+      # @attr [OnlinePayments::SDK::Domain::ThreeDSecureResults, nil] three_d_secure_results
+      # @attr [String, nil] token
       class CardPaymentMethodSpecificOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :acceptance

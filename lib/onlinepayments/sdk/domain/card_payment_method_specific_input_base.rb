@@ -19,28 +19,28 @@ require 'onlinepayments/sdk/domain/three_d_secure_base'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [true/false] allow_dynamic_linking
-      # @attr [String] authorization_mode
-      # @attr [OnlinePayments::SDK::Domain::AutoCapture] auto_capture
-      # @attr [OnlinePayments::SDK::Domain::CurrencyConversionSpecificInput] currency_conversion_specific_input
-      # @attr [String] initial_scheme_transaction_id
-      # @attr [OnlinePayments::SDK::Domain::MarketPlace] market_place
-      # @attr [OnlinePayments::SDK::Domain::MultiplePaymentInformation] multiple_payment_information
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct130SpecificInput] payment_product130_specific_input
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct3012SpecificInput] payment_product3012_specific_input
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct3013SpecificInput] payment_product3013_specific_input
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct3208SpecificInput] payment_product3208_specific_input
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct3209SpecificInput] payment_product3209_specific_input
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct5100SpecificInput] payment_product5100_specific_input
-      # @attr [Integer] payment_product_id
-      # @attr [OnlinePayments::SDK::Domain::CardRecurrenceDetails] recurring
-      # @attr [OnlinePayments::SDK::Domain::SubMerchant] sub_merchant
-      # @attr [OnlinePayments::SDK::Domain::ThreeDSecureBase] three_d_secure
-      # @attr [String] token
-      # @attr [true/false] tokenize
-      # @attr [String] transaction_channel
-      # @attr [String] unscheduled_card_on_file_requestor
-      # @attr [String] unscheduled_card_on_file_sequence_indicator
+      # @attr [true/false, nil] allow_dynamic_linking
+      # @attr [String, nil] authorization_mode
+      # @attr [OnlinePayments::SDK::Domain::AutoCapture, nil] auto_capture
+      # @attr [OnlinePayments::SDK::Domain::CurrencyConversionSpecificInput, nil] currency_conversion_specific_input
+      # @attr [String, nil] initial_scheme_transaction_id
+      # @attr [OnlinePayments::SDK::Domain::MarketPlace, nil] market_place
+      # @attr [OnlinePayments::SDK::Domain::MultiplePaymentInformation, nil] multiple_payment_information
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct130SpecificInput, nil] payment_product130_specific_input
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct3012SpecificInput, nil] payment_product3012_specific_input
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct3013SpecificInput, nil] payment_product3013_specific_input
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct3208SpecificInput, nil] payment_product3208_specific_input
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct3209SpecificInput, nil] payment_product3209_specific_input
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct5100SpecificInput, nil] payment_product5100_specific_input
+      # @attr [Integer, nil] payment_product_id
+      # @attr [OnlinePayments::SDK::Domain::CardRecurrenceDetails, nil] recurring
+      # @attr [OnlinePayments::SDK::Domain::SubMerchant, nil] sub_merchant
+      # @attr [OnlinePayments::SDK::Domain::ThreeDSecureBase, nil] three_d_secure
+      # @attr [String, nil] token
+      # @attr [true/false, nil] tokenize
+      # @attr [String, nil] transaction_channel
+      # @attr [String, nil] unscheduled_card_on_file_requestor
+      # @attr [String, nil] unscheduled_card_on_file_sequence_indicator
       class CardPaymentMethodSpecificInputBase < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :allow_dynamic_linking

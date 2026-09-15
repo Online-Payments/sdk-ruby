@@ -8,8 +8,8 @@ require 'onlinepayments/sdk/domain/mandate_response'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::MandateResponse] mandate
-      # @attr [OnlinePayments::SDK::Domain::MandateMerchantAction] merchant_action
+      # @attr [OnlinePayments::SDK::Domain::MandateResponse, nil] mandate
+      # @attr [OnlinePayments::SDK::Domain::MandateMerchantAction, nil] merchant_action
       class CreateMandateResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :mandate

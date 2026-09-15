@@ -6,10 +6,10 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] acs_reference_number
-      # @attr [String] acs_signed_content
-      # @attr [String] acs_transaction_id
-      # @attr [String] three_d_server_transaction_id
+      # @attr [String, nil] acs_reference_number
+      # @attr [String, nil] acs_signed_content
+      # @attr [String, nil] acs_transaction_id
+      # @attr [String, nil] three_d_server_transaction_id
       class MobileThreeDSecureChallengeParameters < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :acs_reference_number

@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/value_mapping_element'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] type
-      # @attr [Array<OnlinePayments::SDK::Domain::ValueMappingElement>] value_mapping
+      # @attr [String, nil] type
+      # @attr [Array<OnlinePayments::SDK::Domain::ValueMappingElement>, nil] value_mapping
       class PaymentProductFieldFormElement < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :type

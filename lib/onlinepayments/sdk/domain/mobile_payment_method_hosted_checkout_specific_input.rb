@@ -8,10 +8,10 @@ require 'onlinepayments/sdk/domain/mobile_payment_product320_specific_input'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] authorization_mode
-      # @attr [OnlinePayments::SDK::Domain::MobilePaymentProduct302SpecificInput] payment_product302_specific_input
-      # @attr [OnlinePayments::SDK::Domain::MobilePaymentProduct320SpecificInput] payment_product320_specific_input
-      # @attr [Integer] payment_product_id
+      # @attr [String, nil] authorization_mode
+      # @attr [OnlinePayments::SDK::Domain::MobilePaymentProduct302SpecificInput, nil] payment_product302_specific_input
+      # @attr [OnlinePayments::SDK::Domain::MobilePaymentProduct320SpecificInput, nil] payment_product320_specific_input
+      # @attr [Integer, nil] payment_product_id
       class MobilePaymentMethodHostedCheckoutSpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :authorization_mode

@@ -6,9 +6,9 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] date_time
-      # @attr [String] details
-      # @attr [String] type
+      # @attr [String, nil] date_time
+      # @attr [String, nil] details
+      # @attr [String, nil] type
       class PaymentLinkEvent < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :date_time

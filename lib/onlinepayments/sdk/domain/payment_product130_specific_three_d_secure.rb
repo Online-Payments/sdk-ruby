@@ -6,10 +6,10 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [true/false] acquirer_exemption
-      # @attr [String] merchant_score
-      # @attr [Integer] number_of_items
-      # @attr [String] usecase
+      # @attr [true/false, nil] acquirer_exemption
+      # @attr [String, nil] merchant_score
+      # @attr [Integer, nil] number_of_items
+      # @attr [String, nil] usecase
       class PaymentProduct130SpecificThreeDSecure < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :acquirer_exemption

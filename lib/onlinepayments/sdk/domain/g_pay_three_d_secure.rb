@@ -7,12 +7,12 @@ require 'onlinepayments/sdk/domain/redirection_data'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] challenge_canvas_size
-      # @attr [String] challenge_indicator
-      # @attr [String] exemption_request
-      # @attr [OnlinePayments::SDK::Domain::RedirectionData] redirection_data
-      # @attr [true/false] skip_authentication
-      # @attr [true/false] skip_soft_decline
+      # @attr [String, nil] challenge_canvas_size
+      # @attr [String, nil] challenge_indicator
+      # @attr [String, nil] exemption_request
+      # @attr [OnlinePayments::SDK::Domain::RedirectionData, nil] redirection_data
+      # @attr [true/false, nil] skip_authentication
+      # @attr [true/false, nil] skip_soft_decline
       class GPayThreeDSecure < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :challenge_canvas_size

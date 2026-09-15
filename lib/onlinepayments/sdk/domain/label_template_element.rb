@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] attribute_key
-      # @attr [String] mask
+      # @attr [String, nil] attribute_key
+      # @attr [String, nil] mask
       class LabelTemplateElement < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :attribute_key

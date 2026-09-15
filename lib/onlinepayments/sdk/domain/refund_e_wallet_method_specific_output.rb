@@ -7,9 +7,9 @@ require 'onlinepayments/sdk/domain/refund_payment_product840_specific_output'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::RefundPaymentProduct840SpecificOutput] payment_product840_specific_output
-      # @attr [Integer] total_amount_paid
-      # @attr [Integer] total_amount_refunded
+      # @attr [OnlinePayments::SDK::Domain::RefundPaymentProduct840SpecificOutput, nil] payment_product840_specific_output
+      # @attr [Integer, nil] total_amount_paid
+      # @attr [Integer, nil] total_amount_refunded
       class RefundEWalletMethodSpecificOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :payment_product840_specific_output

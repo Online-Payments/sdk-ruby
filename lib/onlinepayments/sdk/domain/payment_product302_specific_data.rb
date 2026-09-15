@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Array<String>] networks
+      # @attr [Array<String>, nil] networks
       class PaymentProduct302SpecificData < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :networks

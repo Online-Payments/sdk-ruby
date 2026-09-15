@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Integer] max_length
-      # @attr [Integer] min_length
+      # @attr [Integer, nil] max_length
+      # @attr [Integer, nil] min_length
       class LengthValidator < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :max_length

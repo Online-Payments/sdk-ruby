@@ -6,11 +6,11 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] hosted_fields_session_id
-      # @attr [String] locale
-      # @attr [String] platform_url
-      # @attr [String] session_token
-      # @attr [Array<String>] tokens
+      # @attr [String, nil] hosted_fields_session_id
+      # @attr [String, nil] locale
+      # @attr [String, nil] platform_url
+      # @attr [String, nil] session_token
+      # @attr [Array<String>, nil] tokens
       class SessionData < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :hosted_fields_session_id

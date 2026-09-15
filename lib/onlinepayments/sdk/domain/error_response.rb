@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] error_id
-      # @attr [Array<OnlinePayments::SDK::Domain::APIError>] errors
+      # @attr [String, nil] error_id
+      # @attr [Array<OnlinePayments::SDK::Domain::APIError>, nil] errors
       class ErrorResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :error_id

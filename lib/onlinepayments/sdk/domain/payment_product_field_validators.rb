@@ -11,15 +11,15 @@ require 'onlinepayments/sdk/domain/regular_expression_validator'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::EmptyValidator] email_address
-      # @attr [OnlinePayments::SDK::Domain::EmptyValidator] expiration_date
-      # @attr [OnlinePayments::SDK::Domain::FixedListValidator] fixed_list
-      # @attr [OnlinePayments::SDK::Domain::EmptyValidator] iban
-      # @attr [OnlinePayments::SDK::Domain::LengthValidator] length
-      # @attr [OnlinePayments::SDK::Domain::EmptyValidator] luhn
-      # @attr [OnlinePayments::SDK::Domain::RangeValidator] range
-      # @attr [OnlinePayments::SDK::Domain::RegularExpressionValidator] regular_expression
-      # @attr [OnlinePayments::SDK::Domain::EmptyValidator] terms_and_conditions
+      # @attr [OnlinePayments::SDK::Domain::EmptyValidator, nil] email_address
+      # @attr [OnlinePayments::SDK::Domain::EmptyValidator, nil] expiration_date
+      # @attr [OnlinePayments::SDK::Domain::FixedListValidator, nil] fixed_list
+      # @attr [OnlinePayments::SDK::Domain::EmptyValidator, nil] iban
+      # @attr [OnlinePayments::SDK::Domain::LengthValidator, nil] length
+      # @attr [OnlinePayments::SDK::Domain::EmptyValidator, nil] luhn
+      # @attr [OnlinePayments::SDK::Domain::RangeValidator, nil] range
+      # @attr [OnlinePayments::SDK::Domain::RegularExpressionValidator, nil] regular_expression
+      # @attr [OnlinePayments::SDK::Domain::EmptyValidator, nil] terms_and_conditions
       class PaymentProductFieldValidators < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :email_address

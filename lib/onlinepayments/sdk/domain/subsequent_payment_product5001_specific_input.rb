@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] subsequent_type
+      # @attr [String, nil] subsequent_type
       class SubsequentPaymentProduct5001SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :subsequent_type

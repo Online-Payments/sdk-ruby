@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Array<String>] allowed_values
+      # @attr [Array<String>, nil] allowed_values
       class FixedListValidator < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :allowed_values

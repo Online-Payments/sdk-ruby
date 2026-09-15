@@ -7,7 +7,7 @@ require 'onlinepayments/sdk/domain/payment_response'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::PaymentResponse] payment
+      # @attr [OnlinePayments::SDK::Domain::PaymentResponse, nil] payment
       class CancelPaymentResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :payment

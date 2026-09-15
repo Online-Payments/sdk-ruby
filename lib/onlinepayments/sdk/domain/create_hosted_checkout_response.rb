@@ -6,12 +6,12 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] returnmac
-      # @attr [String] hosted_checkout_id
-      # @attr [Array<String>] invalid_tokens
-      # @attr [String] merchant_reference
-      # @attr [String] partial_redirect_url
-      # @attr [String] redirect_url
+      # @attr [String, nil] returnmac
+      # @attr [String, nil] hosted_checkout_id
+      # @attr [Array<String>, nil] invalid_tokens
+      # @attr [String, nil] merchant_reference
+      # @attr [String, nil] partial_redirect_url
+      # @attr [String, nil] redirect_url
       class CreateHostedCheckoutResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :returnmac

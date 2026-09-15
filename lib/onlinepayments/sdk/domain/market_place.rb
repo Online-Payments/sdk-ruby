@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] retailer_country
-      # @attr [String] retailer_name
+      # @attr [String, nil] retailer_country
+      # @attr [String, nil] retailer_name
       class MarketPlace < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :retailer_country

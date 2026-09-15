@@ -7,9 +7,9 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney] amount_of_money
-      # @attr [String] country_code
-      # @attr [true/false] is_recurring
+      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney, nil] amount_of_money
+      # @attr [String, nil] country_code
+      # @attr [true/false, nil] is_recurring
       class PaymentContext < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :amount_of_money

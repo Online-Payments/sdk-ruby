@@ -6,11 +6,11 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] payment_bic
-      # @attr [String] payment_beneficiary
-      # @attr [String] payment_iban
-      # @attr [String] payment_reference
-      # @attr [String] qr_code
+      # @attr [String, nil] payment_bic
+      # @attr [String, nil] payment_beneficiary
+      # @attr [String, nil] payment_iban
+      # @attr [String, nil] payment_reference
+      # @attr [String, nil] qr_code
       class PaymentProduct11 < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :payment_bic

@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::AddressPersonal] billing_address
-      # @attr [OnlinePayments::SDK::Domain::AddressPersonal] shipping_address
+      # @attr [OnlinePayments::SDK::Domain::AddressPersonal, nil] billing_address
+      # @attr [OnlinePayments::SDK::Domain::AddressPersonal, nil] shipping_address
       class PaymentProduct3203SpecificOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :billing_address

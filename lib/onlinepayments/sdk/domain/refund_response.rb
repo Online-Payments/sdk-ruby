@@ -8,10 +8,10 @@ require 'onlinepayments/sdk/domain/refund_output'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] id
-      # @attr [OnlinePayments::SDK::Domain::RefundOutput] refund_output
-      # @attr [String] status
-      # @attr [OnlinePayments::SDK::Domain::OrderStatusOutput] status_output
+      # @attr [String, nil] id
+      # @attr [OnlinePayments::SDK::Domain::RefundOutput, nil] refund_output
+      # @attr [String, nil] status
+      # @attr [OnlinePayments::SDK::Domain::OrderStatusOutput, nil] status_output
       class RefundResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :id

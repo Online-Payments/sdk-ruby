@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] result
+      # @attr [String, nil] result
       class ValidateCredentialsResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :result

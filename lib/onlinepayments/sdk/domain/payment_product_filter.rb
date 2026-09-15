@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Array<String>] groups
-      # @attr [Array<Integer>] products
+      # @attr [Array<String>, nil] groups
+      # @attr [Array<Integer>, nil] products
       class PaymentProductFilter < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :groups

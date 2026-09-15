@@ -6,10 +6,10 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] id
-      # @attr [String] label
-      # @attr [String] type
-      # @attr [String] value
+      # @attr [String, nil] id
+      # @attr [String, nil] label
+      # @attr [String, nil] type
+      # @attr [String, nil] value
       class PaymentProductFieldDisplayElement < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :id

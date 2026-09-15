@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] app_switch_link
-      # @attr [String] payment_request_token
+      # @attr [String, nil] app_switch_link
+      # @attr [String, nil] payment_request_token
       class PaymentProduct350 < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :app_switch_link

@@ -30,35 +30,35 @@ require 'onlinepayments/sdk/domain/redirection_data'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] payment_option
-      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct11SpecificInput] payment_product11_specific_input
-      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct3103SpecificInput] payment_product3103_specific_input
-      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct3112SpecificInput] payment_product3112_specific_input
-      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct3116SpecificInput] payment_product3116_specific_input
-      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct3203SpecificInput] payment_product3203_specific_input
-      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct3204SpecificInput] payment_product3204_specific_input
-      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct3302SpecificInput] payment_product3302_specific_input
-      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct3306SpecificInput] payment_product3306_specific_input
-      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct3307SpecificInput] payment_product3307_specific_input
-      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5001SpecificInput] payment_product5001_specific_input
-      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5300SpecificInput] payment_product5300_specific_input
-      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5301SpecificInput] payment_product5301_specific_input
-      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5402SpecificInput] payment_product5402_specific_input
-      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5403SpecificInput] payment_product5403_specific_input
-      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5406SpecificInput] payment_product5406_specific_input
-      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5407SpecificInput] payment_product5407_specific_input
-      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5408SpecificInput] payment_product5408_specific_input
-      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5410SpecificInput] payment_product5410_specific_input
-      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5412SpecificInput] payment_product5412_specific_input
-      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5601SpecificInput] payment_product5601_specific_input
-      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct809SpecificInput] payment_product809_specific_input
-      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct840SpecificInput] payment_product840_specific_input
-      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct900SpecificInput] payment_product900_specific_input
-      # @attr [Integer] payment_product_id
-      # @attr [OnlinePayments::SDK::Domain::RedirectionData] redirection_data
-      # @attr [true/false] requires_approval
-      # @attr [String] token
-      # @attr [true/false] tokenize
+      # @attr [String, nil] payment_option
+      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct11SpecificInput, nil] payment_product11_specific_input
+      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct3103SpecificInput, nil] payment_product3103_specific_input
+      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct3112SpecificInput, nil] payment_product3112_specific_input
+      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct3116SpecificInput, nil] payment_product3116_specific_input
+      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct3203SpecificInput, nil] payment_product3203_specific_input
+      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct3204SpecificInput, nil] payment_product3204_specific_input
+      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct3302SpecificInput, nil] payment_product3302_specific_input
+      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct3306SpecificInput, nil] payment_product3306_specific_input
+      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct3307SpecificInput, nil] payment_product3307_specific_input
+      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5001SpecificInput, nil] payment_product5001_specific_input
+      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5300SpecificInput, nil] payment_product5300_specific_input
+      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5301SpecificInput, nil] payment_product5301_specific_input
+      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5402SpecificInput, nil] payment_product5402_specific_input
+      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5403SpecificInput, nil] payment_product5403_specific_input
+      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5406SpecificInput, nil] payment_product5406_specific_input
+      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5407SpecificInput, nil] payment_product5407_specific_input
+      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5408SpecificInput, nil] payment_product5408_specific_input
+      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5410SpecificInput, nil] payment_product5410_specific_input
+      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5412SpecificInput, nil] payment_product5412_specific_input
+      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct5601SpecificInput, nil] payment_product5601_specific_input
+      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct809SpecificInput, nil] payment_product809_specific_input
+      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct840SpecificInput, nil] payment_product840_specific_input
+      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentProduct900SpecificInput, nil] payment_product900_specific_input
+      # @attr [Integer, nil] payment_product_id
+      # @attr [OnlinePayments::SDK::Domain::RedirectionData, nil] redirection_data
+      # @attr [true/false, nil] requires_approval
+      # @attr [String, nil] token
+      # @attr [true/false, nil] tokenize
       class RedirectPaymentMethodSpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :payment_option

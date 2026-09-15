@@ -6,9 +6,9 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Integer] display_order
-      # @attr [String] label
-      # @attr [String] logo
+      # @attr [Integer, nil] display_order
+      # @attr [String, nil] label
+      # @attr [String, nil] logo
       class PaymentProductDisplayHints < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :display_order

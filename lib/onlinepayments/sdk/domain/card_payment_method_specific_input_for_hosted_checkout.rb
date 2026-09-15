@@ -6,10 +6,10 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [true/false] click_to_pay
-      # @attr [true/false] group_cards
-      # @attr [Array<Integer>] payment_product_preferred_order
-      # @attr [String] tokenization_mode
+      # @attr [true/false, nil] click_to_pay
+      # @attr [true/false, nil] group_cards
+      # @attr [Array<Integer>, nil] payment_product_preferred_order
+      # @attr [String, nil] tokenization_mode
       class CardPaymentMethodSpecificInputForHostedCheckout < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :click_to_pay

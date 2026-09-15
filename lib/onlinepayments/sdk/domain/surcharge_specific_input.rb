@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] mode
-      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney] surcharge_amount
+      # @attr [String, nil] mode
+      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney, nil] surcharge_amount
       class SurchargeSpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :mode

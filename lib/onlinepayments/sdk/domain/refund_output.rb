@@ -13,16 +13,16 @@ require 'onlinepayments/sdk/domain/refund_redirect_method_specific_output'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney] amount_of_money
-      # @attr [Integer] amount_paid
-      # @attr [OnlinePayments::SDK::Domain::RefundCardMethodSpecificOutput] card_refund_method_specific_output
-      # @attr [OnlinePayments::SDK::Domain::RefundEWalletMethodSpecificOutput] e_wallet_refund_method_specific_output
-      # @attr [String] merchant_parameters
-      # @attr [OnlinePayments::SDK::Domain::RefundMobileMethodSpecificOutput] mobile_refund_method_specific_output
-      # @attr [OnlinePayments::SDK::Domain::OperationPaymentReferences] operation_references
-      # @attr [String] payment_method
-      # @attr [OnlinePayments::SDK::Domain::RefundRedirectMethodSpecificOutput] redirect_refund_method_specific_output
-      # @attr [OnlinePayments::SDK::Domain::PaymentReferences] references
+      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney, nil] amount_of_money
+      # @attr [Integer, nil] amount_paid
+      # @attr [OnlinePayments::SDK::Domain::RefundCardMethodSpecificOutput, nil] card_refund_method_specific_output
+      # @attr [OnlinePayments::SDK::Domain::RefundEWalletMethodSpecificOutput, nil] e_wallet_refund_method_specific_output
+      # @attr [String, nil] merchant_parameters
+      # @attr [OnlinePayments::SDK::Domain::RefundMobileMethodSpecificOutput, nil] mobile_refund_method_specific_output
+      # @attr [OnlinePayments::SDK::Domain::OperationPaymentReferences, nil] operation_references
+      # @attr [String, nil] payment_method
+      # @attr [OnlinePayments::SDK::Domain::RefundRedirectMethodSpecificOutput, nil] redirect_refund_method_specific_output
+      # @attr [OnlinePayments::SDK::Domain::PaymentReferences, nil] references
       class RefundOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :amount_of_money

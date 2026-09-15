@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/split_payment_product_filter'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::SplitPaymentProductFilter] exclude
-      # @attr [OnlinePayments::SDK::Domain::SplitPaymentProductFilter] restrict_to
+      # @attr [OnlinePayments::SDK::Domain::SplitPaymentProductFilter, nil] exclude
+      # @attr [OnlinePayments::SDK::Domain::SplitPaymentProductFilter, nil] restrict_to
       class SplitPaymentProductFiltersHostedCheckout < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :exclude

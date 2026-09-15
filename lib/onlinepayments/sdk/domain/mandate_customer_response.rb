@@ -10,11 +10,11 @@ require 'onlinepayments/sdk/domain/mandate_personal_information_response'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::BankAccountIban] bank_account_iban
-      # @attr [String] company_name
-      # @attr [OnlinePayments::SDK::Domain::MandateContactDetails] contact_details
-      # @attr [OnlinePayments::SDK::Domain::MandateAddressResponse] mandate_address
-      # @attr [OnlinePayments::SDK::Domain::MandatePersonalInformationResponse] personal_information
+      # @attr [OnlinePayments::SDK::Domain::BankAccountIban, nil] bank_account_iban
+      # @attr [String, nil] company_name
+      # @attr [OnlinePayments::SDK::Domain::MandateContactDetails, nil] contact_details
+      # @attr [OnlinePayments::SDK::Domain::MandateAddressResponse, nil] mandate_address
+      # @attr [OnlinePayments::SDK::Domain::MandatePersonalInformationResponse, nil] personal_information
       class MandateCustomerResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :bank_account_iban

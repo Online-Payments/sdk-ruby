@@ -7,9 +7,9 @@ require 'onlinepayments/sdk/domain/reattempt_instructions_conditions'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::ReattemptInstructionsConditions] conditions
-      # @attr [Integer] frozen_period
-      # @attr [String] indicator
+      # @attr [OnlinePayments::SDK::Domain::ReattemptInstructionsConditions, nil] conditions
+      # @attr [Integer, nil] frozen_period
+      # @attr [String, nil] indicator
       class ReattemptInstructions < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :conditions

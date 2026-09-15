@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] recurring_payment_sequence_indicator
+      # @attr [String, nil] recurring_payment_sequence_indicator
       class Product320Recurring < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :recurring_payment_sequence_indicator

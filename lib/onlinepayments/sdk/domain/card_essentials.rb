@@ -8,29 +8,29 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] bin
-      # @attr [true/false] card_corporate_indicator
-      # @attr [Date] card_effective_date
-      # @attr [true/false] card_effective_date_indicator
-      # @attr [String] card_number
-      # @attr [String] card_pan_type
-      # @attr [String] card_product_code
-      # @attr [String] card_product_name
-      # @attr [String] card_product_usage_label
-      # @attr [String] card_scheme
-      # @attr [String] card_type
-      # @attr [String] country_code
-      # @attr [String] expiry_date
-      # @attr [String] issuer_code
-      # @attr [String] issuer_name
-      # @attr [String] issuer_principal_member_code
-      # @attr [String] issuer_principal_member_name
-      # @attr [String] issuer_region_code
-      # @attr [String] issuing_country_code
-      # @attr [Integer] pan_length_max
-      # @attr [Integer] pan_length_min
-      # @attr [true/false] pan_luhn_check
-      # @attr [true/false] virtual_card_indicator
+      # @attr [String, nil] bin
+      # @attr [true/false, nil] card_corporate_indicator
+      # @attr [Date, nil] card_effective_date
+      # @attr [true/false, nil] card_effective_date_indicator
+      # @attr [String, nil] card_number
+      # @attr [String, nil] card_pan_type
+      # @attr [String, nil] card_product_code
+      # @attr [String, nil] card_product_name
+      # @attr [String, nil] card_product_usage_label
+      # @attr [String, nil] card_scheme
+      # @attr [String, nil] card_type
+      # @attr [String, nil] country_code
+      # @attr [String, nil] expiry_date
+      # @attr [String, nil] issuer_code
+      # @attr [String, nil] issuer_name
+      # @attr [String, nil] issuer_principal_member_code
+      # @attr [String, nil] issuer_principal_member_name
+      # @attr [String, nil] issuer_region_code
+      # @attr [String, nil] issuing_country_code
+      # @attr [Integer, nil] pan_length_max
+      # @attr [Integer, nil] pan_length_min
+      # @attr [true/false, nil] pan_luhn_check
+      # @attr [true/false, nil] virtual_card_indicator
       class CardEssentials < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :bin

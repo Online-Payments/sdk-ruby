@@ -6,9 +6,9 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] organization_entity_type
-      # @attr [String] organization_registration_id
-      # @attr [String] vat_id
+      # @attr [String, nil] organization_entity_type
+      # @attr [String, nil] organization_registration_id
+      # @attr [String, nil] vat_id
       class RedirectPaymentProduct3302SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :organization_entity_type

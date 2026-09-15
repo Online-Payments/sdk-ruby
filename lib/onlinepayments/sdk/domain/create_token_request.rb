@@ -7,9 +7,9 @@ require 'onlinepayments/sdk/domain/token_card_specific_input'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::TokenCardSpecificInput] card
-      # @attr [String] encrypted_customer_input
-      # @attr [Integer] payment_product_id
+      # @attr [OnlinePayments::SDK::Domain::TokenCardSpecificInput, nil] card
+      # @attr [String, nil] encrypted_customer_input
+      # @attr [Integer, nil] payment_product_id
       class CreateTokenRequest < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :card

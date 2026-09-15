@@ -7,11 +7,11 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::Card] card
-      # @attr [String] hosted_fields_session_id
-      # @attr [Integer] payment_product_id
-      # @attr [String] payout_reason
-      # @attr [String] token
+      # @attr [OnlinePayments::SDK::Domain::Card, nil] card
+      # @attr [String, nil] hosted_fields_session_id
+      # @attr [Integer, nil] payment_product_id
+      # @attr [String, nil] payout_reason
+      # @attr [String, nil] token
       class CardPayoutMethodSpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :card

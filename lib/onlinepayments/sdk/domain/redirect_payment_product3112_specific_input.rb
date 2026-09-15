@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [true/false] complete_remaining_payment_amount
+      # @attr [true/false, nil] complete_remaining_payment_amount
       class RedirectPaymentProduct3112SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :complete_remaining_payment_amount

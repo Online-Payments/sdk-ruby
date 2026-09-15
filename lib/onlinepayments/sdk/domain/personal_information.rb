@@ -7,9 +7,9 @@ require 'onlinepayments/sdk/domain/personal_name'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] date_of_birth
-      # @attr [String] gender
-      # @attr [OnlinePayments::SDK::Domain::PersonalName] name
+      # @attr [String, nil] date_of_birth
+      # @attr [String, nil] gender
+      # @attr [OnlinePayments::SDK::Domain::PersonalName, nil] name
       class PersonalInformation < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :date_of_birth

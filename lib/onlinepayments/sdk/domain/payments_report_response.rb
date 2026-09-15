@@ -8,8 +8,8 @@ require 'onlinepayments/sdk/domain/payment_summary'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::CursorPaginationInfo] pagination
-      # @attr [Array<OnlinePayments::SDK::Domain::PaymentSummary>] payments
+      # @attr [OnlinePayments::SDK::Domain::CursorPaginationInfo, nil] pagination
+      # @attr [Array<OnlinePayments::SDK::Domain::PaymentSummary>, nil] payments
       class PaymentsReportResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :pagination

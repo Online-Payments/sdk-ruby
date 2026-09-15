@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] meta_data
-      # @attr [String] travel_data
+      # @attr [String, nil] meta_data
+      # @attr [String, nil] travel_data
       class OtherDetails < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :meta_data

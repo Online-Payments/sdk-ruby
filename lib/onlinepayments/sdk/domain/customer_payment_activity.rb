@@ -6,9 +6,9 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Integer] number_of_payment_attempts_last24_hours
-      # @attr [Integer] number_of_payment_attempts_last_year
-      # @attr [Integer] number_of_purchases_last6_months
+      # @attr [Integer, nil] number_of_payment_attempts_last24_hours
+      # @attr [Integer, nil] number_of_payment_attempts_last_year
+      # @attr [Integer, nil] number_of_purchases_last6_months
       class CustomerPaymentActivity < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :number_of_payment_attempts_last24_hours

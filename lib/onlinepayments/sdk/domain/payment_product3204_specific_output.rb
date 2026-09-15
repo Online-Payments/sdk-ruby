@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] banking_app_label
+      # @attr [String, nil] banking_app_label
       class PaymentProduct3204SpecificOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :banking_app_label

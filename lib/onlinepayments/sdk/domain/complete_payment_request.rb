@@ -8,8 +8,8 @@ require 'onlinepayments/sdk/domain/order'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::CompletePaymentCardPaymentMethodSpecificInput] card_payment_method_specific_input
-      # @attr [OnlinePayments::SDK::Domain::Order] order
+      # @attr [OnlinePayments::SDK::Domain::CompletePaymentCardPaymentMethodSpecificInput, nil] card_payment_method_specific_input
+      # @attr [OnlinePayments::SDK::Domain::Order, nil] order
       class CompletePaymentRequest < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :card_payment_method_specific_input

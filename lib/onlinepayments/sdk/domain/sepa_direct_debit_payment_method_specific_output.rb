@@ -8,9 +8,9 @@ require 'onlinepayments/sdk/domain/payment_product771_specific_output'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::FraudResults] fraud_results
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct771SpecificOutput] payment_product771_specific_output
-      # @attr [Integer] payment_product_id
+      # @attr [OnlinePayments::SDK::Domain::FraudResults, nil] fraud_results
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct771SpecificOutput, nil] payment_product771_specific_output
+      # @attr [Integer, nil] payment_product_id
       class SepaDirectDebitPaymentMethodSpecificOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :fraud_results

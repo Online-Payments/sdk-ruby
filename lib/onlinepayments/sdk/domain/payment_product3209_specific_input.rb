@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] merchant_finance_code
+      # @attr [String, nil] merchant_finance_code
       class PaymentProduct3209SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :merchant_finance_code

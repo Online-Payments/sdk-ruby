@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] display_name
-      # @attr [String] domain_name
+      # @attr [String, nil] display_name
+      # @attr [String, nil] domain_name
       class PaymentProductSession302SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :display_name

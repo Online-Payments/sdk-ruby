@@ -6,12 +6,12 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] bin
-      # @attr [String] country_code
-      # @attr [String] network_token
-      # @attr [String] network_token_state
-      # @attr [true/false] network_token_used
-      # @attr [String] token_expiry_date
+      # @attr [String, nil] bin
+      # @attr [String, nil] country_code
+      # @attr [String, nil] network_token
+      # @attr [String, nil] network_token_state
+      # @attr [true/false, nil] network_token_used
+      # @attr [String, nil] token_expiry_date
       class NetworkTokenEssentials < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :bin

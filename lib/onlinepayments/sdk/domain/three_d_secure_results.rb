@@ -6,19 +6,19 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] acs_transaction_id
-      # @attr [String] applied_exemption
-      # @attr [String] authentication_status
-      # @attr [String] cavv
-      # @attr [String] challenge_indicator
-      # @attr [String] ds_transaction_id
-      # @attr [String] eci
-      # @attr [String] exemption_engine_flow
-      # @attr [String] flow
-      # @attr [String] liability
-      # @attr [String] scheme_eci
-      # @attr [String] version
-      # @attr [String] xid
+      # @attr [String, nil] acs_transaction_id
+      # @attr [String, nil] applied_exemption
+      # @attr [String, nil] authentication_status
+      # @attr [String, nil] cavv
+      # @attr [String, nil] challenge_indicator
+      # @attr [String, nil] ds_transaction_id
+      # @attr [String, nil] eci
+      # @attr [String, nil] exemption_engine_flow
+      # @attr [String, nil] flow
+      # @attr [String, nil] liability
+      # @attr [String, nil] scheme_eci
+      # @attr [String, nil] version
+      # @attr [String, nil] xid
       class ThreeDSecureResults < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :acs_transaction_id

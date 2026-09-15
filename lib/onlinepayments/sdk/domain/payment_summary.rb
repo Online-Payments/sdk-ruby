@@ -8,10 +8,10 @@ require 'onlinepayments/sdk/domain/payment_status_output_summary'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] id
-      # @attr [OnlinePayments::SDK::Domain::PaymentOutputSummary] payment_output
-      # @attr [String] status
-      # @attr [OnlinePayments::SDK::Domain::PaymentStatusOutputSummary] status_output
+      # @attr [String, nil] id
+      # @attr [OnlinePayments::SDK::Domain::PaymentOutputSummary, nil] payment_output
+      # @attr [String, nil] status
+      # @attr [OnlinePayments::SDK::Domain::PaymentStatusOutputSummary, nil] status_output
       class PaymentSummary < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :id

@@ -8,10 +8,10 @@ require 'onlinepayments/sdk/domain/product302_recurring'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::ApplePayRecurringPaymentRequest] apple_pay_recurring_payment_request
-      # @attr [true/false] is_recurring
-      # @attr [OnlinePayments::SDK::Domain::Product302Recurring] recurring
-      # @attr [true/false] tokenize
+      # @attr [OnlinePayments::SDK::Domain::ApplePayRecurringPaymentRequest, nil] apple_pay_recurring_payment_request
+      # @attr [true/false, nil] is_recurring
+      # @attr [OnlinePayments::SDK::Domain::Product302Recurring, nil] recurring
+      # @attr [true/false, nil] tokenize
       class MobilePaymentProduct302SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :apple_pay_recurring_payment_request

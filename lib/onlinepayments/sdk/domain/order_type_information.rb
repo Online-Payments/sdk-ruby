@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] purchase_type
-      # @attr [String] transaction_type
+      # @attr [String, nil] purchase_type
+      # @attr [String, nil] transaction_type
       class OrderTypeInformation < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :purchase_type

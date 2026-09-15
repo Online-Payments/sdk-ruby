@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] order_id
+      # @attr [String, nil] order_id
       class PaymentProduct840 < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :order_id

@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] pairing_token
-      # @attr [String] qr_code
+      # @attr [String, nil] pairing_token
+      # @attr [String, nil] qr_code
       class PaymentProduct5407 < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :pairing_token

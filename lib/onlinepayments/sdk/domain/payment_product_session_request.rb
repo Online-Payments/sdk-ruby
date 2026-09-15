@@ -7,7 +7,7 @@ require 'onlinepayments/sdk/domain/payment_product_session302_specific_input'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::PaymentProductSession302SpecificInput] payment_product_session302_specific_input
+      # @attr [OnlinePayments::SDK::Domain::PaymentProductSession302SpecificInput, nil] payment_product_session302_specific_input
       class PaymentProductSessionRequest < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :payment_product_session302_specific_input

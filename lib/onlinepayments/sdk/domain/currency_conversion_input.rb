@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [true/false] accepted_by_user
-      # @attr [String] dcc_session_id
+      # @attr [true/false, nil] accepted_by_user
+      # @attr [String, nil] dcc_session_id
       class CurrencyConversionInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :accepted_by_user

@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney] amount_of_money
-      # @attr [Integer] number_of_gift_cards
+      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney, nil] amount_of_money
+      # @attr [Integer, nil] number_of_gift_cards
       class GiftCardPurchase < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :amount_of_money

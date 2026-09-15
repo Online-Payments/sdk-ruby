@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::CancelPaymentRequest] cancel
-      # @attr [String] payment_id
+      # @attr [OnlinePayments::SDK::Domain::CancelPaymentRequest, nil] cancel
+      # @attr [String, nil] payment_id
       class CancelPaymentBatchRequest < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :cancel

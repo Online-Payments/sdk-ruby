@@ -11,11 +11,11 @@ require 'onlinepayments/sdk/domain/payout_card_payment_method_specific_output'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney] amount_of_money
-      # @attr [OnlinePayments::SDK::Domain::PayoutCardPaymentMethodSpecificOutput] payout_card_payment_method_specific_output
-      # @attr [String] payout_reason
-      # @attr [OnlinePayments::SDK::Domain::PaymentReferences] references
-      # @attr [DateTime] transaction_date
+      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney, nil] amount_of_money
+      # @attr [OnlinePayments::SDK::Domain::PayoutCardPaymentMethodSpecificOutput, nil] payout_card_payment_method_specific_output
+      # @attr [String, nil] payout_reason
+      # @attr [OnlinePayments::SDK::Domain::PaymentReferences, nil] references
+      # @attr [DateTime, nil] transaction_date
       class PayoutOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :amount_of_money

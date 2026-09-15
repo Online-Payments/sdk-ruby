@@ -10,13 +10,13 @@ require 'onlinepayments/sdk/domain/payment_status_output'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney] amount_of_money
-      # @attr [String] id
-      # @attr [OnlinePayments::SDK::Domain::OperationPaymentReferences] operation_references
-      # @attr [String] payment_method
-      # @attr [OnlinePayments::SDK::Domain::PaymentReferences] references
-      # @attr [String] status
-      # @attr [OnlinePayments::SDK::Domain::PaymentStatusOutput] status_output
+      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney, nil] amount_of_money
+      # @attr [String, nil] id
+      # @attr [OnlinePayments::SDK::Domain::OperationPaymentReferences, nil] operation_references
+      # @attr [String, nil] payment_method
+      # @attr [OnlinePayments::SDK::Domain::PaymentReferences, nil] references
+      # @attr [String, nil] status
+      # @attr [OnlinePayments::SDK::Domain::PaymentStatusOutput, nil] status_output
       class OperationOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :amount_of_money

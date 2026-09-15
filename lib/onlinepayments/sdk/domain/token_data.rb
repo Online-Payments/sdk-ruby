@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::Card] card
-      # @attr [String] cobrand_selection_indicator
+      # @attr [OnlinePayments::SDK::Domain::Card, nil] card
+      # @attr [String, nil] cobrand_selection_indicator
       class TokenData < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :card

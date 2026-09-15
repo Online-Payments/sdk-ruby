@@ -7,7 +7,7 @@ require 'onlinepayments/sdk/domain/refund_response'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Array<OnlinePayments::SDK::Domain::RefundResponse>] refunds
+      # @attr [Array<OnlinePayments::SDK::Domain::RefundResponse>, nil] refunds
       class RefundsResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :refunds

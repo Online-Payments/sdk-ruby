@@ -6,11 +6,11 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Integer] color_depth
-      # @attr [true/false] java_enabled
-      # @attr [true/false] java_script_enabled
-      # @attr [String] screen_height
-      # @attr [String] screen_width
+      # @attr [Integer, nil] color_depth
+      # @attr [true/false, nil] java_enabled
+      # @attr [true/false, nil] java_script_enabled
+      # @attr [String, nil] screen_height
+      # @attr [String, nil] screen_width
       class BrowserData < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :color_depth

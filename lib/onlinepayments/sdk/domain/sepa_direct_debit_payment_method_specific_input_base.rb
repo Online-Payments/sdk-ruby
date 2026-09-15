@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/sepa_direct_debit_payment_product771_specific
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::SepaDirectDebitPaymentProduct771SpecificInputBase] payment_product771_specific_input
-      # @attr [Integer] payment_product_id
+      # @attr [OnlinePayments::SDK::Domain::SepaDirectDebitPaymentProduct771SpecificInputBase, nil] payment_product771_specific_input
+      # @attr [Integer, nil] payment_product_id
       class SepaDirectDebitPaymentMethodSpecificInputBase < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :payment_product771_specific_input

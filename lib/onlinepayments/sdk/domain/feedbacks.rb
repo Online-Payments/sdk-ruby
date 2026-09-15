@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] webhook_url
-      # @attr [Array<String>] webhooks_urls
+      # @attr [String, nil] webhook_url
+      # @attr [Array<String>, nil] webhooks_urls
       class Feedbacks < OnlinePayments::SDK::Domain::DataObject
 
         # @deprecated The URL where the webhook will be dispatched for all status change events related to this payment.

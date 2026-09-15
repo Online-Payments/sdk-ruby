@@ -6,9 +6,9 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] black_list_data
-      # @attr [String] customer_ip_address
-      # @attr [Array<String>] product_categories
+      # @attr [String, nil] black_list_data
+      # @attr [String, nil] customer_ip_address
+      # @attr [Array<String>, nil] product_categories
       class FraudFields < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :black_list_data

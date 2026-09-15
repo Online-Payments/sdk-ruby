@@ -8,12 +8,12 @@ require 'onlinepayments/sdk/domain/session_data'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Array<OnlinePayments::SDK::Domain::CardToken>] card_tokens
-      # @attr [String] hosted_fields_session_id
-      # @attr [Array<String>] invalid_tokens
-      # @attr [String] sdk_sri
-      # @attr [String] sdk_url
-      # @attr [OnlinePayments::SDK::Domain::SessionData] session_data
+      # @attr [Array<OnlinePayments::SDK::Domain::CardToken>, nil] card_tokens
+      # @attr [String, nil] hosted_fields_session_id
+      # @attr [Array<String>, nil] invalid_tokens
+      # @attr [String, nil] sdk_sri
+      # @attr [String, nil] sdk_url
+      # @attr [OnlinePayments::SDK::Domain::SessionData, nil] session_data
       class CreateHostedFieldsSessionResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :card_tokens

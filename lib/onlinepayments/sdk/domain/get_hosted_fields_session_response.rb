@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/token_info'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] session_id
-      # @attr [OnlinePayments::SDK::Domain::TokenInfo] token
+      # @attr [String, nil] session_id
+      # @attr [OnlinePayments::SDK::Domain::TokenInfo, nil] token
       class GetHostedFieldsSessionResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :session_id

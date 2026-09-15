@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] id
-      # @attr [String] type
+      # @attr [String, nil] id
+      # @attr [String, nil] type
       class SessionDetails < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :id

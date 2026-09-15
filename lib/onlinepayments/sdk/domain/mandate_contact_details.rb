@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] email_address
-      # @attr [String] phone_number
+      # @attr [String, nil] email_address
+      # @attr [String, nil] phone_number
       class MandateContactDetails < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :email_address

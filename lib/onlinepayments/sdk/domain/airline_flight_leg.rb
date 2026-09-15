@@ -6,27 +6,27 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] airline_class
-      # @attr [String] arrival_airport
-      # @attr [String] arrival_time
-      # @attr [String] carrier_code
-      # @attr [String] conjunction_ticket
-      # @attr [String] coupon_number
-      # @attr [String] date
-      # @attr [String] departure_time
-      # @attr [String] endorsement_or_restriction
-      # @attr [String] exchange_ticket
-      # @attr [String] fare
-      # @attr [String] fare_basis
-      # @attr [Integer] fee
-      # @attr [String] flight_code
-      # @attr [String] flight_number
-      # @attr [Integer] leg_fare
-      # @attr [Integer] number
-      # @attr [String] origin_airport
-      # @attr [String] passenger_class
-      # @attr [String] stopover_code
-      # @attr [Integer] taxes
+      # @attr [String, nil] airline_class
+      # @attr [String, nil] arrival_airport
+      # @attr [String, nil] arrival_time
+      # @attr [String, nil] carrier_code
+      # @attr [String, nil] conjunction_ticket
+      # @attr [String, nil] coupon_number
+      # @attr [String, nil] date
+      # @attr [String, nil] departure_time
+      # @attr [String, nil] endorsement_or_restriction
+      # @attr [String, nil] exchange_ticket
+      # @attr [String, nil] fare
+      # @attr [String, nil] fare_basis
+      # @attr [Integer, nil] fee
+      # @attr [String, nil] flight_code
+      # @attr [String, nil] flight_number
+      # @attr [Integer, nil] leg_fare
+      # @attr [Integer, nil] number
+      # @attr [String, nil] origin_airport
+      # @attr [String, nil] passenger_class
+      # @attr [String, nil] stopover_code
+      # @attr [Integer, nil] taxes
       class AirlineFlightLeg < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :airline_class

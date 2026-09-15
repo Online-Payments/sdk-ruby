@@ -6,14 +6,14 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] account_id
-      # @attr [String] company_name
-      # @attr [String] country_code
-      # @attr [String] customer_account_status
-      # @attr [String] customer_address_status
-      # @attr [String] first_name
-      # @attr [String] payer_id
-      # @attr [String] surname
+      # @attr [String, nil] account_id
+      # @attr [String, nil] company_name
+      # @attr [String, nil] country_code
+      # @attr [String, nil] customer_account_status
+      # @attr [String, nil] customer_address_status
+      # @attr [String, nil] first_name
+      # @attr [String, nil] payer_id
+      # @attr [String, nil] surname
       class PaymentProduct840CustomerAccount < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :account_id

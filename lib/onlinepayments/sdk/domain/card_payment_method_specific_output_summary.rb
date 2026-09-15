@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::CardPaymentMethodSpecificOutputSummaryCard] card
-      # @attr [String] token
+      # @attr [OnlinePayments::SDK::Domain::CardPaymentMethodSpecificOutputSummaryCard, nil] card
+      # @attr [String, nil] token
       class CardPaymentMethodSpecificOutputSummary < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :card

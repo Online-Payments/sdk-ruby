@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/refund_request'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] payment_id
-      # @attr [OnlinePayments::SDK::Domain::RefundRequest] refund
+      # @attr [String, nil] payment_id
+      # @attr [OnlinePayments::SDK::Domain::RefundRequest, nil] refund
       class RefundPaymentBatchRequest < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :payment_id

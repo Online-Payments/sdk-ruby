@@ -9,9 +9,9 @@ require 'onlinepayments/sdk/domain/payment_response'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::PaymentCreationOutput] creation_output
-      # @attr [OnlinePayments::SDK::Domain::MerchantAction] merchant_action
-      # @attr [OnlinePayments::SDK::Domain::PaymentResponse] payment
+      # @attr [OnlinePayments::SDK::Domain::PaymentCreationOutput, nil] creation_output
+      # @attr [OnlinePayments::SDK::Domain::MerchantAction, nil] merchant_action
+      # @attr [OnlinePayments::SDK::Domain::PaymentResponse, nil] payment
       class CreatePaymentResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :creation_output

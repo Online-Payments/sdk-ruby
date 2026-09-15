@@ -13,6 +13,7 @@ require 'onlinepayments/sdk/merchant/merchantbatch/merchant_batch_client'
 require 'onlinepayments/sdk/merchant/paymentlinks/payment_links_client'
 require 'onlinepayments/sdk/merchant/payments/payments_client'
 require 'onlinepayments/sdk/merchant/payouts/payouts_client'
+require 'onlinepayments/sdk/merchant/preauthorization/pre_authorization_client'
 require 'onlinepayments/sdk/merchant/privacypolicy/privacy_policy_client'
 require 'onlinepayments/sdk/merchant/productgroups/product_groups_client'
 require 'onlinepayments/sdk/merchant/products/products_client'
@@ -90,6 +91,13 @@ module OnlinePayments
         # @return [OnlinePayments::SDK::Merchant::Subsequent::SubsequentClient]
         def subsequent
           OnlinePayments::SDK::Merchant::Subsequent::SubsequentClient.new(self, nil)
+        end
+
+        # Resource /v2/{merchantId}/payments/{paymentId}/increment-authorization
+        #
+        # @return [OnlinePayments::SDK::Merchant::PreAuthorization::PreAuthorizationClient]
+        def pre_authorization
+          OnlinePayments::SDK::Merchant::PreAuthorization::PreAuthorizationClient.new(self, nil)
         end
 
         # Resource /v2/{merchantId}/productgroups

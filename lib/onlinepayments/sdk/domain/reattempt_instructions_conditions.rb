@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Integer] max_attempts
-      # @attr [Integer] max_delay
+      # @attr [Integer, nil] max_attempts
+      # @attr [Integer, nil] max_delay
       class ReattemptInstructionsConditions < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :max_attempts

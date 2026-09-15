@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] unique_account_identifier
-      # @attr [String] unique_card_identifier
+      # @attr [String, nil] unique_account_identifier
+      # @attr [String, nil] unique_card_identifier
       class CrmToken < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :unique_account_identifier

@@ -7,7 +7,7 @@ require 'onlinepayments/sdk/domain/payment_product5704_auto_capture'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct5704AutoCapture] payment_product5704_auto_capture
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct5704AutoCapture, nil] payment_product5704_auto_capture
       class RedirectPaymentProduct5407SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :payment_product5704_auto_capture

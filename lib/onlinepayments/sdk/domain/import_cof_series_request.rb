@@ -7,12 +7,12 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::CardDataWithoutCvv] card
-      # @attr [String] currency_code
-      # @attr [Integer] payment_product_id
-      # @attr [String] scheme_reference_data
-      # @attr [String] token_id
-      # @attr [String] transaction_link_identifier
+      # @attr [OnlinePayments::SDK::Domain::CardDataWithoutCvv, nil] card
+      # @attr [String, nil] currency_code
+      # @attr [Integer, nil] payment_product_id
+      # @attr [String, nil] scheme_reference_data
+      # @attr [String, nil] token_id
+      # @attr [String, nil] transaction_link_identifier
       class ImportCofSeriesRequest < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :card

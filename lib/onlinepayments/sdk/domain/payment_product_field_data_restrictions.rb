@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/payment_product_field_validators'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [true/false] is_required
-      # @attr [OnlinePayments::SDK::Domain::PaymentProductFieldValidators] validators
+      # @attr [true/false, nil] is_required
+      # @attr [OnlinePayments::SDK::Domain::PaymentProductFieldValidators, nil] validators
       class PaymentProductFieldDataRestrictions < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :is_required

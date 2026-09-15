@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] extra_merchant_data
+      # @attr [String, nil] extra_merchant_data
       class RedirectPaymentProduct3306SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :extra_merchant_data

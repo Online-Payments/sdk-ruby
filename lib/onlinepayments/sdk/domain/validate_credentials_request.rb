@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] key
-      # @attr [String] secret
+      # @attr [String, nil] key
+      # @attr [String, nil] secret
       class ValidateCredentialsRequest < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :key

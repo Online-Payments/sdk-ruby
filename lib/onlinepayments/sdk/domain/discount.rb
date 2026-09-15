@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Integer] amount
+      # @attr [Integer, nil] amount
       class Discount < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :amount

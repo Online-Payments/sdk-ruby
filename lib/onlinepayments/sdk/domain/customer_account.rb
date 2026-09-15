@@ -9,15 +9,15 @@ require 'onlinepayments/sdk/domain/payment_account_on_file'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::CustomerAccountAuthentication] authentication
-      # @attr [String] change_date
-      # @attr [true/false] changed_during_checkout
-      # @attr [String] create_date
-      # @attr [true/false] had_suspicious_activity
-      # @attr [String] password_change_date
-      # @attr [true/false] password_changed_during_checkout
-      # @attr [OnlinePayments::SDK::Domain::PaymentAccountOnFile] payment_account_on_file
-      # @attr [OnlinePayments::SDK::Domain::CustomerPaymentActivity] payment_activity
+      # @attr [OnlinePayments::SDK::Domain::CustomerAccountAuthentication, nil] authentication
+      # @attr [String, nil] change_date
+      # @attr [true/false, nil] changed_during_checkout
+      # @attr [String, nil] create_date
+      # @attr [true/false, nil] had_suspicious_activity
+      # @attr [String, nil] password_change_date
+      # @attr [true/false, nil] password_changed_during_checkout
+      # @attr [OnlinePayments::SDK::Domain::PaymentAccountOnFile, nil] payment_account_on_file
+      # @attr [OnlinePayments::SDK::Domain::CustomerPaymentActivity, nil] payment_activity
       class CustomerAccount < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :authentication

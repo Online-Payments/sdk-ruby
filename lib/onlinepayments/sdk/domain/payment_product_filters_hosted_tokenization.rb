@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/payment_product_filter_hosted_tokenization'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::PaymentProductFilterHostedTokenization] exclude
-      # @attr [OnlinePayments::SDK::Domain::PaymentProductFilterHostedTokenization] restrict_to
+      # @attr [OnlinePayments::SDK::Domain::PaymentProductFilterHostedTokenization, nil] exclude
+      # @attr [OnlinePayments::SDK::Domain::PaymentProductFilterHostedTokenization, nil] restrict_to
       class PaymentProductFiltersHostedTokenization < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :exclude

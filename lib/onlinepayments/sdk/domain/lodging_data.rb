@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] check_in_date
+      # @attr [String, nil] check_in_date
       class LodgingData < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :check_in_date

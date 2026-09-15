@@ -8,9 +8,9 @@ require 'onlinepayments/sdk/domain/refund_response'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] error_id
-      # @attr [Array<OnlinePayments::SDK::Domain::APIError>] errors
-      # @attr [OnlinePayments::SDK::Domain::RefundResponse] refund_result
+      # @attr [String, nil] error_id
+      # @attr [Array<OnlinePayments::SDK::Domain::APIError>, nil] errors
+      # @attr [OnlinePayments::SDK::Domain::RefundResponse, nil] refund_result
       class RefundErrorResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :error_id

@@ -9,12 +9,12 @@ require 'onlinepayments/sdk/domain/external_token_linked'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::CardWithoutCvv] card
-      # @attr [OnlinePayments::SDK::Domain::CrmToken] crm_token
-      # @attr [OnlinePayments::SDK::Domain::ExternalTokenLinked] external_token_linked
-      # @attr [true/false] is_new_token
-      # @attr [String] token
-      # @attr [String] token_status
+      # @attr [OnlinePayments::SDK::Domain::CardWithoutCvv, nil] card
+      # @attr [OnlinePayments::SDK::Domain::CrmToken, nil] crm_token
+      # @attr [OnlinePayments::SDK::Domain::ExternalTokenLinked, nil] external_token_linked
+      # @attr [true/false, nil] is_new_token
+      # @attr [String, nil] token
+      # @attr [String, nil] token_status
       class CreatedTokenResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :card

@@ -7,7 +7,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::CustomerDeviceOutput] device
+      # @attr [OnlinePayments::SDK::Domain::CustomerDeviceOutput, nil] device
       class CustomerOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :device

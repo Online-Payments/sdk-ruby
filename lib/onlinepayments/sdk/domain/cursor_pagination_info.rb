@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [true/false] has_more
-      # @attr [String] next_cursor
+      # @attr [true/false, nil] has_more
+      # @attr [String, nil] next_cursor
       class CursorPaginationInfo < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :has_more

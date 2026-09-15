@@ -6,11 +6,11 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] detail
-      # @attr [String] instance
-      # @attr [Integer] status
-      # @attr [String] title
-      # @attr [String] type
+      # @attr [String, nil] detail
+      # @attr [String, nil] instance
+      # @attr [Integer, nil] status
+      # @attr [String, nil] title
+      # @attr [String, nil] type
       class ProblemDetailsResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :detail

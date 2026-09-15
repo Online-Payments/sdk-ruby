@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/label_template_element'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Array<OnlinePayments::SDK::Domain::LabelTemplateElement>] label_template
-      # @attr [String] logo
+      # @attr [Array<OnlinePayments::SDK::Domain::LabelTemplateElement>, nil] label_template
+      # @attr [String, nil] logo
       class AccountOnFileDisplayHints < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :label_template

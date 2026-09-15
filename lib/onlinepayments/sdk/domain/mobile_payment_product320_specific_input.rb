@@ -8,10 +8,10 @@ require 'onlinepayments/sdk/domain/product320_recurring'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [true/false] is_recurring
-      # @attr [OnlinePayments::SDK::Domain::Product320Recurring] recurring
-      # @attr [OnlinePayments::SDK::Domain::GPayThreeDSecure] three_d_secure
-      # @attr [true/false] tokenize
+      # @attr [true/false, nil] is_recurring
+      # @attr [OnlinePayments::SDK::Domain::Product320Recurring, nil] recurring
+      # @attr [OnlinePayments::SDK::Domain::GPayThreeDSecure, nil] three_d_secure
+      # @attr [true/false, nil] tokenize
       class MobilePaymentProduct320SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :is_recurring

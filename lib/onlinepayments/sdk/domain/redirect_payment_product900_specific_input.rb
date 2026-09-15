@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] capture_trigger
+      # @attr [String, nil] capture_trigger
       class RedirectPaymentProduct900SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :capture_trigger

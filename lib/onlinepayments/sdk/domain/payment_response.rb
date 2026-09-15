@@ -11,13 +11,13 @@ require 'onlinepayments/sdk/domain/session_details'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::HostedCheckoutSpecificOutput] hosted_checkout_specific_output
-      # @attr [String] id
-      # @attr [OnlinePayments::SDK::Domain::OperationOutput] operation_output
-      # @attr [OnlinePayments::SDK::Domain::PaymentOutput] payment_output
-      # @attr [OnlinePayments::SDK::Domain::SessionDetails] session_details
-      # @attr [String] status
-      # @attr [OnlinePayments::SDK::Domain::PaymentStatusOutput] status_output
+      # @attr [OnlinePayments::SDK::Domain::HostedCheckoutSpecificOutput, nil] hosted_checkout_specific_output
+      # @attr [String, nil] id
+      # @attr [OnlinePayments::SDK::Domain::OperationOutput, nil] operation_output
+      # @attr [OnlinePayments::SDK::Domain::PaymentOutput, nil] payment_output
+      # @attr [OnlinePayments::SDK::Domain::SessionDetails, nil] session_details
+      # @attr [String, nil] status
+      # @attr [OnlinePayments::SDK::Domain::PaymentStatusOutput, nil] status_output
       class PaymentResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :hosted_checkout_specific_output

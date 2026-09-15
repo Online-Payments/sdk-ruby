@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Integer] delay_in_minutes
+      # @attr [Integer, nil] delay_in_minutes
       class AutoCapture < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :delay_in_minutes

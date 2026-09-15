@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] surcharge_mode
+      # @attr [String, nil] surcharge_mode
       class SurchargeForPaymentLink < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :surcharge_mode

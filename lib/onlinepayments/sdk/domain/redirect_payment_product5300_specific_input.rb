@@ -8,15 +8,15 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] birth_city
-      # @attr [String] birth_country
-      # @attr [String] birth_zip_code
-      # @attr [String] channel
-      # @attr [String] loyalty_card_number
-      # @attr [String] second_installment_payment_date
-      # @attr [Integer] session_duration
-      # @attr [String] title
-      # @attr [DateTime] transaction_expiration_date_time
+      # @attr [String, nil] birth_city
+      # @attr [String, nil] birth_country
+      # @attr [String, nil] birth_zip_code
+      # @attr [String, nil] channel
+      # @attr [String, nil] loyalty_card_number
+      # @attr [String, nil] second_installment_payment_date
+      # @attr [Integer, nil] session_duration
+      # @attr [String, nil] title
+      # @attr [DateTime, nil] transaction_expiration_date_time
       class RedirectPaymentProduct5300SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :birth_city

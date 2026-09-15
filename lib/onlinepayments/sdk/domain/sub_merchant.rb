@@ -7,11 +7,12 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::Address] address
-      # @attr [String] company_identification_number
-      # @attr [String] company_name
-      # @attr [String] merchant_category_code
-      # @attr [String] merchant_id
+      # @attr [OnlinePayments::SDK::Domain::Address, nil] address
+      # @attr [String, nil] company_identification_number
+      # @attr [String, nil] company_name
+      # @attr [String, nil] merchant_category_code
+      # @attr [String, nil] merchant_id
+      # @attr [String, nil] website
       class SubMerchant < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :address
@@ -24,6 +25,8 @@ module OnlinePayments
 
         attr_accessor :merchant_id
 
+        attr_accessor :website
+
         # @return (Hash)
         def to_h
           hash = super
@@ -32,6 +35,7 @@ module OnlinePayments
           hash['companyName'] = @company_name unless @company_name.nil?
           hash['merchantCategoryCode'] = @merchant_category_code unless @merchant_category_code.nil?
           hash['merchantId'] = @merchant_id unless @merchant_id.nil?
+          hash['website'] = @website unless @website.nil?
           hash
         end
 
@@ -52,6 +56,9 @@ module OnlinePayments
           end
           if hash.has_key? 'merchantId'
             @merchant_id = hash['merchantId']
+          end
+          if hash.has_key? 'website'
+            @website = hash['website']
           end
         end
       end

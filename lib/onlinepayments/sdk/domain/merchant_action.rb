@@ -10,11 +10,11 @@ require 'onlinepayments/sdk/domain/show_instructions_data'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] action_type
-      # @attr [OnlinePayments::SDK::Domain::MobileThreeDSecureChallengeParameters] mobile_three_d_secure_challenge_parameters
-      # @attr [OnlinePayments::SDK::Domain::RedirectData] redirect_data
-      # @attr [OnlinePayments::SDK::Domain::ShowFormData] show_form_data
-      # @attr [OnlinePayments::SDK::Domain::ShowInstructionsData] show_instructions_data
+      # @attr [String, nil] action_type
+      # @attr [OnlinePayments::SDK::Domain::MobileThreeDSecureChallengeParameters, nil] mobile_three_d_secure_challenge_parameters
+      # @attr [OnlinePayments::SDK::Domain::RedirectData, nil] redirect_data
+      # @attr [OnlinePayments::SDK::Domain::ShowFormData, nil] show_form_data
+      # @attr [OnlinePayments::SDK::Domain::ShowInstructionsData, nil] show_instructions_data
       class MerchantAction < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :action_type

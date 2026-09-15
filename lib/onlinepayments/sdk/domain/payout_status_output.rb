@@ -6,9 +6,9 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [true/false] is_cancellable
-      # @attr [String] status_category
-      # @attr [Integer] status_code
+      # @attr [true/false, nil] is_cancellable
+      # @attr [String, nil] status_category
+      # @attr [Integer, nil] status_code
       class PayoutStatusOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :is_cancellable

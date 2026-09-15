@@ -6,11 +6,11 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] account_number
-      # @attr [String] date_of_birth
-      # @attr [String] partial_pan
-      # @attr [String] surname
-      # @attr [String] zip
+      # @attr [String, nil] account_number
+      # @attr [String, nil] date_of_birth
+      # @attr [String, nil] partial_pan
+      # @attr [String, nil] surname
+      # @attr [String, nil] zip
       class LoanRecipient < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :account_number

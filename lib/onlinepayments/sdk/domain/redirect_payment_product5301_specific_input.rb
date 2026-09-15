@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] payment_method_type
+      # @attr [String, nil] payment_method_type
       class RedirectPaymentProduct5301SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :payment_method_type

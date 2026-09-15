@@ -11,10 +11,10 @@ require 'onlinepayments/sdk/domain/payment_references'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney] amount_of_money
-      # @attr [OnlinePayments::SDK::Domain::CardPaymentMethodSpecificOutputSummary] card_payment_method_specific_output
-      # @attr [OnlinePayments::SDK::Domain::PaymentReferences] references
-      # @attr [DateTime] transaction_date
+      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney, nil] amount_of_money
+      # @attr [OnlinePayments::SDK::Domain::CardPaymentMethodSpecificOutputSummary, nil] card_payment_method_specific_output
+      # @attr [OnlinePayments::SDK::Domain::PaymentReferences, nil] references
+      # @attr [DateTime, nil] transaction_date
       class PaymentOutputSummary < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :amount_of_money

@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] certificate_id
-      # @attr [String] signed_certificate
+      # @attr [String, nil] certificate_id
+      # @attr [String, nil] signed_certificate
       class CreateCertificateResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :certificate_id

@@ -14,18 +14,18 @@ require 'onlinepayments/sdk/domain/payment_product840_specific_output'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] authorisation_code
-      # @attr [OnlinePayments::SDK::Domain::CustomerBankAccount] customer_bank_account
-      # @attr [OnlinePayments::SDK::Domain::FraudResults] fraud_results
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct3204SpecificOutput] payment_method3204_specific_output
-      # @attr [String] payment_option
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct3203SpecificOutput] payment_product3203_specific_output
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct5001SpecificOutput] payment_product5001_specific_output
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct5402SpecificOutput] payment_product5402_specific_output
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct5500SpecificOutput] payment_product5500_specific_output
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct840SpecificOutput] payment_product840_specific_output
-      # @attr [Integer] payment_product_id
-      # @attr [String] token
+      # @attr [String, nil] authorisation_code
+      # @attr [OnlinePayments::SDK::Domain::CustomerBankAccount, nil] customer_bank_account
+      # @attr [OnlinePayments::SDK::Domain::FraudResults, nil] fraud_results
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct3204SpecificOutput, nil] payment_method3204_specific_output
+      # @attr [String, nil] payment_option
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct3203SpecificOutput, nil] payment_product3203_specific_output
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct5001SpecificOutput, nil] payment_product5001_specific_output
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct5402SpecificOutput, nil] payment_product5402_specific_output
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct5500SpecificOutput, nil] payment_product5500_specific_output
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct840SpecificOutput, nil] payment_product840_specific_output
+      # @attr [Integer, nil] payment_product_id
+      # @attr [String, nil] token
       class RedirectPaymentMethodSpecificOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :authorisation_code

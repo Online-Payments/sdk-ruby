@@ -10,13 +10,13 @@ require 'onlinepayments/sdk/domain/protection_eligibility'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::Address] billing_address
-      # @attr [OnlinePayments::SDK::Domain::AddressPersonal] billing_personal_address
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct840CustomerAccount] customer_account
-      # @attr [OnlinePayments::SDK::Domain::Address] customer_address
-      # @attr [String] pay_pal_transaction_id
-      # @attr [OnlinePayments::SDK::Domain::ProtectionEligibility] protection_eligibility
-      # @attr [OnlinePayments::SDK::Domain::AddressPersonal] shipping_address
+      # @attr [OnlinePayments::SDK::Domain::Address, nil] billing_address
+      # @attr [OnlinePayments::SDK::Domain::AddressPersonal, nil] billing_personal_address
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct840CustomerAccount, nil] customer_account
+      # @attr [OnlinePayments::SDK::Domain::Address, nil] customer_address
+      # @attr [String, nil] pay_pal_transaction_id
+      # @attr [OnlinePayments::SDK::Domain::ProtectionEligibility, nil] protection_eligibility
+      # @attr [OnlinePayments::SDK::Domain::AddressPersonal, nil] shipping_address
       class PaymentProduct840SpecificOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :billing_address

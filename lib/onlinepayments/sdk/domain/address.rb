@@ -6,13 +6,13 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] additional_info
-      # @attr [String] city
-      # @attr [String] country_code
-      # @attr [String] house_number
-      # @attr [String] state
-      # @attr [String] street
-      # @attr [String] zip
+      # @attr [String, nil] additional_info
+      # @attr [String, nil] city
+      # @attr [String, nil] country_code
+      # @attr [String, nil] house_number
+      # @attr [String, nil] state
+      # @attr [String, nil] street
+      # @attr [String, nil] zip
       class Address < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :additional_info

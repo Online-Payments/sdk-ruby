@@ -8,9 +8,9 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::CardBinDetails] card_bin_details
-      # @attr [OnlinePayments::SDK::Domain::CardWithoutCvv] card_without_cvv
-      # @attr [String] cobrand_selection_indicator
+      # @attr [OnlinePayments::SDK::Domain::CardBinDetails, nil] card_bin_details
+      # @attr [OnlinePayments::SDK::Domain::CardWithoutCvv, nil] card_without_cvv
+      # @attr [String, nil] cobrand_selection_indicator
       class TokenCardData < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :card_bin_details

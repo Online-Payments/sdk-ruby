@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/token_response'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::TokenResponse] token
-      # @attr [String] token_status
+      # @attr [OnlinePayments::SDK::Domain::TokenResponse, nil] token
+      # @attr [String, nil] token_status
       class GetHostedTokenizationResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :token

@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [true/false] adjustable_amount
-      # @attr [String] beneficiary_id
+      # @attr [true/false, nil] adjustable_amount
+      # @attr [String, nil] beneficiary_id
       class RedirectPaymentProduct5412SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :adjustable_amount

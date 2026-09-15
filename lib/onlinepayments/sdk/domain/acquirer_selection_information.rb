@@ -6,9 +6,9 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Integer] fallback_level
-      # @attr [String] result
-      # @attr [String] rule_name
+      # @attr [Integer, nil] fallback_level
+      # @attr [String, nil] result
+      # @attr [String, nil] rule_name
       class AcquirerSelectionInformation < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :fallback_level

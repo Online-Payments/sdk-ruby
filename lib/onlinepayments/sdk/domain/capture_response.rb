@@ -8,10 +8,10 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::CaptureOutput] capture_output
-      # @attr [String] id
-      # @attr [String] status
-      # @attr [OnlinePayments::SDK::Domain::CaptureStatusOutput] status_output
+      # @attr [OnlinePayments::SDK::Domain::CaptureOutput, nil] capture_output
+      # @attr [String, nil] id
+      # @attr [String, nil] status
+      # @attr [OnlinePayments::SDK::Domain::CaptureStatusOutput, nil] status_output
       class CaptureResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :capture_output

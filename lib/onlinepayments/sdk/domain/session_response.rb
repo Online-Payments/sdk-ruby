@@ -6,11 +6,11 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] asset_url
-      # @attr [String] client_api_url
-      # @attr [String] client_session_id
-      # @attr [String] customer_id
-      # @attr [Array<String>] invalid_tokens
+      # @attr [String, nil] asset_url
+      # @attr [String, nil] client_api_url
+      # @attr [String, nil] client_session_id
+      # @attr [String, nil] customer_id
+      # @attr [Array<String>, nil] invalid_tokens
       class SessionResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :asset_url

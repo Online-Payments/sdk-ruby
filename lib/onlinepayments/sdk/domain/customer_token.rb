@@ -9,9 +9,9 @@ require 'onlinepayments/sdk/domain/personal_information_token'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::Address] billing_address
-      # @attr [OnlinePayments::SDK::Domain::CompanyInformation] company_information
-      # @attr [OnlinePayments::SDK::Domain::PersonalInformationToken] personal_information
+      # @attr [OnlinePayments::SDK::Domain::Address, nil] billing_address
+      # @attr [OnlinePayments::SDK::Domain::CompanyInformation, nil] company_information
+      # @attr [OnlinePayments::SDK::Domain::PersonalInformationToken, nil] personal_information
       class CustomerToken < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :billing_address

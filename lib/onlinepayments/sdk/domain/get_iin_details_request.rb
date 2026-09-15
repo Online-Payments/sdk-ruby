@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/payment_context'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] bin
-      # @attr [OnlinePayments::SDK::Domain::PaymentContext] payment_context
+      # @attr [String, nil] bin
+      # @attr [OnlinePayments::SDK::Domain::PaymentContext, nil] payment_context
       class GetIINDetailsRequest < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :bin

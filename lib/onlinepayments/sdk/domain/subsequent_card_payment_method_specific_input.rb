@@ -8,14 +8,14 @@ require 'onlinepayments/sdk/domain/market_place'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] authorization_mode
-      # @attr [OnlinePayments::SDK::Domain::AutoCapture] auto_capture
-      # @attr [OnlinePayments::SDK::Domain::MarketPlace] market_place
-      # @attr [Integer] payment_number
-      # @attr [String] scheme_reference_data
-      # @attr [String] subsequent_type
-      # @attr [String] token
-      # @attr [String] transaction_channel
+      # @attr [String, nil] authorization_mode
+      # @attr [OnlinePayments::SDK::Domain::AutoCapture, nil] auto_capture
+      # @attr [OnlinePayments::SDK::Domain::MarketPlace, nil] market_place
+      # @attr [Integer, nil] payment_number
+      # @attr [String, nil] scheme_reference_data
+      # @attr [String, nil] subsequent_type
+      # @attr [String, nil] token
+      # @attr [String, nil] transaction_channel
       class SubsequentCardPaymentMethodSpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :authorization_mode

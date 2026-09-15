@@ -17,20 +17,20 @@ require 'onlinepayments/sdk/domain/surcharge_specific_output'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney] acquired_amount
-      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney] amount_of_money
-      # @attr [Integer] amount_paid
-      # @attr [OnlinePayments::SDK::Domain::CardPaymentMethodSpecificOutput] card_payment_method_specific_output
-      # @attr [OnlinePayments::SDK::Domain::CustomerOutput] customer
-      # @attr [OnlinePayments::SDK::Domain::Discount] discount
-      # @attr [String] merchant_parameters
-      # @attr [OnlinePayments::SDK::Domain::MobilePaymentMethodSpecificOutput] mobile_payment_method_specific_output
-      # @attr [String] payment_method
-      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentMethodSpecificOutput] redirect_payment_method_specific_output
-      # @attr [OnlinePayments::SDK::Domain::PaymentReferences] references
-      # @attr [OnlinePayments::SDK::Domain::SepaDirectDebitPaymentMethodSpecificOutput] sepa_direct_debit_payment_method_specific_output
-      # @attr [OnlinePayments::SDK::Domain::SurchargeSpecificOutput] surcharge_specific_output
-      # @attr [DateTime] transaction_date
+      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney, nil] acquired_amount
+      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney, nil] amount_of_money
+      # @attr [Integer, nil] amount_paid
+      # @attr [OnlinePayments::SDK::Domain::CardPaymentMethodSpecificOutput, nil] card_payment_method_specific_output
+      # @attr [OnlinePayments::SDK::Domain::CustomerOutput, nil] customer
+      # @attr [OnlinePayments::SDK::Domain::Discount, nil] discount
+      # @attr [String, nil] merchant_parameters
+      # @attr [OnlinePayments::SDK::Domain::MobilePaymentMethodSpecificOutput, nil] mobile_payment_method_specific_output
+      # @attr [String, nil] payment_method
+      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentMethodSpecificOutput, nil] redirect_payment_method_specific_output
+      # @attr [OnlinePayments::SDK::Domain::PaymentReferences, nil] references
+      # @attr [OnlinePayments::SDK::Domain::SepaDirectDebitPaymentMethodSpecificOutput, nil] sepa_direct_debit_payment_method_specific_output
+      # @attr [OnlinePayments::SDK::Domain::SurchargeSpecificOutput, nil] surcharge_specific_output
+      # @attr [DateTime, nil] transaction_date
       class PaymentOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :acquired_amount

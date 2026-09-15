@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] operator_id
-      # @attr [String] payment_id
+      # @attr [String, nil] operator_id
+      # @attr [String, nil] payment_id
       class OmnichannelPayoutSpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :operator_id

@@ -6,14 +6,14 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] category
-      # @attr [String] code
-      # @attr [String] error_code
-      # @attr [Integer] http_status_code
-      # @attr [String] id
-      # @attr [String] message
-      # @attr [String] property_name
-      # @attr [true/false] retriable
+      # @attr [String, nil] category
+      # @attr [String, nil] code
+      # @attr [String, nil] error_code
+      # @attr [Integer, nil] http_status_code
+      # @attr [String, nil] id
+      # @attr [String, nil] message
+      # @attr [String, nil] property_name
+      # @attr [true/false, nil] retriable
       class APIError < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :category

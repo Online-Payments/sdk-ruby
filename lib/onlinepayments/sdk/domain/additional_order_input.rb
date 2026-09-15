@@ -10,10 +10,10 @@ require 'onlinepayments/sdk/domain/order_type_information'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::AirlineData] airline_data
-      # @attr [OnlinePayments::SDK::Domain::LoanRecipient] loan_recipient
-      # @attr [OnlinePayments::SDK::Domain::LodgingData] lodging_data
-      # @attr [OnlinePayments::SDK::Domain::OrderTypeInformation] type_information
+      # @attr [OnlinePayments::SDK::Domain::AirlineData, nil] airline_data
+      # @attr [OnlinePayments::SDK::Domain::LoanRecipient, nil] loan_recipient
+      # @attr [OnlinePayments::SDK::Domain::LodgingData, nil] lodging_data
+      # @attr [OnlinePayments::SDK::Domain::OrderTypeInformation, nil] type_information
       class AdditionalOrderInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :airline_data

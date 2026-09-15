@@ -6,13 +6,13 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] cardholder_name
-      # @attr [String] expiry_date
-      # @attr [String] logo_url
-      # @attr [String] masked_pan
-      # @attr [Integer] payment_product_id
-      # @attr [String] product_name
-      # @attr [String] token
+      # @attr [String, nil] cardholder_name
+      # @attr [String, nil] expiry_date
+      # @attr [String, nil] logo_url
+      # @attr [String, nil] masked_pan
+      # @attr [Integer, nil] payment_product_id
+      # @attr [String, nil] product_name
+      # @attr [String, nil] token
       class CardToken < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :cardholder_name

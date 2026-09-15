@@ -6,9 +6,9 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] locale
-      # @attr [String] origin
-      # @attr [Array<String>] tokens
+      # @attr [String, nil] locale
+      # @attr [String, nil] origin
+      # @attr [Array<String>, nil] tokens
       class CreateHostedFieldsSessionRequest < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :locale

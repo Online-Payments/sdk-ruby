@@ -6,10 +6,10 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] entity_id
-      # @attr [String] payment_end_date
-      # @attr [String] payment_reference
-      # @attr [String] payment_start_date
+      # @attr [String, nil] entity_id
+      # @attr [String, nil] payment_end_date
+      # @attr [String, nil] payment_reference
+      # @attr [String, nil] payment_start_date
       class PaymentProduct5500SpecificOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :entity_id

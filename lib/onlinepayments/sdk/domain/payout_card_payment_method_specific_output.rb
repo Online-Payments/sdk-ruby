@@ -8,10 +8,10 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::Acceptance] acceptance
-      # @attr [String] authorisation_code
-      # @attr [OnlinePayments::SDK::Domain::CardEssentials] card
-      # @attr [Integer] payment_product_id
+      # @attr [OnlinePayments::SDK::Domain::Acceptance, nil] acceptance
+      # @attr [String, nil] authorisation_code
+      # @attr [OnlinePayments::SDK::Domain::CardEssentials, nil] card
+      # @attr [Integer, nil] payment_product_id
       class PayoutCardPaymentMethodSpecificOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :acceptance

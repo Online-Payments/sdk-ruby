@@ -8,31 +8,31 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] agent_numeric_code
-      # @attr [String] code
-      # @attr [String] flight_date
-      # @attr [String] flight_indicator
-      # @attr [Array<OnlinePayments::SDK::Domain::AirlineFlightLeg>] flight_legs
-      # @attr [String] invoice_number
-      # @attr [true/false] is_e_ticket
-      # @attr [true/false] is_restricted_ticket
-      # @attr [true/false] is_third_party
-      # @attr [String] issue_date
-      # @attr [String] merchant_customer_id
-      # @attr [String] name
-      # @attr [String] passenger_name
-      # @attr [Array<OnlinePayments::SDK::Domain::AirlinePassenger>] passengers
-      # @attr [String] place_of_issue
-      # @attr [String] pnr
-      # @attr [String] point_of_sale
-      # @attr [String] pos_city_code
-      # @attr [String] ticket_currency
-      # @attr [String] ticket_delivery_method
-      # @attr [String] ticket_number
-      # @attr [Integer] total_fare
-      # @attr [Integer] total_fee
-      # @attr [Integer] total_taxes
-      # @attr [String] travel_agency_name
+      # @attr [String, nil] agent_numeric_code
+      # @attr [String, nil] code
+      # @attr [String, nil] flight_date
+      # @attr [String, nil] flight_indicator
+      # @attr [Array<OnlinePayments::SDK::Domain::AirlineFlightLeg>, nil] flight_legs
+      # @attr [String, nil] invoice_number
+      # @attr [true/false, nil] is_e_ticket
+      # @attr [true/false, nil] is_restricted_ticket
+      # @attr [true/false, nil] is_third_party
+      # @attr [String, nil] issue_date
+      # @attr [String, nil] merchant_customer_id
+      # @attr [String, nil] name
+      # @attr [String, nil] passenger_name
+      # @attr [Array<OnlinePayments::SDK::Domain::AirlinePassenger>, nil] passengers
+      # @attr [String, nil] place_of_issue
+      # @attr [String, nil] pnr
+      # @attr [String, nil] point_of_sale
+      # @attr [String, nil] pos_city_code
+      # @attr [String, nil] ticket_currency
+      # @attr [String, nil] ticket_delivery_method
+      # @attr [String, nil] ticket_number
+      # @attr [Integer, nil] total_fare
+      # @attr [Integer, nil] total_fee
+      # @attr [Integer, nil] total_taxes
+      # @attr [String, nil] travel_agency_name
       class AirlineData < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :agent_numeric_code

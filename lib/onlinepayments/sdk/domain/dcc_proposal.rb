@@ -8,11 +8,11 @@ require 'onlinepayments/sdk/domain/rate_details'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney] base_amount
-      # @attr [String] disclaimer_display
-      # @attr [String] disclaimer_receipt
-      # @attr [OnlinePayments::SDK::Domain::RateDetails] rate
-      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney] target_amount
+      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney, nil] base_amount
+      # @attr [String, nil] disclaimer_display
+      # @attr [String, nil] disclaimer_receipt
+      # @attr [OnlinePayments::SDK::Domain::RateDetails, nil] rate
+      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney, nil] target_amount
       class DccProposal < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :base_amount

@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] existing_unique_mandate_reference
-      # @attr [OnlinePayments::SDK::Domain::CreateMandateWithReturnUrl] mandate
+      # @attr [String, nil] existing_unique_mandate_reference
+      # @attr [OnlinePayments::SDK::Domain::CreateMandateWithReturnUrl, nil] mandate
       class SepaDirectDebitPaymentProduct771SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :existing_unique_mandate_reference

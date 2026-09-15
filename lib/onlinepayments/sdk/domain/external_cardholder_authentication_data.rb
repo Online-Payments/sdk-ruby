@@ -6,16 +6,16 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] acs_transaction_id
-      # @attr [String] applied_exemption
-      # @attr [String] cavv
-      # @attr [String] cavv_algorithm
-      # @attr [String] directory_server_transaction_id
-      # @attr [Integer] eci
-      # @attr [String] flow
-      # @attr [Integer] scheme_risk_score
-      # @attr [String] three_d_secure_version
-      # @attr [String] xid
+      # @attr [String, nil] acs_transaction_id
+      # @attr [String, nil] applied_exemption
+      # @attr [String, nil] cavv
+      # @attr [String, nil] cavv_algorithm
+      # @attr [String, nil] directory_server_transaction_id
+      # @attr [Integer, nil] eci
+      # @attr [String, nil] flow
+      # @attr [Integer, nil] scheme_risk_score
+      # @attr [String, nil] three_d_secure_version
+      # @attr [String, nil] xid
       class ExternalCardholderAuthenticationData < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :acs_transaction_id

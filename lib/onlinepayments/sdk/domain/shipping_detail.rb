@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Integer] shipping_cost
-      # @attr [Integer] shipping_cost_tax
+      # @attr [Integer, nil] shipping_cost
+      # @attr [Integer, nil] shipping_cost_tax
       class ShippingDetail < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :shipping_cost

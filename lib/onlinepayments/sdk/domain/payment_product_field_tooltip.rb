@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] image
-      # @attr [String] label
+      # @attr [String, nil] image
+      # @attr [String, nil] label
       class PaymentProductFieldTooltip < OnlinePayments::SDK::Domain::DataObject
 
         # @deprecated This field is not used by any payment product Relative URL that can be used to retrieve an image for the tooltip image.

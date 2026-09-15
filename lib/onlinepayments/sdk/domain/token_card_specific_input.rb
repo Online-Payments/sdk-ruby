@@ -7,7 +7,7 @@ require 'onlinepayments/sdk/domain/token_data'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::TokenData] data
+      # @attr [OnlinePayments::SDK::Domain::TokenData, nil] data
       class TokenCardSpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :data

@@ -10,16 +10,16 @@ require 'onlinepayments/sdk/domain/payment_link_order_output'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [DateTime] expiration_date
-      # @attr [true/false] is_reusable_link
-      # @attr [String] payment_id
-      # @attr [Array<OnlinePayments::SDK::Domain::PaymentLinkEvent>] payment_link_events
-      # @attr [String] payment_link_id
-      # @attr [OnlinePayments::SDK::Domain::PaymentLinkOrderOutput] payment_link_order
-      # @attr [String] qr_code_base64
-      # @attr [String] recipient_name
-      # @attr [String] redirection_url
-      # @attr [String] status
+      # @attr [DateTime, nil] expiration_date
+      # @attr [true/false, nil] is_reusable_link
+      # @attr [String, nil] payment_id
+      # @attr [Array<OnlinePayments::SDK::Domain::PaymentLinkEvent>, nil] payment_link_events
+      # @attr [String, nil] payment_link_id
+      # @attr [OnlinePayments::SDK::Domain::PaymentLinkOrderOutput, nil] payment_link_order
+      # @attr [String, nil] qr_code_base64
+      # @attr [String, nil] recipient_name
+      # @attr [String, nil] redirection_url
+      # @attr [String, nil] status
       class PaymentLinkResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :expiration_date

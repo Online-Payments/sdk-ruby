@@ -8,15 +8,15 @@ require 'onlinepayments/sdk/domain/shipping_method'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::AddressPersonal] address
-      # @attr [String] address_indicator
-      # @attr [String] email_address
-      # @attr [String] first_usage_date
-      # @attr [true/false] is_first_usage
-      # @attr [OnlinePayments::SDK::Domain::ShippingMethod] method
-      # @attr [Integer] shipping_cost
-      # @attr [Integer] shipping_cost_tax
-      # @attr [String] type
+      # @attr [OnlinePayments::SDK::Domain::AddressPersonal, nil] address
+      # @attr [String, nil] address_indicator
+      # @attr [String, nil] email_address
+      # @attr [String, nil] first_usage_date
+      # @attr [true/false, nil] is_first_usage
+      # @attr [OnlinePayments::SDK::Domain::ShippingMethod, nil] method
+      # @attr [Integer, nil] shipping_cost
+      # @attr [Integer, nil] shipping_cost_tax
+      # @attr [String, nil] type
       class Shipping < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :address

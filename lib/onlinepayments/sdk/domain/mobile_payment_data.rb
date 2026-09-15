@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] dpan
-      # @attr [String] expiry_date
+      # @attr [String, nil] dpan
+      # @attr [String, nil] expiry_date
       class MobilePaymentData < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :dpan

@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [true/false] is_click_to_pay_payment
+      # @attr [true/false, nil] is_click_to_pay_payment
       class ClickToPay < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :is_click_to_pay_payment

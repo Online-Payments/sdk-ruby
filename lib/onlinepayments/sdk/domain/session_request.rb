@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Array<String>] tokens
+      # @attr [Array<String>, nil] tokens
       class SessionRequest < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :tokens

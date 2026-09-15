@@ -9,12 +9,12 @@ require 'onlinepayments/sdk/domain/line_item'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Array<OnlinePayments::SDK::Domain::AmountBreakdown>] amount_breakdown
-      # @attr [OnlinePayments::SDK::Domain::GiftCardPurchase] gift_card_purchase
-      # @attr [true/false] is_pre_order
-      # @attr [Array<OnlinePayments::SDK::Domain::LineItem>] items
-      # @attr [String] pre_order_item_availability_date
-      # @attr [true/false] re_order_indicator
+      # @attr [Array<OnlinePayments::SDK::Domain::AmountBreakdown>, nil] amount_breakdown
+      # @attr [OnlinePayments::SDK::Domain::GiftCardPurchase, nil] gift_card_purchase
+      # @attr [true/false, nil] is_pre_order
+      # @attr [Array<OnlinePayments::SDK::Domain::LineItem>, nil] items
+      # @attr [String, nil] pre_order_item_availability_date
+      # @attr [true/false, nil] re_order_indicator
       class ShoppingCart < OnlinePayments::SDK::Domain::DataObject
 
         # @deprecated Use order.shipping.shippingCost for shipping cost. Other amounts are not used. Determines how the total amount is split into amount types

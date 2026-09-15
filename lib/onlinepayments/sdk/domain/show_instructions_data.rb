@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] show_data
+      # @attr [String, nil] show_data
       class ShowInstructionsData < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :show_data

@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] card_number
-      # @attr [Integer] payment_product_id
+      # @attr [String, nil] card_number
+      # @attr [Integer, nil] payment_product_id
       class CardInfo < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :card_number

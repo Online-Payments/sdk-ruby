@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] exemption_request
-      # @attr [String] subsequent_type
+      # @attr [String, nil] exemption_request
+      # @attr [String, nil] subsequent_type
       class RedirectPaymentProduct5001SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :exemption_request

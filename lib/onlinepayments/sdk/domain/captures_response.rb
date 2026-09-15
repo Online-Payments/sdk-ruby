@@ -7,7 +7,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Array<OnlinePayments::SDK::Domain::Capture>] captures
+      # @attr [Array<OnlinePayments::SDK::Domain::Capture>, nil] captures
       class CapturesResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :captures

@@ -6,9 +6,9 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] avs_result
-      # @attr [String] cvv_result
-      # @attr [String] fraud_service_result
+      # @attr [String, nil] avs_result
+      # @attr [String, nil] cvv_result
+      # @attr [String, nil] fraud_service_result
       class CardFraudResults < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :avs_result

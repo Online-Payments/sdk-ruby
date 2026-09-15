@@ -6,9 +6,9 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Integer] item_count
-      # @attr [String] merchant_batch_reference
-      # @attr [String] operation_type
+      # @attr [Integer, nil] item_count
+      # @attr [String, nil] merchant_batch_reference
+      # @attr [String, nil] operation_type
       class BatchMetadata < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :item_count

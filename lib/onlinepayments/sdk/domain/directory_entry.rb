@@ -6,9 +6,9 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] issuer_id
-      # @attr [String] issuer_list
-      # @attr [String] issuer_name
+      # @attr [String, nil] issuer_id
+      # @attr [String, nil] issuer_list
+      # @attr [String, nil] issuer_name
       class DirectoryEntry < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :issuer_id

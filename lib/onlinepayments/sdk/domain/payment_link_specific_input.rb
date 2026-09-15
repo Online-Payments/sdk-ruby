@@ -8,9 +8,9 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] description
-      # @attr [DateTime] expiration_date
-      # @attr [String] recipient_name
+      # @attr [String, nil] description
+      # @attr [DateTime, nil] expiration_date
+      # @attr [String, nil] recipient_name
       class PaymentLinkSpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :description

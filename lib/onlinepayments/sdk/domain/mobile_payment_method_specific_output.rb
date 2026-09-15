@@ -9,12 +9,12 @@ require 'onlinepayments/sdk/domain/three_d_secure_results'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] authorisation_code
-      # @attr [OnlinePayments::SDK::Domain::CardFraudResults] fraud_results
-      # @attr [String] network
-      # @attr [OnlinePayments::SDK::Domain::MobilePaymentData] payment_data
-      # @attr [Integer] payment_product_id
-      # @attr [OnlinePayments::SDK::Domain::ThreeDSecureResults] three_d_secure_results
+      # @attr [String, nil] authorisation_code
+      # @attr [OnlinePayments::SDK::Domain::CardFraudResults, nil] fraud_results
+      # @attr [String, nil] network
+      # @attr [OnlinePayments::SDK::Domain::MobilePaymentData, nil] payment_data
+      # @attr [Integer, nil] payment_product_id
+      # @attr [OnlinePayments::SDK::Domain::ThreeDSecureResults, nil] three_d_secure_results
       class MobilePaymentMethodSpecificOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :authorisation_code

@@ -6,13 +6,13 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] amount
-      # @attr [String] label
-      # @attr [String] payment_timing
-      # @attr [String] recurring_payment_end_date
-      # @attr [Integer] recurring_payment_interval_count
-      # @attr [String] recurring_payment_interval_unit
-      # @attr [String] recurring_payment_start_date
+      # @attr [String, nil] amount
+      # @attr [String, nil] label
+      # @attr [String, nil] payment_timing
+      # @attr [String, nil] recurring_payment_end_date
+      # @attr [Integer, nil] recurring_payment_interval_count
+      # @attr [String, nil] recurring_payment_interval_unit
+      # @attr [String, nil] recurring_payment_start_date
       class ApplePayLineItem < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :amount

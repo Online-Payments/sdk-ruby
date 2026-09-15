@@ -6,9 +6,9 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] data
-      # @attr [String] method
-      # @attr [String] utc_timestamp
+      # @attr [String, nil] data
+      # @attr [String, nil] method
+      # @attr [String, nil] utc_timestamp
       class CustomerAccountAuthentication < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :data

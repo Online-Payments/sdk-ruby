@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] create_date
-      # @attr [Integer] number_of_card_on_file_creation_attempts_last24_hours
+      # @attr [String, nil] create_date
+      # @attr [Integer, nil] number_of_card_on_file_creation_attempts_last24_hours
       class PaymentAccountOnFile < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :create_date

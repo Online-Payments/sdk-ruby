@@ -8,9 +8,9 @@ require 'onlinepayments/sdk/domain/surcharge_for_payment_link'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney] amount
-      # @attr [String] merchant_reference
-      # @attr [OnlinePayments::SDK::Domain::SurchargeForPaymentLink] surcharge_specific_input
+      # @attr [OnlinePayments::SDK::Domain::AmountOfMoney, nil] amount
+      # @attr [String, nil] merchant_reference
+      # @attr [OnlinePayments::SDK::Domain::SurchargeForPaymentLink, nil] surcharge_specific_input
       # @deprecated An object containing the details of the related payment input.  All properties in paymentLinkOrder are deprecated. Use corresponding values as noted below: | Property | Replacement | | - | - | | merchantReference | references/merchantReference | | amount | order/amountOfMoney | | surchargeSpecificInput | order/surchargeSpecificInput |
       class PaymentLinkOrderInput < OnlinePayments::SDK::Domain::DataObject
 

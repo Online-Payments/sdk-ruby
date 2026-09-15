@@ -7,11 +7,11 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] billing_agreement
-      # @attr [String] management_url
-      # @attr [String] payment_description
-      # @attr [OnlinePayments::SDK::Domain::ApplePayLineItem] regular_billing
-      # @attr [OnlinePayments::SDK::Domain::ApplePayLineItem] trial_billing
+      # @attr [String, nil] billing_agreement
+      # @attr [String, nil] management_url
+      # @attr [String, nil] payment_description
+      # @attr [OnlinePayments::SDK::Domain::ApplePayLineItem, nil] regular_billing
+      # @attr [OnlinePayments::SDK::Domain::ApplePayLineItem, nil] trial_billing
       class ApplePayRecurringPaymentRequest < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :billing_agreement

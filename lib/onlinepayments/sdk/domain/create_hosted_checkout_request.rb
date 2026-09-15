@@ -14,14 +14,14 @@ require 'onlinepayments/sdk/domain/sepa_direct_debit_payment_method_specific_inp
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::CardPaymentMethodSpecificInputBase] card_payment_method_specific_input
-      # @attr [OnlinePayments::SDK::Domain::Feedbacks] feedbacks
-      # @attr [OnlinePayments::SDK::Domain::FraudFields] fraud_fields
-      # @attr [OnlinePayments::SDK::Domain::HostedCheckoutSpecificInput] hosted_checkout_specific_input
-      # @attr [OnlinePayments::SDK::Domain::MobilePaymentMethodHostedCheckoutSpecificInput] mobile_payment_method_specific_input
-      # @attr [OnlinePayments::SDK::Domain::Order] order
-      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentMethodSpecificInput] redirect_payment_method_specific_input
-      # @attr [OnlinePayments::SDK::Domain::SepaDirectDebitPaymentMethodSpecificInputBase] sepa_direct_debit_payment_method_specific_input
+      # @attr [OnlinePayments::SDK::Domain::CardPaymentMethodSpecificInputBase, nil] card_payment_method_specific_input
+      # @attr [OnlinePayments::SDK::Domain::Feedbacks, nil] feedbacks
+      # @attr [OnlinePayments::SDK::Domain::FraudFields, nil] fraud_fields
+      # @attr [OnlinePayments::SDK::Domain::HostedCheckoutSpecificInput, nil] hosted_checkout_specific_input
+      # @attr [OnlinePayments::SDK::Domain::MobilePaymentMethodHostedCheckoutSpecificInput, nil] mobile_payment_method_specific_input
+      # @attr [OnlinePayments::SDK::Domain::Order, nil] order
+      # @attr [OnlinePayments::SDK::Domain::RedirectPaymentMethodSpecificInput, nil] redirect_payment_method_specific_input
+      # @attr [OnlinePayments::SDK::Domain::SepaDirectDebitPaymentMethodSpecificInputBase, nil] sepa_direct_debit_payment_method_specific_input
       class CreateHostedCheckoutRequest < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :card_payment_method_specific_input

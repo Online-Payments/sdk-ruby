@@ -6,10 +6,10 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] details
-      # @attr [String] name
-      # @attr [Integer] speed
-      # @attr [String] type
+      # @attr [String, nil] details
+      # @attr [String, nil] name
+      # @attr [Integer, nil] speed
+      # @attr [String, nil] type
       class ShippingMethod < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :details

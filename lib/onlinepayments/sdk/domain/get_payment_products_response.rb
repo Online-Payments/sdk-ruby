@@ -7,7 +7,7 @@ require 'onlinepayments/sdk/domain/payment_product'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Array<OnlinePayments::SDK::Domain::PaymentProduct>] payment_products
+      # @attr [Array<OnlinePayments::SDK::Domain::PaymentProduct>, nil] payment_products
       class GetPaymentProductsResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :payment_products

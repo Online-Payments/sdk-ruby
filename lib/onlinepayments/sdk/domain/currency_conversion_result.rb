@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] result
-      # @attr [String] result_reason
+      # @attr [String, nil] result
+      # @attr [String, nil] result_reason
       class CurrencyConversionResult < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :result

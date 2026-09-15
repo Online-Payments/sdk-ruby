@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Array<Integer>] products
+      # @attr [Array<Integer>, nil] products
       class PaymentProductFilterHostedTokenization < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :products

@@ -9,19 +9,19 @@ require 'onlinepayments/sdk/domain/split_payment_product_filters_hosted_checkout
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Integer] allowed_number_of_payment_attempts
-      # @attr [true/false] auto_refund_split_payments
-      # @attr [OnlinePayments::SDK::Domain::CardPaymentMethodSpecificInputForHostedCheckout] card_payment_method_specific_input
-      # @attr [true/false] is_new_unscheduled_card_on_file_series
-      # @attr [true/false] is_recurring
-      # @attr [String] locale
-      # @attr [OnlinePayments::SDK::Domain::PaymentProductFiltersHostedCheckout] payment_product_filters
-      # @attr [String] return_url
-      # @attr [Integer] session_timeout
-      # @attr [true/false] show_result_page
-      # @attr [OnlinePayments::SDK::Domain::SplitPaymentProductFiltersHostedCheckout] split_payment_product_filters
-      # @attr [String] tokens
-      # @attr [String] variant
+      # @attr [Integer, nil] allowed_number_of_payment_attempts
+      # @attr [true/false, nil] auto_refund_split_payments
+      # @attr [OnlinePayments::SDK::Domain::CardPaymentMethodSpecificInputForHostedCheckout, nil] card_payment_method_specific_input
+      # @attr [true/false, nil] is_new_unscheduled_card_on_file_series
+      # @attr [true/false, nil] is_recurring
+      # @attr [String, nil] locale
+      # @attr [OnlinePayments::SDK::Domain::PaymentProductFiltersHostedCheckout, nil] payment_product_filters
+      # @attr [String, nil] return_url
+      # @attr [Integer, nil] session_timeout
+      # @attr [true/false, nil] show_result_page
+      # @attr [OnlinePayments::SDK::Domain::SplitPaymentProductFiltersHostedCheckout, nil] split_payment_product_filters
+      # @attr [String, nil] tokens
+      # @attr [String, nil] variant
       class HostedCheckoutSpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :allowed_number_of_payment_attempts

@@ -7,7 +7,7 @@ require 'onlinepayments/sdk/domain/refund_payment_product840_customer_account'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::RefundPaymentProduct840CustomerAccount] customer_account
+      # @attr [OnlinePayments::SDK::Domain::RefundPaymentProduct840CustomerAccount, nil] customer_account
       class RefundPaymentProduct840SpecificOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :customer_account

@@ -6,9 +6,9 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] market_number
-      # @attr [String] purchasing_buyer_reference1
-      # @attr [String] purchasing_buyer_reference2
+      # @attr [String, nil] market_number
+      # @attr [String, nil] purchasing_buyer_reference1
+      # @attr [String, nil] purchasing_buyer_reference2
       class PaymentProduct3013SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :market_number

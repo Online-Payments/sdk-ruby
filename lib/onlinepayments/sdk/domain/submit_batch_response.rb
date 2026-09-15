@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] merchant_batch_reference
-      # @attr [Integer] total_count
+      # @attr [String, nil] merchant_batch_reference
+      # @attr [Integer, nil] total_count
       class SubmitBatchResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :merchant_batch_reference

@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [true/false] cvv_mandatory_for_existing_token
-      # @attr [true/false] cvv_mandatory_for_new_token
+      # @attr [true/false, nil] cvv_mandatory_for_existing_token
+      # @attr [true/false, nil] cvv_mandatory_for_new_token
       class CreditCardValidationRules < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :cvv_mandatory_for_existing_token

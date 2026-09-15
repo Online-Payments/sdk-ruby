@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] payment_pattern
-      # @attr [Integer] total_number_of_payments
+      # @attr [String, nil] payment_pattern
+      # @attr [Integer, nil] total_number_of_payments
       class MultiplePaymentInformation < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :payment_pattern

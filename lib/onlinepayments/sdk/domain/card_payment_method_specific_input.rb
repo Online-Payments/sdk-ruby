@@ -14,42 +14,44 @@ require 'onlinepayments/sdk/domain/payment_product3012_specific_input'
 require 'onlinepayments/sdk/domain/payment_product3013_specific_input'
 require 'onlinepayments/sdk/domain/payment_product3208_specific_input'
 require 'onlinepayments/sdk/domain/payment_product3209_specific_input'
+require 'onlinepayments/sdk/domain/payment_product5002_specific_input'
 require 'onlinepayments/sdk/domain/sub_merchant'
 require 'onlinepayments/sdk/domain/three_d_secure'
 
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [true/false] allow_dynamic_linking
-      # @attr [String] authorization_mode
-      # @attr [OnlinePayments::SDK::Domain::AutoCapture] auto_capture
-      # @attr [OnlinePayments::SDK::Domain::Card] card
-      # @attr [String] card_on_file_recurring_expiration
-      # @attr [String] card_on_file_recurring_frequency
-      # @attr [String] cobrand_selection_indicator
-      # @attr [OnlinePayments::SDK::Domain::CurrencyConversionInput] currency_conversion
-      # @attr [String] initial_scheme_transaction_id
-      # @attr [true/false] is_recurring
-      # @attr [OnlinePayments::SDK::Domain::MarketPlace] market_place
-      # @attr [OnlinePayments::SDK::Domain::MultiplePaymentInformation] multiple_payment_information
-      # @attr [OnlinePayments::SDK::Domain::NetworkTokenData] network_token_data
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct130SpecificInput] payment_product130_specific_input
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct3012SpecificInput] payment_product3012_specific_input
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct3013SpecificInput] payment_product3013_specific_input
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct3208SpecificInput] payment_product3208_specific_input
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct3209SpecificInput] payment_product3209_specific_input
-      # @attr [Integer] payment_product_id
-      # @attr [OnlinePayments::SDK::Domain::CardRecurrenceDetails] recurring
-      # @attr [String] return_url
-      # @attr [String] scheme_reference_data
-      # @attr [true/false] skip_authentication
-      # @attr [OnlinePayments::SDK::Domain::SubMerchant] sub_merchant
-      # @attr [OnlinePayments::SDK::Domain::ThreeDSecure] three_d_secure
-      # @attr [String] token
-      # @attr [true/false] tokenize
-      # @attr [String] transaction_channel
-      # @attr [String] unscheduled_card_on_file_requestor
-      # @attr [String] unscheduled_card_on_file_sequence_indicator
+      # @attr [true/false, nil] allow_dynamic_linking
+      # @attr [String, nil] authorization_mode
+      # @attr [OnlinePayments::SDK::Domain::AutoCapture, nil] auto_capture
+      # @attr [OnlinePayments::SDK::Domain::Card, nil] card
+      # @attr [String, nil] card_on_file_recurring_expiration
+      # @attr [String, nil] card_on_file_recurring_frequency
+      # @attr [String, nil] cobrand_selection_indicator
+      # @attr [OnlinePayments::SDK::Domain::CurrencyConversionInput, nil] currency_conversion
+      # @attr [String, nil] initial_scheme_transaction_id
+      # @attr [true/false, nil] is_recurring
+      # @attr [OnlinePayments::SDK::Domain::MarketPlace, nil] market_place
+      # @attr [OnlinePayments::SDK::Domain::MultiplePaymentInformation, nil] multiple_payment_information
+      # @attr [OnlinePayments::SDK::Domain::NetworkTokenData, nil] network_token_data
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct130SpecificInput, nil] payment_product130_specific_input
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct3012SpecificInput, nil] payment_product3012_specific_input
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct3013SpecificInput, nil] payment_product3013_specific_input
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct3208SpecificInput, nil] payment_product3208_specific_input
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct3209SpecificInput, nil] payment_product3209_specific_input
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct5002SpecificInput, nil] payment_product5002_specific_input
+      # @attr [Integer, nil] payment_product_id
+      # @attr [OnlinePayments::SDK::Domain::CardRecurrenceDetails, nil] recurring
+      # @attr [String, nil] return_url
+      # @attr [String, nil] scheme_reference_data
+      # @attr [true/false, nil] skip_authentication
+      # @attr [OnlinePayments::SDK::Domain::SubMerchant, nil] sub_merchant
+      # @attr [OnlinePayments::SDK::Domain::ThreeDSecure, nil] three_d_secure
+      # @attr [String, nil] token
+      # @attr [true/false, nil] tokenize
+      # @attr [String, nil] transaction_channel
+      # @attr [String, nil] unscheduled_card_on_file_requestor
+      # @attr [String, nil] unscheduled_card_on_file_sequence_indicator
       class CardPaymentMethodSpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :allow_dynamic_linking
@@ -87,6 +89,8 @@ module OnlinePayments
         attr_accessor :payment_product3208_specific_input
 
         attr_accessor :payment_product3209_specific_input
+
+        attr_accessor :payment_product5002_specific_input
 
         attr_accessor :payment_product_id
 
@@ -134,6 +138,7 @@ module OnlinePayments
           hash['paymentProduct3013SpecificInput'] = @payment_product3013_specific_input.to_h unless @payment_product3013_specific_input.nil?
           hash['paymentProduct3208SpecificInput'] = @payment_product3208_specific_input.to_h unless @payment_product3208_specific_input.nil?
           hash['paymentProduct3209SpecificInput'] = @payment_product3209_specific_input.to_h unless @payment_product3209_specific_input.nil?
+          hash['paymentProduct5002SpecificInput'] = @payment_product5002_specific_input.to_h unless @payment_product5002_specific_input.nil?
           hash['paymentProductId'] = @payment_product_id unless @payment_product_id.nil?
           hash['recurring'] = @recurring.to_h unless @recurring.nil?
           hash['returnUrl'] = @return_url unless @return_url.nil?
@@ -215,6 +220,10 @@ module OnlinePayments
           if hash.has_key? 'paymentProduct3209SpecificInput'
             raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct3209SpecificInput']] unless hash['paymentProduct3209SpecificInput'].is_a? Hash
             @payment_product3209_specific_input = OnlinePayments::SDK::Domain::PaymentProduct3209SpecificInput.new_from_hash(hash['paymentProduct3209SpecificInput'])
+          end
+          if hash.has_key? 'paymentProduct5002SpecificInput'
+            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct5002SpecificInput']] unless hash['paymentProduct5002SpecificInput'].is_a? Hash
+            @payment_product5002_specific_input = OnlinePayments::SDK::Domain::PaymentProduct5002SpecificInput.new_from_hash(hash['paymentProduct5002SpecificInput'])
           end
           if hash.has_key? 'paymentProductId'
             @payment_product_id = hash['paymentProductId']

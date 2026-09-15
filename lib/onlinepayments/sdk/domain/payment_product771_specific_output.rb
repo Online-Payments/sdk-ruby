@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] mandate_reference
+      # @attr [String, nil] mandate_reference
       class PaymentProduct771SpecificOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :mandate_reference

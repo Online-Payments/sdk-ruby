@@ -6,11 +6,11 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] email_address
-      # @attr [String] fax_number
-      # @attr [String] mobile_phone_number
-      # @attr [String] phone_number
-      # @attr [String] work_phone_number
+      # @attr [String, nil] email_address
+      # @attr [String, nil] fax_number
+      # @attr [String, nil] mobile_phone_number
+      # @attr [String, nil] phone_number
+      # @attr [String, nil] work_phone_number
       class ContactDetails < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :email_address

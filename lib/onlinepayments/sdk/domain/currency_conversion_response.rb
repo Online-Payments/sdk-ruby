@@ -8,9 +8,9 @@ require 'onlinepayments/sdk/domain/dcc_proposal'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] dcc_session_id
-      # @attr [OnlinePayments::SDK::Domain::DccProposal] proposal
-      # @attr [OnlinePayments::SDK::Domain::CurrencyConversionResult] result
+      # @attr [String, nil] dcc_session_id
+      # @attr [OnlinePayments::SDK::Domain::DccProposal, nil] proposal
+      # @attr [OnlinePayments::SDK::Domain::CurrencyConversionResult, nil] result
       class CurrencyConversionResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :dcc_session_id

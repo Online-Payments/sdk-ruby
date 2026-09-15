@@ -6,14 +6,14 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] airline_loyalty_status
-      # @attr [String] country_code
-      # @attr [String] date_of_birth
-      # @attr [String] first_name
-      # @attr [String] passenger_type
-      # @attr [String] surname
-      # @attr [String] surname_prefix
-      # @attr [String] title
+      # @attr [String, nil] airline_loyalty_status
+      # @attr [String, nil] country_code
+      # @attr [String, nil] date_of_birth
+      # @attr [String, nil] first_name
+      # @attr [String, nil] passenger_type
+      # @attr [String, nil] surname
+      # @attr [String, nil] surname_prefix
+      # @attr [String, nil] title
       class AirlinePassenger < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :airline_loyalty_status

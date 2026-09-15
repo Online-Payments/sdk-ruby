@@ -9,7 +9,7 @@ module OnlinePayments
     #
     # @attr_reader [Integer] status_code   HTTP status code of the returned response.
     # @attr_reader [String]  response_body Message body of the returned response.
-    # @attr_reader [String] error_id The _errorId_ received from the Payment platform if available.
+    # @attr_reader [String, nil] error_id The _errorId_ received from the Payment platform if available.
     # @attr_reader [Array<OnlinePayments::SDK::Domain::APIError>] errors The _errors_ received from the Payment platform if available;
     #              may be empty but never _nil_
     class ApiException < RuntimeError
@@ -18,7 +18,7 @@ module OnlinePayments
       #
       # @param status_code   (Integer) HTTP status code the response
       # @param response_body (String) HTTP response body
-      # @param error_id      (String) The _errorId_ received from the Payment platform
+      # @param error_id      (String, nil) The _errorId_ received from the Payment platform
       # @param errors        (Array<OnlinePayments::SDK::Domain::APIError>) The _errors_ received from the Payment platform
       # @param message       (String) error message to include
       def initialize(status_code, response_body, error_id, errors,

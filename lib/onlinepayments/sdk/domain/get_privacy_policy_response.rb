@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] html_content
+      # @attr [String, nil] html_content
       class GetPrivacyPolicyResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :html_content

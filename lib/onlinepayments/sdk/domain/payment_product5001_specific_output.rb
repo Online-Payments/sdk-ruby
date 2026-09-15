@@ -6,11 +6,11 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] account_number
-      # @attr [String] authorisation_code
-      # @attr [String] liability
-      # @attr [String] mobile_phone_number
-      # @attr [String] operation_code
+      # @attr [String, nil] account_number
+      # @attr [String, nil] authorisation_code
+      # @attr [String, nil] liability
+      # @attr [String, nil] mobile_phone_number
+      # @attr [String, nil] operation_code
       class PaymentProduct5001SpecificOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :account_number

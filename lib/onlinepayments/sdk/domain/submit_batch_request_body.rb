@@ -14,14 +14,14 @@ require 'onlinepayments/sdk/domain/subsequent_payment_batch_request'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Array<OnlinePayments::SDK::Domain::CancelPaymentBatchRequest>] cancel_payments
-      # @attr [Array<OnlinePayments::SDK::Domain::CapturePaymentBatchRequest>] capture_payments
-      # @attr [Array<OnlinePayments::SDK::Domain::CreatePaymentLinkRequest>] create_payment_links
-      # @attr [Array<OnlinePayments::SDK::Domain::CreatePaymentRequest>] create_payments
-      # @attr [Array<OnlinePayments::SDK::Domain::CreatePayoutRequest>] create_payouts
-      # @attr [OnlinePayments::SDK::Domain::BatchMetadata] header
-      # @attr [Array<OnlinePayments::SDK::Domain::RefundPaymentBatchRequest>] refund_payments
-      # @attr [Array<OnlinePayments::SDK::Domain::SubsequentPaymentBatchRequest>] subsequent_payments
+      # @attr [Array<OnlinePayments::SDK::Domain::CancelPaymentBatchRequest>, nil] cancel_payments
+      # @attr [Array<OnlinePayments::SDK::Domain::CapturePaymentBatchRequest>, nil] capture_payments
+      # @attr [Array<OnlinePayments::SDK::Domain::CreatePaymentLinkRequest>, nil] create_payment_links
+      # @attr [Array<OnlinePayments::SDK::Domain::CreatePaymentRequest>, nil] create_payments
+      # @attr [Array<OnlinePayments::SDK::Domain::CreatePayoutRequest>, nil] create_payouts
+      # @attr [OnlinePayments::SDK::Domain::BatchMetadata, nil] header
+      # @attr [Array<OnlinePayments::SDK::Domain::RefundPaymentBatchRequest>, nil] refund_payments
+      # @attr [Array<OnlinePayments::SDK::Domain::SubsequentPaymentBatchRequest>, nil] subsequent_payments
       class SubmitBatchRequestBody < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :cancel_payments

@@ -7,10 +7,10 @@ require 'onlinepayments/sdk/domain/surcharge_calculation_card'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::SurchargeCalculationCard] card
-      # @attr [String] encrypted_customer_input
-      # @attr [String] hosted_tokenization_id
-      # @attr [String] token
+      # @attr [OnlinePayments::SDK::Domain::SurchargeCalculationCard, nil] card
+      # @attr [String, nil] encrypted_customer_input
+      # @attr [String, nil] hosted_tokenization_id
+      # @attr [String, nil] token
       class CardSource < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :card

@@ -6,7 +6,7 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] csr
+      # @attr [String, nil] csr
       class CsrRequest < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :csr

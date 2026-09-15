@@ -5,25 +5,27 @@ require 'onlinepayments/sdk/domain/account_on_file'
 require 'onlinepayments/sdk/domain/data_object'
 require 'onlinepayments/sdk/domain/payment_product302_specific_data'
 require 'onlinepayments/sdk/domain/payment_product320_specific_data'
+require 'onlinepayments/sdk/domain/payment_product5002_specific_data'
 require 'onlinepayments/sdk/domain/payment_product_display_hints'
 require 'onlinepayments/sdk/domain/payment_product_field'
 
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Array<OnlinePayments::SDK::Domain::AccountOnFile>] accounts_on_file
-      # @attr [true/false] allows_authentication
-      # @attr [true/false] allows_recurring
-      # @attr [true/false] allows_tokenization
-      # @attr [OnlinePayments::SDK::Domain::PaymentProductDisplayHints] display_hints
-      # @attr [Array<OnlinePayments::SDK::Domain::PaymentProductDisplayHints>] display_hints_list
-      # @attr [Array<OnlinePayments::SDK::Domain::PaymentProductField>] fields
-      # @attr [Integer] id
-      # @attr [String] payment_method
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct302SpecificData] payment_product302_specific_data
-      # @attr [OnlinePayments::SDK::Domain::PaymentProduct320SpecificData] payment_product320_specific_data
-      # @attr [String] payment_product_group
-      # @attr [true/false] uses_redirection_to3rd_party
+      # @attr [Array<OnlinePayments::SDK::Domain::AccountOnFile>, nil] accounts_on_file
+      # @attr [true/false, nil] allows_authentication
+      # @attr [true/false, nil] allows_recurring
+      # @attr [true/false, nil] allows_tokenization
+      # @attr [OnlinePayments::SDK::Domain::PaymentProductDisplayHints, nil] display_hints
+      # @attr [Array<OnlinePayments::SDK::Domain::PaymentProductDisplayHints>, nil] display_hints_list
+      # @attr [Array<OnlinePayments::SDK::Domain::PaymentProductField>, nil] fields
+      # @attr [Integer, nil] id
+      # @attr [String, nil] payment_method
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct302SpecificData, nil] payment_product302_specific_data
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct320SpecificData, nil] payment_product320_specific_data
+      # @attr [OnlinePayments::SDK::Domain::PaymentProduct5002SpecificData, nil] payment_product5002_specific_data
+      # @attr [String, nil] payment_product_group
+      # @attr [true/false, nil] uses_redirection_to3rd_party
       class PaymentProduct < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :accounts_on_file
@@ -48,6 +50,8 @@ module OnlinePayments
 
         attr_accessor :payment_product320_specific_data
 
+        attr_accessor :payment_product5002_specific_data
+
         attr_accessor :payment_product_group
 
         attr_accessor :uses_redirection_to3rd_party
@@ -66,6 +70,7 @@ module OnlinePayments
           hash['paymentMethod'] = @payment_method unless @payment_method.nil?
           hash['paymentProduct302SpecificData'] = @payment_product302_specific_data.to_h unless @payment_product302_specific_data.nil?
           hash['paymentProduct320SpecificData'] = @payment_product320_specific_data.to_h unless @payment_product320_specific_data.nil?
+          hash['paymentProduct5002SpecificData'] = @payment_product5002_specific_data.to_h unless @payment_product5002_specific_data.nil?
           hash['paymentProductGroup'] = @payment_product_group unless @payment_product_group.nil?
           hash['usesRedirectionTo3rdParty'] = @uses_redirection_to3rd_party unless @uses_redirection_to3rd_party.nil?
           hash
@@ -120,6 +125,10 @@ module OnlinePayments
           if hash.has_key? 'paymentProduct320SpecificData'
             raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct320SpecificData']] unless hash['paymentProduct320SpecificData'].is_a? Hash
             @payment_product320_specific_data = OnlinePayments::SDK::Domain::PaymentProduct320SpecificData.new_from_hash(hash['paymentProduct320SpecificData'])
+          end
+          if hash.has_key? 'paymentProduct5002SpecificData'
+            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct5002SpecificData']] unless hash['paymentProduct5002SpecificData'].is_a? Hash
+            @payment_product5002_specific_data = OnlinePayments::SDK::Domain::PaymentProduct5002SpecificData.new_from_hash(hash['paymentProduct5002SpecificData'])
           end
           if hash.has_key? 'paymentProductGroup'
             @payment_product_group = hash['paymentProductGroup']

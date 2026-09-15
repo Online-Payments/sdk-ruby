@@ -7,8 +7,8 @@ require 'onlinepayments/sdk/domain/payment_response'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::PaymentResponse] payment
-      # @attr [String] payment_status_category
+      # @attr [OnlinePayments::SDK::Domain::PaymentResponse, nil] payment
+      # @attr [String, nil] payment_status_category
       class CreatedPaymentOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :payment

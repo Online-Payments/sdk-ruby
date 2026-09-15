@@ -8,10 +8,10 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Array<OnlinePayments::SDK::Domain::AccountOnFileAttribute>] attributes
-      # @attr [OnlinePayments::SDK::Domain::AccountOnFileDisplayHints] display_hints
-      # @attr [String] id
-      # @attr [Integer] payment_product_id
+      # @attr [Array<OnlinePayments::SDK::Domain::AccountOnFileAttribute>, nil] attributes
+      # @attr [OnlinePayments::SDK::Domain::AccountOnFileDisplayHints, nil] display_hints
+      # @attr [String, nil] id
+      # @attr [Integer, nil] payment_product_id
       class AccountOnFile < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :attributes

@@ -6,8 +6,8 @@ require 'onlinepayments/sdk/domain/data_object'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [String] eligibility
-      # @attr [String] type
+      # @attr [String, nil] eligibility
+      # @attr [String, nil] type
       class ProtectionEligibility < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :eligibility

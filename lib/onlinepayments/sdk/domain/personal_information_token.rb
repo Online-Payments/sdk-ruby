@@ -7,7 +7,7 @@ require 'onlinepayments/sdk/domain/personal_name_token'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [OnlinePayments::SDK::Domain::PersonalNameToken] name
+      # @attr [OnlinePayments::SDK::Domain::PersonalNameToken, nil] name
       class PersonalInformationToken < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :name

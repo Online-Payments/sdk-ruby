@@ -7,15 +7,15 @@ require 'onlinepayments/sdk/domain/three_d_secure_data'
 module OnlinePayments
   module SDK
     module Domain
-      # @attr [Integer] authentication_amount
-      # @attr [String] challenge_canvas_size
-      # @attr [String] challenge_indicator
-      # @attr [String] exemption_request
-      # @attr [Integer] merchant_fraud_rate
-      # @attr [OnlinePayments::SDK::Domain::ThreeDSecureData] prior_three_d_secure_data
-      # @attr [true/false] secure_corporate_payment
-      # @attr [true/false] skip_authentication
-      # @attr [true/false] skip_soft_decline
+      # @attr [Integer, nil] authentication_amount
+      # @attr [String, nil] challenge_canvas_size
+      # @attr [String, nil] challenge_indicator
+      # @attr [String, nil] exemption_request
+      # @attr [Integer, nil] merchant_fraud_rate
+      # @attr [OnlinePayments::SDK::Domain::ThreeDSecureData, nil] prior_three_d_secure_data
+      # @attr [true/false, nil] secure_corporate_payment
+      # @attr [true/false, nil] skip_authentication
+      # @attr [true/false, nil] skip_soft_decline
       class ThreeDSecureBase < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :authentication_amount
