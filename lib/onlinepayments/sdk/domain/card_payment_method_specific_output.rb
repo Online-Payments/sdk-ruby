@@ -39,6 +39,7 @@ module OnlinePayments
       # @attr [Integer, nil] payment_product_id
       # @attr [OnlinePayments::SDK::Domain::ReattemptInstructions, nil] reattempt_instructions
       # @attr [String, nil] scheme_reference_data
+      # @attr [String, nil] scheme_transaction_id
       # @attr [OnlinePayments::SDK::Domain::ThreeDSecureResults, nil] three_d_secure_results
       # @attr [String, nil] token
       class CardPaymentMethodSpecificOutput < OnlinePayments::SDK::Domain::DataObject
@@ -83,6 +84,8 @@ module OnlinePayments
 
         attr_accessor :scheme_reference_data
 
+        attr_accessor :scheme_transaction_id
+
         attr_accessor :three_d_secure_results
 
         attr_accessor :token
@@ -110,6 +113,7 @@ module OnlinePayments
           hash['paymentProductId'] = @payment_product_id unless @payment_product_id.nil?
           hash['reattemptInstructions'] = @reattempt_instructions.to_h unless @reattempt_instructions.nil?
           hash['schemeReferenceData'] = @scheme_reference_data unless @scheme_reference_data.nil?
+          hash['schemeTransactionId'] = @scheme_transaction_id unless @scheme_transaction_id.nil?
           hash['threeDSecureResults'] = @three_d_secure_results.to_h unless @three_d_secure_results.nil?
           hash['token'] = @token unless @token.nil?
           hash
@@ -188,6 +192,9 @@ module OnlinePayments
           end
           if hash.has_key? 'schemeReferenceData'
             @scheme_reference_data = hash['schemeReferenceData']
+          end
+          if hash.has_key? 'schemeTransactionId'
+            @scheme_transaction_id = hash['schemeTransactionId']
           end
           if hash.has_key? 'threeDSecureResults'
             raise TypeError, "value '%s' is not a Hash" % [hash['threeDSecureResults']] unless hash['threeDSecureResults'].is_a? Hash
