@@ -16,11 +16,11 @@ module OnlinePayments
       # @attr [String, nil] distance_unit
       # @attr [String, nil] driver_identification_number
       # @attr [String, nil] driver_tax_number
-      # @attr [OnlinePayments::SDK::Domain::CarRentalPickupReturnData, nil] pickup
+      # @attr [OnlinePayments::SDK::Domain::CarRentalPickupReturnData, nil] pickup_details
       # @attr [Integer, nil] rental_rate_amount
       # @attr [String, nil] rental_rate_type
       # @attr [String, nil] renter_name
-      # @attr [OnlinePayments::SDK::Domain::CarRentalPickupReturnData, nil] return
+      # @attr [OnlinePayments::SDK::Domain::CarRentalPickupReturnData, nil] return_details
       # @attr [true/false, nil] tax_exempt_indicator
       # @attr [String, nil] toll_free_number
       # @attr [OnlinePayments::SDK::Domain::CarRentalVehicleData, nil] vehicle
@@ -42,7 +42,7 @@ module OnlinePayments
 
         attr_accessor :driver_tax_number
 
-        attr_accessor :pickup
+        attr_accessor :pickup_details
 
         attr_accessor :rental_rate_amount
 
@@ -50,7 +50,7 @@ module OnlinePayments
 
         attr_accessor :renter_name
 
-        attr_accessor :return
+        attr_accessor :return_details
 
         attr_accessor :tax_exempt_indicator
 
@@ -69,11 +69,11 @@ module OnlinePayments
           hash['distanceUnit'] = @distance_unit unless @distance_unit.nil?
           hash['driverIdentificationNumber'] = @driver_identification_number unless @driver_identification_number.nil?
           hash['driverTaxNumber'] = @driver_tax_number unless @driver_tax_number.nil?
-          hash['pickup'] = @pickup.to_h unless @pickup.nil?
+          hash['pickupDetails'] = @pickup_details.to_h unless @pickup_details.nil?
           hash['rentalRateAmount'] = @rental_rate_amount unless @rental_rate_amount.nil?
           hash['rentalRateType'] = @rental_rate_type unless @rental_rate_type.nil?
           hash['renterName'] = @renter_name unless @renter_name.nil?
-          hash['return'] = @return.to_h unless @return.nil?
+          hash['returnDetails'] = @return_details.to_h unless @return_details.nil?
           hash['taxExemptIndicator'] = @tax_exempt_indicator unless @tax_exempt_indicator.nil?
           hash['tollFreeNumber'] = @toll_free_number unless @toll_free_number.nil?
           hash['vehicle'] = @vehicle.to_h unless @vehicle.nil?
@@ -106,9 +106,9 @@ module OnlinePayments
           if hash.has_key? 'driverTaxNumber'
             @driver_tax_number = hash['driverTaxNumber']
           end
-          if hash.has_key? 'pickup'
-            raise TypeError, "value '%s' is not a Hash" % [hash['pickup']] unless hash['pickup'].is_a? Hash
-            @pickup = OnlinePayments::SDK::Domain::CarRentalPickupReturnData.new_from_hash(hash['pickup'])
+          if hash.has_key? 'pickupDetails'
+            raise TypeError, "value '%s' is not a Hash" % [hash['pickupDetails']] unless hash['pickupDetails'].is_a? Hash
+            @pickup_details = OnlinePayments::SDK::Domain::CarRentalPickupReturnData.new_from_hash(hash['pickupDetails'])
           end
           if hash.has_key? 'rentalRateAmount'
             @rental_rate_amount = hash['rentalRateAmount']
@@ -119,9 +119,9 @@ module OnlinePayments
           if hash.has_key? 'renterName'
             @renter_name = hash['renterName']
           end
-          if hash.has_key? 'return'
-            raise TypeError, "value '%s' is not a Hash" % [hash['return']] unless hash['return'].is_a? Hash
-            @return = OnlinePayments::SDK::Domain::CarRentalPickupReturnData.new_from_hash(hash['return'])
+          if hash.has_key? 'returnDetails'
+            raise TypeError, "value '%s' is not a Hash" % [hash['returnDetails']] unless hash['returnDetails'].is_a? Hash
+            @return_details = OnlinePayments::SDK::Domain::CarRentalPickupReturnData.new_from_hash(hash['returnDetails'])
           end
           if hash.has_key? 'taxExemptIndicator'
             @tax_exempt_indicator = hash['taxExemptIndicator']
