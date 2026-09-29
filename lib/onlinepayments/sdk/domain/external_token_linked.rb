@@ -18,6 +18,24 @@ module OnlinePayments
 
         attr_accessor :generated_token
 
+        # Sets the property and returns this same instance.
+        def with_computed_token(value)
+          @computed_token = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_gts_computed_token(value)
+          @gts_computed_token = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_generated_token(value)
+          @generated_token = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

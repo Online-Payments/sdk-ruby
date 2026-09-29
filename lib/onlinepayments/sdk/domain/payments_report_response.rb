@@ -16,6 +16,18 @@ module OnlinePayments
 
         attr_accessor :payments
 
+        # Sets the property and returns this same instance.
+        def with_pagination(value)
+          @pagination = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payments(value)
+          @payments = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

@@ -62,6 +62,90 @@ module OnlinePayments
 
         attr_accessor :transaction_date
 
+        # Sets the property and returns this same instance.
+        def with_acquired_amount(value)
+          @acquired_amount = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_amount_of_money(value)
+          @amount_of_money = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_amount_paid(value)
+          @amount_paid = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_card_payment_method_specific_output(value)
+          @card_payment_method_specific_output = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_customer(value)
+          @customer = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_discount(value)
+          @discount = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_merchant_parameters(value)
+          @merchant_parameters = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_mobile_payment_method_specific_output(value)
+          @mobile_payment_method_specific_output = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_method(value)
+          @payment_method = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_redirect_payment_method_specific_output(value)
+          @redirect_payment_method_specific_output = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_references(value)
+          @references = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_sepa_direct_debit_payment_method_specific_output(value)
+          @sepa_direct_debit_payment_method_specific_output = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_surcharge_specific_output(value)
+          @surcharge_specific_output = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_transaction_date(value)
+          @transaction_date = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

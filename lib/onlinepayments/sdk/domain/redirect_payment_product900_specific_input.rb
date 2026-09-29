@@ -11,6 +11,12 @@ module OnlinePayments
 
         attr_accessor :capture_trigger
 
+        # Sets the property and returns this same instance.
+        def with_capture_trigger(value)
+          @capture_trigger = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

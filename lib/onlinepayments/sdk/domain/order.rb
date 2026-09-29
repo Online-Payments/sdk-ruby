@@ -46,6 +46,66 @@ module OnlinePayments
 
         attr_accessor :total_tax_amount
 
+        # Sets the property and returns this same instance.
+        def with_additional_input(value)
+          @additional_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_amount_of_money(value)
+          @amount_of_money = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_customer(value)
+          @customer = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_discount(value)
+          @discount = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_references(value)
+          @references = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_shipping(value)
+          @shipping = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_shopping_cart(value)
+          @shopping_cart = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_surcharge_specific_input(value)
+          @surcharge_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_tax_percentage(value)
+          @tax_percentage = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_total_tax_amount(value)
+          @total_tax_amount = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

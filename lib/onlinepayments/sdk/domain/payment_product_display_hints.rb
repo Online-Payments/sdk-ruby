@@ -17,6 +17,24 @@ module OnlinePayments
 
         attr_accessor :logo
 
+        # Sets the property and returns this same instance.
+        def with_display_order(value)
+          @display_order = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_label(value)
+          @label = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_logo(value)
+          @logo = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

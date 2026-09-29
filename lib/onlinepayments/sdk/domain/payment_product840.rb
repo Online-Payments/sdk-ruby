@@ -11,6 +11,12 @@ module OnlinePayments
 
         attr_accessor :order_id
 
+        # Sets the property and returns this same instance.
+        def with_order_id(value)
+          @order_id = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

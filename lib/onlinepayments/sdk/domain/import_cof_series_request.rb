@@ -27,6 +27,42 @@ module OnlinePayments
 
         attr_accessor :transaction_link_identifier
 
+        # Sets the property and returns this same instance.
+        def with_card(value)
+          @card = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_currency_code(value)
+          @currency_code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product_id(value)
+          @payment_product_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_scheme_reference_data(value)
+          @scheme_reference_data = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_token_id(value)
+          @token_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_transaction_link_identifier(value)
+          @transaction_link_identifier = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

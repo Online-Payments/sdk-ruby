@@ -26,6 +26,42 @@ module OnlinePayments
 
         attr_accessor :structured_creditor_reference
 
+        # Sets the property and returns this same instance.
+        def with_merchant_comment(value)
+          @merchant_comment = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_merchant_reconciliation_reference(value)
+          @merchant_reconciliation_reference = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_merchant_reference(value)
+          @merchant_reference = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_operation_group_reference(value)
+          @operation_group_reference = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_soft_descriptor(value)
+          @soft_descriptor = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_structured_creditor_reference(value)
+          @structured_creditor_reference = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

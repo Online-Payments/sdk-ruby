@@ -47,6 +47,84 @@ module OnlinePayments
 
         attr_accessor :xid
 
+        # Sets the property and returns this same instance.
+        def with_acs_transaction_id(value)
+          @acs_transaction_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_applied_exemption(value)
+          @applied_exemption = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_authentication_status(value)
+          @authentication_status = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_cavv(value)
+          @cavv = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_challenge_indicator(value)
+          @challenge_indicator = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_ds_transaction_id(value)
+          @ds_transaction_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_eci(value)
+          @eci = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_exemption_engine_flow(value)
+          @exemption_engine_flow = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_flow(value)
+          @flow = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_liability(value)
+          @liability = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_scheme_eci(value)
+          @scheme_eci = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_version(value)
+          @version = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_xid(value)
+          @xid = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

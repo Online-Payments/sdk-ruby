@@ -11,6 +11,12 @@ module OnlinePayments
 
         attr_accessor :allowed_values
 
+        # Sets the property and returns this same instance.
+        def with_allowed_values(value)
+          @allowed_values = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

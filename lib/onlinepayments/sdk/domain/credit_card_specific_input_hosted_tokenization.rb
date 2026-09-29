@@ -15,6 +15,18 @@ module OnlinePayments
 
         attr_accessor :payment_product_preferred_order
 
+        # Sets the property and returns this same instance.
+        def with_validation_rules(value)
+          @validation_rules = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product_preferred_order(value)
+          @payment_product_preferred_order = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

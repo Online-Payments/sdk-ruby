@@ -29,6 +29,48 @@ module OnlinePayments
 
         attr_accessor :state
 
+        # Sets the property and returns this same instance.
+        def with_address(value)
+          @address = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_city(value)
+          @city = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_country(value)
+          @country = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_date(value)
+          @date = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_location(value)
+          @location = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_postcode(value)
+          @postcode = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_state(value)
+          @state = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

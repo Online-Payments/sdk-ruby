@@ -27,6 +27,42 @@ module OnlinePayments
 
         attr_accessor :sri
 
+        # Sets the property and returns this same instance.
+        def with_expired_card_tokens(value)
+          @expired_card_tokens = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_hosted_tokenization_id(value)
+          @hosted_tokenization_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_hosted_tokenization_url(value)
+          @hosted_tokenization_url = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_invalid_tokens(value)
+          @invalid_tokens = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_partial_redirect_url(value)
+          @partial_redirect_url = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_sri(value)
+          @sri = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

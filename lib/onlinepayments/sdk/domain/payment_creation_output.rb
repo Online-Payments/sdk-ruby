@@ -20,6 +20,30 @@ module OnlinePayments
 
         attr_accessor :tokenization_succeeded
 
+        # Sets the property and returns this same instance.
+        def with_external_reference(value)
+          @external_reference = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_is_new_token(value)
+          @is_new_token = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_token(value)
+          @token = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_tokenization_succeeded(value)
+          @tokenization_succeeded = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

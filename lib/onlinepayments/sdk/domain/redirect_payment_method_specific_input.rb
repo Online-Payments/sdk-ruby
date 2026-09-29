@@ -119,6 +119,180 @@ module OnlinePayments
 
         attr_accessor :tokenize
 
+        # Sets the property and returns this same instance.
+        def with_payment_option(value)
+          @payment_option = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product11_specific_input(value)
+          @payment_product11_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product3103_specific_input(value)
+          @payment_product3103_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product3112_specific_input(value)
+          @payment_product3112_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product3116_specific_input(value)
+          @payment_product3116_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product3203_specific_input(value)
+          @payment_product3203_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product3204_specific_input(value)
+          @payment_product3204_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product3302_specific_input(value)
+          @payment_product3302_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product3306_specific_input(value)
+          @payment_product3306_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product3307_specific_input(value)
+          @payment_product3307_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product5001_specific_input(value)
+          @payment_product5001_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product5300_specific_input(value)
+          @payment_product5300_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product5301_specific_input(value)
+          @payment_product5301_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product5402_specific_input(value)
+          @payment_product5402_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product5403_specific_input(value)
+          @payment_product5403_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product5406_specific_input(value)
+          @payment_product5406_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product5407_specific_input(value)
+          @payment_product5407_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product5408_specific_input(value)
+          @payment_product5408_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product5410_specific_input(value)
+          @payment_product5410_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product5412_specific_input(value)
+          @payment_product5412_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product5601_specific_input(value)
+          @payment_product5601_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product809_specific_input(value)
+          @payment_product809_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product840_specific_input(value)
+          @payment_product840_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product900_specific_input(value)
+          @payment_product900_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product_id(value)
+          @payment_product_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_redirection_data(value)
+          @redirection_data = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_requires_approval(value)
+          @requires_approval = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_token(value)
+          @token = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_tokenize(value)
+          @tokenize = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

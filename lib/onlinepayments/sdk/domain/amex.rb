@@ -19,6 +19,24 @@ module OnlinePayments
 
         attr_accessor :src_initiator_id
 
+        # Sets the property and returns this same instance.
+        def with_dpa_data(value)
+          @dpa_data = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_dpa_transaction_options(value)
+          @dpa_transaction_options = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_src_initiator_id(value)
+          @src_initiator_id = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

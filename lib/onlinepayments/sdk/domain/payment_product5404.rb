@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :qr_code_url
 
+        # Sets the property and returns this same instance.
+        def with_app_switch_link(value)
+          @app_switch_link = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_qr_code_url(value)
+          @qr_code_url = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

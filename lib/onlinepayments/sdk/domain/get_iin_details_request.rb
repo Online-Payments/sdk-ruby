@@ -15,6 +15,18 @@ module OnlinePayments
 
         attr_accessor :payment_context
 
+        # Sets the property and returns this same instance.
+        def with_bin(value)
+          @bin = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_context(value)
+          @payment_context = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

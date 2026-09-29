@@ -20,6 +20,30 @@ module OnlinePayments
 
         attr_accessor :pay_later
 
+        # Sets the property and returns this same instance.
+        def with_java_script_sdk_flow(value)
+          @java_script_sdk_flow = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_address_selection_at_pay_pal(value)
+          @address_selection_at_pay_pal = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_custom(value)
+          @custom = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_pay_later(value)
+          @pay_later = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

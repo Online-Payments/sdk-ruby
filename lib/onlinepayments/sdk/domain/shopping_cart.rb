@@ -30,6 +30,42 @@ module OnlinePayments
 
         attr_accessor :re_order_indicator
 
+        # Sets the property and returns this same instance.
+        def with_amount_breakdown(value)
+          @amount_breakdown = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_gift_card_purchase(value)
+          @gift_card_purchase = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_is_pre_order(value)
+          @is_pre_order = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_items(value)
+          @items = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_pre_order_item_availability_date(value)
+          @pre_order_item_availability_date = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_re_order_indicator(value)
+          @re_order_indicator = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

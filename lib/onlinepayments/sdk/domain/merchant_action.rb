@@ -27,6 +27,36 @@ module OnlinePayments
 
         attr_accessor :show_instructions_data
 
+        # Sets the property and returns this same instance.
+        def with_action_type(value)
+          @action_type = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_mobile_three_d_secure_challenge_parameters(value)
+          @mobile_three_d_secure_challenge_parameters = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_redirect_data(value)
+          @redirect_data = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_show_form_data(value)
+          @show_form_data = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_show_instructions_data(value)
+          @show_instructions_data = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

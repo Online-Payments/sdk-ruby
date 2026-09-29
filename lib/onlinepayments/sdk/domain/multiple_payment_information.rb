@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :total_number_of_payments
 
+        # Sets the property and returns this same instance.
+        def with_payment_pattern(value)
+          @payment_pattern = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_total_number_of_payments(value)
+          @total_number_of_payments = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

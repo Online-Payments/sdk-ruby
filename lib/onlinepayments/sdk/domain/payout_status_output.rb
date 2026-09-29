@@ -17,6 +17,24 @@ module OnlinePayments
 
         attr_accessor :status_code
 
+        # Sets the property and returns this same instance.
+        def with_is_cancellable(value)
+          @is_cancellable = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_status_category(value)
+          @status_category = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_status_code(value)
+          @status_code = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

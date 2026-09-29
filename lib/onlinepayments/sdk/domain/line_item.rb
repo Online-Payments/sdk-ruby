@@ -24,6 +24,30 @@ module OnlinePayments
 
         attr_accessor :other_details
 
+        # Sets the property and returns this same instance.
+        def with_amount_of_money(value)
+          @amount_of_money = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_invoice_data(value)
+          @invoice_data = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_order_line_details(value)
+          @order_line_details = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_other_details(value)
+          @other_details = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

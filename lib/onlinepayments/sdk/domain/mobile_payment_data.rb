@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :expiry_date
 
+        # Sets the property and returns this same instance.
+        def with_dpan(value)
+          @dpan = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_expiry_date(value)
+          @expiry_date = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

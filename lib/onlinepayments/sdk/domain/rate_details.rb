@@ -23,6 +23,36 @@ module OnlinePayments
 
         attr_accessor :source
 
+        # Sets the property and returns this same instance.
+        def with_exchange_rate(value)
+          @exchange_rate = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_inverted_exchange_rate(value)
+          @inverted_exchange_rate = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_mark_up_rate(value)
+          @mark_up_rate = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_quotation_date_time(value)
+          @quotation_date_time = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_source(value)
+          @source = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

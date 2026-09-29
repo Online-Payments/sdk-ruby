@@ -31,6 +31,42 @@ module OnlinePayments
 
         attr_accessor :references
 
+        # Sets the property and returns this same instance.
+        def with_amount_of_money(value)
+          @amount_of_money = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_card_payout_method_specific_input(value)
+          @card_payout_method_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_descriptor(value)
+          @descriptor = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_feedbacks(value)
+          @feedbacks = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_omnichannel_payout_specific_input(value)
+          @omnichannel_payout_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_references(value)
+          @references = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

@@ -12,6 +12,12 @@ module OnlinePayments
 
         attr_accessor :payment_product5704_auto_capture
 
+        # Sets the property and returns this same instance.
+        def with_payment_product5704_auto_capture(value)
+          @payment_product5704_auto_capture = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

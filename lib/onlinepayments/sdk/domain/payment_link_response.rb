@@ -42,6 +42,66 @@ module OnlinePayments
 
         attr_accessor :status
 
+        # Sets the property and returns this same instance.
+        def with_expiration_date(value)
+          @expiration_date = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_is_reusable_link(value)
+          @is_reusable_link = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_id(value)
+          @payment_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_link_events(value)
+          @payment_link_events = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_link_id(value)
+          @payment_link_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_link_order(value)
+          @payment_link_order = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_qr_code_base64(value)
+          @qr_code_base64 = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_recipient_name(value)
+          @recipient_name = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_redirection_url(value)
+          @redirection_url = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_status(value)
+          @status = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

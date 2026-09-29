@@ -28,6 +28,42 @@ module OnlinePayments
 
         attr_accessor :variant
 
+        # Sets the property and returns this same instance.
+        def with_ask_consumer_consent(value)
+          @ask_consumer_consent = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_credit_card_specific_input(value)
+          @credit_card_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_locale(value)
+          @locale = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product_filters(value)
+          @payment_product_filters = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_tokens(value)
+          @tokens = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_variant(value)
+          @variant = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

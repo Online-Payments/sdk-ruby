@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :blik_code
 
+        # Sets the property and returns this same instance.
+        def with_alias_label(value)
+          @alias_label = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_blik_code(value)
+          @blik_code = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

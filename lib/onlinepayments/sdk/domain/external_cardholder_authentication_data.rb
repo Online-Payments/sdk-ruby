@@ -38,6 +38,66 @@ module OnlinePayments
 
         attr_accessor :xid
 
+        # Sets the property and returns this same instance.
+        def with_acs_transaction_id(value)
+          @acs_transaction_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_applied_exemption(value)
+          @applied_exemption = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_cavv(value)
+          @cavv = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_cavv_algorithm(value)
+          @cavv_algorithm = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_directory_server_transaction_id(value)
+          @directory_server_transaction_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_eci(value)
+          @eci = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_flow(value)
+          @flow = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_scheme_risk_score(value)
+          @scheme_risk_score = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_three_d_secure_version(value)
+          @three_d_secure_version = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_xid(value)
+          @xid = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

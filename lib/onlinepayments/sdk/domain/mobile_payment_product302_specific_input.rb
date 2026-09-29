@@ -22,6 +22,30 @@ module OnlinePayments
 
         attr_accessor :tokenize
 
+        # Sets the property and returns this same instance.
+        def with_apple_pay_recurring_payment_request(value)
+          @apple_pay_recurring_payment_request = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_is_recurring(value)
+          @is_recurring = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_recurring(value)
+          @recurring = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_tokenize(value)
+          @tokenize = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

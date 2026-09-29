@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :surname
 
+        # Sets the property and returns this same instance.
+        def with_first_name(value)
+          @first_name = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_surname(value)
+          @surname = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

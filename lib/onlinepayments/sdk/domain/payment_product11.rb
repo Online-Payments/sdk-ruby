@@ -23,6 +23,36 @@ module OnlinePayments
 
         attr_accessor :qr_code
 
+        # Sets the property and returns this same instance.
+        def with_payment_bic(value)
+          @payment_bic = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_beneficiary(value)
+          @payment_beneficiary = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_iban(value)
+          @payment_iban = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_reference(value)
+          @payment_reference = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_qr_code(value)
+          @qr_code = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

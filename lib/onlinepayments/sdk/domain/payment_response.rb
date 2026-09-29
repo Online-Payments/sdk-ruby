@@ -34,6 +34,48 @@ module OnlinePayments
 
         attr_accessor :status_output
 
+        # Sets the property and returns this same instance.
+        def with_hosted_checkout_specific_output(value)
+          @hosted_checkout_specific_output = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_id(value)
+          @id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_operation_output(value)
+          @operation_output = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_output(value)
+          @payment_output = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_session_details(value)
+          @session_details = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_status(value)
+          @status = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_status_output(value)
+          @status_output = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

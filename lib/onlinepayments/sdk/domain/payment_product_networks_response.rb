@@ -11,6 +11,12 @@ module OnlinePayments
 
         attr_accessor :networks
 
+        # Sets the property and returns this same instance.
+        def with_networks(value)
+          @networks = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

@@ -18,6 +18,24 @@ module OnlinePayments
 
         attr_accessor :srci_dpa_id
 
+        # Sets the property and returns this same instance.
+        def with_authentication_options(value)
+          @authentication_options = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_src_initiator_id(value)
+          @src_initiator_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_srci_dpa_id(value)
+          @srci_dpa_id = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

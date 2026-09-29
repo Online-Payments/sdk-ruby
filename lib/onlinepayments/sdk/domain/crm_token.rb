@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :unique_card_identifier
 
+        # Sets the property and returns this same instance.
+        def with_unique_account_identifier(value)
+          @unique_account_identifier = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_unique_card_identifier(value)
+          @unique_card_identifier = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

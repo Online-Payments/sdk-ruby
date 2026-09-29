@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :min_value
 
+        # Sets the property and returns this same instance.
+        def with_max_value(value)
+          @max_value = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_min_value(value)
+          @min_value = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

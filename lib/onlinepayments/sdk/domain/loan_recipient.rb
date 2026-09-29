@@ -23,6 +23,36 @@ module OnlinePayments
 
         attr_accessor :zip
 
+        # Sets the property and returns this same instance.
+        def with_account_number(value)
+          @account_number = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_date_of_birth(value)
+          @date_of_birth = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_partial_pan(value)
+          @partial_pan = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_surname(value)
+          @surname = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_zip(value)
+          @zip = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

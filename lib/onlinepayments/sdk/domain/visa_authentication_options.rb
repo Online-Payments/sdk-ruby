@@ -17,6 +17,24 @@ module OnlinePayments
 
         attr_accessor :merchant_name
 
+        # Sets the property and returns this same instance.
+        def with_acquirer_bin(value)
+          @acquirer_bin = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_acquirer_merchant_id(value)
+          @acquirer_merchant_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_merchant_name(value)
+          @merchant_name = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

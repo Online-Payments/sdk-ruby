@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :next_cursor
 
+        # Sets the property and returns this same instance.
+        def with_has_more(value)
+          @has_more = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_next_cursor(value)
+          @next_cursor = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

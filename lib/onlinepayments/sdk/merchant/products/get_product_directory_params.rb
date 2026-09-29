@@ -18,6 +18,18 @@ module OnlinePayments
 
           attr_accessor :currency_code
 
+          # Sets the parameter and returns this same instance.
+          def with_country_code(value)
+            @country_code = value
+            self
+          end
+
+          # Sets the parameter and returns this same instance.
+          def with_currency_code(value)
+            @currency_code = value
+            self
+          end
+
           # @return [Array<OnlinePayments::SDK::Communication::RequestParam>] representing the attributes of this class
           def to_request_parameters
             result = []

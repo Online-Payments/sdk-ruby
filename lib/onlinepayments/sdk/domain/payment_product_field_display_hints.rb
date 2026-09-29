@@ -41,6 +41,66 @@ module OnlinePayments
 
         attr_accessor :tooltip
 
+        # Sets the property and returns this same instance.
+        def with_always_show(value)
+          @always_show = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_display_order(value)
+          @display_order = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_form_element(value)
+          @form_element = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_label(value)
+          @label = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_link(value)
+          @link = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_mask(value)
+          @mask = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_obfuscate(value)
+          @obfuscate = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_placeholder_label(value)
+          @placeholder_label = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_preferred_input_type(value)
+          @preferred_input_type = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_tooltip(value)
+          @tooltip = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

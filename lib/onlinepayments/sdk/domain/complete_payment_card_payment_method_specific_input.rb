@@ -12,6 +12,12 @@ module OnlinePayments
 
         attr_accessor :card
 
+        # Sets the property and returns this same instance.
+        def with_card(value)
+          @card = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

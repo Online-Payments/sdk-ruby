@@ -52,6 +52,78 @@ module OnlinePayments
 
         attr_accessor :token
 
+        # Sets the property and returns this same instance.
+        def with_authorisation_code(value)
+          @authorisation_code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_customer_bank_account(value)
+          @customer_bank_account = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_fraud_results(value)
+          @fraud_results = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_method3204_specific_output(value)
+          @payment_method3204_specific_output = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_option(value)
+          @payment_option = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product3203_specific_output(value)
+          @payment_product3203_specific_output = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product5001_specific_output(value)
+          @payment_product5001_specific_output = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product5402_specific_output(value)
+          @payment_product5402_specific_output = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product5500_specific_output(value)
+          @payment_product5500_specific_output = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product840_specific_output(value)
+          @payment_product840_specific_output = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product_id(value)
+          @payment_product_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_token(value)
+          @token = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :subsequent_type
 
+        # Sets the property and returns this same instance.
+        def with_exemption_request(value)
+          @exemption_request = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_subsequent_type(value)
+          @subsequent_type = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

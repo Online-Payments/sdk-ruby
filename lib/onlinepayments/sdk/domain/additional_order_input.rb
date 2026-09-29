@@ -24,6 +24,30 @@ module OnlinePayments
 
         attr_accessor :type_information
 
+        # Sets the property and returns this same instance.
+        def with_airline_data(value)
+          @airline_data = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_loan_recipient(value)
+          @loan_recipient = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_lodging_data(value)
+          @lodging_data = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_type_information(value)
+          @type_information = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

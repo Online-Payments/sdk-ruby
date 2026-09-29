@@ -32,6 +32,54 @@ module OnlinePayments
 
         attr_accessor :surname
 
+        # Sets the property and returns this same instance.
+        def with_account_id(value)
+          @account_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_company_name(value)
+          @company_name = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_country_code(value)
+          @country_code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_customer_account_status(value)
+          @customer_account_status = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_customer_address_status(value)
+          @customer_address_status = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_first_name(value)
+          @first_name = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payer_id(value)
+          @payer_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_surname(value)
+          @surname = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

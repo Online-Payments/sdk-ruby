@@ -12,6 +12,12 @@ module OnlinePayments
 
         attr_accessor :three_d_secure
 
+        # Sets the property and returns this same instance.
+        def with_three_d_secure(value)
+          @three_d_secure = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

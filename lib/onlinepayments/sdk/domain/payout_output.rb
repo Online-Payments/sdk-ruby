@@ -28,6 +28,36 @@ module OnlinePayments
 
         attr_accessor :transaction_date
 
+        # Sets the property and returns this same instance.
+        def with_amount_of_money(value)
+          @amount_of_money = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payout_card_payment_method_specific_output(value)
+          @payout_card_payment_method_specific_output = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payout_reason(value)
+          @payout_reason = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_references(value)
+          @references = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_transaction_date(value)
+          @transaction_date = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

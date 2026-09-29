@@ -38,6 +38,60 @@ module OnlinePayments
 
         attr_accessor :payment_activity
 
+        # Sets the property and returns this same instance.
+        def with_authentication(value)
+          @authentication = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_change_date(value)
+          @change_date = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_changed_during_checkout(value)
+          @changed_during_checkout = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_create_date(value)
+          @create_date = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_had_suspicious_activity(value)
+          @had_suspicious_activity = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_password_change_date(value)
+          @password_change_date = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_password_changed_during_checkout(value)
+          @password_changed_during_checkout = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_account_on_file(value)
+          @payment_account_on_file = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_activity(value)
+          @payment_activity = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

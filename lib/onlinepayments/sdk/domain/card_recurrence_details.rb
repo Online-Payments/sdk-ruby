@@ -11,6 +11,12 @@ module OnlinePayments
 
         attr_accessor :recurring_payment_sequence_indicator
 
+        # Sets the property and returns this same instance.
+        def with_recurring_payment_sequence_indicator(value)
+          @recurring_payment_sequence_indicator = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

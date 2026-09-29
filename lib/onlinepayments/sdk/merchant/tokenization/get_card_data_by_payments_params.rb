@@ -25,6 +25,12 @@ module OnlinePayments
             @payments << value
           end
 
+          # Sets the parameter and returns this same instance.
+          def with_payments(value)
+            @payments = value
+            self
+          end
+
           # @return [Array<OnlinePayments::SDK::Communication::RequestParam>] representing the attributes of this class
           def to_request_parameters
             result = []

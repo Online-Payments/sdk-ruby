@@ -58,6 +58,102 @@ module OnlinePayments
 
         attr_accessor :vehicle
 
+        # Sets the property and returns this same instance.
+        def with_agreement_number(value)
+          @agreement_number = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_cardholder_notified(value)
+          @cardholder_notified = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_charges_amount(value)
+          @charges_amount = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_charges_category(value)
+          @charges_category = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_distance_measure(value)
+          @distance_measure = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_distance_unit(value)
+          @distance_unit = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_driver_identification_number(value)
+          @driver_identification_number = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_driver_tax_number(value)
+          @driver_tax_number = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_pickup_details(value)
+          @pickup_details = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_rental_rate_amount(value)
+          @rental_rate_amount = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_rental_rate_type(value)
+          @rental_rate_type = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_renter_name(value)
+          @renter_name = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_return_details(value)
+          @return_details = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_tax_exempt_indicator(value)
+          @tax_exempt_indicator = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_toll_free_number(value)
+          @toll_free_number = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_vehicle(value)
+          @vehicle = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

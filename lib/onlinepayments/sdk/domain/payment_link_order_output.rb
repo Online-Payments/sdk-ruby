@@ -19,6 +19,24 @@ module OnlinePayments
 
         attr_accessor :surcharge_specific_output
 
+        # Sets the property and returns this same instance.
+        def with_amount(value)
+          @amount = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_merchant_reference(value)
+          @merchant_reference = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_surcharge_specific_output(value)
+          @surcharge_specific_output = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

@@ -17,6 +17,24 @@ module OnlinePayments
 
         attr_accessor :total_amount_refunded
 
+        # Sets the property and returns this same instance.
+        def with_network(value)
+          @network = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_total_amount_paid(value)
+          @total_amount_paid = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_total_amount_refunded(value)
+          @total_amount_refunded = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

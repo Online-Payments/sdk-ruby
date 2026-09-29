@@ -15,6 +15,18 @@ module OnlinePayments
 
         attr_accessor :status
 
+        # Sets the property and returns this same instance.
+        def with_created_payment_output(value)
+          @created_payment_output = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_status(value)
+          @status = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

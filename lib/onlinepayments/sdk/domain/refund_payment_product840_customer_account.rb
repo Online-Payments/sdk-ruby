@@ -17,6 +17,24 @@ module OnlinePayments
 
         attr_accessor :payer_id
 
+        # Sets the property and returns this same instance.
+        def with_customer_account_status(value)
+          @customer_account_status = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_customer_address_status(value)
+          @customer_address_status = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payer_id(value)
+          @payer_id = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

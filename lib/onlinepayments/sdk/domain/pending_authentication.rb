@@ -11,6 +11,12 @@ module OnlinePayments
 
         attr_accessor :polling_url
 
+        # Sets the property and returns this same instance.
+        def with_polling_url(value)
+          @polling_url = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

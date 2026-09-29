@@ -33,6 +33,48 @@ module OnlinePayments
 
         attr_accessor :shipping_address
 
+        # Sets the property and returns this same instance.
+        def with_billing_address(value)
+          @billing_address = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_billing_personal_address(value)
+          @billing_personal_address = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_customer_account(value)
+          @customer_account = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_customer_address(value)
+          @customer_address = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_pay_pal_transaction_id(value)
+          @pay_pal_transaction_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_protection_eligibility(value)
+          @protection_eligibility = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_shipping_address(value)
+          @shipping_address = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

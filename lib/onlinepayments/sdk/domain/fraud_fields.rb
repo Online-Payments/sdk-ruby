@@ -18,6 +18,24 @@ module OnlinePayments
 
         attr_accessor :product_categories
 
+        # Sets the property and returns this same instance.
+        def with_black_list_data(value)
+          @black_list_data = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_customer_ip_address(value)
+          @customer_ip_address = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_product_categories(value)
+          @product_categories = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

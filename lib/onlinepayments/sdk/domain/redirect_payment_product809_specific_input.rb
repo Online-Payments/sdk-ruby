@@ -12,6 +12,12 @@ module OnlinePayments
 
         attr_accessor :issuer_id
 
+        # Sets the property and returns this same instance.
+        def with_issuer_id(value)
+          @issuer_id = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

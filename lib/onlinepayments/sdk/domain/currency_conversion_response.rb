@@ -19,6 +19,24 @@ module OnlinePayments
 
         attr_accessor :result
 
+        # Sets the property and returns this same instance.
+        def with_dcc_session_id(value)
+          @dcc_session_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_proposal(value)
+          @proposal = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_result(value)
+          @result = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

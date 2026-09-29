@@ -17,6 +17,24 @@ module OnlinePayments
 
         attr_accessor :type
 
+        # Sets the property and returns this same instance.
+        def with_date_time(value)
+          @date_time = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_details(value)
+          @details = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_type(value)
+          @type = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

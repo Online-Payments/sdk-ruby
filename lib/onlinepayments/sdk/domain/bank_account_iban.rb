@@ -11,6 +11,12 @@ module OnlinePayments
 
         attr_accessor :iban
 
+        # Sets the property and returns this same instance.
+        def with_iban(value)
+          @iban = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

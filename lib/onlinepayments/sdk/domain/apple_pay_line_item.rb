@@ -29,6 +29,48 @@ module OnlinePayments
 
         attr_accessor :recurring_payment_start_date
 
+        # Sets the property and returns this same instance.
+        def with_amount(value)
+          @amount = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_label(value)
+          @label = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_timing(value)
+          @payment_timing = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_recurring_payment_end_date(value)
+          @recurring_payment_end_date = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_recurring_payment_interval_count(value)
+          @recurring_payment_interval_count = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_recurring_payment_interval_unit(value)
+          @recurring_payment_interval_unit = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_recurring_payment_start_date(value)
+          @recurring_payment_start_date = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

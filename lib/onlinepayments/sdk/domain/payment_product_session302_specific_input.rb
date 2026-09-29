@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :domain_name
 
+        # Sets the property and returns this same instance.
+        def with_display_name(value)
+          @display_name = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_domain_name(value)
+          @domain_name = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

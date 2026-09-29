@@ -11,6 +11,12 @@ module OnlinePayments
 
         attr_accessor :banking_app_label
 
+        # Sets the property and returns this same instance.
+        def with_banking_app_label(value)
+          @banking_app_label = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

@@ -12,6 +12,12 @@ module OnlinePayments
 
         attr_accessor :device
 
+        # Sets the property and returns this same instance.
+        def with_device(value)
+          @device = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

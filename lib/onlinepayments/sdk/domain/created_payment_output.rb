@@ -15,6 +15,18 @@ module OnlinePayments
 
         attr_accessor :payment_status_category
 
+        # Sets the property and returns this same instance.
+        def with_payment(value)
+          @payment = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_status_category(value)
+          @payment_status_category = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

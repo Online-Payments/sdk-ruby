@@ -27,6 +27,36 @@ module OnlinePayments
 
         attr_accessor :shipping
 
+        # Sets the property and returns this same instance.
+        def with_amount_of_money(value)
+          @amount_of_money = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_is_final(value)
+          @is_final = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_line_item_details(value)
+          @line_item_details = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_operation_references(value)
+          @operation_references = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_shipping(value)
+          @shipping = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

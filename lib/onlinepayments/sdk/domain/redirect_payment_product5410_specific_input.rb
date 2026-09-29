@@ -13,6 +13,12 @@ module OnlinePayments
 
         attr_accessor :second_installment_payment_date
 
+        # Sets the property and returns this same instance.
+        def with_second_installment_payment_date(value)
+          @second_installment_payment_date = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

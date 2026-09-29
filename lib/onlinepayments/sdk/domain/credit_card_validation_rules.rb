@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :cvv_mandatory_for_new_token
 
+        # Sets the property and returns this same instance.
+        def with_cvv_mandatory_for_existing_token(value)
+          @cvv_mandatory_for_existing_token = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_cvv_mandatory_for_new_token(value)
+          @cvv_mandatory_for_new_token = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

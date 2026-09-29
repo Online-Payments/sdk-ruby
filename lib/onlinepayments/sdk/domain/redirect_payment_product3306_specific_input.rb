@@ -11,6 +11,12 @@ module OnlinePayments
 
         attr_accessor :extra_merchant_data
 
+        # Sets the property and returns this same instance.
+        def with_extra_merchant_data(value)
+          @extra_merchant_data = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

@@ -11,6 +11,12 @@ module OnlinePayments
 
         attr_accessor :checkout_type
 
+        # Sets the property and returns this same instance.
+        def with_checkout_type(value)
+          @checkout_type = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

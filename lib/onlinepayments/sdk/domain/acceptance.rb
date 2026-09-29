@@ -19,6 +19,24 @@ module OnlinePayments
 
         attr_accessor :authorization_message_reference
 
+        # Sets the property and returns this same instance.
+        def with_acceptance_system_application_id(value)
+          @acceptance_system_application_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_authorization_date(value)
+          @authorization_date = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_authorization_message_reference(value)
+          @authorization_message_reference = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

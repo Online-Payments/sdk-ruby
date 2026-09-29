@@ -11,6 +11,12 @@ module OnlinePayments
 
         attr_accessor :dpa_name
 
+        # Sets the property and returns this same instance.
+        def with_dpa_name(value)
+          @dpa_name = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

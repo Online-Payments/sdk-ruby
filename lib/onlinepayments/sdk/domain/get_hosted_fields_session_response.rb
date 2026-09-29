@@ -15,6 +15,18 @@ module OnlinePayments
 
         attr_accessor :token
 
+        # Sets the property and returns this same instance.
+        def with_session_id(value)
+          @session_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_token(value)
+          @token = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

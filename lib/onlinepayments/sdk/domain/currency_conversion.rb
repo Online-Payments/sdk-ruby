@@ -15,6 +15,18 @@ module OnlinePayments
 
         attr_accessor :proposal
 
+        # Sets the property and returns this same instance.
+        def with_accepted_by_user(value)
+          @accepted_by_user = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_proposal(value)
+          @proposal = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

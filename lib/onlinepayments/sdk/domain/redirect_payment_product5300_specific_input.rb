@@ -37,6 +37,60 @@ module OnlinePayments
 
         attr_accessor :transaction_expiration_date_time
 
+        # Sets the property and returns this same instance.
+        def with_birth_city(value)
+          @birth_city = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_birth_country(value)
+          @birth_country = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_birth_zip_code(value)
+          @birth_zip_code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_channel(value)
+          @channel = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_loyalty_card_number(value)
+          @loyalty_card_number = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_second_installment_payment_date(value)
+          @second_installment_payment_date = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_session_duration(value)
+          @session_duration = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_title(value)
+          @title = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_transaction_expiration_date_time(value)
+          @transaction_expiration_date_time = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

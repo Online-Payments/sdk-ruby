@@ -18,6 +18,24 @@ module OnlinePayments
 
         attr_accessor :indicator
 
+        # Sets the property and returns this same instance.
+        def with_conditions(value)
+          @conditions = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_frozen_period(value)
+          @frozen_period = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_indicator(value)
+          @indicator = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

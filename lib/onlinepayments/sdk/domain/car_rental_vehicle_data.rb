@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :identification_number
 
+        # Sets the property and returns this same instance.
+        def with_class_id(value)
+          @class_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_identification_number(value)
+          @identification_number = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

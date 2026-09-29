@@ -11,6 +11,12 @@ module OnlinePayments
 
         attr_accessor :payment_method_type
 
+        # Sets the property and returns this same instance.
+        def with_payment_method_type(value)
+          @payment_method_type = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

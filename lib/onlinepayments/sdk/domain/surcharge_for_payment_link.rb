@@ -11,6 +11,12 @@ module OnlinePayments
 
         attr_accessor :surcharge_mode
 
+        # Sets the property and returns this same instance.
+        def with_surcharge_mode(value)
+          @surcharge_mode = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

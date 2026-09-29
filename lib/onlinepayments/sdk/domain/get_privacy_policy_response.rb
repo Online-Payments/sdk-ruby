@@ -11,6 +11,12 @@ module OnlinePayments
 
         attr_accessor :html_content
 
+        # Sets the property and returns this same instance.
+        def with_html_content(value)
+          @html_content = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

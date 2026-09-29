@@ -17,6 +17,24 @@ module OnlinePayments
 
         attr_accessor :token_state
 
+        # Sets the property and returns this same instance.
+        def with_expiry_date(value)
+          @expiry_date = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_masked_token(value)
+          @masked_token = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_token_state(value)
+          @token_state = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

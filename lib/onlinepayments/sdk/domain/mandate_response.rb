@@ -30,6 +30,48 @@ module OnlinePayments
 
         attr_accessor :unique_mandate_reference
 
+        # Sets the property and returns this same instance.
+        def with_alias(value)
+          @alias = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_customer(value)
+          @customer = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_customer_reference(value)
+          @customer_reference = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_mandate_pdf(value)
+          @mandate_pdf = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_recurrence_type(value)
+          @recurrence_type = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_status(value)
+          @status = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_unique_mandate_reference(value)
+          @unique_mandate_reference = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

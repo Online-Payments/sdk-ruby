@@ -38,6 +38,66 @@ module OnlinePayments
 
         attr_accessor :unit
 
+        # Sets the property and returns this same instance.
+        def with_discount_amount(value)
+          @discount_amount = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_product_brand(value)
+          @product_brand = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_product_code(value)
+          @product_code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_product_name(value)
+          @product_name = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_product_price(value)
+          @product_price = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_product_type(value)
+          @product_type = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_quantity(value)
+          @quantity = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_tax_amount(value)
+          @tax_amount = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_tax_percentage(value)
+          @tax_percentage = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_unit(value)
+          @unit = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

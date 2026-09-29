@@ -20,6 +20,30 @@ module OnlinePayments
 
         attr_accessor :payment_start_date
 
+        # Sets the property and returns this same instance.
+        def with_entity_id(value)
+          @entity_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_end_date(value)
+          @payment_end_date = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_reference(value)
+          @payment_reference = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_start_date(value)
+          @payment_start_date = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

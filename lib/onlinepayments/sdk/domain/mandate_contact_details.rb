@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :phone_number
 
+        # Sets the property and returns this same instance.
+        def with_email_address(value)
+          @email_address = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_phone_number(value)
+          @phone_number = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

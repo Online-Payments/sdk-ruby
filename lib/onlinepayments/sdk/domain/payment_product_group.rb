@@ -22,6 +22,30 @@ module OnlinePayments
 
         attr_accessor :id
 
+        # Sets the property and returns this same instance.
+        def with_account_on_file(value)
+          @account_on_file = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_display_hints(value)
+          @display_hints = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_display_hints_list(value)
+          @display_hints_list = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_id(value)
+          @id = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

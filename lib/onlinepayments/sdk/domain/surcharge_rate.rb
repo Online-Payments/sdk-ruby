@@ -20,6 +20,30 @@ module OnlinePayments
 
         attr_accessor :surcharge_product_type_version
 
+        # Sets the property and returns this same instance.
+        def with_ad_valorem_rate(value)
+          @ad_valorem_rate = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_specific_rate(value)
+          @specific_rate = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_surcharge_product_type_id(value)
+          @surcharge_product_type_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_surcharge_product_type_version(value)
+          @surcharge_product_type_version = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

@@ -44,6 +44,66 @@ module OnlinePayments
 
         attr_accessor :personal_information
 
+        # Sets the property and returns this same instance.
+        def with_account(value)
+          @account = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_account_type(value)
+          @account_type = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_billing_address(value)
+          @billing_address = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_company_information(value)
+          @company_information = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_contact_details(value)
+          @contact_details = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_device(value)
+          @device = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_fiscal_number(value)
+          @fiscal_number = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_locale(value)
+          @locale = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_merchant_customer_id(value)
+          @merchant_customer_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_personal_information(value)
+          @personal_information = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

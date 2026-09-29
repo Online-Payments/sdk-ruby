@@ -40,6 +40,54 @@ module OnlinePayments
 
         attr_accessor :subsequent_payments
 
+        # Sets the property and returns this same instance.
+        def with_cancel_payments(value)
+          @cancel_payments = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_capture_payments(value)
+          @capture_payments = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_create_payment_links(value)
+          @create_payment_links = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_create_payments(value)
+          @create_payments = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_create_payouts(value)
+          @create_payouts = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_header(value)
+          @header = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_refund_payments(value)
+          @refund_payments = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_subsequent_payments(value)
+          @subsequent_payments = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

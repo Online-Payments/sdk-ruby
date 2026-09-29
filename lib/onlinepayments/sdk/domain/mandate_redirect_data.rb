@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :redirect_url
 
+        # Sets the property and returns this same instance.
+        def with_returnmac(value)
+          @returnmac = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_redirect_url(value)
+          @redirect_url = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

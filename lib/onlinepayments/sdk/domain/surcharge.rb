@@ -28,6 +28,42 @@ module OnlinePayments
 
         attr_accessor :total_amount
 
+        # Sets the property and returns this same instance.
+        def with_net_amount(value)
+          @net_amount = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product_id(value)
+          @payment_product_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_result(value)
+          @result = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_surcharge_amount(value)
+          @surcharge_amount = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_surcharge_rate(value)
+          @surcharge_rate = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_total_amount(value)
+          @total_amount = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

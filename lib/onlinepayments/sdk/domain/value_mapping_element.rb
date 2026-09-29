@@ -15,6 +15,18 @@ module OnlinePayments
 
         attr_accessor :value
 
+        # Sets the property and returns this same instance.
+        def with_display_elements(value)
+          @display_elements = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_value(value)
+          @value = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

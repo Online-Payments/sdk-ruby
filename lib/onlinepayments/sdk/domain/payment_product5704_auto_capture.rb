@@ -11,6 +11,12 @@ module OnlinePayments
 
         attr_accessor :delay_in_minutes
 
+        # Sets the property and returns this same instance.
+        def with_delay_in_minutes(value)
+          @delay_in_minutes = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

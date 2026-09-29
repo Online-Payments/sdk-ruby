@@ -12,6 +12,12 @@ module OnlinePayments
 
         attr_accessor :payment_product_session302_specific_output
 
+        # Sets the property and returns this same instance.
+        def with_payment_product_session302_specific_output(value)
+          @payment_product_session302_specific_output = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

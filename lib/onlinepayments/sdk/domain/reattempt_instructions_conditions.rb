@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :max_delay
 
+        # Sets the property and returns this same instance.
+        def with_max_attempts(value)
+          @max_attempts = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_max_delay(value)
+          @max_delay = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

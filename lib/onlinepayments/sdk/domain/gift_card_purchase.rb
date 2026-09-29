@@ -15,6 +15,18 @@ module OnlinePayments
 
         attr_accessor :number_of_gift_cards
 
+        # Sets the property and returns this same instance.
+        def with_amount_of_money(value)
+          @amount_of_money = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_number_of_gift_cards(value)
+          @number_of_gift_cards = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

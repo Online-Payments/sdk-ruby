@@ -19,6 +19,24 @@ module OnlinePayments
 
         attr_accessor :recipient_name
 
+        # Sets the property and returns this same instance.
+        def with_description(value)
+          @description = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_expiration_date(value)
+          @expiration_date = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_recipient_name(value)
+          @recipient_name = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

@@ -20,6 +20,30 @@ module OnlinePayments
 
         attr_accessor :tokenization_mode
 
+        # Sets the property and returns this same instance.
+        def with_click_to_pay(value)
+          @click_to_pay = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_group_cards(value)
+          @group_cards = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product_preferred_order(value)
+          @payment_product_preferred_order = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_tokenization_mode(value)
+          @tokenization_mode = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

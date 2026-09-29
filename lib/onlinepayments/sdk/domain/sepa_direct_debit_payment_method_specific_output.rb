@@ -19,6 +19,24 @@ module OnlinePayments
 
         attr_accessor :payment_product_id
 
+        # Sets the property and returns this same instance.
+        def with_fraud_results(value)
+          @fraud_results = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product771_specific_output(value)
+          @payment_product771_specific_output = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product_id(value)
+          @payment_product_id = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

@@ -12,6 +12,12 @@ module OnlinePayments
 
         attr_accessor :api_parameters
 
+        # Sets the property and returns this same instance.
+        def with_api_parameters(value)
+          @api_parameters = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

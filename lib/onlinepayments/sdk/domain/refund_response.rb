@@ -22,6 +22,30 @@ module OnlinePayments
 
         attr_accessor :status_output
 
+        # Sets the property and returns this same instance.
+        def with_id(value)
+          @id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_refund_output(value)
+          @refund_output = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_status(value)
+          @status = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_status_output(value)
+          @status_output = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

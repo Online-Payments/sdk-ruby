@@ -18,6 +18,24 @@ module OnlinePayments
 
         attr_accessor :is_recurring
 
+        # Sets the property and returns this same instance.
+        def with_amount_of_money(value)
+          @amount_of_money = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_country_code(value)
+          @country_code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_is_recurring(value)
+          @is_recurring = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

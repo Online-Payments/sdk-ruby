@@ -18,6 +18,24 @@ module OnlinePayments
 
         attr_accessor :name
 
+        # Sets the property and returns this same instance.
+        def with_date_of_birth(value)
+          @date_of_birth = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_gender(value)
+          @gender = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_name(value)
+          @name = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

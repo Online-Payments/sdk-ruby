@@ -15,6 +15,18 @@ module OnlinePayments
 
         attr_accessor :webhooks_urls
 
+        # Sets the property and returns this same instance.
+        def with_webhook_url(value)
+          @webhook_url = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_webhooks_urls(value)
+          @webhooks_urls = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

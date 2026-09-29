@@ -37,6 +37,54 @@ module OnlinePayments
 
         attr_accessor :payment_product_id
 
+        # Sets the property and returns this same instance.
+        def with_card(value)
+          @card = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_crm_token(value)
+          @crm_token = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_e_wallet(value)
+          @e_wallet = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_external_token_linked(value)
+          @external_token_linked = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_id(value)
+          @id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_is_temporary(value)
+          @is_temporary = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_network_token_linked(value)
+          @network_token_linked = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product_id(value)
+          @payment_product_id = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

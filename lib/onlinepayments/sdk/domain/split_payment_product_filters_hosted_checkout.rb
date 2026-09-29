@@ -15,6 +15,18 @@ module OnlinePayments
 
         attr_accessor :restrict_to
 
+        # Sets the property and returns this same instance.
+        def with_exclude(value)
+          @exclude = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_restrict_to(value)
+          @restrict_to = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

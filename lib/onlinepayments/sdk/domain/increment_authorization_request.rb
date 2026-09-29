@@ -12,6 +12,12 @@ module OnlinePayments
 
         attr_accessor :amount_of_money
 
+        # Sets the property and returns this same instance.
+        def with_amount_of_money(value)
+          @amount_of_money = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

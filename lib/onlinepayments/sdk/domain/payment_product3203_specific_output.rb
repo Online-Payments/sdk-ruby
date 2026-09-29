@@ -15,6 +15,18 @@ module OnlinePayments
 
         attr_accessor :shipping_address
 
+        # Sets the property and returns this same instance.
+        def with_billing_address(value)
+          @billing_address = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_shipping_address(value)
+          @shipping_address = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

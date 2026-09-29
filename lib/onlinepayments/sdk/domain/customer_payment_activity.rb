@@ -17,6 +17,24 @@ module OnlinePayments
 
         attr_accessor :number_of_purchases_last6_months
 
+        # Sets the property and returns this same instance.
+        def with_number_of_payment_attempts_last24_hours(value)
+          @number_of_payment_attempts_last24_hours = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_number_of_payment_attempts_last_year(value)
+          @number_of_payment_attempts_last_year = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_number_of_purchases_last6_months(value)
+          @number_of_purchases_last6_months = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

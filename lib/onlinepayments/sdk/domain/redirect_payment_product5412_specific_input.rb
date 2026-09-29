@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :beneficiary_id
 
+        # Sets the property and returns this same instance.
+        def with_adjustable_amount(value)
+          @adjustable_amount = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_beneficiary_id(value)
+          @beneficiary_id = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

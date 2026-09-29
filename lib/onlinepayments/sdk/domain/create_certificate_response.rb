@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :signed_certificate
 
+        # Sets the property and returns this same instance.
+        def with_certificate_id(value)
+          @certificate_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_signed_certificate(value)
+          @signed_certificate = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

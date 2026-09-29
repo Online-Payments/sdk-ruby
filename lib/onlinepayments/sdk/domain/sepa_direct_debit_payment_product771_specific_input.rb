@@ -15,6 +15,18 @@ module OnlinePayments
 
         attr_accessor :mandate
 
+        # Sets the property and returns this same instance.
+        def with_existing_unique_mandate_reference(value)
+          @existing_unique_mandate_reference = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_mandate(value)
+          @mandate = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

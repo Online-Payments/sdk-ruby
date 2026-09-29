@@ -29,6 +29,48 @@ module OnlinePayments
 
         attr_accessor :token
 
+        # Sets the property and returns this same instance.
+        def with_cardholder_name(value)
+          @cardholder_name = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_expiry_date(value)
+          @expiry_date = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_logo_url(value)
+          @logo_url = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_masked_pan(value)
+          @masked_pan = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product_id(value)
+          @payment_product_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_product_name(value)
+          @product_name = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_token(value)
+          @token = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

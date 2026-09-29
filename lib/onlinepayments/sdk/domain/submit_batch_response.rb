@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :total_count
 
+        # Sets the property and returns this same instance.
+        def with_merchant_batch_reference(value)
+          @merchant_batch_reference = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_total_count(value)
+          @total_count = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

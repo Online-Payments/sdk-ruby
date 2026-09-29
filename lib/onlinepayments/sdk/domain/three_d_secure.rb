@@ -47,6 +47,78 @@ module OnlinePayments
 
         attr_accessor :skip_soft_decline
 
+        # Sets the property and returns this same instance.
+        def with_authentication_amount(value)
+          @authentication_amount = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_challenge_canvas_size(value)
+          @challenge_canvas_size = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_challenge_indicator(value)
+          @challenge_indicator = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_device_channel(value)
+          @device_channel = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_exemption_request(value)
+          @exemption_request = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_external_cardholder_authentication_data(value)
+          @external_cardholder_authentication_data = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_merchant_fraud_rate(value)
+          @merchant_fraud_rate = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_prior_three_d_secure_data(value)
+          @prior_three_d_secure_data = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_redirection_data(value)
+          @redirection_data = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_secure_corporate_payment(value)
+          @secure_corporate_payment = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_skip_authentication(value)
+          @skip_authentication = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_skip_soft_decline(value)
+          @skip_soft_decline = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

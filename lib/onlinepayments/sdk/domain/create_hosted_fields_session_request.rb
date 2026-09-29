@@ -17,6 +17,24 @@ module OnlinePayments
 
         attr_accessor :tokens
 
+        # Sets the property and returns this same instance.
+        def with_locale(value)
+          @locale = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_origin(value)
+          @origin = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_tokens(value)
+          @tokens = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

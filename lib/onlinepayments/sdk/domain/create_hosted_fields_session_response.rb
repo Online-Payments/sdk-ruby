@@ -28,6 +28,42 @@ module OnlinePayments
 
         attr_accessor :session_data
 
+        # Sets the property and returns this same instance.
+        def with_card_tokens(value)
+          @card_tokens = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_hosted_fields_session_id(value)
+          @hosted_fields_session_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_invalid_tokens(value)
+          @invalid_tokens = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_sdk_sri(value)
+          @sdk_sri = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_sdk_url(value)
+          @sdk_url = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_session_data(value)
+          @session_data = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

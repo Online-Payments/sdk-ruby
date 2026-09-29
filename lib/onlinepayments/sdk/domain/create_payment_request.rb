@@ -49,6 +49,72 @@ module OnlinePayments
 
         attr_accessor :sepa_direct_debit_payment_method_specific_input
 
+        # Sets the property and returns this same instance.
+        def with_card_payment_method_specific_input(value)
+          @card_payment_method_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_encrypted_customer_input(value)
+          @encrypted_customer_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_feedbacks(value)
+          @feedbacks = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_fraud_fields(value)
+          @fraud_fields = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_hosted_fields_session_id(value)
+          @hosted_fields_session_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_hosted_tokenization_id(value)
+          @hosted_tokenization_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_mobile_payment_method_specific_input(value)
+          @mobile_payment_method_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_omnichannel_payment_specific_input(value)
+          @omnichannel_payment_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_order(value)
+          @order = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_redirect_payment_method_specific_input(value)
+          @redirect_payment_method_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_sepa_direct_debit_payment_method_specific_input(value)
+          @sepa_direct_debit_payment_method_specific_input = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

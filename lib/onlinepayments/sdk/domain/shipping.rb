@@ -37,6 +37,60 @@ module OnlinePayments
 
         attr_accessor :type
 
+        # Sets the property and returns this same instance.
+        def with_address(value)
+          @address = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_address_indicator(value)
+          @address_indicator = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_email_address(value)
+          @email_address = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_first_usage_date(value)
+          @first_usage_date = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_is_first_usage(value)
+          @is_first_usage = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_method(value)
+          @method = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_shipping_cost(value)
+          @shipping_cost = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_shipping_cost_tax(value)
+          @shipping_cost_tax = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_type(value)
+          @type = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

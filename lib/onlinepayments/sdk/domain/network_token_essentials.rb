@@ -26,6 +26,42 @@ module OnlinePayments
 
         attr_accessor :token_expiry_date
 
+        # Sets the property and returns this same instance.
+        def with_bin(value)
+          @bin = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_country_code(value)
+          @country_code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_network_token(value)
+          @network_token = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_network_token_state(value)
+          @network_token_state = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_network_token_used(value)
+          @network_token_used = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_token_expiry_date(value)
+          @token_expiry_date = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

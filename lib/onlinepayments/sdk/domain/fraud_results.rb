@@ -11,6 +11,12 @@ module OnlinePayments
 
         attr_accessor :fraud_service_result
 
+        # Sets the property and returns this same instance.
+        def with_fraud_service_result(value)
+          @fraud_service_result = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

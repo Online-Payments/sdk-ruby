@@ -24,6 +24,36 @@ module OnlinePayments
 
         attr_accessor :trial_billing
 
+        # Sets the property and returns this same instance.
+        def with_billing_agreement(value)
+          @billing_agreement = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_management_url(value)
+          @management_url = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_description(value)
+          @payment_description = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_regular_billing(value)
+          @regular_billing = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_trial_billing(value)
+          @trial_billing = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

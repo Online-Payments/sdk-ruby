@@ -17,6 +17,24 @@ module OnlinePayments
 
         attr_accessor :requestor_id
 
+        # Sets the property and returns this same instance.
+        def with_acquirer_id(value)
+          @acquirer_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_acquirer_mid(value)
+          @acquirer_mid = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_requestor_id(value)
+          @requestor_id = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

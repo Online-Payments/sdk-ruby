@@ -29,6 +29,48 @@ module OnlinePayments
 
         attr_accessor :zip
 
+        # Sets the property and returns this same instance.
+        def with_additional_info(value)
+          @additional_info = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_city(value)
+          @city = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_country_code(value)
+          @country_code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_house_number(value)
+          @house_number = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_state(value)
+          @state = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_street(value)
+          @street = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_zip(value)
+          @zip = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

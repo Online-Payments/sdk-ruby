@@ -11,6 +11,12 @@ module OnlinePayments
 
         attr_accessor :session
 
+        # Sets the property and returns this same instance.
+        def with_session(value)
+          @session = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

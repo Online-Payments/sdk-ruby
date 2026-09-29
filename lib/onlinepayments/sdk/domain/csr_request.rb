@@ -11,6 +11,12 @@ module OnlinePayments
 
         attr_accessor :csr
 
+        # Sets the property and returns this same instance.
+        def with_csr(value)
+          @csr = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

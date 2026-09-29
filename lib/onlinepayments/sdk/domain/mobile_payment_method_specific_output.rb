@@ -29,6 +29,42 @@ module OnlinePayments
 
         attr_accessor :three_d_secure_results
 
+        # Sets the property and returns this same instance.
+        def with_authorisation_code(value)
+          @authorisation_code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_fraud_results(value)
+          @fraud_results = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_network(value)
+          @network = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_data(value)
+          @payment_data = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product_id(value)
+          @payment_product_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_three_d_secure_results(value)
+          @three_d_secure_results = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

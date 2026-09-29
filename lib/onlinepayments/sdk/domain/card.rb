@@ -20,6 +20,30 @@ module OnlinePayments
 
         attr_accessor :expiry_date
 
+        # Sets the property and returns this same instance.
+        def with_card_number(value)
+          @card_number = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_cardholder_name(value)
+          @cardholder_name = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_cvv(value)
+          @cvv = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_expiry_date(value)
+          @expiry_date = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

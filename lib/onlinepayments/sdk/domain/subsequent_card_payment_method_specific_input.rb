@@ -36,6 +36,54 @@ module OnlinePayments
 
         attr_accessor :transaction_channel
 
+        # Sets the property and returns this same instance.
+        def with_authorization_mode(value)
+          @authorization_mode = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_auto_capture(value)
+          @auto_capture = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_market_place(value)
+          @market_place = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_number(value)
+          @payment_number = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_scheme_reference_data(value)
+          @scheme_reference_data = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_subsequent_type(value)
+          @subsequent_type = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_token(value)
+          @token = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_transaction_channel(value)
+          @transaction_channel = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

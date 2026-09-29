@@ -23,6 +23,36 @@ module OnlinePayments
 
         attr_accessor :screen_width
 
+        # Sets the property and returns this same instance.
+        def with_color_depth(value)
+          @color_depth = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_java_enabled(value)
+          @java_enabled = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_java_script_enabled(value)
+          @java_script_enabled = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_screen_height(value)
+          @screen_height = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_screen_width(value)
+          @screen_width = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

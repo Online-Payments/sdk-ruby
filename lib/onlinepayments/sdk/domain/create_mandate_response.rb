@@ -16,6 +16,18 @@ module OnlinePayments
 
         attr_accessor :merchant_action
 
+        # Sets the property and returns this same instance.
+        def with_mandate(value)
+          @mandate = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_merchant_action(value)
+          @merchant_action = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

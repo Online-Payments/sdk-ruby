@@ -40,6 +40,60 @@ module OnlinePayments
 
         attr_accessor :terms_and_conditions
 
+        # Sets the property and returns this same instance.
+        def with_email_address(value)
+          @email_address = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_expiration_date(value)
+          @expiration_date = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_fixed_list(value)
+          @fixed_list = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_iban(value)
+          @iban = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_length(value)
+          @length = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_luhn(value)
+          @luhn = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_range(value)
+          @range = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_regular_expression(value)
+          @regular_expression = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_terms_and_conditions(value)
+          @terms_and_conditions = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

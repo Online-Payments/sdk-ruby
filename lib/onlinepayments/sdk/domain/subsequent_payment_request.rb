@@ -24,6 +24,30 @@ module OnlinePayments
 
         attr_accessor :subsequentcard_payment_method_specific_input
 
+        # Sets the property and returns this same instance.
+        def with_omnichannel_subsequent_specific_input(value)
+          @omnichannel_subsequent_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_order(value)
+          @order = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_subsequent_payment_product5001_specific_input(value)
+          @subsequent_payment_product5001_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_subsequentcard_payment_method_specific_input(value)
+          @subsequentcard_payment_method_specific_input = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

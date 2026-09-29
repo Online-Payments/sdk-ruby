@@ -11,6 +11,12 @@ module OnlinePayments
 
         attr_accessor :skip_email_validation
 
+        # Sets the property and returns this same instance.
+        def with_skip_email_validation(value)
+          @skip_email_validation = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :number_of_card_on_file_creation_attempts_last24_hours
 
+        # Sets the property and returns this same instance.
+        def with_create_date(value)
+          @create_date = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_number_of_card_on_file_creation_attempts_last24_hours(value)
+          @number_of_card_on_file_creation_attempts_last24_hours = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

@@ -11,6 +11,12 @@ module OnlinePayments
 
         attr_accessor :url
 
+        # Sets the property and returns this same instance.
+        def with_url(value)
+          @url = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

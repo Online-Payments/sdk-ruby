@@ -50,6 +50,84 @@ module OnlinePayments
 
         attr_accessor :variant
 
+        # Sets the property and returns this same instance.
+        def with_allowed_number_of_payment_attempts(value)
+          @allowed_number_of_payment_attempts = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_auto_refund_split_payments(value)
+          @auto_refund_split_payments = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_card_payment_method_specific_input(value)
+          @card_payment_method_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_is_new_unscheduled_card_on_file_series(value)
+          @is_new_unscheduled_card_on_file_series = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_is_recurring(value)
+          @is_recurring = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_locale(value)
+          @locale = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product_filters(value)
+          @payment_product_filters = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_return_url(value)
+          @return_url = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_session_timeout(value)
+          @session_timeout = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_show_result_page(value)
+          @show_result_page = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_split_payment_product_filters(value)
+          @split_payment_product_filters = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_tokens(value)
+          @tokens = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_variant(value)
+          @variant = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

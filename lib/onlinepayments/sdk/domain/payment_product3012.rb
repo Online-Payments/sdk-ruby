@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :url_intent
 
+        # Sets the property and returns this same instance.
+        def with_qr_code(value)
+          @qr_code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_url_intent(value)
+          @url_intent = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

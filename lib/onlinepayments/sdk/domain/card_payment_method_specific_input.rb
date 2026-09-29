@@ -117,6 +117,192 @@ module OnlinePayments
 
         attr_accessor :unscheduled_card_on_file_sequence_indicator
 
+        # Sets the property and returns this same instance.
+        def with_allow_dynamic_linking(value)
+          @allow_dynamic_linking = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_authorization_mode(value)
+          @authorization_mode = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_auto_capture(value)
+          @auto_capture = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_card(value)
+          @card = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_card_on_file_recurring_expiration(value)
+          @card_on_file_recurring_expiration = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_card_on_file_recurring_frequency(value)
+          @card_on_file_recurring_frequency = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_cobrand_selection_indicator(value)
+          @cobrand_selection_indicator = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_currency_conversion(value)
+          @currency_conversion = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_initial_scheme_transaction_id(value)
+          @initial_scheme_transaction_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_is_recurring(value)
+          @is_recurring = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_market_place(value)
+          @market_place = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_multiple_payment_information(value)
+          @multiple_payment_information = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_network_token_data(value)
+          @network_token_data = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product130_specific_input(value)
+          @payment_product130_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product3012_specific_input(value)
+          @payment_product3012_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product3013_specific_input(value)
+          @payment_product3013_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product3208_specific_input(value)
+          @payment_product3208_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product3209_specific_input(value)
+          @payment_product3209_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product5002_specific_input(value)
+          @payment_product5002_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product_id(value)
+          @payment_product_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_recurring(value)
+          @recurring = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_return_url(value)
+          @return_url = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_scheme_reference_data(value)
+          @scheme_reference_data = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_skip_authentication(value)
+          @skip_authentication = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_sub_merchant(value)
+          @sub_merchant = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_three_d_secure(value)
+          @three_d_secure = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_token(value)
+          @token = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_tokenize(value)
+          @tokenize = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_transaction_channel(value)
+          @transaction_channel = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_unscheduled_card_on_file_requestor(value)
+          @unscheduled_card_on_file_requestor = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_unscheduled_card_on_file_sequence_indicator(value)
+          @unscheduled_card_on_file_sequence_indicator = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

@@ -17,6 +17,24 @@ module OnlinePayments
 
         attr_accessor :operation_type
 
+        # Sets the property and returns this same instance.
+        def with_item_count(value)
+          @item_count = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_merchant_batch_reference(value)
+          @merchant_batch_reference = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_operation_type(value)
+          @operation_type = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

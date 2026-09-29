@@ -31,6 +31,36 @@ module OnlinePayments
 
           attr_accessor :hide
 
+          # Sets the parameter and returns this same instance.
+          def with_country_code(value)
+            @country_code = value
+            self
+          end
+
+          # Sets the parameter and returns this same instance.
+          def with_currency_code(value)
+            @currency_code = value
+            self
+          end
+
+          # Sets the parameter and returns this same instance.
+          def with_locale(value)
+            @locale = value
+            self
+          end
+
+          # Sets the parameter and returns this same instance.
+          def with_amount(value)
+            @amount = value
+            self
+          end
+
+          # Sets the parameter and returns this same instance.
+          def with_is_recurring(value)
+            @is_recurring = value
+            self
+          end
+
           # Adds the parameter _value_ to the _hide_ Array
           #
           # @param value [String]
@@ -39,6 +69,12 @@ module OnlinePayments
               @hide = []
             end
             @hide << value
+          end
+
+          # Sets the parameter and returns this same instance.
+          def with_hide(value)
+            @hide = value
+            self
           end
 
           # @return [Array<OnlinePayments::SDK::Communication::RequestParam>] representing the attributes of this class

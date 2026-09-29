@@ -17,6 +17,24 @@ module OnlinePayments
 
         attr_accessor :rule_name
 
+        # Sets the property and returns this same instance.
+        def with_fallback_level(value)
+          @fallback_level = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_result(value)
+          @result = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_rule_name(value)
+          @rule_name = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

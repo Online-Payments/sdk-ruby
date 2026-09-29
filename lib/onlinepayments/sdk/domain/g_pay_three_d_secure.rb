@@ -27,6 +27,42 @@ module OnlinePayments
 
         attr_accessor :skip_soft_decline
 
+        # Sets the property and returns this same instance.
+        def with_challenge_canvas_size(value)
+          @challenge_canvas_size = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_challenge_indicator(value)
+          @challenge_indicator = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_exemption_request(value)
+          @exemption_request = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_redirection_data(value)
+          @redirection_data = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_skip_authentication(value)
+          @skip_authentication = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_skip_soft_decline(value)
+          @skip_soft_decline = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

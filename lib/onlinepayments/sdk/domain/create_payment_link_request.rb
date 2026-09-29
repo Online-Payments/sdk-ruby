@@ -68,6 +68,96 @@ module OnlinePayments
 
         attr_accessor :sepa_direct_debit_payment_method_specific_input
 
+        # Sets the property and returns this same instance.
+        def with_card_payment_method_specific_input(value)
+          @card_payment_method_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_description(value)
+          @description = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_display_qr_code(value)
+          @display_qr_code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_expiration_date(value)
+          @expiration_date = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_feedbacks(value)
+          @feedbacks = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_fraud_fields(value)
+          @fraud_fields = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_hosted_checkout_specific_input(value)
+          @hosted_checkout_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_is_reusable_link(value)
+          @is_reusable_link = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_mobile_payment_method_specific_input(value)
+          @mobile_payment_method_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_order(value)
+          @order = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_link_order(value)
+          @payment_link_order = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_link_specific_input(value)
+          @payment_link_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_recipient_name(value)
+          @recipient_name = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_redirect_payment_method_specific_input(value)
+          @redirect_payment_method_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_sepa_direct_debit_payment_method_specific_input(value)
+          @sepa_direct_debit_payment_method_specific_input = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

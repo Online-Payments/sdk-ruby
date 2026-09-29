@@ -11,6 +11,12 @@ module OnlinePayments
 
         attr_accessor :revocation_reason
 
+        # Sets the property and returns this same instance.
+        def with_revocation_reason(value)
+          @revocation_reason = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

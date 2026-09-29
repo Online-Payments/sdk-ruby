@@ -33,6 +33,54 @@ module OnlinePayments
         # @deprecated This field is not used by any payment product Title of the passenger (this property is used for fraud screening on the payment platform)
         attr_accessor :title
 
+        # Sets the property and returns this same instance.
+        def with_airline_loyalty_status(value)
+          @airline_loyalty_status = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_country_code(value)
+          @country_code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_date_of_birth(value)
+          @date_of_birth = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_first_name(value)
+          @first_name = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_passenger_type(value)
+          @passenger_type = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_surname(value)
+          @surname = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_surname_prefix(value)
+          @surname_prefix = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_title(value)
+          @title = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

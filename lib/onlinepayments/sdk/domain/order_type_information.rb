@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :transaction_type
 
+        # Sets the property and returns this same instance.
+        def with_purchase_type(value)
+          @purchase_type = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_transaction_type(value)
+          @transaction_type = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

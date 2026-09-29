@@ -21,6 +21,30 @@ module OnlinePayments
 
         attr_accessor :token
 
+        # Sets the property and returns this same instance.
+        def with_card(value)
+          @card = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_encrypted_customer_input(value)
+          @encrypted_customer_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_hosted_tokenization_id(value)
+          @hosted_tokenization_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_token(value)
+          @token = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

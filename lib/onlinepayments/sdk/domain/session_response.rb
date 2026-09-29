@@ -23,6 +23,36 @@ module OnlinePayments
 
         attr_accessor :invalid_tokens
 
+        # Sets the property and returns this same instance.
+        def with_asset_url(value)
+          @asset_url = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_client_api_url(value)
+          @client_api_url = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_client_session_id(value)
+          @client_session_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_customer_id(value)
+          @customer_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_invalid_tokens(value)
+          @invalid_tokens = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

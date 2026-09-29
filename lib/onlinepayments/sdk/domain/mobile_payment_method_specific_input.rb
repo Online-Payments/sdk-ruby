@@ -42,6 +42,66 @@ module OnlinePayments
 
         attr_accessor :requires_approval
 
+        # Sets the property and returns this same instance.
+        def with_authorization_mode(value)
+          @authorization_mode = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_auto_capture(value)
+          @auto_capture = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_decrypted_payment_data(value)
+          @decrypted_payment_data = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_encrypted_payment_data(value)
+          @encrypted_payment_data = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_ephemeral_key(value)
+          @ephemeral_key = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product302_specific_input(value)
+          @payment_product302_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product320_specific_input(value)
+          @payment_product320_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product_id(value)
+          @payment_product_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_public_key_hash(value)
+          @public_key_hash = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_requires_approval(value)
+          @requires_approval = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

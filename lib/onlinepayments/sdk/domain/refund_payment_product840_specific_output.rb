@@ -12,6 +12,12 @@ module OnlinePayments
 
         attr_accessor :customer_account
 
+        # Sets the property and returns this same instance.
+        def with_customer_account(value)
+          @customer_account = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

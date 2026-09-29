@@ -23,6 +23,36 @@ module OnlinePayments
 
         attr_accessor :tokens
 
+        # Sets the property and returns this same instance.
+        def with_hosted_fields_session_id(value)
+          @hosted_fields_session_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_locale(value)
+          @locale = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_platform_url(value)
+          @platform_url = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_session_token(value)
+          @session_token = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_tokens(value)
+          @tokens = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

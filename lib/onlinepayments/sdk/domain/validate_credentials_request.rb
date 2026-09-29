@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :secret
 
+        # Sets the property and returns this same instance.
+        def with_key(value)
+          @key = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_secret(value)
+          @secret = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

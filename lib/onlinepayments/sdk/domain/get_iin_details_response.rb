@@ -80,6 +80,144 @@ module OnlinePayments
 
         attr_accessor :virtual_card_indicator
 
+        # Sets the property and returns this same instance.
+        def with_card_corporate_indicator(value)
+          @card_corporate_indicator = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_card_effective_date(value)
+          @card_effective_date = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_card_effective_date_indicator(value)
+          @card_effective_date_indicator = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_card_pan_type(value)
+          @card_pan_type = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_card_product_code(value)
+          @card_product_code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_card_product_name(value)
+          @card_product_name = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_card_product_usage_label(value)
+          @card_product_usage_label = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_card_scheme(value)
+          @card_scheme = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_card_type(value)
+          @card_type = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_co_brands(value)
+          @co_brands = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_country_code(value)
+          @country_code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_is_allowed_in_context(value)
+          @is_allowed_in_context = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_issuer_code(value)
+          @issuer_code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_issuer_name(value)
+          @issuer_name = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_issuer_principal_member_code(value)
+          @issuer_principal_member_code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_issuer_principal_member_name(value)
+          @issuer_principal_member_name = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_issuer_region_code(value)
+          @issuer_region_code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_issuing_country_code(value)
+          @issuing_country_code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_pan_length_max(value)
+          @pan_length_max = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_pan_length_min(value)
+          @pan_length_min = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_pan_luhn_check(value)
+          @pan_luhn_check = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product_id(value)
+          @payment_product_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_virtual_card_indicator(value)
+          @virtual_card_indicator = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

@@ -41,6 +41,60 @@ module OnlinePayments
 
         attr_accessor :refund_redirect_payment_method_specific_input
 
+        # Sets the property and returns this same instance.
+        def with_amount_of_money(value)
+          @amount_of_money = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_capture_id(value)
+          @capture_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_is_final(value)
+          @is_final = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_line_item_details(value)
+          @line_item_details = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_omnichannel_refund_specific_input(value)
+          @omnichannel_refund_specific_input = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_operation_references(value)
+          @operation_references = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_reason(value)
+          @reason = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_references(value)
+          @references = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_refund_redirect_payment_method_specific_input(value)
+          @refund_redirect_payment_method_specific_input = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

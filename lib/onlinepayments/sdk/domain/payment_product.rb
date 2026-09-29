@@ -56,6 +56,90 @@ module OnlinePayments
 
         attr_accessor :uses_redirection_to3rd_party
 
+        # Sets the property and returns this same instance.
+        def with_accounts_on_file(value)
+          @accounts_on_file = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_allows_authentication(value)
+          @allows_authentication = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_allows_recurring(value)
+          @allows_recurring = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_allows_tokenization(value)
+          @allows_tokenization = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_display_hints(value)
+          @display_hints = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_display_hints_list(value)
+          @display_hints_list = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_fields(value)
+          @fields = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_id(value)
+          @id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_method(value)
+          @payment_method = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product302_specific_data(value)
+          @payment_product302_specific_data = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product320_specific_data(value)
+          @payment_product320_specific_data = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product5002_specific_data(value)
+          @payment_product5002_specific_data = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product_group(value)
+          @payment_product_group = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_uses_redirection_to3rd_party(value)
+          @uses_redirection_to3rd_party = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

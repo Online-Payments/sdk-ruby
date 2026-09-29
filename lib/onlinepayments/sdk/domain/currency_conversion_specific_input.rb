@@ -11,6 +11,12 @@ module OnlinePayments
 
         attr_accessor :dcc_enabled
 
+        # Sets the property and returns this same instance.
+        def with_dcc_enabled(value)
+          @dcc_enabled = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

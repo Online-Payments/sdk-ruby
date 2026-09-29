@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :variant
 
+        # Sets the property and returns this same instance.
+        def with_hosted_checkout_id(value)
+          @hosted_checkout_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_variant(value)
+          @variant = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

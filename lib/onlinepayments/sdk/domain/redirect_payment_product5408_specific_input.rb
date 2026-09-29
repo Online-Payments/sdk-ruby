@@ -15,6 +15,18 @@ module OnlinePayments
 
         attr_accessor :instant_payment_only
 
+        # Sets the property and returns this same instance.
+        def with_customer_bank_account(value)
+          @customer_bank_account = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_instant_payment_only(value)
+          @instant_payment_only = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

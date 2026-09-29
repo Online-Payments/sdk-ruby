@@ -15,6 +15,18 @@ module OnlinePayments
 
         attr_accessor :redirect_data
 
+        # Sets the property and returns this same instance.
+        def with_action_type(value)
+          @action_type = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_redirect_data(value)
+          @redirect_data = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

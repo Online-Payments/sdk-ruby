@@ -27,6 +27,42 @@ module OnlinePayments
 
         attr_accessor :website
 
+        # Sets the property and returns this same instance.
+        def with_address(value)
+          @address = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_company_identification_number(value)
+          @company_identification_number = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_company_name(value)
+          @company_name = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_merchant_category_code(value)
+          @merchant_category_code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_merchant_id(value)
+          @merchant_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_website(value)
+          @website = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

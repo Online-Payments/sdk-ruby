@@ -27,6 +27,36 @@ module OnlinePayments
 
         attr_accessor :visa
 
+        # Sets the property and returns this same instance.
+        def with_amex(value)
+          @amex = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_cb(value)
+          @cb = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_eftpos(value)
+          @eftpos = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_mastercard(value)
+          @mastercard = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_visa(value)
+          @visa = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

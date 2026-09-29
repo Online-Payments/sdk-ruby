@@ -30,6 +30,48 @@ module OnlinePayments
 
         attr_accessor :status_code_change_date_time
 
+        # Sets the property and returns this same instance.
+        def with_errors(value)
+          @errors = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_is_authorized(value)
+          @is_authorized = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_is_cancellable(value)
+          @is_cancellable = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_is_refundable(value)
+          @is_refundable = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_status_category(value)
+          @status_category = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_status_code(value)
+          @status_code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_status_code_change_date_time(value)
+          @status_code_change_date_time = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

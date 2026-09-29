@@ -23,6 +23,36 @@ module OnlinePayments
 
         attr_accessor :type
 
+        # Sets the property and returns this same instance.
+        def with_detail(value)
+          @detail = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_instance(value)
+          @instance = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_status(value)
+          @status = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_title(value)
+          @title = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_type(value)
+          @type = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

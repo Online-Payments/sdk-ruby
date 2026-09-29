@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :result_reason
 
+        # Sets the property and returns this same instance.
+        def with_result(value)
+          @result = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_result_reason(value)
+          @result_reason = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

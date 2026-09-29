@@ -94,6 +94,156 @@ module OnlinePayments
 
         attr_accessor :travel_agency_name
 
+        # Sets the property and returns this same instance.
+        def with_agent_numeric_code(value)
+          @agent_numeric_code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_code(value)
+          @code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_flight_date(value)
+          @flight_date = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_flight_indicator(value)
+          @flight_indicator = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_flight_legs(value)
+          @flight_legs = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_invoice_number(value)
+          @invoice_number = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_is_e_ticket(value)
+          @is_e_ticket = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_is_restricted_ticket(value)
+          @is_restricted_ticket = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_is_third_party(value)
+          @is_third_party = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_issue_date(value)
+          @issue_date = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_merchant_customer_id(value)
+          @merchant_customer_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_name(value)
+          @name = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_passenger_name(value)
+          @passenger_name = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_passengers(value)
+          @passengers = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_place_of_issue(value)
+          @place_of_issue = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_pnr(value)
+          @pnr = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_point_of_sale(value)
+          @point_of_sale = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_pos_city_code(value)
+          @pos_city_code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_ticket_currency(value)
+          @ticket_currency = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_ticket_delivery_method(value)
+          @ticket_delivery_method = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_ticket_number(value)
+          @ticket_number = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_total_fare(value)
+          @total_fare = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_total_fee(value)
+          @total_fee = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_total_taxes(value)
+          @total_taxes = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_travel_agency_name(value)
+          @travel_agency_name = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

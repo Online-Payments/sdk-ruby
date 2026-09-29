@@ -11,6 +11,12 @@ module OnlinePayments
 
         attr_accessor :is_click_to_pay_payment
 
+        # Sets the property and returns this same instance.
+        def with_is_click_to_pay_payment(value)
+          @is_click_to_pay_payment = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

@@ -11,6 +11,12 @@ module OnlinePayments
 
         attr_accessor :brand
 
+        # Sets the property and returns this same instance.
+        def with_brand(value)
+          @brand = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

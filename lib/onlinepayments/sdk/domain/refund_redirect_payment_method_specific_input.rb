@@ -12,6 +12,12 @@ module OnlinePayments
 
         attr_accessor :refund_redirect_payment_product900_specific_input
 
+        # Sets the property and returns this same instance.
+        def with_refund_redirect_payment_product900_specific_input(value)
+          @refund_redirect_payment_product900_specific_input = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

@@ -25,6 +25,36 @@ module OnlinePayments
 
         attr_accessor :target_amount
 
+        # Sets the property and returns this same instance.
+        def with_base_amount(value)
+          @base_amount = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_disclaimer_display(value)
+          @disclaimer_display = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_disclaimer_receipt(value)
+          @disclaimer_receipt = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_rate(value)
+          @rate = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_target_amount(value)
+          @target_amount = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

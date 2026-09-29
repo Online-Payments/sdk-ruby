@@ -73,6 +73,132 @@ module OnlinePayments
 
         attr_accessor :taxes
 
+        # Sets the property and returns this same instance.
+        def with_airline_class(value)
+          @airline_class = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_arrival_airport(value)
+          @arrival_airport = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_arrival_time(value)
+          @arrival_time = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_carrier_code(value)
+          @carrier_code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_conjunction_ticket(value)
+          @conjunction_ticket = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_coupon_number(value)
+          @coupon_number = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_date(value)
+          @date = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_departure_time(value)
+          @departure_time = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_endorsement_or_restriction(value)
+          @endorsement_or_restriction = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_exchange_ticket(value)
+          @exchange_ticket = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_fare(value)
+          @fare = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_fare_basis(value)
+          @fare_basis = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_fee(value)
+          @fee = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_flight_code(value)
+          @flight_code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_flight_number(value)
+          @flight_number = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_leg_fare(value)
+          @leg_fare = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_number(value)
+          @number = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_origin_airport(value)
+          @origin_airport = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_passenger_class(value)
+          @passenger_class = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_stopover_code(value)
+          @stopover_code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_taxes(value)
+          @taxes = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

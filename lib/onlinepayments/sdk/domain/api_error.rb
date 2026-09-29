@@ -33,6 +33,54 @@ module OnlinePayments
 
         attr_accessor :retriable
 
+        # Sets the property and returns this same instance.
+        def with_category(value)
+          @category = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_code(value)
+          @code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_error_code(value)
+          @error_code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_http_status_code(value)
+          @http_status_code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_id(value)
+          @id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_message(value)
+          @message = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_property_name(value)
+          @property_name = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_retriable(value)
+          @retriable = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

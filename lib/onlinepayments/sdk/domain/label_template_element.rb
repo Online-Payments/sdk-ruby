@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :mask
 
+        # Sets the property and returns this same instance.
+        def with_attribute_key(value)
+          @attribute_key = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_mask(value)
+          @mask = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

@@ -17,6 +17,24 @@ module OnlinePayments
 
         attr_accessor :utc_timestamp
 
+        # Sets the property and returns this same instance.
+        def with_data(value)
+          @data = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_method(value)
+          @method = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_utc_timestamp(value)
+          @utc_timestamp = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

@@ -20,6 +20,30 @@ module OnlinePayments
 
         attr_accessor :usecase
 
+        # Sets the property and returns this same instance.
+        def with_acquirer_exemption(value)
+          @acquirer_exemption = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_merchant_score(value)
+          @merchant_score = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_number_of_items(value)
+          @number_of_items = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_usecase(value)
+          @usecase = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

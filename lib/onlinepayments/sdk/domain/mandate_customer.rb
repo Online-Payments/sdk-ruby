@@ -27,6 +27,36 @@ module OnlinePayments
 
         attr_accessor :personal_information
 
+        # Sets the property and returns this same instance.
+        def with_bank_account_iban(value)
+          @bank_account_iban = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_company_name(value)
+          @company_name = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_contact_details(value)
+          @contact_details = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_mandate_address(value)
+          @mandate_address = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_personal_information(value)
+          @personal_information = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

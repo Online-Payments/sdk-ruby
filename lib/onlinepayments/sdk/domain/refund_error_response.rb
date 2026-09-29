@@ -19,6 +19,24 @@ module OnlinePayments
 
         attr_accessor :refund_result
 
+        # Sets the property and returns this same instance.
+        def with_error_id(value)
+          @error_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_errors(value)
+          @errors = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_refund_result(value)
+          @refund_result = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

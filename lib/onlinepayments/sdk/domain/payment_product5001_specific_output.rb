@@ -23,6 +23,36 @@ module OnlinePayments
 
         attr_accessor :operation_code
 
+        # Sets the property and returns this same instance.
+        def with_account_number(value)
+          @account_number = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_authorisation_code(value)
+          @authorisation_code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_liability(value)
+          @liability = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_mobile_phone_number(value)
+          @mobile_phone_number = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_operation_code(value)
+          @operation_code = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

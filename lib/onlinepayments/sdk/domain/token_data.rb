@@ -15,6 +15,18 @@ module OnlinePayments
 
         attr_accessor :cobrand_selection_indicator
 
+        # Sets the property and returns this same instance.
+        def with_card(value)
+          @card = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_cobrand_selection_indicator(value)
+          @cobrand_selection_indicator = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

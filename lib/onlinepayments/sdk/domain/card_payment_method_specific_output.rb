@@ -90,6 +90,144 @@ module OnlinePayments
 
         attr_accessor :token
 
+        # Sets the property and returns this same instance.
+        def with_acceptance(value)
+          @acceptance = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_acquirer_information(value)
+          @acquirer_information = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_authenticated_amount(value)
+          @authenticated_amount = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_authorisation_code(value)
+          @authorisation_code = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_card(value)
+          @card = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_click_to_pay(value)
+          @click_to_pay = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_cobrand_selection_indicator(value)
+          @cobrand_selection_indicator = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_crm_token(value)
+          @crm_token = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_currency_conversion(value)
+          @currency_conversion = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_external_token_linked(value)
+          @external_token_linked = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_fraud_results(value)
+          @fraud_results = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_initial_scheme_transaction_id(value)
+          @initial_scheme_transaction_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_network_token_data(value)
+          @network_token_data = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_account_reference(value)
+          @payment_account_reference = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_option(value)
+          @payment_option = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product3208_specific_output(value)
+          @payment_product3208_specific_output = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product3209_specific_output(value)
+          @payment_product3209_specific_output = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product_id(value)
+          @payment_product_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_reattempt_instructions(value)
+          @reattempt_instructions = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_scheme_reference_data(value)
+          @scheme_reference_data = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_scheme_transaction_id(value)
+          @scheme_transaction_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_three_d_secure_results(value)
+          @three_d_secure_results = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_token(value)
+          @token = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

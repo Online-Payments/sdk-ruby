@@ -24,6 +24,30 @@ module OnlinePayments
 
           attr_accessor :is_recurring
 
+          # Sets the parameter and returns this same instance.
+          def with_country_code(value)
+            @country_code = value
+            self
+          end
+
+          # Sets the parameter and returns this same instance.
+          def with_currency_code(value)
+            @currency_code = value
+            self
+          end
+
+          # Sets the parameter and returns this same instance.
+          def with_amount(value)
+            @amount = value
+            self
+          end
+
+          # Sets the parameter and returns this same instance.
+          def with_is_recurring(value)
+            @is_recurring = value
+            self
+          end
+
           # @return [Array<OnlinePayments::SDK::Communication::RequestParam>] representing the attributes of this class
           def to_request_parameters
             result = []

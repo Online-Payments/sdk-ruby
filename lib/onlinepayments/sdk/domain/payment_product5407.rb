@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :qr_code
 
+        # Sets the property and returns this same instance.
+        def with_pairing_token(value)
+          @pairing_token = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_qr_code(value)
+          @qr_code = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

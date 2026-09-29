@@ -30,6 +30,48 @@ module OnlinePayments
 
         attr_accessor :user_agent
 
+        # Sets the property and returns this same instance.
+        def with_accept_header(value)
+          @accept_header = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_browser_data(value)
+          @browser_data = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_device_fingerprint(value)
+          @device_fingerprint = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_ip_address(value)
+          @ip_address = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_locale(value)
+          @locale = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_timezone_offset_utc_minutes(value)
+          @timezone_offset_utc_minutes = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_user_agent(value)
+          @user_agent = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

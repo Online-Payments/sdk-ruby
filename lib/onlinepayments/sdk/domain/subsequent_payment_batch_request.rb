@@ -15,6 +15,18 @@ module OnlinePayments
 
         attr_accessor :subsequent
 
+        # Sets the property and returns this same instance.
+        def with_payment_id(value)
+          @payment_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_subsequent(value)
+          @subsequent = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

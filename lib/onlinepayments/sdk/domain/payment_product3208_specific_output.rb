@@ -11,6 +11,12 @@ module OnlinePayments
 
         attr_accessor :buyer_compliant_bank_message
 
+        # Sets the property and returns this same instance.
+        def with_buyer_compliant_bank_message(value)
+          @buyer_compliant_bank_message = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

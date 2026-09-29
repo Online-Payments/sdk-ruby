@@ -16,6 +16,18 @@ module OnlinePayments
         # @deprecated This field is not used by any payment product
         attr_accessor :value_mapping
 
+        # Sets the property and returns this same instance.
+        def with_type(value)
+          @type = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_value_mapping(value)
+          @value_mapping = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

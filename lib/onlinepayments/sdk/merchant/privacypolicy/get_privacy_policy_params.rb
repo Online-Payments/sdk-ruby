@@ -18,6 +18,18 @@ module OnlinePayments
 
           attr_accessor :payment_product_id
 
+          # Sets the parameter and returns this same instance.
+          def with_locale(value)
+            @locale = value
+            self
+          end
+
+          # Sets the parameter and returns this same instance.
+          def with_payment_product_id(value)
+            @payment_product_id = value
+            self
+          end
+
           # @return [Array<OnlinePayments::SDK::Communication::RequestParam>] representing the attributes of this class
           def to_request_parameters
             result = []

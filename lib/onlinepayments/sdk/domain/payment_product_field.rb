@@ -22,6 +22,30 @@ module OnlinePayments
 
         attr_accessor :type
 
+        # Sets the property and returns this same instance.
+        def with_data_restrictions(value)
+          @data_restrictions = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_display_hints(value)
+          @display_hints = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_id(value)
+          @id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_type(value)
+          @type = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

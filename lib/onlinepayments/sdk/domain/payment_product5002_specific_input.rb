@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :credit_card_brand
 
+        # Sets the property and returns this same instance.
+        def with_checkout_response_signature(value)
+          @checkout_response_signature = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_credit_card_brand(value)
+          @credit_card_brand = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

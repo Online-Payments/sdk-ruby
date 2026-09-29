@@ -17,6 +17,24 @@ module OnlinePayments
 
         attr_accessor :quantity
 
+        # Sets the property and returns this same instance.
+        def with_discount_amount(value)
+          @discount_amount = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_line_item_id(value)
+          @line_item_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_quantity(value)
+          @quantity = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

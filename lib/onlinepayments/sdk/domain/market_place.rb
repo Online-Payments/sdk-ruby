@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :retailer_name
 
+        # Sets the property and returns this same instance.
+        def with_retailer_country(value)
+          @retailer_country = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_retailer_name(value)
+          @retailer_name = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

@@ -12,6 +12,12 @@ module OnlinePayments
 
         attr_accessor :car_rental_data
 
+        # Sets the property and returns this same instance.
+        def with_car_rental_data(value)
+          @car_rental_data = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

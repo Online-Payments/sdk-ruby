@@ -20,6 +20,24 @@ module OnlinePayments
 
         attr_accessor :payment
 
+        # Sets the property and returns this same instance.
+        def with_creation_output(value)
+          @creation_output = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_merchant_action(value)
+          @merchant_action = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment(value)
+          @payment = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

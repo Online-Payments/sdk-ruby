@@ -17,6 +17,24 @@ module OnlinePayments
 
         attr_accessor :vat_id
 
+        # Sets the property and returns this same instance.
+        def with_organization_entity_type(value)
+          @organization_entity_type = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_organization_registration_id(value)
+          @organization_registration_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_vat_id(value)
+          @vat_id = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

@@ -44,6 +44,60 @@ module OnlinePayments
 
         attr_accessor :pending_authentication
 
+        # Sets the property and returns this same instance.
+        def with_payment_product11(value)
+          @payment_product11 = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product3012(value)
+          @payment_product3012 = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product350(value)
+          @payment_product350 = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product5001(value)
+          @payment_product5001 = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product5404(value)
+          @payment_product5404 = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product5407(value)
+          @payment_product5407 = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product5412(value)
+          @payment_product5412 = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_product840(value)
+          @payment_product840 = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_pending_authentication(value)
+          @pending_authentication = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

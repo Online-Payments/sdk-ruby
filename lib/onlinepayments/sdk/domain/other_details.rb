@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :travel_data
 
+        # Sets the property and returns this same instance.
+        def with_meta_data(value)
+          @meta_data = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_travel_data(value)
+          @travel_data = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

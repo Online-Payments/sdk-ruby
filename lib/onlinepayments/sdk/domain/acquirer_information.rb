@@ -15,6 +15,18 @@ module OnlinePayments
 
         attr_accessor :name
 
+        # Sets the property and returns this same instance.
+        def with_acquirer_selection_information(value)
+          @acquirer_selection_information = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_name(value)
+          @name = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

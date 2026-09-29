@@ -14,6 +14,18 @@ module OnlinePayments
 
         attr_accessor :shipping_cost_tax
 
+        # Sets the property and returns this same instance.
+        def with_shipping_cost(value)
+          @shipping_cost = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_shipping_cost_tax(value)
+          @shipping_cost_tax = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

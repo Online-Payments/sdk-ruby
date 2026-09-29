@@ -16,6 +16,18 @@ module OnlinePayments
 
         attr_accessor :transaction
 
+        # Sets the property and returns this same instance.
+        def with_card_source(value)
+          @card_source = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_transaction(value)
+          @transaction = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

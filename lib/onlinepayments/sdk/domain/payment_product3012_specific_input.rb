@@ -20,6 +20,30 @@ module OnlinePayments
 
         attr_accessor :wip_merchant_authentication_method
 
+        # Sets the property and returns this same instance.
+        def with_force_authentication(value)
+          @force_authentication = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_is_deferred_payment(value)
+          @is_deferred_payment = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_is_wip_transaction(value)
+          @is_wip_transaction = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_wip_merchant_authentication_method(value)
+          @wip_merchant_authentication_method = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super

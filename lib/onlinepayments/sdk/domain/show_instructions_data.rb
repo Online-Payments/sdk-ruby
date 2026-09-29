@@ -11,6 +11,12 @@ module OnlinePayments
 
         attr_accessor :show_data
 
+        # Sets the property and returns this same instance.
+        def with_show_data(value)
+          @show_data = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super
