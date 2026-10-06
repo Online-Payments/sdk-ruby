@@ -12,6 +12,7 @@ module OnlinePayments
   module SDK
     module Domain
       # @attr [OnlinePayments::SDK::Domain::AmountOfMoney, nil] amount_of_money
+      # @attr [DateTime, nil] payment_creation_date
       # @attr [OnlinePayments::SDK::Domain::PayoutCardPaymentMethodSpecificOutput, nil] payout_card_payment_method_specific_output
       # @attr [String, nil] payout_reason
       # @attr [OnlinePayments::SDK::Domain::PaymentReferences, nil] references
@@ -19,6 +20,8 @@ module OnlinePayments
       class PayoutOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :amount_of_money
+
+        attr_accessor :payment_creation_date
 
         attr_accessor :payout_card_payment_method_specific_output
 
@@ -31,6 +34,12 @@ module OnlinePayments
         # Sets the property and returns this same instance.
         def with_amount_of_money(value)
           @amount_of_money = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_payment_creation_date(value)
+          @payment_creation_date = value
           self
         end
 
@@ -62,6 +71,7 @@ module OnlinePayments
         def to_h
           hash = super
           hash['amountOfMoney'] = @amount_of_money.to_h unless @amount_of_money.nil?
+          hash['paymentCreationDate'] = @payment_creation_date.iso8601(3) unless @payment_creation_date.nil?
           hash['payoutCardPaymentMethodSpecificOutput'] = @payout_card_payment_method_specific_output.to_h unless @payout_card_payment_method_specific_output.nil?
           hash['payoutReason'] = @payout_reason unless @payout_reason.nil?
           hash['references'] = @references.to_h unless @references.nil?
@@ -74,6 +84,9 @@ module OnlinePayments
           if hash.has_key? 'amountOfMoney'
             raise TypeError, "value '%s' is not a Hash" % [hash['amountOfMoney']] unless hash['amountOfMoney'].is_a? Hash
             @amount_of_money = OnlinePayments::SDK::Domain::AmountOfMoney.new_from_hash(hash['amountOfMoney'])
+          end
+          if hash.has_key? 'paymentCreationDate'
+            @payment_creation_date = DateTime.parse(hash['paymentCreationDate'])
           end
           if hash.has_key? 'payoutCardPaymentMethodSpecificOutput'
             raise TypeError, "value '%s' is not a Hash" % [hash['payoutCardPaymentMethodSpecificOutput']] unless hash['payoutCardPaymentMethodSpecificOutput'].is_a? Hash

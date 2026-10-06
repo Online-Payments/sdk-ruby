@@ -25,6 +25,7 @@ module OnlinePayments
       # @attr [OnlinePayments::SDK::Domain::Discount, nil] discount
       # @attr [String, nil] merchant_parameters
       # @attr [OnlinePayments::SDK::Domain::MobilePaymentMethodSpecificOutput, nil] mobile_payment_method_specific_output
+      # @attr [DateTime, nil] payment_creation_date
       # @attr [String, nil] payment_method
       # @attr [OnlinePayments::SDK::Domain::RedirectPaymentMethodSpecificOutput, nil] redirect_payment_method_specific_output
       # @attr [OnlinePayments::SDK::Domain::PaymentReferences, nil] references
@@ -49,6 +50,8 @@ module OnlinePayments
         attr_accessor :merchant_parameters
 
         attr_accessor :mobile_payment_method_specific_output
+
+        attr_accessor :payment_creation_date
 
         attr_accessor :payment_method
 
@@ -111,6 +114,12 @@ module OnlinePayments
         end
 
         # Sets the property and returns this same instance.
+        def with_payment_creation_date(value)
+          @payment_creation_date = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
         def with_payment_method(value)
           @payment_method = value
           self
@@ -157,6 +166,7 @@ module OnlinePayments
           hash['discount'] = @discount.to_h unless @discount.nil?
           hash['merchantParameters'] = @merchant_parameters unless @merchant_parameters.nil?
           hash['mobilePaymentMethodSpecificOutput'] = @mobile_payment_method_specific_output.to_h unless @mobile_payment_method_specific_output.nil?
+          hash['paymentCreationDate'] = @payment_creation_date.iso8601(3) unless @payment_creation_date.nil?
           hash['paymentMethod'] = @payment_method unless @payment_method.nil?
           hash['redirectPaymentMethodSpecificOutput'] = @redirect_payment_method_specific_output.to_h unless @redirect_payment_method_specific_output.nil?
           hash['references'] = @references.to_h unless @references.nil?
@@ -197,6 +207,9 @@ module OnlinePayments
           if hash.has_key? 'mobilePaymentMethodSpecificOutput'
             raise TypeError, "value '%s' is not a Hash" % [hash['mobilePaymentMethodSpecificOutput']] unless hash['mobilePaymentMethodSpecificOutput'].is_a? Hash
             @mobile_payment_method_specific_output = OnlinePayments::SDK::Domain::MobilePaymentMethodSpecificOutput.new_from_hash(hash['mobilePaymentMethodSpecificOutput'])
+          end
+          if hash.has_key? 'paymentCreationDate'
+            @payment_creation_date = DateTime.parse(hash['paymentCreationDate'])
           end
           if hash.has_key? 'paymentMethod'
             @payment_method = hash['paymentMethod']

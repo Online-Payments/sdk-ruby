@@ -65,6 +65,13 @@ module OnlinePayments
           OnlinePayments::SDK::Merchant::Payments::PaymentsClient.new(self, nil)
         end
 
+        # Resource /v2/{merchantId}/paymentlinks/{paymentLinkId}/share
+        #
+        # @return [OnlinePayments::SDK::Merchant::PaymentLinks::PaymentLinksClient]
+        def payment_links
+          OnlinePayments::SDK::Merchant::PaymentLinks::PaymentLinksClient.new(self, nil)
+        end
+
         # Resource /v2/{merchantId}/payments/{paymentId}/captures
         #
         # @return [OnlinePayments::SDK::Merchant::Captures::CapturesClient]
@@ -175,13 +182,6 @@ module OnlinePayments
         # @return [OnlinePayments::SDK::Merchant::PrivacyPolicy::PrivacyPolicyClient]
         def privacy_policy
           OnlinePayments::SDK::Merchant::PrivacyPolicy::PrivacyPolicyClient.new(self, nil)
-        end
-
-        # Resource /v2/{merchantId}/paymentlinks
-        #
-        # @return [OnlinePayments::SDK::Merchant::PaymentLinks::PaymentLinksClient]
-        def payment_links
-          OnlinePayments::SDK::Merchant::PaymentLinks::PaymentLinksClient.new(self, nil)
         end
 
         # Resource /v2/{merchantId}/merchant-batches

@@ -1,6 +1,8 @@
 #
 # This file was automatically generated.
 #
+require 'date'
+
 require 'onlinepayments/sdk/domain/amount_of_money'
 require 'onlinepayments/sdk/domain/data_object'
 require 'onlinepayments/sdk/domain/operation_payment_references'
@@ -17,6 +19,7 @@ module OnlinePayments
       # @attr [OnlinePayments::SDK::Domain::PaymentReferences, nil] references
       # @attr [String, nil] status
       # @attr [OnlinePayments::SDK::Domain::PaymentStatusOutput, nil] status_output
+      # @attr [DateTime, nil] transaction_date
       class OperationOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :amount_of_money
@@ -32,6 +35,8 @@ module OnlinePayments
         attr_accessor :status
 
         attr_accessor :status_output
+
+        attr_accessor :transaction_date
 
         # Sets the property and returns this same instance.
         def with_amount_of_money(value)
@@ -75,6 +80,12 @@ module OnlinePayments
           self
         end
 
+        # Sets the property and returns this same instance.
+        def with_transaction_date(value)
+          @transaction_date = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super
@@ -85,6 +96,7 @@ module OnlinePayments
           hash['references'] = @references.to_h unless @references.nil?
           hash['status'] = @status unless @status.nil?
           hash['statusOutput'] = @status_output.to_h unless @status_output.nil?
+          hash['transactionDate'] = @transaction_date.iso8601(3) unless @transaction_date.nil?
           hash
         end
 
@@ -114,6 +126,9 @@ module OnlinePayments
           if hash.has_key? 'statusOutput'
             raise TypeError, "value '%s' is not a Hash" % [hash['statusOutput']] unless hash['statusOutput'].is_a? Hash
             @status_output = OnlinePayments::SDK::Domain::PaymentStatusOutput.new_from_hash(hash['statusOutput'])
+          end
+          if hash.has_key? 'transactionDate'
+            @transaction_date = DateTime.parse(hash['transactionDate'])
           end
         end
       end
