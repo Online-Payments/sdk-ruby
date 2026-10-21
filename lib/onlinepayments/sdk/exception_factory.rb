@@ -76,7 +76,7 @@ module OnlinePayments
     def self.is_idempotence_error(errors, context)
       !context&.idempotence_key.nil? &&
         errors&.length == 1 &&
-            errors[0]&.error_code == '1409'
+            errors[0]&.error_code == '30001002'
     end
   end
 end

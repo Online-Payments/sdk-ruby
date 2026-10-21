@@ -138,14 +138,14 @@ describe 'ExceptionFactory' do
       expect(create(409, error_response, context)).to be_a(ReferenceException)
     end
 
-    it 'returns ReferenceException for 409 with idempotence key but non-1409 error code' do
+    it 'returns ReferenceException for 409 with idempotence key but non-30001002 error code' do
       error_response.errors = [make_error('9999')]
       context = CallContext.new('idem-key')
       expect(create(409, error_response, context)).to be_a(ReferenceException)
     end
 
-    it 'returns IdempotenceException for 409 with idempotence key and 1409 error code' do
-      error_response.errors = [make_error('1409')]
+    it 'returns IdempotenceException for 409 with idempotence key and 30001002 error code' do
+      error_response.errors = [make_error('30001002')]
       context = CallContext.new('idem-key')
       context.idempotence_request_timestamp = 1_234_567_890
       ex = create(409, error_response, context)

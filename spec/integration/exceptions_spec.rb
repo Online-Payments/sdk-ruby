@@ -234,7 +234,7 @@ RSpec.describe 'Exceptions' do
 
   describe 'when testing IdempotenceException' do
 
-    it 'throws ReferenceException for duplicate in-progress idempotence key' do
+    it 'throws IdempotenceException for duplicate in-progress idempotence key' do
       idempotence_key = SecureRandom.uuid
       request = Integration::Util::Common::CreatePaymentRequestBuilder.new.build
 
@@ -255,7 +255,7 @@ RSpec.describe 'Exceptions' do
 
       # One request may succeed; the concurrent one should get 409
       conflicting = [first_exception, second_exception].compact
-                                                       .find { |e| e.is_a?(OnlinePayments::SDK::ReferenceException) }
+                                                       .find { |e| e.is_a?(OnlinePayments::SDK::IdempotenceException) }
 
       if conflicting
         expect(conflicting.errors).not_to be_nil

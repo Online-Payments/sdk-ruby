@@ -39,6 +39,39 @@ module Integration
         @merchant_client.payments.create_payment(builder.build).payment.id
       end
 
+      def create_pre_authorized_payment_and_get_id(amount, currency)
+        request = Common::CreatePaymentRequestBuilder.new
+                                                     .with_authorization_mode('PRE_AUTHORIZATION')
+                                                     .with_amount(amount)
+                                                     .with_currency(currency)
+                                                     .build
+
+        @merchant_client.payments.create_payment(request).payment.id
+      end
+
+      def create_mastercard_payment_and_get_id(amount, currency)
+        request = Common::CreatePaymentRequestBuilder.new
+                                                     .with_card_number('5137009801943438')
+                                                     .with_payment_product_id(3)
+                                                     .with_amount(amount)
+                                                     .with_currency(currency)
+                                                     .build
+
+        @merchant_client.payments.create_payment(request).payment.id
+      end
+
+      def create_pre_authorized_mastercard_payment_and_get_id(amount, currency)
+        request = Common::CreatePaymentRequestBuilder.new
+                                                     .with_authorization_mode('PRE_AUTHORIZATION')
+                                                     .with_card_number('5137009801943438')
+                                                     .with_payment_product_id(3)
+                                                     .with_amount(amount)
+                                                     .with_currency(currency)
+                                                     .build
+
+        @merchant_client.payments.create_payment(request).payment.id
+      end
+
       def create_pay_pal_payment_and_get_id
         @merchant_client
           .payments

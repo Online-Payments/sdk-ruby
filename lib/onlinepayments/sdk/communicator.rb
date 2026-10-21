@@ -430,7 +430,7 @@ module OnlinePayments
       #                           which represent the parameter name and value respectively.
       def to_absolute_uri(relative_path, request_parameters)
         absolute_path = relative_path.start_with?('/') ? relative_path : '/' + relative_path
-        uri = URI::HTTP.new(@api_endpoint.scheme, nil, @api_endpoint.host,
+        uri = URI::HTTPS.new(@api_endpoint.scheme, nil, @api_endpoint.host,
                             @api_endpoint.port, nil, absolute_path, nil, nil, nil)
         unless request_parameters.nil?
           request_parameters.each do |nvp|

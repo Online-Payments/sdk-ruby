@@ -40,6 +40,8 @@ module Integration
           @token = nil
           @payment_method_type = PAYMENT_METHOD_CARD
           @auto_capture = false
+          @authorization_mode = 'FINAL_AUTHORIZATION'
+          @payment_product_id = 1
         end
 
         def with_card_number(card_number)
@@ -102,6 +104,16 @@ module Integration
           self
         end
 
+        def with_authorization_mode(authorization_mode)
+          @authorization_mode = authorization_mode
+          self
+        end
+
+        def with_payment_product_id(payment_product_id)
+          @payment_product_id = payment_product_id
+          self
+        end
+
         def build
           request = OnlinePayments::SDK::Domain::CreatePaymentRequest.new
 
@@ -120,10 +132,10 @@ module Integration
 
         def build_card_payment_input
           input = OnlinePayments::SDK::Domain::CardPaymentMethodSpecificInput.new
-          input.authorization_mode = 'FINAL_AUTHORIZATION'
+          input.authorization_mode = @authorization_mode
           input.transaction_channel = 'ECOMMERCE'
           input.return_url = 'https://example.com/return'
-          input.payment_product_id = 1
+          input.payment_product_id = @payment_product_id
 
           if @token
             input.token = @token
