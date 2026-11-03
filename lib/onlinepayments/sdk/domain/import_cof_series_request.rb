@@ -4,6 +4,7 @@
 require 'onlinepayments/sdk/domain/card_data_without_cvv'
 require 'onlinepayments/sdk/domain/data_object'
 require 'onlinepayments/sdk/domain/network_token_data'
+require 'onlinepayments/sdk/domain/sub_merchant'
 
 module OnlinePayments
   module SDK
@@ -13,6 +14,7 @@ module OnlinePayments
       # @attr [OnlinePayments::SDK::Domain::NetworkTokenData, nil] network_token_data
       # @attr [Integer, nil] payment_product_id
       # @attr [String, nil] scheme_reference_data
+      # @attr [OnlinePayments::SDK::Domain::SubMerchant, nil] sub_merchant
       # @attr [String, nil] token_id
       # @attr [String, nil] transaction_link_identifier
       class ImportCofSeriesRequest < OnlinePayments::SDK::Domain::DataObject
@@ -26,6 +28,8 @@ module OnlinePayments
         attr_accessor :payment_product_id
 
         attr_accessor :scheme_reference_data
+
+        attr_accessor :sub_merchant
 
         attr_accessor :token_id
 
@@ -62,6 +66,12 @@ module OnlinePayments
         end
 
         # Sets the property and returns this same instance.
+        def with_sub_merchant(value)
+          @sub_merchant = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
         def with_token_id(value)
           @token_id = value
           self
@@ -81,6 +91,7 @@ module OnlinePayments
           hash['networkTokenData'] = @network_token_data.to_h unless @network_token_data.nil?
           hash['paymentProductId'] = @payment_product_id unless @payment_product_id.nil?
           hash['schemeReferenceData'] = @scheme_reference_data unless @scheme_reference_data.nil?
+          hash['subMerchant'] = @sub_merchant.to_h unless @sub_merchant.nil?
           hash['tokenId'] = @token_id unless @token_id.nil?
           hash['transactionLinkIdentifier'] = @transaction_link_identifier unless @transaction_link_identifier.nil?
           hash
@@ -104,6 +115,10 @@ module OnlinePayments
           end
           if hash.has_key? 'schemeReferenceData'
             @scheme_reference_data = hash['schemeReferenceData']
+          end
+          if hash.has_key? 'subMerchant'
+            raise TypeError, "value '%s' is not a Hash" % [hash['subMerchant']] unless hash['subMerchant'].is_a? Hash
+            @sub_merchant = OnlinePayments::SDK::Domain::SubMerchant.new_from_hash(hash['subMerchant'])
           end
           if hash.has_key? 'tokenId'
             @token_id = hash['tokenId']
