@@ -11,6 +11,7 @@ module OnlinePayments
       # @attr [true/false, nil] ask_consumer_consent
       # @attr [OnlinePayments::SDK::Domain::CreditCardSpecificInputHostedTokenization, nil] credit_card_specific_input
       # @attr [String, nil] locale
+      # @attr [String, nil] origin
       # @attr [OnlinePayments::SDK::Domain::PaymentProductFiltersHostedTokenization, nil] payment_product_filters
       # @attr [String, nil] tokens
       # @attr [String, nil] variant
@@ -21,6 +22,8 @@ module OnlinePayments
         attr_accessor :credit_card_specific_input
 
         attr_accessor :locale
+
+        attr_accessor :origin
 
         attr_accessor :payment_product_filters
 
@@ -43,6 +46,12 @@ module OnlinePayments
         # Sets the property and returns this same instance.
         def with_locale(value)
           @locale = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_origin(value)
+          @origin = value
           self
         end
 
@@ -70,6 +79,7 @@ module OnlinePayments
           hash['askConsumerConsent'] = @ask_consumer_consent unless @ask_consumer_consent.nil?
           hash['creditCardSpecificInput'] = @credit_card_specific_input.to_h unless @credit_card_specific_input.nil?
           hash['locale'] = @locale unless @locale.nil?
+          hash['origin'] = @origin unless @origin.nil?
           hash['paymentProductFilters'] = @payment_product_filters.to_h unless @payment_product_filters.nil?
           hash['tokens'] = @tokens unless @tokens.nil?
           hash['variant'] = @variant unless @variant.nil?
@@ -87,6 +97,9 @@ module OnlinePayments
           end
           if hash.has_key? 'locale'
             @locale = hash['locale']
+          end
+          if hash.has_key? 'origin'
+            @origin = hash['origin']
           end
           if hash.has_key? 'paymentProductFilters'
             raise TypeError, "value '%s' is not a Hash" % [hash['paymentProductFilters']] unless hash['paymentProductFilters'].is_a? Hash

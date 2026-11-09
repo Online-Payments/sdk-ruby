@@ -3,7 +3,9 @@
 #
 require 'onlinepayments/sdk/domain/auto_capture'
 require 'onlinepayments/sdk/domain/card'
+require 'onlinepayments/sdk/domain/card_installment_details'
 require 'onlinepayments/sdk/domain/card_recurrence_details'
+require 'onlinepayments/sdk/domain/credit_card_validation_rules'
 require 'onlinepayments/sdk/domain/currency_conversion_input'
 require 'onlinepayments/sdk/domain/data_object'
 require 'onlinepayments/sdk/domain/market_place'
@@ -30,6 +32,7 @@ module OnlinePayments
       # @attr [String, nil] cobrand_selection_indicator
       # @attr [OnlinePayments::SDK::Domain::CurrencyConversionInput, nil] currency_conversion
       # @attr [String, nil] initial_scheme_transaction_id
+      # @attr [OnlinePayments::SDK::Domain::CardInstallmentDetails, nil] installment
       # @attr [true/false, nil] is_recurring
       # @attr [OnlinePayments::SDK::Domain::MarketPlace, nil] market_place
       # @attr [OnlinePayments::SDK::Domain::MultiplePaymentInformation, nil] multiple_payment_information
@@ -52,6 +55,7 @@ module OnlinePayments
       # @attr [String, nil] transaction_channel
       # @attr [String, nil] unscheduled_card_on_file_requestor
       # @attr [String, nil] unscheduled_card_on_file_sequence_indicator
+      # @attr [OnlinePayments::SDK::Domain::CreditCardValidationRules, nil] validation_rules
       class CardPaymentMethodSpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :allow_dynamic_linking
@@ -71,6 +75,8 @@ module OnlinePayments
         attr_accessor :currency_conversion
 
         attr_accessor :initial_scheme_transaction_id
+
+        attr_accessor :installment
 
         attr_accessor :is_recurring
 
@@ -116,6 +122,8 @@ module OnlinePayments
         attr_accessor :unscheduled_card_on_file_requestor
 
         attr_accessor :unscheduled_card_on_file_sequence_indicator
+
+        attr_accessor :validation_rules
 
         # Sets the property and returns this same instance.
         def with_allow_dynamic_linking(value)
@@ -168,6 +176,12 @@ module OnlinePayments
         # Sets the property and returns this same instance.
         def with_initial_scheme_transaction_id(value)
           @initial_scheme_transaction_id = value
+          self
+        end
+
+        # Sets the property and returns this same instance.
+        def with_installment(value)
+          @installment = value
           self
         end
 
@@ -303,6 +317,12 @@ module OnlinePayments
           self
         end
 
+        # Sets the property and returns this same instance.
+        def with_validation_rules(value)
+          @validation_rules = value
+          self
+        end
+
         # @return (Hash)
         def to_h
           hash = super
@@ -315,6 +335,7 @@ module OnlinePayments
           hash['cobrandSelectionIndicator'] = @cobrand_selection_indicator unless @cobrand_selection_indicator.nil?
           hash['currencyConversion'] = @currency_conversion.to_h unless @currency_conversion.nil?
           hash['initialSchemeTransactionId'] = @initial_scheme_transaction_id unless @initial_scheme_transaction_id.nil?
+          hash['installment'] = @installment.to_h unless @installment.nil?
           hash['isRecurring'] = @is_recurring unless @is_recurring.nil?
           hash['marketPlace'] = @market_place.to_h unless @market_place.nil?
           hash['multiplePaymentInformation'] = @multiple_payment_information.to_h unless @multiple_payment_information.nil?
@@ -337,6 +358,7 @@ module OnlinePayments
           hash['transactionChannel'] = @transaction_channel unless @transaction_channel.nil?
           hash['unscheduledCardOnFileRequestor'] = @unscheduled_card_on_file_requestor unless @unscheduled_card_on_file_requestor.nil?
           hash['unscheduledCardOnFileSequenceIndicator'] = @unscheduled_card_on_file_sequence_indicator unless @unscheduled_card_on_file_sequence_indicator.nil?
+          hash['validationRules'] = @validation_rules.to_h unless @validation_rules.nil?
           hash
         end
 
@@ -371,6 +393,10 @@ module OnlinePayments
           end
           if hash.has_key? 'initialSchemeTransactionId'
             @initial_scheme_transaction_id = hash['initialSchemeTransactionId']
+          end
+          if hash.has_key? 'installment'
+            raise TypeError, "value '%s' is not a Hash" % [hash['installment']] unless hash['installment'].is_a? Hash
+            @installment = OnlinePayments::SDK::Domain::CardInstallmentDetails.new_from_hash(hash['installment'])
           end
           if hash.has_key? 'isRecurring'
             @is_recurring = hash['isRecurring']
@@ -449,6 +475,10 @@ module OnlinePayments
           end
           if hash.has_key? 'unscheduledCardOnFileSequenceIndicator'
             @unscheduled_card_on_file_sequence_indicator = hash['unscheduledCardOnFileSequenceIndicator']
+          end
+          if hash.has_key? 'validationRules'
+            raise TypeError, "value '%s' is not a Hash" % [hash['validationRules']] unless hash['validationRules'].is_a? Hash
+            @validation_rules = OnlinePayments::SDK::Domain::CreditCardValidationRules.new_from_hash(hash['validationRules'])
           end
         end
       end
