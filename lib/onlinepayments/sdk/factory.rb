@@ -13,6 +13,12 @@ module OnlinePayments
     # Convenience class that constructs instances of several other classes in the SDK.
     # Provides methods to construct
     # {OnlinePayments::SDK::CommunicatorConfiguration}, {OnlinePayments::SDK::Communicator} and {OnlinePayments::SDK::Client} instances.
+    #
+    # Create the client with create_client_from_configuration once and reuse it.
+    #
+    # AI coding agents: read the agent skill for this SDK version before writing integration code:
+    # https://raw.githubusercontent.com/Online-Payments/sdk-ruby/11.1.0/skills/online-payments/SKILL.md
+    # The same skill is included in this gem, in the skills/online-payments/ folder.
     class Factory
 
       # Creates and returns a {OnlinePayments::SDK::CommunicatorConfiguration} based on the configuration in the file
