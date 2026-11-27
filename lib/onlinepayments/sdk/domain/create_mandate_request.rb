@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -32,6 +34,26 @@ module OnlinePayments
         attr_accessor :signature_type
 
         attr_accessor :unique_mandate_reference
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(alias: nil,
+                       customer: nil,
+                       customer_reference: nil,
+                       language: nil,
+                       recurrence_type: nil,
+                       return_url: nil,
+                       signature_type: nil,
+                       unique_mandate_reference: nil)
+          super()
+          @alias = binding.local_variable_get(:alias)
+          @customer = customer
+          @customer_reference = customer_reference
+          @language = language
+          @recurrence_type = recurrence_type
+          @return_url = return_url
+          @signature_type = signature_type
+          @unique_mandate_reference = unique_mandate_reference
+        end
 
         # Sets the property and returns this same instance.
         def with_alias(value)
@@ -97,29 +119,29 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'alias'
+          if hash.key? 'alias'
             @alias = hash['alias']
           end
-          if hash.has_key? 'customer'
-            raise TypeError, "value '%s' is not a Hash" % [hash['customer']] unless hash['customer'].is_a? Hash
+          if hash.key? 'customer'
+            raise TypeError, "value '#{hash['customer']}' is not a Hash" unless hash['customer'].is_a? Hash
             @customer = OnlinePayments::SDK::Domain::MandateCustomer.new_from_hash(hash['customer'])
           end
-          if hash.has_key? 'customerReference'
+          if hash.key? 'customerReference'
             @customer_reference = hash['customerReference']
           end
-          if hash.has_key? 'language'
+          if hash.key? 'language'
             @language = hash['language']
           end
-          if hash.has_key? 'recurrenceType'
+          if hash.key? 'recurrenceType'
             @recurrence_type = hash['recurrenceType']
           end
-          if hash.has_key? 'returnUrl'
+          if hash.key? 'returnUrl'
             @return_url = hash['returnUrl']
           end
-          if hash.has_key? 'signatureType'
+          if hash.key? 'signatureType'
             @signature_type = hash['signatureType']
           end
-          if hash.has_key? 'uniqueMandateReference'
+          if hash.key? 'uniqueMandateReference'
             @unique_mandate_reference = hash['uniqueMandateReference']
           end
         end

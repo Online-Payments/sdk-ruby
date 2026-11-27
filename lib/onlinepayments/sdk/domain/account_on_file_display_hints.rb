@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -14,6 +16,13 @@ module OnlinePayments
         attr_accessor :label_template
 
         attr_accessor :logo
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(label_template: nil, logo: nil)
+          super()
+          @label_template = label_template
+          @logo = logo
+        end
 
         # Sets the property and returns this same instance.
         def with_label_template(value)
@@ -37,14 +46,14 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'labelTemplate'
-            raise TypeError, "value '%s' is not an Array" % [hash['labelTemplate']] unless hash['labelTemplate'].is_a? Array
+          if hash.key? 'labelTemplate'
+            raise TypeError, "value '#{hash['labelTemplate']}' is not an Array" unless hash['labelTemplate'].is_a? Array
             @label_template = []
             hash['labelTemplate'].each do |e|
               @label_template << OnlinePayments::SDK::Domain::LabelTemplateElement.new_from_hash(e)
             end
           end
-          if hash.has_key? 'logo'
+          if hash.key? 'logo'
             @logo = hash['logo']
           end
         end

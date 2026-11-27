@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -37,6 +39,30 @@ module OnlinePayments
         attr_accessor :tax_percentage
 
         attr_accessor :unit
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(discount_amount: nil,
+                       product_brand: nil,
+                       product_code: nil,
+                       product_name: nil,
+                       product_price: nil,
+                       product_type: nil,
+                       quantity: nil,
+                       tax_amount: nil,
+                       tax_percentage: nil,
+                       unit: nil)
+          super()
+          @discount_amount = discount_amount
+          @product_brand = product_brand
+          @product_code = product_code
+          @product_name = product_name
+          @product_price = product_price
+          @product_type = product_type
+          @quantity = quantity
+          @tax_amount = tax_amount
+          @tax_percentage = tax_percentage
+          @unit = unit
+        end
 
         # Sets the property and returns this same instance.
         def with_discount_amount(value)
@@ -116,34 +142,34 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'discountAmount'
+          if hash.key? 'discountAmount'
             @discount_amount = hash['discountAmount']
           end
-          if hash.has_key? 'productBrand'
+          if hash.key? 'productBrand'
             @product_brand = hash['productBrand']
           end
-          if hash.has_key? 'productCode'
+          if hash.key? 'productCode'
             @product_code = hash['productCode']
           end
-          if hash.has_key? 'productName'
+          if hash.key? 'productName'
             @product_name = hash['productName']
           end
-          if hash.has_key? 'productPrice'
+          if hash.key? 'productPrice'
             @product_price = hash['productPrice']
           end
-          if hash.has_key? 'productType'
+          if hash.key? 'productType'
             @product_type = hash['productType']
           end
-          if hash.has_key? 'quantity'
+          if hash.key? 'quantity'
             @quantity = hash['quantity']
           end
-          if hash.has_key? 'taxAmount'
+          if hash.key? 'taxAmount'
             @tax_amount = hash['taxAmount']
           end
-          if hash.has_key? 'taxPercentage'
+          if hash.key? 'taxPercentage'
             @tax_percentage = hash['taxPercentage']
           end
-          if hash.has_key? 'unit'
+          if hash.key? 'unit'
             @unit = hash['unit']
           end
         end

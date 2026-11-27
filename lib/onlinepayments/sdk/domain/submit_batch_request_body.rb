@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -39,6 +41,26 @@ module OnlinePayments
         attr_accessor :refund_payments
 
         attr_accessor :subsequent_payments
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(cancel_payments: nil,
+                       capture_payments: nil,
+                       create_payment_links: nil,
+                       create_payments: nil,
+                       create_payouts: nil,
+                       header: nil,
+                       refund_payments: nil,
+                       subsequent_payments: nil)
+          super()
+          @cancel_payments = cancel_payments
+          @capture_payments = capture_payments
+          @create_payment_links = create_payment_links
+          @create_payments = create_payments
+          @create_payouts = create_payouts
+          @header = header
+          @refund_payments = refund_payments
+          @subsequent_payments = subsequent_payments
+        end
 
         # Sets the property and returns this same instance.
         def with_cancel_payments(value)
@@ -104,54 +126,54 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'cancelPayments'
-            raise TypeError, "value '%s' is not an Array" % [hash['cancelPayments']] unless hash['cancelPayments'].is_a? Array
+          if hash.key? 'cancelPayments'
+            raise TypeError, "value '#{hash['cancelPayments']}' is not an Array" unless hash['cancelPayments'].is_a? Array
             @cancel_payments = []
             hash['cancelPayments'].each do |e|
               @cancel_payments << OnlinePayments::SDK::Domain::CancelPaymentBatchRequest.new_from_hash(e)
             end
           end
-          if hash.has_key? 'capturePayments'
-            raise TypeError, "value '%s' is not an Array" % [hash['capturePayments']] unless hash['capturePayments'].is_a? Array
+          if hash.key? 'capturePayments'
+            raise TypeError, "value '#{hash['capturePayments']}' is not an Array" unless hash['capturePayments'].is_a? Array
             @capture_payments = []
             hash['capturePayments'].each do |e|
               @capture_payments << OnlinePayments::SDK::Domain::CapturePaymentBatchRequest.new_from_hash(e)
             end
           end
-          if hash.has_key? 'createPaymentLinks'
-            raise TypeError, "value '%s' is not an Array" % [hash['createPaymentLinks']] unless hash['createPaymentLinks'].is_a? Array
+          if hash.key? 'createPaymentLinks'
+            raise TypeError, "value '#{hash['createPaymentLinks']}' is not an Array" unless hash['createPaymentLinks'].is_a? Array
             @create_payment_links = []
             hash['createPaymentLinks'].each do |e|
               @create_payment_links << OnlinePayments::SDK::Domain::CreatePaymentLinkRequest.new_from_hash(e)
             end
           end
-          if hash.has_key? 'createPayments'
-            raise TypeError, "value '%s' is not an Array" % [hash['createPayments']] unless hash['createPayments'].is_a? Array
+          if hash.key? 'createPayments'
+            raise TypeError, "value '#{hash['createPayments']}' is not an Array" unless hash['createPayments'].is_a? Array
             @create_payments = []
             hash['createPayments'].each do |e|
               @create_payments << OnlinePayments::SDK::Domain::CreatePaymentRequest.new_from_hash(e)
             end
           end
-          if hash.has_key? 'createPayouts'
-            raise TypeError, "value '%s' is not an Array" % [hash['createPayouts']] unless hash['createPayouts'].is_a? Array
+          if hash.key? 'createPayouts'
+            raise TypeError, "value '#{hash['createPayouts']}' is not an Array" unless hash['createPayouts'].is_a? Array
             @create_payouts = []
             hash['createPayouts'].each do |e|
               @create_payouts << OnlinePayments::SDK::Domain::CreatePayoutRequest.new_from_hash(e)
             end
           end
-          if hash.has_key? 'header'
-            raise TypeError, "value '%s' is not a Hash" % [hash['header']] unless hash['header'].is_a? Hash
+          if hash.key? 'header'
+            raise TypeError, "value '#{hash['header']}' is not a Hash" unless hash['header'].is_a? Hash
             @header = OnlinePayments::SDK::Domain::BatchMetadata.new_from_hash(hash['header'])
           end
-          if hash.has_key? 'refundPayments'
-            raise TypeError, "value '%s' is not an Array" % [hash['refundPayments']] unless hash['refundPayments'].is_a? Array
+          if hash.key? 'refundPayments'
+            raise TypeError, "value '#{hash['refundPayments']}' is not an Array" unless hash['refundPayments'].is_a? Array
             @refund_payments = []
             hash['refundPayments'].each do |e|
               @refund_payments << OnlinePayments::SDK::Domain::RefundPaymentBatchRequest.new_from_hash(e)
             end
           end
-          if hash.has_key? 'subsequentPayments'
-            raise TypeError, "value '%s' is not an Array" % [hash['subsequentPayments']] unless hash['subsequentPayments'].is_a? Array
+          if hash.key? 'subsequentPayments'
+            raise TypeError, "value '#{hash['subsequentPayments']}' is not an Array" unless hash['subsequentPayments'].is_a? Array
             @subsequent_payments = []
             hash['subsequentPayments'].each do |e|
               @subsequent_payments << OnlinePayments::SDK::Domain::SubsequentPaymentBatchRequest.new_from_hash(e)

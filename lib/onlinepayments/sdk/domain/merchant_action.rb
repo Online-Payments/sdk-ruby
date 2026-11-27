@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -26,6 +28,16 @@ module OnlinePayments
         attr_accessor :show_form_data
 
         attr_accessor :show_instructions_data
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(action_type: nil, mobile_three_d_secure_challenge_parameters: nil, redirect_data: nil, show_form_data: nil, show_instructions_data: nil)
+          super()
+          @action_type = action_type
+          @mobile_three_d_secure_challenge_parameters = mobile_three_d_secure_challenge_parameters
+          @redirect_data = redirect_data
+          @show_form_data = show_form_data
+          @show_instructions_data = show_instructions_data
+        end
 
         # Sets the property and returns this same instance.
         def with_action_type(value)
@@ -70,23 +82,23 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'actionType'
+          if hash.key? 'actionType'
             @action_type = hash['actionType']
           end
-          if hash.has_key? 'mobileThreeDSecureChallengeParameters'
-            raise TypeError, "value '%s' is not a Hash" % [hash['mobileThreeDSecureChallengeParameters']] unless hash['mobileThreeDSecureChallengeParameters'].is_a? Hash
+          if hash.key? 'mobileThreeDSecureChallengeParameters'
+            raise TypeError, "value '#{hash['mobileThreeDSecureChallengeParameters']}' is not a Hash" unless hash['mobileThreeDSecureChallengeParameters'].is_a? Hash
             @mobile_three_d_secure_challenge_parameters = OnlinePayments::SDK::Domain::MobileThreeDSecureChallengeParameters.new_from_hash(hash['mobileThreeDSecureChallengeParameters'])
           end
-          if hash.has_key? 'redirectData'
-            raise TypeError, "value '%s' is not a Hash" % [hash['redirectData']] unless hash['redirectData'].is_a? Hash
+          if hash.key? 'redirectData'
+            raise TypeError, "value '#{hash['redirectData']}' is not a Hash" unless hash['redirectData'].is_a? Hash
             @redirect_data = OnlinePayments::SDK::Domain::RedirectData.new_from_hash(hash['redirectData'])
           end
-          if hash.has_key? 'showFormData'
-            raise TypeError, "value '%s' is not a Hash" % [hash['showFormData']] unless hash['showFormData'].is_a? Hash
+          if hash.key? 'showFormData'
+            raise TypeError, "value '#{hash['showFormData']}' is not a Hash" unless hash['showFormData'].is_a? Hash
             @show_form_data = OnlinePayments::SDK::Domain::ShowFormData.new_from_hash(hash['showFormData'])
           end
-          if hash.has_key? 'showInstructionsData'
-            raise TypeError, "value '%s' is not a Hash" % [hash['showInstructionsData']] unless hash['showInstructionsData'].is_a? Hash
+          if hash.key? 'showInstructionsData'
+            raise TypeError, "value '#{hash['showInstructionsData']}' is not a Hash" unless hash['showInstructionsData'].is_a? Hash
             @show_instructions_data = OnlinePayments::SDK::Domain::ShowInstructionsData.new_from_hash(hash['showInstructionsData'])
           end
         end

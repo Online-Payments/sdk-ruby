@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :merchant_batch_reference
 
         attr_accessor :total_count
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(merchant_batch_reference: nil, total_count: nil)
+          super()
+          @merchant_batch_reference = merchant_batch_reference
+          @total_count = total_count
+        end
 
         # Sets the property and returns this same instance.
         def with_merchant_batch_reference(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'merchantBatchReference'
+          if hash.key? 'merchantBatchReference'
             @merchant_batch_reference = hash['merchantBatchReference']
           end
-          if hash.has_key? 'totalCount'
+          if hash.key? 'totalCount'
             @total_count = hash['totalCount']
           end
         end

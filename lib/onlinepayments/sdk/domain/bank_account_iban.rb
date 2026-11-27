@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -10,6 +12,12 @@ module OnlinePayments
       class BankAccountIban < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :iban
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(iban: nil)
+          super()
+          @iban = iban
+        end
 
         # Sets the property and returns this same instance.
         def with_iban(value)
@@ -26,7 +34,7 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'iban'
+          if hash.key? 'iban'
             @iban = hash['iban']
           end
         end

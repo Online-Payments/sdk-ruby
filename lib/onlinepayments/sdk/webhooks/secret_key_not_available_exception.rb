@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'onlinepayments/sdk/webhooks/signature_validation_exception'
 
 module OnlinePayments
@@ -7,10 +9,10 @@ module OnlinePayments
       #
       # @attr_reader [String] key_id
       class SecretKeyNotAvailableException < SignatureValidationException
-
         def initialize(args)
           raise ArgumentError if (key_id = args.delete(:key_id)).nil? # key_id is mandatory
-          super(args)
+
+          super
           @key_id = key_id
         end
 

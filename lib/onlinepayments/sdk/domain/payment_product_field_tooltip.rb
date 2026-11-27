@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -14,6 +16,13 @@ module OnlinePayments
         attr_accessor :image
 
         attr_accessor :label
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(image: nil, label: nil)
+          super()
+          @image = image
+          @label = label
+        end
 
         # Sets the property and returns this same instance.
         def with_image(value)
@@ -37,10 +46,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'image'
+          if hash.key? 'image'
             @image = hash['image']
           end
-          if hash.has_key? 'label'
+          if hash.key? 'label'
             @label = hash['label']
           end
         end

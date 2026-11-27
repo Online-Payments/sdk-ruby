@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :payment_pattern
 
         attr_accessor :total_number_of_payments
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(payment_pattern: nil, total_number_of_payments: nil)
+          super()
+          @payment_pattern = payment_pattern
+          @total_number_of_payments = total_number_of_payments
+        end
 
         # Sets the property and returns this same instance.
         def with_payment_pattern(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'paymentPattern'
+          if hash.key? 'paymentPattern'
             @payment_pattern = hash['paymentPattern']
           end
-          if hash.has_key? 'totalNumberOfPayments'
+          if hash.key? 'totalNumberOfPayments'
             @total_number_of_payments = hash['totalNumberOfPayments']
           end
         end

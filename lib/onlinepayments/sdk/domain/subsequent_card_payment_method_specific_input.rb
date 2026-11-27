@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -35,6 +37,26 @@ module OnlinePayments
         attr_accessor :token
 
         attr_accessor :transaction_channel
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(authorization_mode: nil,
+                       auto_capture: nil,
+                       market_place: nil,
+                       payment_number: nil,
+                       scheme_reference_data: nil,
+                       subsequent_type: nil,
+                       token: nil,
+                       transaction_channel: nil)
+          super()
+          @authorization_mode = authorization_mode
+          @auto_capture = auto_capture
+          @market_place = market_place
+          @payment_number = payment_number
+          @scheme_reference_data = scheme_reference_data
+          @subsequent_type = subsequent_type
+          @token = token
+          @transaction_channel = transaction_channel
+        end
 
         # Sets the property and returns this same instance.
         def with_authorization_mode(value)
@@ -100,30 +122,30 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'authorizationMode'
+          if hash.key? 'authorizationMode'
             @authorization_mode = hash['authorizationMode']
           end
-          if hash.has_key? 'autoCapture'
-            raise TypeError, "value '%s' is not a Hash" % [hash['autoCapture']] unless hash['autoCapture'].is_a? Hash
+          if hash.key? 'autoCapture'
+            raise TypeError, "value '#{hash['autoCapture']}' is not a Hash" unless hash['autoCapture'].is_a? Hash
             @auto_capture = OnlinePayments::SDK::Domain::AutoCapture.new_from_hash(hash['autoCapture'])
           end
-          if hash.has_key? 'marketPlace'
-            raise TypeError, "value '%s' is not a Hash" % [hash['marketPlace']] unless hash['marketPlace'].is_a? Hash
+          if hash.key? 'marketPlace'
+            raise TypeError, "value '#{hash['marketPlace']}' is not a Hash" unless hash['marketPlace'].is_a? Hash
             @market_place = OnlinePayments::SDK::Domain::MarketPlace.new_from_hash(hash['marketPlace'])
           end
-          if hash.has_key? 'paymentNumber'
+          if hash.key? 'paymentNumber'
             @payment_number = hash['paymentNumber']
           end
-          if hash.has_key? 'schemeReferenceData'
+          if hash.key? 'schemeReferenceData'
             @scheme_reference_data = hash['schemeReferenceData']
           end
-          if hash.has_key? 'subsequentType'
+          if hash.key? 'subsequentType'
             @subsequent_type = hash['subsequentType']
           end
-          if hash.has_key? 'token'
+          if hash.key? 'token'
             @token = hash['token']
           end
-          if hash.has_key? 'transactionChannel'
+          if hash.key? 'transactionChannel'
             @transaction_channel = hash['transactionChannel']
           end
         end

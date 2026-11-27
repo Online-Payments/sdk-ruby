@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'httpclient'
+require 'net/http'
 
 # define module first so we can include them
 # contains validation methods for messages logged in the tests
@@ -328,7 +328,7 @@ describe 'DefaultConnectionLogging' do
 
   it 'logs timeouts' do
     stub_request(:get, 'https://payment.preprod.online-payments.com/v1/get')
-        .to_raise(HTTPClient::ReceiveTimeoutError)
+        .to_raise(Net::ReadTimeout)
 
     COMMUNICATOR.enable_logging(logger)
     expect{COMMUNICATOR.get('/v1/get', nil, nil, TestObject, nil)}.to raise_error(OnlinePayments::SDK::Communication::CommunicationException)
@@ -340,7 +340,7 @@ describe 'DefaultConnectionLogging' do
     response = logger.entries[1]
     expect(response[0]).to_not be_nil
     expect(response[1]).to_not be_nil, 'A timeout error should have been logged'
-    expect(response[1]).to be_a(HTTPClient::TimeoutError)
+    expect(response[1]).to be_a(Net::ReadTimeout)
 
     validate_request_and_error(logger.entries[0], logger.entries[1], 'getWithoutQueryParams')
   end
@@ -389,14 +389,14 @@ describe 'DefaultConnectionLogging' do
   it 'can log errors individually' do
     stub_request(:get, 'https://payment.preprod.online-payments.com/v1/get')
         .to_return{ |request| COMMUNICATOR.enable_logging(logger)
-    raise HTTPClient::ReceiveTimeoutError.new}
+    raise Net::ReadTimeout.new}
 
     expect{COMMUNICATOR.get('/v1/get', nil, nil, TestObject, nil)}.to raise_error(OnlinePayments::SDK::Communication::CommunicationException)
 
     response = logger.entries[0]
     expect(response[0]).to_not be_nil
     expect(response[1]).to_not be_nil, 'A timeout error should have been logged'
-    expect(response[1]).to be_a(HTTPClient::TimeoutError)
+    expect(response[1]).to be_a(Net::ReadTimeout)
 
     validate_error(logger.entries[0])
   end

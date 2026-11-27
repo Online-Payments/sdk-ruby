@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -19,6 +21,15 @@ module OnlinePayments
         attr_accessor :merchant_category_code
 
         attr_accessor :merchant_country_code
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(acquirer_bin: nil, acquirer_merchant_id: nil, merchant_category_code: nil, merchant_country_code: nil)
+          super()
+          @acquirer_bin = acquirer_bin
+          @acquirer_merchant_id = acquirer_merchant_id
+          @merchant_category_code = merchant_category_code
+          @merchant_country_code = merchant_country_code
+        end
 
         # Sets the property and returns this same instance.
         def with_acquirer_bin(value)
@@ -56,16 +67,16 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'acquirerBIN'
+          if hash.key? 'acquirerBIN'
             @acquirer_bin = hash['acquirerBIN']
           end
-          if hash.has_key? 'acquirerMerchantId'
+          if hash.key? 'acquirerMerchantId'
             @acquirer_merchant_id = hash['acquirerMerchantId']
           end
-          if hash.has_key? 'merchantCategoryCode'
+          if hash.key? 'merchantCategoryCode'
             @merchant_category_code = hash['merchantCategoryCode']
           end
-          if hash.has_key? 'merchantCountryCode'
+          if hash.key? 'merchantCountryCode'
             @merchant_country_code = hash['merchantCountryCode']
           end
         end

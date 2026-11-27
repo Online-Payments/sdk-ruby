@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -19,6 +21,15 @@ module OnlinePayments
         attr_accessor :is_wip_transaction
 
         attr_accessor :wip_merchant_authentication_method
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(force_authentication: nil, is_deferred_payment: nil, is_wip_transaction: nil, wip_merchant_authentication_method: nil)
+          super()
+          @force_authentication = force_authentication
+          @is_deferred_payment = is_deferred_payment
+          @is_wip_transaction = is_wip_transaction
+          @wip_merchant_authentication_method = wip_merchant_authentication_method
+        end
 
         # Sets the property and returns this same instance.
         def with_force_authentication(value)
@@ -56,16 +67,16 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'forceAuthentication'
+          if hash.key? 'forceAuthentication'
             @force_authentication = hash['forceAuthentication']
           end
-          if hash.has_key? 'isDeferredPayment'
+          if hash.key? 'isDeferredPayment'
             @is_deferred_payment = hash['isDeferredPayment']
           end
-          if hash.has_key? 'isWipTransaction'
+          if hash.key? 'isWipTransaction'
             @is_wip_transaction = hash['isWipTransaction']
           end
-          if hash.has_key? 'wipMerchantAuthenticationMethod'
+          if hash.key? 'wipMerchantAuthenticationMethod'
             @wip_merchant_authentication_method = hash['wipMerchantAuthenticationMethod']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -48,7 +50,8 @@ module OnlinePayments
         end
       end
 
-      # Utility method that delegates the call to this client's communicator.
+      # Sets the idle timeout for pooled connections. Connections are closed lazily
+      # after being idle longer than _idle_time_ seconds.
       def close_idle_connections(idle_time)
         @communicator.close_idle_connections(idle_time)
       end

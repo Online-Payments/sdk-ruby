@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -46,6 +48,34 @@ module OnlinePayments
         attr_accessor :skip_authentication
 
         attr_accessor :skip_soft_decline
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(authentication_amount: nil,
+                       challenge_canvas_size: nil,
+                       challenge_indicator: nil,
+                       device_channel: nil,
+                       exemption_request: nil,
+                       external_cardholder_authentication_data: nil,
+                       merchant_fraud_rate: nil,
+                       prior_three_d_secure_data: nil,
+                       redirection_data: nil,
+                       secure_corporate_payment: nil,
+                       skip_authentication: nil,
+                       skip_soft_decline: nil)
+          super()
+          @authentication_amount = authentication_amount
+          @challenge_canvas_size = challenge_canvas_size
+          @challenge_indicator = challenge_indicator
+          @device_channel = device_channel
+          @exemption_request = exemption_request
+          @external_cardholder_authentication_data = external_cardholder_authentication_data
+          @merchant_fraud_rate = merchant_fraud_rate
+          @prior_three_d_secure_data = prior_three_d_secure_data
+          @redirection_data = redirection_data
+          @secure_corporate_payment = secure_corporate_payment
+          @skip_authentication = skip_authentication
+          @skip_soft_decline = skip_soft_decline
+        end
 
         # Sets the property and returns this same instance.
         def with_authentication_amount(value)
@@ -139,43 +169,43 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'authenticationAmount'
+          if hash.key? 'authenticationAmount'
             @authentication_amount = hash['authenticationAmount']
           end
-          if hash.has_key? 'challengeCanvasSize'
+          if hash.key? 'challengeCanvasSize'
             @challenge_canvas_size = hash['challengeCanvasSize']
           end
-          if hash.has_key? 'challengeIndicator'
+          if hash.key? 'challengeIndicator'
             @challenge_indicator = hash['challengeIndicator']
           end
-          if hash.has_key? 'deviceChannel'
+          if hash.key? 'deviceChannel'
             @device_channel = hash['deviceChannel']
           end
-          if hash.has_key? 'exemptionRequest'
+          if hash.key? 'exemptionRequest'
             @exemption_request = hash['exemptionRequest']
           end
-          if hash.has_key? 'externalCardholderAuthenticationData'
-            raise TypeError, "value '%s' is not a Hash" % [hash['externalCardholderAuthenticationData']] unless hash['externalCardholderAuthenticationData'].is_a? Hash
+          if hash.key? 'externalCardholderAuthenticationData'
+            raise TypeError, "value '#{hash['externalCardholderAuthenticationData']}' is not a Hash" unless hash['externalCardholderAuthenticationData'].is_a? Hash
             @external_cardholder_authentication_data = OnlinePayments::SDK::Domain::ExternalCardholderAuthenticationData.new_from_hash(hash['externalCardholderAuthenticationData'])
           end
-          if hash.has_key? 'merchantFraudRate'
+          if hash.key? 'merchantFraudRate'
             @merchant_fraud_rate = hash['merchantFraudRate']
           end
-          if hash.has_key? 'priorThreeDSecureData'
-            raise TypeError, "value '%s' is not a Hash" % [hash['priorThreeDSecureData']] unless hash['priorThreeDSecureData'].is_a? Hash
+          if hash.key? 'priorThreeDSecureData'
+            raise TypeError, "value '#{hash['priorThreeDSecureData']}' is not a Hash" unless hash['priorThreeDSecureData'].is_a? Hash
             @prior_three_d_secure_data = OnlinePayments::SDK::Domain::ThreeDSecureData.new_from_hash(hash['priorThreeDSecureData'])
           end
-          if hash.has_key? 'redirectionData'
-            raise TypeError, "value '%s' is not a Hash" % [hash['redirectionData']] unless hash['redirectionData'].is_a? Hash
+          if hash.key? 'redirectionData'
+            raise TypeError, "value '#{hash['redirectionData']}' is not a Hash" unless hash['redirectionData'].is_a? Hash
             @redirection_data = OnlinePayments::SDK::Domain::RedirectionData.new_from_hash(hash['redirectionData'])
           end
-          if hash.has_key? 'secureCorporatePayment'
+          if hash.key? 'secureCorporatePayment'
             @secure_corporate_payment = hash['secureCorporatePayment']
           end
-          if hash.has_key? 'skipAuthentication'
+          if hash.key? 'skipAuthentication'
             @skip_authentication = hash['skipAuthentication']
           end
-          if hash.has_key? 'skipSoftDecline'
+          if hash.key? 'skipSoftDecline'
             @skip_soft_decline = hash['skipSoftDecline']
           end
         end

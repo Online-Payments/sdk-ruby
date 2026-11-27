@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 module OnlinePayments
   module SDK
     module JSON
       # Class responsible for marshalling and unmarshalling objects to and from JSON
       class Marshaller
-
         # Marshals _request_object_ to JSON format by calling #to_h on it.
         #
         # @param request_object [OnlinePayments::SDK::Domain::DataObject] the object to format

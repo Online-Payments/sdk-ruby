@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -14,6 +16,13 @@ module OnlinePayments
         attr_accessor :created_payment_output
 
         attr_accessor :status
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(created_payment_output: nil, status: nil)
+          super()
+          @created_payment_output = created_payment_output
+          @status = status
+        end
 
         # Sets the property and returns this same instance.
         def with_created_payment_output(value)
@@ -37,11 +46,11 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'createdPaymentOutput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['createdPaymentOutput']] unless hash['createdPaymentOutput'].is_a? Hash
+          if hash.key? 'createdPaymentOutput'
+            raise TypeError, "value '#{hash['createdPaymentOutput']}' is not a Hash" unless hash['createdPaymentOutput'].is_a? Hash
             @created_payment_output = OnlinePayments::SDK::Domain::CreatedPaymentOutput.new_from_hash(hash['createdPaymentOutput'])
           end
-          if hash.has_key? 'status'
+          if hash.key? 'status'
             @status = hash['status']
           end
         end

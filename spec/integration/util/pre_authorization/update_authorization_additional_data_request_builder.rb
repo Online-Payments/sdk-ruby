@@ -1,4 +1,4 @@
-﻿require 'onlinepayments/sdk/domain/car_rental_data'
+require 'onlinepayments/sdk/domain/car_rental_data'
 require 'onlinepayments/sdk/domain/car_rental_pickup_return_data'
 require 'onlinepayments/sdk/domain/car_rental_vehicle_data'
 require 'onlinepayments/sdk/domain/update_authorization_additional_data_request'

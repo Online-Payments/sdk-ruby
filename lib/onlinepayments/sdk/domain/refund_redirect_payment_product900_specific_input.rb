@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -10,6 +12,12 @@ module OnlinePayments
       class RefundRedirectPaymentProduct900SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :refund_reason
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(refund_reason: nil)
+          super()
+          @refund_reason = refund_reason
+        end
 
         # Sets the property and returns this same instance.
         def with_refund_reason(value)
@@ -26,7 +34,7 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'refundReason'
+          if hash.key? 'refundReason'
             @refund_reason = hash['refundReason']
           end
         end

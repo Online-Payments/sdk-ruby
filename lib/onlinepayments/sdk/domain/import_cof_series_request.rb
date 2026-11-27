@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -34,6 +36,26 @@ module OnlinePayments
         attr_accessor :token_id
 
         attr_accessor :transaction_link_identifier
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(card: nil,
+                       currency_code: nil,
+                       network_token_data: nil,
+                       payment_product_id: nil,
+                       scheme_reference_data: nil,
+                       sub_merchant: nil,
+                       token_id: nil,
+                       transaction_link_identifier: nil)
+          super()
+          @card = card
+          @currency_code = currency_code
+          @network_token_data = network_token_data
+          @payment_product_id = payment_product_id
+          @scheme_reference_data = scheme_reference_data
+          @sub_merchant = sub_merchant
+          @token_id = token_id
+          @transaction_link_identifier = transaction_link_identifier
+        end
 
         # Sets the property and returns this same instance.
         def with_card(value)
@@ -99,31 +121,31 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'card'
-            raise TypeError, "value '%s' is not a Hash" % [hash['card']] unless hash['card'].is_a? Hash
+          if hash.key? 'card'
+            raise TypeError, "value '#{hash['card']}' is not a Hash" unless hash['card'].is_a? Hash
             @card = OnlinePayments::SDK::Domain::CardDataWithoutCvv.new_from_hash(hash['card'])
           end
-          if hash.has_key? 'currencyCode'
+          if hash.key? 'currencyCode'
             @currency_code = hash['currencyCode']
           end
-          if hash.has_key? 'networkTokenData'
-            raise TypeError, "value '%s' is not a Hash" % [hash['networkTokenData']] unless hash['networkTokenData'].is_a? Hash
+          if hash.key? 'networkTokenData'
+            raise TypeError, "value '#{hash['networkTokenData']}' is not a Hash" unless hash['networkTokenData'].is_a? Hash
             @network_token_data = OnlinePayments::SDK::Domain::NetworkTokenData.new_from_hash(hash['networkTokenData'])
           end
-          if hash.has_key? 'paymentProductId'
+          if hash.key? 'paymentProductId'
             @payment_product_id = hash['paymentProductId']
           end
-          if hash.has_key? 'schemeReferenceData'
+          if hash.key? 'schemeReferenceData'
             @scheme_reference_data = hash['schemeReferenceData']
           end
-          if hash.has_key? 'subMerchant'
-            raise TypeError, "value '%s' is not a Hash" % [hash['subMerchant']] unless hash['subMerchant'].is_a? Hash
+          if hash.key? 'subMerchant'
+            raise TypeError, "value '#{hash['subMerchant']}' is not a Hash" unless hash['subMerchant'].is_a? Hash
             @sub_merchant = OnlinePayments::SDK::Domain::SubMerchant.new_from_hash(hash['subMerchant'])
           end
-          if hash.has_key? 'tokenId'
+          if hash.key? 'tokenId'
             @token_id = hash['tokenId']
           end
-          if hash.has_key? 'transactionLinkIdentifier'
+          if hash.key? 'transactionLinkIdentifier'
             @transaction_link_identifier = hash['transactionLinkIdentifier']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -14,6 +16,13 @@ module OnlinePayments
         attr_accessor :acquirer_selection_information
 
         attr_accessor :name
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(acquirer_selection_information: nil, name: nil)
+          super()
+          @acquirer_selection_information = acquirer_selection_information
+          @name = name
+        end
 
         # Sets the property and returns this same instance.
         def with_acquirer_selection_information(value)
@@ -37,11 +46,11 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'acquirerSelectionInformation'
-            raise TypeError, "value '%s' is not a Hash" % [hash['acquirerSelectionInformation']] unless hash['acquirerSelectionInformation'].is_a? Hash
+          if hash.key? 'acquirerSelectionInformation'
+            raise TypeError, "value '#{hash['acquirerSelectionInformation']}' is not a Hash" unless hash['acquirerSelectionInformation'].is_a? Hash
             @acquirer_selection_information = OnlinePayments::SDK::Domain::AcquirerSelectionInformation.new_from_hash(hash['acquirerSelectionInformation'])
           end
-          if hash.has_key? 'name'
+          if hash.key? 'name'
             @name = hash['name']
           end
         end

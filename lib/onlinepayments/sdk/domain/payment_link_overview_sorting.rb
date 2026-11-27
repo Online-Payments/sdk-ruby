@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :sort_direction
 
         attr_accessor :sort_property
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(sort_direction: nil, sort_property: nil)
+          super()
+          @sort_direction = sort_direction
+          @sort_property = sort_property
+        end
 
         # Sets the property and returns this same instance.
         def with_sort_direction(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'sortDirection'
+          if hash.key? 'sortDirection'
             @sort_direction = hash['sortDirection']
           end
-          if hash.has_key? 'sortProperty'
+          if hash.key? 'sortProperty'
             @sort_property = hash['sortProperty']
           end
         end

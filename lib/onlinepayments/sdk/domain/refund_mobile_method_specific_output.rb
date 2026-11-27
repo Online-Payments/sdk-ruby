@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -16,6 +18,14 @@ module OnlinePayments
         attr_accessor :total_amount_paid
 
         attr_accessor :total_amount_refunded
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(network: nil, total_amount_paid: nil, total_amount_refunded: nil)
+          super()
+          @network = network
+          @total_amount_paid = total_amount_paid
+          @total_amount_refunded = total_amount_refunded
+        end
 
         # Sets the property and returns this same instance.
         def with_network(value)
@@ -46,13 +56,13 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'network'
+          if hash.key? 'network'
             @network = hash['network']
           end
-          if hash.has_key? 'totalAmountPaid'
+          if hash.key? 'totalAmountPaid'
             @total_amount_paid = hash['totalAmountPaid']
           end
-          if hash.has_key? 'totalAmountRefunded'
+          if hash.key? 'totalAmountRefunded'
             @total_amount_refunded = hash['totalAmountRefunded']
           end
         end

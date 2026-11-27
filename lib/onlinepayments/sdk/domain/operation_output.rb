@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -37,6 +39,26 @@ module OnlinePayments
         attr_accessor :status_output
 
         attr_accessor :transaction_date
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(amount_of_money: nil,
+                       id: nil,
+                       operation_references: nil,
+                       payment_method: nil,
+                       references: nil,
+                       status: nil,
+                       status_output: nil,
+                       transaction_date: nil)
+          super()
+          @amount_of_money = amount_of_money
+          @id = id
+          @operation_references = operation_references
+          @payment_method = payment_method
+          @references = references
+          @status = status
+          @status_output = status_output
+          @transaction_date = transaction_date
+        end
 
         # Sets the property and returns this same instance.
         def with_amount_of_money(value)
@@ -102,32 +124,32 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'amountOfMoney'
-            raise TypeError, "value '%s' is not a Hash" % [hash['amountOfMoney']] unless hash['amountOfMoney'].is_a? Hash
+          if hash.key? 'amountOfMoney'
+            raise TypeError, "value '#{hash['amountOfMoney']}' is not a Hash" unless hash['amountOfMoney'].is_a? Hash
             @amount_of_money = OnlinePayments::SDK::Domain::AmountOfMoney.new_from_hash(hash['amountOfMoney'])
           end
-          if hash.has_key? 'id'
+          if hash.key? 'id'
             @id = hash['id']
           end
-          if hash.has_key? 'operationReferences'
-            raise TypeError, "value '%s' is not a Hash" % [hash['operationReferences']] unless hash['operationReferences'].is_a? Hash
+          if hash.key? 'operationReferences'
+            raise TypeError, "value '#{hash['operationReferences']}' is not a Hash" unless hash['operationReferences'].is_a? Hash
             @operation_references = OnlinePayments::SDK::Domain::OperationPaymentReferences.new_from_hash(hash['operationReferences'])
           end
-          if hash.has_key? 'paymentMethod'
+          if hash.key? 'paymentMethod'
             @payment_method = hash['paymentMethod']
           end
-          if hash.has_key? 'references'
-            raise TypeError, "value '%s' is not a Hash" % [hash['references']] unless hash['references'].is_a? Hash
+          if hash.key? 'references'
+            raise TypeError, "value '#{hash['references']}' is not a Hash" unless hash['references'].is_a? Hash
             @references = OnlinePayments::SDK::Domain::PaymentReferences.new_from_hash(hash['references'])
           end
-          if hash.has_key? 'status'
+          if hash.key? 'status'
             @status = hash['status']
           end
-          if hash.has_key? 'statusOutput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['statusOutput']] unless hash['statusOutput'].is_a? Hash
+          if hash.key? 'statusOutput'
+            raise TypeError, "value '#{hash['statusOutput']}' is not a Hash" unless hash['statusOutput'].is_a? Hash
             @status_output = OnlinePayments::SDK::Domain::PaymentStatusOutput.new_from_hash(hash['statusOutput'])
           end
-          if hash.has_key? 'transactionDate'
+          if hash.key? 'transactionDate'
             @transaction_date = DateTime.parse(hash['transactionDate'])
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -14,6 +16,13 @@ module OnlinePayments
         attr_accessor :validation_rules
 
         attr_accessor :payment_product_preferred_order
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(validation_rules: nil, payment_product_preferred_order: nil)
+          super()
+          @validation_rules = validation_rules
+          @payment_product_preferred_order = payment_product_preferred_order
+        end
 
         # Sets the property and returns this same instance.
         def with_validation_rules(value)
@@ -37,12 +46,12 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'ValidationRules'
-            raise TypeError, "value '%s' is not a Hash" % [hash['ValidationRules']] unless hash['ValidationRules'].is_a? Hash
+          if hash.key? 'ValidationRules'
+            raise TypeError, "value '#{hash['ValidationRules']}' is not a Hash" unless hash['ValidationRules'].is_a? Hash
             @validation_rules = OnlinePayments::SDK::Domain::CreditCardValidationRules.new_from_hash(hash['ValidationRules'])
           end
-          if hash.has_key? 'paymentProductPreferredOrder'
-            raise TypeError, "value '%s' is not an Array" % [hash['paymentProductPreferredOrder']] unless hash['paymentProductPreferredOrder'].is_a? Array
+          if hash.key? 'paymentProductPreferredOrder'
+            raise TypeError, "value '#{hash['paymentProductPreferredOrder']}' is not an Array" unless hash['paymentProductPreferredOrder'].is_a? Array
             @payment_product_preferred_order = []
             hash['paymentProductPreferredOrder'].each do |e|
               @payment_product_preferred_order << e

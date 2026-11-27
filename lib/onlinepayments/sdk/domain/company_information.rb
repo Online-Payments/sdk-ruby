@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -10,6 +12,12 @@ module OnlinePayments
       class CompanyInformation < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :name
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(name: nil)
+          super()
+          @name = name
+        end
 
         # Sets the property and returns this same instance.
         def with_name(value)
@@ -26,7 +34,7 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'name'
+          if hash.key? 'name'
             @name = hash['name']
           end
         end

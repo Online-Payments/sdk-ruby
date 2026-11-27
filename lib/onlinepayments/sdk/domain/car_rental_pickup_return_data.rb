@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -28,6 +30,18 @@ module OnlinePayments
         attr_accessor :postcode
 
         attr_accessor :state
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(address: nil, city: nil, country: nil, date: nil, location: nil, postcode: nil, state: nil)
+          super()
+          @address = address
+          @city = city
+          @country = country
+          @date = date
+          @location = location
+          @postcode = postcode
+          @state = state
+        end
 
         # Sets the property and returns this same instance.
         def with_address(value)
@@ -86,25 +100,25 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'address'
+          if hash.key? 'address'
             @address = hash['address']
           end
-          if hash.has_key? 'city'
+          if hash.key? 'city'
             @city = hash['city']
           end
-          if hash.has_key? 'country'
+          if hash.key? 'country'
             @country = hash['country']
           end
-          if hash.has_key? 'date'
+          if hash.key? 'date'
             @date = hash['date']
           end
-          if hash.has_key? 'location'
+          if hash.key? 'location'
             @location = hash['location']
           end
-          if hash.has_key? 'postcode'
+          if hash.key? 'postcode'
             @postcode = hash['postcode']
           end
-          if hash.has_key? 'state'
+          if hash.key? 'state'
             @state = hash['state']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -18,6 +20,14 @@ module OnlinePayments
         attr_accessor :dpa_transaction_options
 
         attr_accessor :src_initiator_id
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(dpa_data: nil, dpa_transaction_options: nil, src_initiator_id: nil)
+          super()
+          @dpa_data = dpa_data
+          @dpa_transaction_options = dpa_transaction_options
+          @src_initiator_id = src_initiator_id
+        end
 
         # Sets the property and returns this same instance.
         def with_dpa_data(value)
@@ -48,15 +58,15 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'dpaData'
-            raise TypeError, "value '%s' is not a Hash" % [hash['dpaData']] unless hash['dpaData'].is_a? Hash
+          if hash.key? 'dpaData'
+            raise TypeError, "value '#{hash['dpaData']}' is not a Hash" unless hash['dpaData'].is_a? Hash
             @dpa_data = OnlinePayments::SDK::Domain::DpaData.new_from_hash(hash['dpaData'])
           end
-          if hash.has_key? 'dpaTransactionOptions'
-            raise TypeError, "value '%s' is not a Hash" % [hash['dpaTransactionOptions']] unless hash['dpaTransactionOptions'].is_a? Hash
+          if hash.key? 'dpaTransactionOptions'
+            raise TypeError, "value '#{hash['dpaTransactionOptions']}' is not a Hash" unless hash['dpaTransactionOptions'].is_a? Hash
             @dpa_transaction_options = OnlinePayments::SDK::Domain::DpaTransactionOptions.new_from_hash(hash['dpaTransactionOptions'])
           end
-          if hash.has_key? 'srcInitiatorId'
+          if hash.key? 'srcInitiatorId'
             @src_initiator_id = hash['srcInitiatorId']
           end
         end

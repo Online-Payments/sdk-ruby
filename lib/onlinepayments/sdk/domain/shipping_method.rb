@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -19,6 +21,15 @@ module OnlinePayments
         attr_accessor :speed
 
         attr_accessor :type
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(details: nil, name: nil, speed: nil, type: nil)
+          super()
+          @details = details
+          @name = name
+          @speed = speed
+          @type = type
+        end
 
         # Sets the property and returns this same instance.
         def with_details(value)
@@ -56,16 +67,16 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'details'
+          if hash.key? 'details'
             @details = hash['details']
           end
-          if hash.has_key? 'name'
+          if hash.key? 'name'
             @name = hash['name']
           end
-          if hash.has_key? 'speed'
+          if hash.key? 'speed'
             @speed = hash['speed']
           end
-          if hash.has_key? 'type'
+          if hash.key? 'type'
             @type = hash['type']
           end
         end

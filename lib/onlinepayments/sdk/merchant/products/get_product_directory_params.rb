@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -17,6 +19,13 @@ module OnlinePayments
           attr_accessor :country_code
 
           attr_accessor :currency_code
+
+          # Creates a new instance; every attribute can be given as a keyword argument.
+          def initialize(country_code: nil, currency_code: nil)
+            super()
+            @country_code = country_code
+            @currency_code = currency_code
+          end
 
           # Sets the parameter and returns this same instance.
           def with_country_code(value)

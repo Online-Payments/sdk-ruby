@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -10,6 +12,12 @@ module OnlinePayments
       class CurrencyConversionSpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :dcc_enabled
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(dcc_enabled: nil)
+          super()
+          @dcc_enabled = dcc_enabled
+        end
 
         # Sets the property and returns this same instance.
         def with_dcc_enabled(value)
@@ -26,7 +34,7 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'dccEnabled'
+          if hash.key? 'dccEnabled'
             @dcc_enabled = hash['dccEnabled']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :returnmac
 
         attr_accessor :redirect_url
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(returnmac: nil, redirect_url: nil)
+          super()
+          @returnmac = returnmac
+          @redirect_url = redirect_url
+        end
 
         # Sets the property and returns this same instance.
         def with_returnmac(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'RETURNMAC'
+          if hash.key? 'RETURNMAC'
             @returnmac = hash['RETURNMAC']
           end
-          if hash.has_key? 'redirectURL'
+          if hash.key? 'redirectURL'
             @redirect_url = hash['redirectURL']
           end
         end

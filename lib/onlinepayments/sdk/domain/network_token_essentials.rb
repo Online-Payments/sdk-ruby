@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -25,6 +27,17 @@ module OnlinePayments
         attr_accessor :network_token_used
 
         attr_accessor :token_expiry_date
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(bin: nil, country_code: nil, network_token: nil, network_token_state: nil, network_token_used: nil, token_expiry_date: nil)
+          super()
+          @bin = bin
+          @country_code = country_code
+          @network_token = network_token
+          @network_token_state = network_token_state
+          @network_token_used = network_token_used
+          @token_expiry_date = token_expiry_date
+        end
 
         # Sets the property and returns this same instance.
         def with_bin(value)
@@ -76,22 +89,22 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'bin'
+          if hash.key? 'bin'
             @bin = hash['bin']
           end
-          if hash.has_key? 'countryCode'
+          if hash.key? 'countryCode'
             @country_code = hash['countryCode']
           end
-          if hash.has_key? 'networkToken'
+          if hash.key? 'networkToken'
             @network_token = hash['networkToken']
           end
-          if hash.has_key? 'networkTokenState'
+          if hash.key? 'networkTokenState'
             @network_token_state = hash['networkTokenState']
           end
-          if hash.has_key? 'networkTokenUsed'
+          if hash.key? 'networkTokenUsed'
             @network_token_used = hash['networkTokenUsed']
           end
-          if hash.has_key? 'tokenExpiryDate'
+          if hash.key? 'tokenExpiryDate'
             @token_expiry_date = hash['tokenExpiryDate']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -93,6 +95,60 @@ module OnlinePayments
         attr_accessor :total_taxes
 
         attr_accessor :travel_agency_name
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(agent_numeric_code: nil,
+                       code: nil,
+                       flight_date: nil,
+                       flight_indicator: nil,
+                       flight_legs: nil,
+                       invoice_number: nil,
+                       is_e_ticket: nil,
+                       is_restricted_ticket: nil,
+                       is_third_party: nil,
+                       issue_date: nil,
+                       merchant_customer_id: nil,
+                       name: nil,
+                       passenger_name: nil,
+                       passengers: nil,
+                       place_of_issue: nil,
+                       pnr: nil,
+                       point_of_sale: nil,
+                       pos_city_code: nil,
+                       ticket_currency: nil,
+                       ticket_delivery_method: nil,
+                       ticket_number: nil,
+                       total_fare: nil,
+                       total_fee: nil,
+                       total_taxes: nil,
+                       travel_agency_name: nil)
+          super()
+          @agent_numeric_code = agent_numeric_code
+          @code = code
+          @flight_date = flight_date
+          @flight_indicator = flight_indicator
+          @flight_legs = flight_legs
+          @invoice_number = invoice_number
+          @is_e_ticket = is_e_ticket
+          @is_restricted_ticket = is_restricted_ticket
+          @is_third_party = is_third_party
+          @issue_date = issue_date
+          @merchant_customer_id = merchant_customer_id
+          @name = name
+          @passenger_name = passenger_name
+          @passengers = passengers
+          @place_of_issue = place_of_issue
+          @pnr = pnr
+          @point_of_sale = point_of_sale
+          @pos_city_code = pos_city_code
+          @ticket_currency = ticket_currency
+          @ticket_delivery_method = ticket_delivery_method
+          @ticket_number = ticket_number
+          @total_fare = total_fare
+          @total_fee = total_fee
+          @total_taxes = total_taxes
+          @travel_agency_name = travel_agency_name
+        end
 
         # Sets the property and returns this same instance.
         def with_agent_numeric_code(value)
@@ -277,87 +333,87 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'agentNumericCode'
+          if hash.key? 'agentNumericCode'
             @agent_numeric_code = hash['agentNumericCode']
           end
-          if hash.has_key? 'code'
+          if hash.key? 'code'
             @code = hash['code']
           end
-          if hash.has_key? 'flightDate'
+          if hash.key? 'flightDate'
             @flight_date = hash['flightDate']
           end
-          if hash.has_key? 'flightIndicator'
+          if hash.key? 'flightIndicator'
             @flight_indicator = hash['flightIndicator']
           end
-          if hash.has_key? 'flightLegs'
-            raise TypeError, "value '%s' is not an Array" % [hash['flightLegs']] unless hash['flightLegs'].is_a? Array
+          if hash.key? 'flightLegs'
+            raise TypeError, "value '#{hash['flightLegs']}' is not an Array" unless hash['flightLegs'].is_a? Array
             @flight_legs = []
             hash['flightLegs'].each do |e|
               @flight_legs << OnlinePayments::SDK::Domain::AirlineFlightLeg.new_from_hash(e)
             end
           end
-          if hash.has_key? 'invoiceNumber'
+          if hash.key? 'invoiceNumber'
             @invoice_number = hash['invoiceNumber']
           end
-          if hash.has_key? 'isETicket'
+          if hash.key? 'isETicket'
             @is_e_ticket = hash['isETicket']
           end
-          if hash.has_key? 'isRestrictedTicket'
+          if hash.key? 'isRestrictedTicket'
             @is_restricted_ticket = hash['isRestrictedTicket']
           end
-          if hash.has_key? 'isThirdParty'
+          if hash.key? 'isThirdParty'
             @is_third_party = hash['isThirdParty']
           end
-          if hash.has_key? 'issueDate'
+          if hash.key? 'issueDate'
             @issue_date = hash['issueDate']
           end
-          if hash.has_key? 'merchantCustomerId'
+          if hash.key? 'merchantCustomerId'
             @merchant_customer_id = hash['merchantCustomerId']
           end
-          if hash.has_key? 'name'
+          if hash.key? 'name'
             @name = hash['name']
           end
-          if hash.has_key? 'passengerName'
+          if hash.key? 'passengerName'
             @passenger_name = hash['passengerName']
           end
-          if hash.has_key? 'passengers'
-            raise TypeError, "value '%s' is not an Array" % [hash['passengers']] unless hash['passengers'].is_a? Array
+          if hash.key? 'passengers'
+            raise TypeError, "value '#{hash['passengers']}' is not an Array" unless hash['passengers'].is_a? Array
             @passengers = []
             hash['passengers'].each do |e|
               @passengers << OnlinePayments::SDK::Domain::AirlinePassenger.new_from_hash(e)
             end
           end
-          if hash.has_key? 'placeOfIssue'
+          if hash.key? 'placeOfIssue'
             @place_of_issue = hash['placeOfIssue']
           end
-          if hash.has_key? 'pnr'
+          if hash.key? 'pnr'
             @pnr = hash['pnr']
           end
-          if hash.has_key? 'pointOfSale'
+          if hash.key? 'pointOfSale'
             @point_of_sale = hash['pointOfSale']
           end
-          if hash.has_key? 'posCityCode'
+          if hash.key? 'posCityCode'
             @pos_city_code = hash['posCityCode']
           end
-          if hash.has_key? 'ticketCurrency'
+          if hash.key? 'ticketCurrency'
             @ticket_currency = hash['ticketCurrency']
           end
-          if hash.has_key? 'ticketDeliveryMethod'
+          if hash.key? 'ticketDeliveryMethod'
             @ticket_delivery_method = hash['ticketDeliveryMethod']
           end
-          if hash.has_key? 'ticketNumber'
+          if hash.key? 'ticketNumber'
             @ticket_number = hash['ticketNumber']
           end
-          if hash.has_key? 'totalFare'
+          if hash.key? 'totalFare'
             @total_fare = hash['totalFare']
           end
-          if hash.has_key? 'totalFee'
+          if hash.key? 'totalFee'
             @total_fee = hash['totalFee']
           end
-          if hash.has_key? 'totalTaxes'
+          if hash.key? 'totalTaxes'
             @total_taxes = hash['totalTaxes']
           end
-          if hash.has_key? 'travelAgencyName'
+          if hash.key? 'travelAgencyName'
             @travel_agency_name = hash['travelAgencyName']
           end
         end

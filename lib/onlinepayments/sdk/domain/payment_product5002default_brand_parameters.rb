@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :src_dpa_id
 
         attr_accessor :src_initiator_id
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(src_dpa_id: nil, src_initiator_id: nil)
+          super()
+          @src_dpa_id = src_dpa_id
+          @src_initiator_id = src_initiator_id
+        end
 
         # Sets the property and returns this same instance.
         def with_src_dpa_id(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'srcDpaId'
+          if hash.key? 'srcDpaId'
             @src_dpa_id = hash['srcDpaId']
           end
-          if hash.has_key? 'srcInitiatorId'
+          if hash.key? 'srcInitiatorId'
             @src_initiator_id = hash['srcInitiatorId']
           end
         end

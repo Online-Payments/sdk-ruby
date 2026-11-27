@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -24,6 +26,16 @@ module OnlinePayments
         attr_accessor :rate
 
         attr_accessor :target_amount
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(base_amount: nil, disclaimer_display: nil, disclaimer_receipt: nil, rate: nil, target_amount: nil)
+          super()
+          @base_amount = base_amount
+          @disclaimer_display = disclaimer_display
+          @disclaimer_receipt = disclaimer_receipt
+          @rate = rate
+          @target_amount = target_amount
+        end
 
         # Sets the property and returns this same instance.
         def with_base_amount(value)
@@ -68,22 +80,22 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'baseAmount'
-            raise TypeError, "value '%s' is not a Hash" % [hash['baseAmount']] unless hash['baseAmount'].is_a? Hash
+          if hash.key? 'baseAmount'
+            raise TypeError, "value '#{hash['baseAmount']}' is not a Hash" unless hash['baseAmount'].is_a? Hash
             @base_amount = OnlinePayments::SDK::Domain::AmountOfMoney.new_from_hash(hash['baseAmount'])
           end
-          if hash.has_key? 'disclaimerDisplay'
+          if hash.key? 'disclaimerDisplay'
             @disclaimer_display = hash['disclaimerDisplay']
           end
-          if hash.has_key? 'disclaimerReceipt'
+          if hash.key? 'disclaimerReceipt'
             @disclaimer_receipt = hash['disclaimerReceipt']
           end
-          if hash.has_key? 'rate'
-            raise TypeError, "value '%s' is not a Hash" % [hash['rate']] unless hash['rate'].is_a? Hash
+          if hash.key? 'rate'
+            raise TypeError, "value '#{hash['rate']}' is not a Hash" unless hash['rate'].is_a? Hash
             @rate = OnlinePayments::SDK::Domain::RateDetails.new_from_hash(hash['rate'])
           end
-          if hash.has_key? 'targetAmount'
-            raise TypeError, "value '%s' is not a Hash" % [hash['targetAmount']] unless hash['targetAmount'].is_a? Hash
+          if hash.key? 'targetAmount'
+            raise TypeError, "value '#{hash['targetAmount']}' is not a Hash" unless hash['targetAmount'].is_a? Hash
             @target_amount = OnlinePayments::SDK::Domain::AmountOfMoney.new_from_hash(hash['targetAmount'])
           end
         end

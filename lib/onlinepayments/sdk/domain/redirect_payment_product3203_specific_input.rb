@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -10,6 +12,12 @@ module OnlinePayments
       class RedirectPaymentProduct3203SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :checkout_type
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(checkout_type: nil)
+          super()
+          @checkout_type = checkout_type
+        end
 
         # Sets the property and returns this same instance.
         def with_checkout_type(value)
@@ -26,7 +34,7 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'checkoutType'
+          if hash.key? 'checkoutType'
             @checkout_type = hash['checkoutType']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -27,6 +29,17 @@ module OnlinePayments
         attr_accessor :surcharge_rate
 
         attr_accessor :total_amount
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(net_amount: nil, payment_product_id: nil, result: nil, surcharge_amount: nil, surcharge_rate: nil, total_amount: nil)
+          super()
+          @net_amount = net_amount
+          @payment_product_id = payment_product_id
+          @result = result
+          @surcharge_amount = surcharge_amount
+          @surcharge_rate = surcharge_rate
+          @total_amount = total_amount
+        end
 
         # Sets the property and returns this same instance.
         def with_net_amount(value)
@@ -78,26 +91,26 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'netAmount'
-            raise TypeError, "value '%s' is not a Hash" % [hash['netAmount']] unless hash['netAmount'].is_a? Hash
+          if hash.key? 'netAmount'
+            raise TypeError, "value '#{hash['netAmount']}' is not a Hash" unless hash['netAmount'].is_a? Hash
             @net_amount = OnlinePayments::SDK::Domain::AmountOfMoney.new_from_hash(hash['netAmount'])
           end
-          if hash.has_key? 'paymentProductId'
+          if hash.key? 'paymentProductId'
             @payment_product_id = hash['paymentProductId']
           end
-          if hash.has_key? 'result'
+          if hash.key? 'result'
             @result = hash['result']
           end
-          if hash.has_key? 'surchargeAmount'
-            raise TypeError, "value '%s' is not a Hash" % [hash['surchargeAmount']] unless hash['surchargeAmount'].is_a? Hash
+          if hash.key? 'surchargeAmount'
+            raise TypeError, "value '#{hash['surchargeAmount']}' is not a Hash" unless hash['surchargeAmount'].is_a? Hash
             @surcharge_amount = OnlinePayments::SDK::Domain::AmountOfMoney.new_from_hash(hash['surchargeAmount'])
           end
-          if hash.has_key? 'surchargeRate'
-            raise TypeError, "value '%s' is not a Hash" % [hash['surchargeRate']] unless hash['surchargeRate'].is_a? Hash
+          if hash.key? 'surchargeRate'
+            raise TypeError, "value '#{hash['surchargeRate']}' is not a Hash" unless hash['surchargeRate'].is_a? Hash
             @surcharge_rate = OnlinePayments::SDK::Domain::SurchargeRate.new_from_hash(hash['surchargeRate'])
           end
-          if hash.has_key? 'totalAmount'
-            raise TypeError, "value '%s' is not a Hash" % [hash['totalAmount']] unless hash['totalAmount'].is_a? Hash
+          if hash.key? 'totalAmount'
+            raise TypeError, "value '#{hash['totalAmount']}' is not a Hash" unless hash['totalAmount'].is_a? Hash
             @total_amount = OnlinePayments::SDK::Domain::AmountOfMoney.new_from_hash(hash['totalAmount'])
           end
         end

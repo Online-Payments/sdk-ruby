@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -32,6 +34,19 @@ module OnlinePayments
         attr_accessor :property_name
 
         attr_accessor :retriable
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(category: nil, code: nil, error_code: nil, http_status_code: nil, id: nil, message: nil, property_name: nil, retriable: nil)
+          super()
+          @category = category
+          @code = code
+          @error_code = error_code
+          @http_status_code = http_status_code
+          @id = id
+          @message = message
+          @property_name = property_name
+          @retriable = retriable
+        end
 
         # Sets the property and returns this same instance.
         def with_category(value)
@@ -97,28 +112,28 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'category'
+          if hash.key? 'category'
             @category = hash['category']
           end
-          if hash.has_key? 'code'
+          if hash.key? 'code'
             @code = hash['code']
           end
-          if hash.has_key? 'errorCode'
+          if hash.key? 'errorCode'
             @error_code = hash['errorCode']
           end
-          if hash.has_key? 'httpStatusCode'
+          if hash.key? 'httpStatusCode'
             @http_status_code = hash['httpStatusCode']
           end
-          if hash.has_key? 'id'
+          if hash.key? 'id'
             @id = hash['id']
           end
-          if hash.has_key? 'message'
+          if hash.key? 'message'
             @message = hash['message']
           end
-          if hash.has_key? 'propertyName'
+          if hash.key? 'propertyName'
             @property_name = hash['propertyName']
           end
-          if hash.has_key? 'retriable'
+          if hash.key? 'retriable'
             @retriable = hash['retriable']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -31,6 +33,26 @@ module OnlinePayments
         attr_accessor :soft_descriptor
 
         attr_accessor :structured_creditor_reference
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(descriptor: nil,
+                       merchant_comment: nil,
+                       merchant_parameters: nil,
+                       merchant_reconciliation_reference: nil,
+                       merchant_reference: nil,
+                       operation_group_reference: nil,
+                       soft_descriptor: nil,
+                       structured_creditor_reference: nil)
+          super()
+          @descriptor = descriptor
+          @merchant_comment = merchant_comment
+          @merchant_parameters = merchant_parameters
+          @merchant_reconciliation_reference = merchant_reconciliation_reference
+          @merchant_reference = merchant_reference
+          @operation_group_reference = operation_group_reference
+          @soft_descriptor = soft_descriptor
+          @structured_creditor_reference = structured_creditor_reference
+        end
 
         # Sets the property and returns this same instance.
         def with_descriptor(value)
@@ -96,28 +118,28 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'descriptor'
+          if hash.key? 'descriptor'
             @descriptor = hash['descriptor']
           end
-          if hash.has_key? 'merchantComment'
+          if hash.key? 'merchantComment'
             @merchant_comment = hash['merchantComment']
           end
-          if hash.has_key? 'merchantParameters'
+          if hash.key? 'merchantParameters'
             @merchant_parameters = hash['merchantParameters']
           end
-          if hash.has_key? 'merchantReconciliationReference'
+          if hash.key? 'merchantReconciliationReference'
             @merchant_reconciliation_reference = hash['merchantReconciliationReference']
           end
-          if hash.has_key? 'merchantReference'
+          if hash.key? 'merchantReference'
             @merchant_reference = hash['merchantReference']
           end
-          if hash.has_key? 'operationGroupReference'
+          if hash.key? 'operationGroupReference'
             @operation_group_reference = hash['operationGroupReference']
           end
-          if hash.has_key? 'softDescriptor'
+          if hash.key? 'softDescriptor'
             @soft_descriptor = hash['softDescriptor']
           end
-          if hash.has_key? 'structuredCreditorReference'
+          if hash.key? 'structuredCreditorReference'
             @structured_creditor_reference = hash['structuredCreditorReference']
           end
         end

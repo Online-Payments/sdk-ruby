@@ -18,8 +18,8 @@ describe 'MetadataProvider' do
     server_meta_info_json = Base64.strict_decode64(request_headers[0].value).force_encoding('utf-8')
     server_meta_info = OnlinePayments::SDK::JSON::DefaultMarshaller.instance.unmarshal(server_meta_info_json, MetadataProvider::ServerMetaInfo)
 
-    expect(server_meta_info.platform_identifier).to eq(metadata_provider.send(:get_platform_identifier))
-    expect(server_meta_info.sdk_identifier).to eq(metadata_provider.send(:get_sdk_identifier))
+    expect(server_meta_info.platform_identifier).to eq(metadata_provider.send(:platform_identifier))
+    expect(server_meta_info.sdk_identifier).to eq(metadata_provider.send(:sdk_identifier))
     expect(server_meta_info.sdk_creator).to eq('OnlinePayments')
     expect(server_meta_info.shopping_cart_extension.creator).to eq(shopping_cart_extension.creator)
     expect(server_meta_info.shopping_cart_extension.name).to eq(shopping_cart_extension.name)
@@ -38,8 +38,8 @@ describe 'MetadataProvider' do
     server_meta_info_json = Base64.strict_decode64(request_headers[0].value).force_encoding('utf-8')
     server_meta_info = OnlinePayments::SDK::JSON::DefaultMarshaller.instance.unmarshal(server_meta_info_json, MetadataProvider::ServerMetaInfo)
 
-    expect(server_meta_info.platform_identifier).to eq(metadata_provider.send(:get_platform_identifier))
-    expect(server_meta_info.sdk_identifier).to eq(metadata_provider.send(:get_sdk_identifier))
+    expect(server_meta_info.platform_identifier).to eq(metadata_provider.send(:platform_identifier))
+    expect(server_meta_info.sdk_identifier).to eq(metadata_provider.send(:sdk_identifier))
     expect(server_meta_info.sdk_creator).to eq('OnlinePayments')
     expect(server_meta_info.shopping_cart_extension.creator).to eq(shopping_cart_extension.creator)
     expect(server_meta_info.shopping_cart_extension.name).to eq(shopping_cart_extension.name)
@@ -59,8 +59,8 @@ describe 'MetadataProvider' do
     server_meta_info_json = Base64.strict_decode64(request_headers[0].value).force_encoding('utf-8')
     server_meta_info = OnlinePayments::SDK::JSON::DefaultMarshaller.instance.unmarshal(server_meta_info_json, MetadataProvider::ServerMetaInfo)
 
-    expect(server_meta_info.platform_identifier).to eq(metadata_provider.send(:get_platform_identifier))
-    expect(server_meta_info.sdk_identifier).to eq(metadata_provider.send(:get_sdk_identifier))
+    expect(server_meta_info.platform_identifier).to eq(metadata_provider.send(:platform_identifier))
+    expect(server_meta_info.sdk_identifier).to eq(metadata_provider.send(:sdk_identifier))
     expect(server_meta_info.sdk_creator).to eq('OnlinePayments')
   end
 
@@ -87,5 +87,20 @@ describe 'MetadataProvider' do
       expect{MetadataProvider.new('OnlinePayments', additional_request_headers: additional_headers)}
           .to raise_error{|error| expect(error.message).to include(name)}
     end
+  end
+
+  it 'refuses prohibited headers in any case' do
+    %w[authorization AUTHORIZATION date x-gcs-idempotence-key content-type x-gcs-servermetainfo].each do |name|
+      expect { MetadataProvider.new('OnlinePayments', additional_request_headers: [RequestHeader.new(name, 'value')]) }
+        .to raise_error(ArgumentError)
+    end
+  end
+
+  it 'accepts nil additional request headers' do
+    metadata_provider = MetadataProvider.new('OnlinePayments', additional_request_headers: nil)
+
+    request_headers = metadata_provider.metadata_headers
+    expect(request_headers.length).to eq(1)
+    expect(request_headers[0].name).to eq('X-GCS-ServerMetaInfo')
   end
 end

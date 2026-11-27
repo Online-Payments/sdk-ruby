@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :pairing_token
 
         attr_accessor :qr_code
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(pairing_token: nil, qr_code: nil)
+          super()
+          @pairing_token = pairing_token
+          @qr_code = qr_code
+        end
 
         # Sets the property and returns this same instance.
         def with_pairing_token(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'pairingToken'
+          if hash.key? 'pairingToken'
             @pairing_token = hash['pairingToken']
           end
-          if hash.has_key? 'qrCode'
+          if hash.key? 'qrCode'
             @qr_code = hash['qrCode']
           end
         end

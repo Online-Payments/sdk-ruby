@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -14,6 +16,13 @@ module OnlinePayments
         attr_accessor :payment_id
 
         attr_accessor :subsequent
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(payment_id: nil, subsequent: nil)
+          super()
+          @payment_id = payment_id
+          @subsequent = subsequent
+        end
 
         # Sets the property and returns this same instance.
         def with_payment_id(value)
@@ -37,11 +46,11 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'paymentId'
+          if hash.key? 'paymentId'
             @payment_id = hash['paymentId']
           end
-          if hash.has_key? 'subsequent'
-            raise TypeError, "value '%s' is not a Hash" % [hash['subsequent']] unless hash['subsequent'].is_a? Hash
+          if hash.key? 'subsequent'
+            raise TypeError, "value '#{hash['subsequent']}' is not a Hash" unless hash['subsequent'].is_a? Hash
             @subsequent = OnlinePayments::SDK::Domain::SubsequentPaymentRequest.new_from_hash(hash['subsequent'])
           end
         end

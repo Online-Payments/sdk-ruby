@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -33,6 +35,24 @@ module OnlinePayments
         attr_accessor :status
 
         attr_accessor :status_output
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(hosted_checkout_specific_output: nil,
+                       id: nil,
+                       operation_output: nil,
+                       payment_output: nil,
+                       session_details: nil,
+                       status: nil,
+                       status_output: nil)
+          super()
+          @hosted_checkout_specific_output = hosted_checkout_specific_output
+          @id = id
+          @operation_output = operation_output
+          @payment_output = payment_output
+          @session_details = session_details
+          @status = status
+          @status_output = status_output
+        end
 
         # Sets the property and returns this same instance.
         def with_hosted_checkout_specific_output(value)
@@ -91,30 +111,30 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'hostedCheckoutSpecificOutput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['hostedCheckoutSpecificOutput']] unless hash['hostedCheckoutSpecificOutput'].is_a? Hash
+          if hash.key? 'hostedCheckoutSpecificOutput'
+            raise TypeError, "value '#{hash['hostedCheckoutSpecificOutput']}' is not a Hash" unless hash['hostedCheckoutSpecificOutput'].is_a? Hash
             @hosted_checkout_specific_output = OnlinePayments::SDK::Domain::HostedCheckoutSpecificOutput.new_from_hash(hash['hostedCheckoutSpecificOutput'])
           end
-          if hash.has_key? 'id'
+          if hash.key? 'id'
             @id = hash['id']
           end
-          if hash.has_key? 'operationOutput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['operationOutput']] unless hash['operationOutput'].is_a? Hash
+          if hash.key? 'operationOutput'
+            raise TypeError, "value '#{hash['operationOutput']}' is not a Hash" unless hash['operationOutput'].is_a? Hash
             @operation_output = OnlinePayments::SDK::Domain::OperationOutput.new_from_hash(hash['operationOutput'])
           end
-          if hash.has_key? 'paymentOutput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentOutput']] unless hash['paymentOutput'].is_a? Hash
+          if hash.key? 'paymentOutput'
+            raise TypeError, "value '#{hash['paymentOutput']}' is not a Hash" unless hash['paymentOutput'].is_a? Hash
             @payment_output = OnlinePayments::SDK::Domain::PaymentOutput.new_from_hash(hash['paymentOutput'])
           end
-          if hash.has_key? 'sessionDetails'
-            raise TypeError, "value '%s' is not a Hash" % [hash['sessionDetails']] unless hash['sessionDetails'].is_a? Hash
+          if hash.key? 'sessionDetails'
+            raise TypeError, "value '#{hash['sessionDetails']}' is not a Hash" unless hash['sessionDetails'].is_a? Hash
             @session_details = OnlinePayments::SDK::Domain::SessionDetails.new_from_hash(hash['sessionDetails'])
           end
-          if hash.has_key? 'status'
+          if hash.key? 'status'
             @status = hash['status']
           end
-          if hash.has_key? 'statusOutput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['statusOutput']] unless hash['statusOutput'].is_a? Hash
+          if hash.key? 'statusOutput'
+            raise TypeError, "value '#{hash['statusOutput']}' is not a Hash" unless hash['statusOutput'].is_a? Hash
             @status_output = OnlinePayments::SDK::Domain::PaymentStatusOutput.new_from_hash(hash['statusOutput'])
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -10,6 +12,12 @@ module OnlinePayments
       class RedirectPaymentProduct3116SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :complete_remaining_payment_amount
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(complete_remaining_payment_amount: nil)
+          super()
+          @complete_remaining_payment_amount = complete_remaining_payment_amount
+        end
 
         # Sets the property and returns this same instance.
         def with_complete_remaining_payment_amount(value)
@@ -26,7 +34,7 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'completeRemainingPaymentAmount'
+          if hash.key? 'completeRemainingPaymentAmount'
             @complete_remaining_payment_amount = hash['completeRemainingPaymentAmount']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -40,6 +42,28 @@ module OnlinePayments
         attr_accessor :references
 
         attr_accessor :refund_redirect_payment_method_specific_input
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(amount_of_money: nil,
+                       capture_id: nil,
+                       is_final: nil,
+                       line_item_details: nil,
+                       omnichannel_refund_specific_input: nil,
+                       operation_references: nil,
+                       reason: nil,
+                       references: nil,
+                       refund_redirect_payment_method_specific_input: nil)
+          super()
+          @amount_of_money = amount_of_money
+          @capture_id = capture_id
+          @is_final = is_final
+          @line_item_details = line_item_details
+          @omnichannel_refund_specific_input = omnichannel_refund_specific_input
+          @operation_references = operation_references
+          @reason = reason
+          @references = references
+          @refund_redirect_payment_method_specific_input = refund_redirect_payment_method_specific_input
+        end
 
         # Sets the property and returns this same instance.
         def with_amount_of_money(value)
@@ -112,40 +136,40 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'amountOfMoney'
-            raise TypeError, "value '%s' is not a Hash" % [hash['amountOfMoney']] unless hash['amountOfMoney'].is_a? Hash
+          if hash.key? 'amountOfMoney'
+            raise TypeError, "value '#{hash['amountOfMoney']}' is not a Hash" unless hash['amountOfMoney'].is_a? Hash
             @amount_of_money = OnlinePayments::SDK::Domain::AmountOfMoney.new_from_hash(hash['amountOfMoney'])
           end
-          if hash.has_key? 'captureId'
+          if hash.key? 'captureId'
             @capture_id = hash['captureId']
           end
-          if hash.has_key? 'isFinal'
+          if hash.key? 'isFinal'
             @is_final = hash['isFinal']
           end
-          if hash.has_key? 'lineItemDetails'
-            raise TypeError, "value '%s' is not an Array" % [hash['lineItemDetails']] unless hash['lineItemDetails'].is_a? Array
+          if hash.key? 'lineItemDetails'
+            raise TypeError, "value '#{hash['lineItemDetails']}' is not an Array" unless hash['lineItemDetails'].is_a? Array
             @line_item_details = []
             hash['lineItemDetails'].each do |e|
               @line_item_details << OnlinePayments::SDK::Domain::LineItemDetail.new_from_hash(e)
             end
           end
-          if hash.has_key? 'omnichannelRefundSpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['omnichannelRefundSpecificInput']] unless hash['omnichannelRefundSpecificInput'].is_a? Hash
+          if hash.key? 'omnichannelRefundSpecificInput'
+            raise TypeError, "value '#{hash['omnichannelRefundSpecificInput']}' is not a Hash" unless hash['omnichannelRefundSpecificInput'].is_a? Hash
             @omnichannel_refund_specific_input = OnlinePayments::SDK::Domain::OmnichannelRefundSpecificInput.new_from_hash(hash['omnichannelRefundSpecificInput'])
           end
-          if hash.has_key? 'operationReferences'
-            raise TypeError, "value '%s' is not a Hash" % [hash['operationReferences']] unless hash['operationReferences'].is_a? Hash
+          if hash.key? 'operationReferences'
+            raise TypeError, "value '#{hash['operationReferences']}' is not a Hash" unless hash['operationReferences'].is_a? Hash
             @operation_references = OnlinePayments::SDK::Domain::OperationPaymentReferences.new_from_hash(hash['operationReferences'])
           end
-          if hash.has_key? 'reason'
+          if hash.key? 'reason'
             @reason = hash['reason']
           end
-          if hash.has_key? 'references'
-            raise TypeError, "value '%s' is not a Hash" % [hash['references']] unless hash['references'].is_a? Hash
+          if hash.key? 'references'
+            raise TypeError, "value '#{hash['references']}' is not a Hash" unless hash['references'].is_a? Hash
             @references = OnlinePayments::SDK::Domain::PaymentReferences.new_from_hash(hash['references'])
           end
-          if hash.has_key? 'refundRedirectPaymentMethodSpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['refundRedirectPaymentMethodSpecificInput']] unless hash['refundRedirectPaymentMethodSpecificInput'].is_a? Hash
+          if hash.key? 'refundRedirectPaymentMethodSpecificInput'
+            raise TypeError, "value '#{hash['refundRedirectPaymentMethodSpecificInput']}' is not a Hash" unless hash['refundRedirectPaymentMethodSpecificInput'].is_a? Hash
             @refund_redirect_payment_method_specific_input = OnlinePayments::SDK::Domain::RefundRedirectPaymentMethodSpecificInput.new_from_hash(hash['refundRedirectPaymentMethodSpecificInput'])
           end
         end

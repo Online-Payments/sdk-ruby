@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :certificate_id
 
         attr_accessor :signed_certificate
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(certificate_id: nil, signed_certificate: nil)
+          super()
+          @certificate_id = certificate_id
+          @signed_certificate = signed_certificate
+        end
 
         # Sets the property and returns this same instance.
         def with_certificate_id(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'certificateId'
+          if hash.key? 'certificateId'
             @certificate_id = hash['certificateId']
           end
-          if hash.has_key? 'signedCertificate'
+          if hash.key? 'signedCertificate'
             @signed_certificate = hash['signedCertificate']
           end
         end

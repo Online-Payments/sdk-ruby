@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -16,6 +18,14 @@ module OnlinePayments
         attr_accessor :acquirer_mid
 
         attr_accessor :requestor_id
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(acquirer_id: nil, acquirer_mid: nil, requestor_id: nil)
+          super()
+          @acquirer_id = acquirer_id
+          @acquirer_mid = acquirer_mid
+          @requestor_id = requestor_id
+        end
 
         # Sets the property and returns this same instance.
         def with_acquirer_id(value)
@@ -46,13 +56,13 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'acquirerId'
+          if hash.key? 'acquirerId'
             @acquirer_id = hash['acquirerId']
           end
-          if hash.has_key? 'acquirerMid'
+          if hash.key? 'acquirerMid'
             @acquirer_mid = hash['acquirerMid']
           end
-          if hash.has_key? 'requestorId'
+          if hash.key? 'requestorId'
             @requestor_id = hash['requestorId']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module OnlinePayments
   module SDK
     module Domain
@@ -11,11 +13,10 @@ module OnlinePayments
       # @attr_reader [String] content_type    The file's content type.
       # @attr_reader [Integer] content_length The file's content length, or -1 if not known.
       class UploadableFile
-
         def initialize(file_name, content, content_type, content_length = -1)
-          raise ArgumentError.new("file_name is required") if file_name.nil? || file_name.strip.empty?
-          raise ArgumentError.new("content is required") if content.nil?
-          raise ArgumentError.new("content_type is required") if content_type.nil? || content_type.strip.empty?
+          raise ArgumentError, 'file_name is required' if file_name.nil? || file_name.strip.empty?
+          raise ArgumentError, 'content is required' if content.nil?
+          raise ArgumentError, 'content_type is required' if content_type.nil? || content_type.strip.empty?
 
           @file_name = file_name
           @content = content
@@ -23,10 +24,7 @@ module OnlinePayments
           @content_length = [content_length, -1].max
         end
 
-        attr_reader :file_name
-        attr_reader :content
-        attr_reader :content_type
-        attr_reader :content_length
+        attr_reader :file_name, :content, :content_type, :content_length
       end
     end
   end

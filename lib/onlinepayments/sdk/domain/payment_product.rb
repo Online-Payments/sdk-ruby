@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -55,6 +57,38 @@ module OnlinePayments
         attr_accessor :payment_product_group
 
         attr_accessor :uses_redirection_to3rd_party
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(accounts_on_file: nil,
+                       allows_authentication: nil,
+                       allows_recurring: nil,
+                       allows_tokenization: nil,
+                       display_hints: nil,
+                       display_hints_list: nil,
+                       fields: nil,
+                       id: nil,
+                       payment_method: nil,
+                       payment_product302_specific_data: nil,
+                       payment_product320_specific_data: nil,
+                       payment_product5002_specific_data: nil,
+                       payment_product_group: nil,
+                       uses_redirection_to3rd_party: nil)
+          super()
+          @accounts_on_file = accounts_on_file
+          @allows_authentication = allows_authentication
+          @allows_recurring = allows_recurring
+          @allows_tokenization = allows_tokenization
+          @display_hints = display_hints
+          @display_hints_list = display_hints_list
+          @fields = fields
+          @id = id
+          @payment_method = payment_method
+          @payment_product302_specific_data = payment_product302_specific_data
+          @payment_product320_specific_data = payment_product320_specific_data
+          @payment_product5002_specific_data = payment_product5002_specific_data
+          @payment_product_group = payment_product_group
+          @uses_redirection_to3rd_party = uses_redirection_to3rd_party
+        end
 
         # Sets the property and returns this same instance.
         def with_accounts_on_file(value)
@@ -162,62 +196,62 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'accountsOnFile'
-            raise TypeError, "value '%s' is not an Array" % [hash['accountsOnFile']] unless hash['accountsOnFile'].is_a? Array
+          if hash.key? 'accountsOnFile'
+            raise TypeError, "value '#{hash['accountsOnFile']}' is not an Array" unless hash['accountsOnFile'].is_a? Array
             @accounts_on_file = []
             hash['accountsOnFile'].each do |e|
               @accounts_on_file << OnlinePayments::SDK::Domain::AccountOnFile.new_from_hash(e)
             end
           end
-          if hash.has_key? 'allowsAuthentication'
+          if hash.key? 'allowsAuthentication'
             @allows_authentication = hash['allowsAuthentication']
           end
-          if hash.has_key? 'allowsRecurring'
+          if hash.key? 'allowsRecurring'
             @allows_recurring = hash['allowsRecurring']
           end
-          if hash.has_key? 'allowsTokenization'
+          if hash.key? 'allowsTokenization'
             @allows_tokenization = hash['allowsTokenization']
           end
-          if hash.has_key? 'displayHints'
-            raise TypeError, "value '%s' is not a Hash" % [hash['displayHints']] unless hash['displayHints'].is_a? Hash
+          if hash.key? 'displayHints'
+            raise TypeError, "value '#{hash['displayHints']}' is not a Hash" unless hash['displayHints'].is_a? Hash
             @display_hints = OnlinePayments::SDK::Domain::PaymentProductDisplayHints.new_from_hash(hash['displayHints'])
           end
-          if hash.has_key? 'displayHintsList'
-            raise TypeError, "value '%s' is not an Array" % [hash['displayHintsList']] unless hash['displayHintsList'].is_a? Array
+          if hash.key? 'displayHintsList'
+            raise TypeError, "value '#{hash['displayHintsList']}' is not an Array" unless hash['displayHintsList'].is_a? Array
             @display_hints_list = []
             hash['displayHintsList'].each do |e|
               @display_hints_list << OnlinePayments::SDK::Domain::PaymentProductDisplayHints.new_from_hash(e)
             end
           end
-          if hash.has_key? 'fields'
-            raise TypeError, "value '%s' is not an Array" % [hash['fields']] unless hash['fields'].is_a? Array
+          if hash.key? 'fields'
+            raise TypeError, "value '#{hash['fields']}' is not an Array" unless hash['fields'].is_a? Array
             @fields = []
             hash['fields'].each do |e|
               @fields << OnlinePayments::SDK::Domain::PaymentProductField.new_from_hash(e)
             end
           end
-          if hash.has_key? 'id'
+          if hash.key? 'id'
             @id = hash['id']
           end
-          if hash.has_key? 'paymentMethod'
+          if hash.key? 'paymentMethod'
             @payment_method = hash['paymentMethod']
           end
-          if hash.has_key? 'paymentProduct302SpecificData'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct302SpecificData']] unless hash['paymentProduct302SpecificData'].is_a? Hash
+          if hash.key? 'paymentProduct302SpecificData'
+            raise TypeError, "value '#{hash['paymentProduct302SpecificData']}' is not a Hash" unless hash['paymentProduct302SpecificData'].is_a? Hash
             @payment_product302_specific_data = OnlinePayments::SDK::Domain::PaymentProduct302SpecificData.new_from_hash(hash['paymentProduct302SpecificData'])
           end
-          if hash.has_key? 'paymentProduct320SpecificData'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct320SpecificData']] unless hash['paymentProduct320SpecificData'].is_a? Hash
+          if hash.key? 'paymentProduct320SpecificData'
+            raise TypeError, "value '#{hash['paymentProduct320SpecificData']}' is not a Hash" unless hash['paymentProduct320SpecificData'].is_a? Hash
             @payment_product320_specific_data = OnlinePayments::SDK::Domain::PaymentProduct320SpecificData.new_from_hash(hash['paymentProduct320SpecificData'])
           end
-          if hash.has_key? 'paymentProduct5002SpecificData'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct5002SpecificData']] unless hash['paymentProduct5002SpecificData'].is_a? Hash
+          if hash.key? 'paymentProduct5002SpecificData'
+            raise TypeError, "value '#{hash['paymentProduct5002SpecificData']}' is not a Hash" unless hash['paymentProduct5002SpecificData'].is_a? Hash
             @payment_product5002_specific_data = OnlinePayments::SDK::Domain::PaymentProduct5002SpecificData.new_from_hash(hash['paymentProduct5002SpecificData'])
           end
-          if hash.has_key? 'paymentProductGroup'
+          if hash.key? 'paymentProductGroup'
             @payment_product_group = hash['paymentProductGroup']
           end
-          if hash.has_key? 'usesRedirectionTo3rdParty'
+          if hash.key? 'usesRedirectionTo3rdParty'
             @uses_redirection_to3rd_party = hash['usesRedirectionTo3rdParty']
           end
         end

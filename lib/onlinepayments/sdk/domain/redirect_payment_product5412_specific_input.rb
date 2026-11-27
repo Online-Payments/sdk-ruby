@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :adjustable_amount
 
         attr_accessor :beneficiary_id
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(adjustable_amount: nil, beneficiary_id: nil)
+          super()
+          @adjustable_amount = adjustable_amount
+          @beneficiary_id = beneficiary_id
+        end
 
         # Sets the property and returns this same instance.
         def with_adjustable_amount(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'adjustableAmount'
+          if hash.key? 'adjustableAmount'
             @adjustable_amount = hash['adjustableAmount']
           end
-          if hash.has_key? 'beneficiaryId'
+          if hash.key? 'beneficiaryId'
             @beneficiary_id = hash['beneficiaryId']
           end
         end

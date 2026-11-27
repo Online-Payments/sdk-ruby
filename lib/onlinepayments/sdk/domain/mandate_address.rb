@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -22,6 +24,16 @@ module OnlinePayments
         attr_accessor :street
 
         attr_accessor :zip
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(city: nil, country_code: nil, house_number: nil, street: nil, zip: nil)
+          super()
+          @city = city
+          @country_code = country_code
+          @house_number = house_number
+          @street = street
+          @zip = zip
+        end
 
         # Sets the property and returns this same instance.
         def with_city(value)
@@ -66,19 +78,19 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'city'
+          if hash.key? 'city'
             @city = hash['city']
           end
-          if hash.has_key? 'countryCode'
+          if hash.key? 'countryCode'
             @country_code = hash['countryCode']
           end
-          if hash.has_key? 'houseNumber'
+          if hash.key? 'houseNumber'
             @house_number = hash['houseNumber']
           end
-          if hash.has_key? 'street'
+          if hash.key? 'street'
             @street = hash['street']
           end
-          if hash.has_key? 'zip'
+          if hash.key? 'zip'
             @zip = hash['zip']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -37,6 +39,30 @@ module OnlinePayments
         attr_accessor :three_d_secure_version
 
         attr_accessor :xid
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(acs_transaction_id: nil,
+                       applied_exemption: nil,
+                       cavv: nil,
+                       cavv_algorithm: nil,
+                       directory_server_transaction_id: nil,
+                       eci: nil,
+                       flow: nil,
+                       scheme_risk_score: nil,
+                       three_d_secure_version: nil,
+                       xid: nil)
+          super()
+          @acs_transaction_id = acs_transaction_id
+          @applied_exemption = applied_exemption
+          @cavv = cavv
+          @cavv_algorithm = cavv_algorithm
+          @directory_server_transaction_id = directory_server_transaction_id
+          @eci = eci
+          @flow = flow
+          @scheme_risk_score = scheme_risk_score
+          @three_d_secure_version = three_d_secure_version
+          @xid = xid
+        end
 
         # Sets the property and returns this same instance.
         def with_acs_transaction_id(value)
@@ -116,34 +142,34 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'acsTransactionId'
+          if hash.key? 'acsTransactionId'
             @acs_transaction_id = hash['acsTransactionId']
           end
-          if hash.has_key? 'appliedExemption'
+          if hash.key? 'appliedExemption'
             @applied_exemption = hash['appliedExemption']
           end
-          if hash.has_key? 'cavv'
+          if hash.key? 'cavv'
             @cavv = hash['cavv']
           end
-          if hash.has_key? 'cavvAlgorithm'
+          if hash.key? 'cavvAlgorithm'
             @cavv_algorithm = hash['cavvAlgorithm']
           end
-          if hash.has_key? 'directoryServerTransactionId'
+          if hash.key? 'directoryServerTransactionId'
             @directory_server_transaction_id = hash['directoryServerTransactionId']
           end
-          if hash.has_key? 'eci'
+          if hash.key? 'eci'
             @eci = hash['eci']
           end
-          if hash.has_key? 'flow'
+          if hash.key? 'flow'
             @flow = hash['flow']
           end
-          if hash.has_key? 'schemeRiskScore'
+          if hash.key? 'schemeRiskScore'
             @scheme_risk_score = hash['schemeRiskScore']
           end
-          if hash.has_key? 'threeDSecureVersion'
+          if hash.key? 'threeDSecureVersion'
             @three_d_secure_version = hash['threeDSecureVersion']
           end
-          if hash.has_key? 'xid'
+          if hash.key? 'xid'
             @xid = hash['xid']
           end
         end

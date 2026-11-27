@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -14,6 +16,13 @@ module OnlinePayments
         attr_accessor :billing_address
 
         attr_accessor :shipping_address
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(billing_address: nil, shipping_address: nil)
+          super()
+          @billing_address = billing_address
+          @shipping_address = shipping_address
+        end
 
         # Sets the property and returns this same instance.
         def with_billing_address(value)
@@ -37,12 +46,12 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'billingAddress'
-            raise TypeError, "value '%s' is not a Hash" % [hash['billingAddress']] unless hash['billingAddress'].is_a? Hash
+          if hash.key? 'billingAddress'
+            raise TypeError, "value '#{hash['billingAddress']}' is not a Hash" unless hash['billingAddress'].is_a? Hash
             @billing_address = OnlinePayments::SDK::Domain::AddressPersonal.new_from_hash(hash['billingAddress'])
           end
-          if hash.has_key? 'shippingAddress'
-            raise TypeError, "value '%s' is not a Hash" % [hash['shippingAddress']] unless hash['shippingAddress'].is_a? Hash
+          if hash.key? 'shippingAddress'
+            raise TypeError, "value '#{hash['shippingAddress']}' is not a Hash" unless hash['shippingAddress'].is_a? Hash
             @shipping_address = OnlinePayments::SDK::Domain::AddressPersonal.new_from_hash(hash['shippingAddress'])
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -17,6 +19,14 @@ module OnlinePayments
         attr_accessor :frozen_period
 
         attr_accessor :indicator
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(conditions: nil, frozen_period: nil, indicator: nil)
+          super()
+          @conditions = conditions
+          @frozen_period = frozen_period
+          @indicator = indicator
+        end
 
         # Sets the property and returns this same instance.
         def with_conditions(value)
@@ -47,14 +57,14 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'conditions'
-            raise TypeError, "value '%s' is not a Hash" % [hash['conditions']] unless hash['conditions'].is_a? Hash
+          if hash.key? 'conditions'
+            raise TypeError, "value '#{hash['conditions']}' is not a Hash" unless hash['conditions'].is_a? Hash
             @conditions = OnlinePayments::SDK::Domain::ReattemptInstructionsConditions.new_from_hash(hash['conditions'])
           end
-          if hash.has_key? 'frozenPeriod'
+          if hash.key? 'frozenPeriod'
             @frozen_period = hash['frozenPeriod']
           end
-          if hash.has_key? 'indicator'
+          if hash.key? 'indicator'
             @indicator = hash['indicator']
           end
         end

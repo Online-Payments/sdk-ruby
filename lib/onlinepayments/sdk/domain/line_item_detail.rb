@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -16,6 +18,14 @@ module OnlinePayments
         attr_accessor :line_item_id
 
         attr_accessor :quantity
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(discount_amount: nil, line_item_id: nil, quantity: nil)
+          super()
+          @discount_amount = discount_amount
+          @line_item_id = line_item_id
+          @quantity = quantity
+        end
 
         # Sets the property and returns this same instance.
         def with_discount_amount(value)
@@ -46,13 +56,13 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'discountAmount'
+          if hash.key? 'discountAmount'
             @discount_amount = hash['discountAmount']
           end
-          if hash.has_key? 'lineItemId'
+          if hash.key? 'lineItemId'
             @line_item_id = hash['lineItemId']
           end
-          if hash.has_key? 'quantity'
+          if hash.key? 'quantity'
             @quantity = hash['quantity']
           end
         end

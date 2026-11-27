@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -29,6 +31,24 @@ module OnlinePayments
         attr_accessor :timezone_offset_utc_minutes
 
         attr_accessor :user_agent
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(accept_header: nil,
+                       browser_data: nil,
+                       device_fingerprint: nil,
+                       ip_address: nil,
+                       locale: nil,
+                       timezone_offset_utc_minutes: nil,
+                       user_agent: nil)
+          super()
+          @accept_header = accept_header
+          @browser_data = browser_data
+          @device_fingerprint = device_fingerprint
+          @ip_address = ip_address
+          @locale = locale
+          @timezone_offset_utc_minutes = timezone_offset_utc_minutes
+          @user_agent = user_agent
+        end
 
         # Sets the property and returns this same instance.
         def with_accept_header(value)
@@ -87,26 +107,26 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'acceptHeader'
+          if hash.key? 'acceptHeader'
             @accept_header = hash['acceptHeader']
           end
-          if hash.has_key? 'browserData'
-            raise TypeError, "value '%s' is not a Hash" % [hash['browserData']] unless hash['browserData'].is_a? Hash
+          if hash.key? 'browserData'
+            raise TypeError, "value '#{hash['browserData']}' is not a Hash" unless hash['browserData'].is_a? Hash
             @browser_data = OnlinePayments::SDK::Domain::BrowserData.new_from_hash(hash['browserData'])
           end
-          if hash.has_key? 'deviceFingerprint'
+          if hash.key? 'deviceFingerprint'
             @device_fingerprint = hash['deviceFingerprint']
           end
-          if hash.has_key? 'ipAddress'
+          if hash.key? 'ipAddress'
             @ip_address = hash['ipAddress']
           end
-          if hash.has_key? 'locale'
+          if hash.key? 'locale'
             @locale = hash['locale']
           end
-          if hash.has_key? 'timezoneOffsetUtcMinutes'
+          if hash.key? 'timezoneOffsetUtcMinutes'
             @timezone_offset_utc_minutes = hash['timezoneOffsetUtcMinutes']
           end
-          if hash.has_key? 'userAgent'
+          if hash.key? 'userAgent'
             @user_agent = hash['userAgent']
           end
         end

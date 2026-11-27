@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :meta_data
 
         attr_accessor :travel_data
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(meta_data: nil, travel_data: nil)
+          super()
+          @meta_data = meta_data
+          @travel_data = travel_data
+        end
 
         # Sets the property and returns this same instance.
         def with_meta_data(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'metaData'
+          if hash.key? 'metaData'
             @meta_data = hash['metaData']
           end
-          if hash.has_key? 'travelData'
+          if hash.key? 'travelData'
             @travel_data = hash['travelData']
           end
         end

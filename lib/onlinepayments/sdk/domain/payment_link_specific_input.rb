@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -18,6 +20,14 @@ module OnlinePayments
         attr_accessor :expiration_date
 
         attr_accessor :recipient_name
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(description: nil, expiration_date: nil, recipient_name: nil)
+          super()
+          @description = description
+          @expiration_date = expiration_date
+          @recipient_name = recipient_name
+        end
 
         # Sets the property and returns this same instance.
         def with_description(value)
@@ -48,13 +58,13 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'description'
+          if hash.key? 'description'
             @description = hash['description']
           end
-          if hash.has_key? 'expirationDate'
+          if hash.key? 'expirationDate'
             @expiration_date = DateTime.parse(hash['expirationDate'])
           end
-          if hash.has_key? 'recipientName'
+          if hash.key? 'recipientName'
             @recipient_name = hash['recipientName']
           end
         end

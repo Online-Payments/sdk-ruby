@@ -24,6 +24,13 @@ describe HeaderObfuscator do
       expect(HeaderObfuscator.default_obfuscator.obfuscate_header('CONTENT-TYPE', 'application/json')).to eq('application/json')
     end
 
+    it 'masks secret headers case-insensitively' do
+      %w[X-GCS-Authentication-Token x-gcs-authentication-token X-GCS-AUTHENTICATION-TOKEN
+         X-GCS-CallerPassword x-gcs-callerpassword X-GCS-CALLERPASSWORD].each do |name|
+        expect(HeaderObfuscator.default_obfuscator.obfuscate_header(name, 'secret-value')).to eq('********')
+      end
+    end
+
     it 'works with a custom rule' do
       header_obfuscator = HeaderObfuscator.new(additional_rules={
         'content-type' => Obfuscation.obfuscate_all

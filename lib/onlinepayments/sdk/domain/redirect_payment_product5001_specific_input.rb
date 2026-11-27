@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :exemption_request
 
         attr_accessor :subsequent_type
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(exemption_request: nil, subsequent_type: nil)
+          super()
+          @exemption_request = exemption_request
+          @subsequent_type = subsequent_type
+        end
 
         # Sets the property and returns this same instance.
         def with_exemption_request(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'exemptionRequest'
+          if hash.key? 'exemptionRequest'
             @exemption_request = hash['exemptionRequest']
           end
-          if hash.has_key? 'subsequentType'
+          if hash.key? 'subsequentType'
             @subsequent_type = hash['subsequentType']
           end
         end

@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 require 'onlinepayments/sdk/communication/response_header'
+require 'onlinepayments/sdk/logging/obfuscation/body_obfuscator'
 
 module OnlinePayments
   module SDK
@@ -9,11 +12,10 @@ module OnlinePayments
       # @attr_reader [String] body         HTTP message body that was returned by the Online Payments platform
       # @attr_reader [Array<OnlinePayments::SDK::Communication::ResponseHeader>] headers HTTP headers used in the response from the Online Payments platform
       class ResponseException < RuntimeError
-
         def initialize(status_code, headers, body)
           super('the Online Payments platform returned an error response')
           @status_code = status_code
-          @headers = if headers.nil? or headers.empty?
+          @headers = if headers.nil? || headers.empty?
                        []
                      else
                        headers.map { |h| h.dup.freeze }
@@ -21,9 +23,7 @@ module OnlinePayments
           @body = body
         end
 
-        attr_reader :status_code
-        attr_reader :body
-        attr_reader :headers
+        attr_reader :status_code, :body, :headers
 
         # Returns the {OnlinePayments::SDK::Communication::ResponseHeader} that corresponds to the given _header_name_
         # used in the HTTP response from the Online Payments platform, or *nil* if the header was not present in the response.
@@ -39,12 +39,8 @@ module OnlinePayments
 
         def to_s
           str = super.to_s
-          if @status_code > 0
-            str += '; status_code=' + @status_code.to_s
-          end
-          if !@body.nil? && @body.length > 0
-            str += "; response_body='" + @body + "'"
-          end
+          str += "; status_code=#{@status_code}" if @status_code > 0
+          str += "; response_body='#{Logging::Obfuscation::BodyObfuscator.default_obfuscator.obfuscate_body(@body)}'" if !@body.nil? && !@body.empty?
           str.to_s
         end
       end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -22,6 +24,16 @@ module OnlinePayments
         attr_accessor :quotation_date_time
 
         attr_accessor :source
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(exchange_rate: nil, inverted_exchange_rate: nil, mark_up_rate: nil, quotation_date_time: nil, source: nil)
+          super()
+          @exchange_rate = exchange_rate
+          @inverted_exchange_rate = inverted_exchange_rate
+          @mark_up_rate = mark_up_rate
+          @quotation_date_time = quotation_date_time
+          @source = source
+        end
 
         # Sets the property and returns this same instance.
         def with_exchange_rate(value)
@@ -66,19 +78,19 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'exchangeRate'
+          if hash.key? 'exchangeRate'
             @exchange_rate = hash['exchangeRate']
           end
-          if hash.has_key? 'invertedExchangeRate'
+          if hash.key? 'invertedExchangeRate'
             @inverted_exchange_rate = hash['invertedExchangeRate']
           end
-          if hash.has_key? 'markUpRate'
+          if hash.key? 'markUpRate'
             @mark_up_rate = hash['markUpRate']
           end
-          if hash.has_key? 'quotationDateTime'
+          if hash.key? 'quotationDateTime'
             @quotation_date_time = hash['quotationDateTime']
           end
-          if hash.has_key? 'source'
+          if hash.key? 'source'
             @source = hash['source']
           end
         end

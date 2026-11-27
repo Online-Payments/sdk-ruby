@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -14,6 +16,13 @@ module OnlinePayments
         attr_accessor :webhook_url
 
         attr_accessor :webhooks_urls
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(webhook_url: nil, webhooks_urls: nil)
+          super()
+          @webhook_url = webhook_url
+          @webhooks_urls = webhooks_urls
+        end
 
         # Sets the property and returns this same instance.
         def with_webhook_url(value)
@@ -37,11 +46,11 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'webhookUrl'
+          if hash.key? 'webhookUrl'
             @webhook_url = hash['webhookUrl']
           end
-          if hash.has_key? 'webhooksUrls'
-            raise TypeError, "value '%s' is not an Array" % [hash['webhooksUrls']] unless hash['webhooksUrls'].is_a? Array
+          if hash.key? 'webhooksUrls'
+            raise TypeError, "value '#{hash['webhooksUrls']}' is not an Array" unless hash['webhooksUrls'].is_a? Array
             @webhooks_urls = []
             hash['webhooksUrls'].each do |e|
               @webhooks_urls << e

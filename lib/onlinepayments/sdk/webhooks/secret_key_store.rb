@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 module OnlinePayments
   module SDK
     module Webhooks
       # An abstract store of secret keys. Implementation can store secret keys in a database,
       # on disk, etc. Should be Thread-safe.
       module SecretKeyStore
-
         # Retrieve secret key for given key id
         #
         # @param key_id [String] key id of the secret key

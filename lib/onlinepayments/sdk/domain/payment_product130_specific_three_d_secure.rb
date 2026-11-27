@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -19,6 +21,15 @@ module OnlinePayments
         attr_accessor :number_of_items
 
         attr_accessor :usecase
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(acquirer_exemption: nil, merchant_score: nil, number_of_items: nil, usecase: nil)
+          super()
+          @acquirer_exemption = acquirer_exemption
+          @merchant_score = merchant_score
+          @number_of_items = number_of_items
+          @usecase = usecase
+        end
 
         # Sets the property and returns this same instance.
         def with_acquirer_exemption(value)
@@ -56,16 +67,16 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'acquirerExemption'
+          if hash.key? 'acquirerExemption'
             @acquirer_exemption = hash['acquirerExemption']
           end
-          if hash.has_key? 'merchantScore'
+          if hash.key? 'merchantScore'
             @merchant_score = hash['merchantScore']
           end
-          if hash.has_key? 'numberOfItems'
+          if hash.key? 'numberOfItems'
             @number_of_items = hash['numberOfItems']
           end
-          if hash.has_key? 'usecase'
+          if hash.key? 'usecase'
             @usecase = hash['usecase']
           end
         end

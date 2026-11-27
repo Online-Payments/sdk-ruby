@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -23,6 +25,18 @@ module OnlinePayments
         attr_accessor :subsequent_payment_product5001_specific_input
 
         attr_accessor :subsequentcard_payment_method_specific_input
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(omnichannel_subsequent_specific_input: nil,
+                       order: nil,
+                       subsequent_payment_product5001_specific_input: nil,
+                       subsequentcard_payment_method_specific_input: nil)
+          super()
+          @omnichannel_subsequent_specific_input = omnichannel_subsequent_specific_input
+          @order = order
+          @subsequent_payment_product5001_specific_input = subsequent_payment_product5001_specific_input
+          @subsequentcard_payment_method_specific_input = subsequentcard_payment_method_specific_input
+        end
 
         # Sets the property and returns this same instance.
         def with_omnichannel_subsequent_specific_input(value)
@@ -60,20 +74,20 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'omnichannelSubsequentSpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['omnichannelSubsequentSpecificInput']] unless hash['omnichannelSubsequentSpecificInput'].is_a? Hash
+          if hash.key? 'omnichannelSubsequentSpecificInput'
+            raise TypeError, "value '#{hash['omnichannelSubsequentSpecificInput']}' is not a Hash" unless hash['omnichannelSubsequentSpecificInput'].is_a? Hash
             @omnichannel_subsequent_specific_input = OnlinePayments::SDK::Domain::OmnichannelSubsequentSpecificInput.new_from_hash(hash['omnichannelSubsequentSpecificInput'])
           end
-          if hash.has_key? 'order'
-            raise TypeError, "value '%s' is not a Hash" % [hash['order']] unless hash['order'].is_a? Hash
+          if hash.key? 'order'
+            raise TypeError, "value '#{hash['order']}' is not a Hash" unless hash['order'].is_a? Hash
             @order = OnlinePayments::SDK::Domain::Order.new_from_hash(hash['order'])
           end
-          if hash.has_key? 'subsequentPaymentProduct5001SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['subsequentPaymentProduct5001SpecificInput']] unless hash['subsequentPaymentProduct5001SpecificInput'].is_a? Hash
+          if hash.key? 'subsequentPaymentProduct5001SpecificInput'
+            raise TypeError, "value '#{hash['subsequentPaymentProduct5001SpecificInput']}' is not a Hash" unless hash['subsequentPaymentProduct5001SpecificInput'].is_a? Hash
             @subsequent_payment_product5001_specific_input = OnlinePayments::SDK::Domain::SubsequentPaymentProduct5001SpecificInput.new_from_hash(hash['subsequentPaymentProduct5001SpecificInput'])
           end
-          if hash.has_key? 'subsequentcardPaymentMethodSpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['subsequentcardPaymentMethodSpecificInput']] unless hash['subsequentcardPaymentMethodSpecificInput'].is_a? Hash
+          if hash.key? 'subsequentcardPaymentMethodSpecificInput'
+            raise TypeError, "value '#{hash['subsequentcardPaymentMethodSpecificInput']}' is not a Hash" unless hash['subsequentcardPaymentMethodSpecificInput'].is_a? Hash
             @subsequentcard_payment_method_specific_input = OnlinePayments::SDK::Domain::SubsequentCardPaymentMethodSpecificInput.new_from_hash(hash['subsequentcardPaymentMethodSpecificInput'])
           end
         end

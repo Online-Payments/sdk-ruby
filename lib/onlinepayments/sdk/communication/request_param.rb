@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module OnlinePayments
   module SDK
     module Communication
@@ -7,17 +9,14 @@ module OnlinePayments
       # @attr_reader [String] name  Parameter name
       # @attr_reader [String] value Parameter value
       class RequestParam
-
         def initialize(name, value)
-          if name.nil? || name.strip.empty?
-            raise ArgumentError.new('name is required')
-          end
+          raise ArgumentError, 'name is required' if name.nil? || name.strip.empty?
+
           @name = name
           @value = value
         end
 
-        attr_reader :name
-        attr_reader :value
+        attr_reader :name, :value
 
         def to_s
           "#{name}=#{value}"

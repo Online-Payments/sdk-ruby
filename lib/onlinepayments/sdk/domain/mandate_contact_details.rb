@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :email_address
 
         attr_accessor :phone_number
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(email_address: nil, phone_number: nil)
+          super()
+          @email_address = email_address
+          @phone_number = phone_number
+        end
 
         # Sets the property and returns this same instance.
         def with_email_address(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'emailAddress'
+          if hash.key? 'emailAddress'
             @email_address = hash['emailAddress']
           end
-          if hash.has_key? 'phoneNumber'
+          if hash.key? 'phoneNumber'
             @phone_number = hash['phoneNumber']
           end
         end

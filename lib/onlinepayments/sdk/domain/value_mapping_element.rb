@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -14,6 +16,13 @@ module OnlinePayments
         attr_accessor :display_elements
 
         attr_accessor :value
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(display_elements: nil, value: nil)
+          super()
+          @display_elements = display_elements
+          @value = value
+        end
 
         # Sets the property and returns this same instance.
         def with_display_elements(value)
@@ -37,14 +46,14 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'displayElements'
-            raise TypeError, "value '%s' is not an Array" % [hash['displayElements']] unless hash['displayElements'].is_a? Array
+          if hash.key? 'displayElements'
+            raise TypeError, "value '#{hash['displayElements']}' is not an Array" unless hash['displayElements'].is_a? Array
             @display_elements = []
             hash['displayElements'].each do |e|
               @display_elements << OnlinePayments::SDK::Domain::PaymentProductFieldDisplayElement.new_from_hash(e)
             end
           end
-          if hash.has_key? 'value'
+          if hash.key? 'value'
             @value = hash['value']
           end
         end

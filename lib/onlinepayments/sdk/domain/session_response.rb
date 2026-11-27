@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -22,6 +24,16 @@ module OnlinePayments
         attr_accessor :customer_id
 
         attr_accessor :invalid_tokens
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(asset_url: nil, client_api_url: nil, client_session_id: nil, customer_id: nil, invalid_tokens: nil)
+          super()
+          @asset_url = asset_url
+          @client_api_url = client_api_url
+          @client_session_id = client_session_id
+          @customer_id = customer_id
+          @invalid_tokens = invalid_tokens
+        end
 
         # Sets the property and returns this same instance.
         def with_asset_url(value)
@@ -66,20 +78,20 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'assetUrl'
+          if hash.key? 'assetUrl'
             @asset_url = hash['assetUrl']
           end
-          if hash.has_key? 'clientApiUrl'
+          if hash.key? 'clientApiUrl'
             @client_api_url = hash['clientApiUrl']
           end
-          if hash.has_key? 'clientSessionId'
+          if hash.key? 'clientSessionId'
             @client_session_id = hash['clientSessionId']
           end
-          if hash.has_key? 'customerId'
+          if hash.key? 'customerId'
             @customer_id = hash['customerId']
           end
-          if hash.has_key? 'invalidTokens'
-            raise TypeError, "value '%s' is not an Array" % [hash['invalidTokens']] unless hash['invalidTokens'].is_a? Array
+          if hash.key? 'invalidTokens'
+            raise TypeError, "value '#{hash['invalidTokens']}' is not an Array" unless hash['invalidTokens'].is_a? Array
             @invalid_tokens = []
             hash['invalidTokens'].each do |e|
               @invalid_tokens << e

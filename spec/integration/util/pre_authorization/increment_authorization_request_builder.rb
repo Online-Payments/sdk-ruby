@@ -1,4 +1,4 @@
-﻿require 'onlinepayments/sdk/domain/amount_of_money'
+require 'onlinepayments/sdk/domain/amount_of_money'
 require 'onlinepayments/sdk/domain/increment_authorization_request'
 
 module Integration

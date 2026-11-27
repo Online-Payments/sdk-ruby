@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -14,6 +16,12 @@ module OnlinePayments
         class GetCardDataByTokensParams < OnlinePayments::SDK::Communication::ParamRequest
 
           attr_accessor :tokens
+
+          # Creates a new instance; every attribute can be given as a keyword argument.
+          def initialize(tokens: nil)
+            super()
+            @tokens = tokens
+          end
 
           # Adds the parameter _value_ to the _tokens_ Array
           #

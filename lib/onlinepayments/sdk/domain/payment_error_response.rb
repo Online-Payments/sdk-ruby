@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -18,6 +20,14 @@ module OnlinePayments
         attr_accessor :errors
 
         attr_accessor :payment_result
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(error_id: nil, errors: nil, payment_result: nil)
+          super()
+          @error_id = error_id
+          @errors = errors
+          @payment_result = payment_result
+        end
 
         # Sets the property and returns this same instance.
         def with_error_id(value)
@@ -48,18 +58,18 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'errorId'
+          if hash.key? 'errorId'
             @error_id = hash['errorId']
           end
-          if hash.has_key? 'errors'
-            raise TypeError, "value '%s' is not an Array" % [hash['errors']] unless hash['errors'].is_a? Array
+          if hash.key? 'errors'
+            raise TypeError, "value '#{hash['errors']}' is not an Array" unless hash['errors'].is_a? Array
             @errors = []
             hash['errors'].each do |e|
               @errors << OnlinePayments::SDK::Domain::APIError.new_from_hash(e)
             end
           end
-          if hash.has_key? 'paymentResult'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentResult']] unless hash['paymentResult'].is_a? Hash
+          if hash.key? 'paymentResult'
+            raise TypeError, "value '#{hash['paymentResult']}' is not a Hash" unless hash['paymentResult'].is_a? Hash
             @payment_result = OnlinePayments::SDK::Domain::CreatePaymentResponse.new_from_hash(hash['paymentResult'])
           end
         end

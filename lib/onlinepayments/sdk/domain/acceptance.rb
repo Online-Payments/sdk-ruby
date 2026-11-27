@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -18,6 +20,14 @@ module OnlinePayments
         attr_accessor :authorization_date
 
         attr_accessor :authorization_message_reference
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(acceptance_system_application_id: nil, authorization_date: nil, authorization_message_reference: nil)
+          super()
+          @acceptance_system_application_id = acceptance_system_application_id
+          @authorization_date = authorization_date
+          @authorization_message_reference = authorization_message_reference
+        end
 
         # Sets the property and returns this same instance.
         def with_acceptance_system_application_id(value)
@@ -48,13 +58,13 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'acceptanceSystemApplicationId'
+          if hash.key? 'acceptanceSystemApplicationId'
             @acceptance_system_application_id = hash['acceptanceSystemApplicationId']
           end
-          if hash.has_key? 'authorizationDate'
+          if hash.key? 'authorizationDate'
             @authorization_date = DateTime.parse(hash['authorizationDate'])
           end
-          if hash.has_key? 'authorizationMessageReference'
+          if hash.key? 'authorizationMessageReference'
             @authorization_message_reference = hash['authorizationMessageReference']
           end
         end

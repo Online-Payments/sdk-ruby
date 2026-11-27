@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -15,6 +17,13 @@ module OnlinePayments
         attr_accessor :pagination
 
         attr_accessor :payments
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(pagination: nil, payments: nil)
+          super()
+          @pagination = pagination
+          @payments = payments
+        end
 
         # Sets the property and returns this same instance.
         def with_pagination(value)
@@ -38,12 +47,12 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'pagination'
-            raise TypeError, "value '%s' is not a Hash" % [hash['pagination']] unless hash['pagination'].is_a? Hash
+          if hash.key? 'pagination'
+            raise TypeError, "value '#{hash['pagination']}' is not a Hash" unless hash['pagination'].is_a? Hash
             @pagination = OnlinePayments::SDK::Domain::CursorPaginationInfo.new_from_hash(hash['pagination'])
           end
-          if hash.has_key? 'payments'
-            raise TypeError, "value '%s' is not an Array" % [hash['payments']] unless hash['payments'].is_a? Array
+          if hash.key? 'payments'
+            raise TypeError, "value '#{hash['payments']}' is not an Array" unless hash['payments'].is_a? Array
             @payments = []
             hash['payments'].each do |e|
               @payments << OnlinePayments::SDK::Domain::PaymentSummary.new_from_hash(e)

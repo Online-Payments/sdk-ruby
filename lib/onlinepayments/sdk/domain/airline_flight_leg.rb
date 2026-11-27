@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -72,6 +74,52 @@ module OnlinePayments
         attr_accessor :stopover_code
 
         attr_accessor :taxes
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(airline_class: nil,
+                       arrival_airport: nil,
+                       arrival_time: nil,
+                       carrier_code: nil,
+                       conjunction_ticket: nil,
+                       coupon_number: nil,
+                       date: nil,
+                       departure_time: nil,
+                       endorsement_or_restriction: nil,
+                       exchange_ticket: nil,
+                       fare: nil,
+                       fare_basis: nil,
+                       fee: nil,
+                       flight_code: nil,
+                       flight_number: nil,
+                       leg_fare: nil,
+                       number: nil,
+                       origin_airport: nil,
+                       passenger_class: nil,
+                       stopover_code: nil,
+                       taxes: nil)
+          super()
+          @airline_class = airline_class
+          @arrival_airport = arrival_airport
+          @arrival_time = arrival_time
+          @carrier_code = carrier_code
+          @conjunction_ticket = conjunction_ticket
+          @coupon_number = coupon_number
+          @date = date
+          @departure_time = departure_time
+          @endorsement_or_restriction = endorsement_or_restriction
+          @exchange_ticket = exchange_ticket
+          @fare = fare
+          @fare_basis = fare_basis
+          @fee = fee
+          @flight_code = flight_code
+          @flight_number = flight_number
+          @leg_fare = leg_fare
+          @number = number
+          @origin_airport = origin_airport
+          @passenger_class = passenger_class
+          @stopover_code = stopover_code
+          @taxes = taxes
+        end
 
         # Sets the property and returns this same instance.
         def with_airline_class(value)
@@ -228,67 +276,67 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'airlineClass'
+          if hash.key? 'airlineClass'
             @airline_class = hash['airlineClass']
           end
-          if hash.has_key? 'arrivalAirport'
+          if hash.key? 'arrivalAirport'
             @arrival_airport = hash['arrivalAirport']
           end
-          if hash.has_key? 'arrivalTime'
+          if hash.key? 'arrivalTime'
             @arrival_time = hash['arrivalTime']
           end
-          if hash.has_key? 'carrierCode'
+          if hash.key? 'carrierCode'
             @carrier_code = hash['carrierCode']
           end
-          if hash.has_key? 'conjunctionTicket'
+          if hash.key? 'conjunctionTicket'
             @conjunction_ticket = hash['conjunctionTicket']
           end
-          if hash.has_key? 'couponNumber'
+          if hash.key? 'couponNumber'
             @coupon_number = hash['couponNumber']
           end
-          if hash.has_key? 'date'
+          if hash.key? 'date'
             @date = hash['date']
           end
-          if hash.has_key? 'departureTime'
+          if hash.key? 'departureTime'
             @departure_time = hash['departureTime']
           end
-          if hash.has_key? 'endorsementOrRestriction'
+          if hash.key? 'endorsementOrRestriction'
             @endorsement_or_restriction = hash['endorsementOrRestriction']
           end
-          if hash.has_key? 'exchangeTicket'
+          if hash.key? 'exchangeTicket'
             @exchange_ticket = hash['exchangeTicket']
           end
-          if hash.has_key? 'fare'
+          if hash.key? 'fare'
             @fare = hash['fare']
           end
-          if hash.has_key? 'fareBasis'
+          if hash.key? 'fareBasis'
             @fare_basis = hash['fareBasis']
           end
-          if hash.has_key? 'fee'
+          if hash.key? 'fee'
             @fee = hash['fee']
           end
-          if hash.has_key? 'flightCode'
+          if hash.key? 'flightCode'
             @flight_code = hash['flightCode']
           end
-          if hash.has_key? 'flightNumber'
+          if hash.key? 'flightNumber'
             @flight_number = hash['flightNumber']
           end
-          if hash.has_key? 'legFare'
+          if hash.key? 'legFare'
             @leg_fare = hash['legFare']
           end
-          if hash.has_key? 'number'
+          if hash.key? 'number'
             @number = hash['number']
           end
-          if hash.has_key? 'originAirport'
+          if hash.key? 'originAirport'
             @origin_airport = hash['originAirport']
           end
-          if hash.has_key? 'passengerClass'
+          if hash.key? 'passengerClass'
             @passenger_class = hash['passengerClass']
           end
-          if hash.has_key? 'stopoverCode'
+          if hash.key? 'stopoverCode'
             @stopover_code = hash['stopoverCode']
           end
-          if hash.has_key? 'taxes'
+          if hash.key? 'taxes'
             @taxes = hash['taxes']
           end
         end

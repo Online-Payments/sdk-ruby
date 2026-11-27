@@ -7,39 +7,36 @@ module ClientSetup
   # Every value is validated here, so a wrong configuration stops the application at startup.
   # @return [OnlinePayments::SDK::Client]
   def self.create_client
-    configuration = OnlinePayments::SDK::CommunicatorConfiguration.new(
-      # Test or live host, e.g. payment.direct.ecom.preprod.worldline-solutions.com (without a path).
-      api_endpoint: "https://#{required_env('onlinePayments_api_endpoint_host')}",
-      api_key_id: required_env('onlinePayments_api_v1hmac_apiKeyId'),
-      secret_api_key: required_env('onlinePayments_api_v1hmac_secretApiKey'),
-      # Required: without it, creating the client raises RuntimeError "Unknown authorizationType".
-      authorization_type: OnlinePayments::SDK::Authentication::AuthorizationType::V1HMAC,
+    OnlinePayments::SDK::Factory.create_client(
+      # Test or live endpoint, e.g. https://payment.direct.ecom.preprod.worldline-solutions.com (without a path).
+      api_endpoint: required_env('ONLINEPAYMENTS_API_ENDPOINT'),
+      api_key_id: required_env('ONLINEPAYMENTS_API_KEY_ID'),
+      secret_api_key: required_env('ONLINEPAYMENTS_SECRET_API_KEY'),
       # Your company or application name; it identifies your requests in the platform logs.
       # Required: without it, the SDK raises ArgumentError "integrator is required".
-      integrator: required_env('onlinePayments_api_integrator'),
-      # In seconds.
+      integrator: required_env('ONLINEPAYMENTS_INTEGRATOR'),
+      # In seconds. Both are required and must be positive, otherwise the SDK raises ArgumentError.
       connect_timeout: 5,
       socket_timeout: 300,
       max_connections: 10
     )
-    OnlinePayments::SDK::Factory.create_client_from_configuration(configuration)
   end
 
   # The merchant ID is your PSPID. All API calls start from the merchant client.
   # @param client [OnlinePayments::SDK::Client]
   # @return [OnlinePayments::SDK::Merchant::MerchantClient]
   def self.create_merchant_client(client)
-    client.merchant(required_env('onlinePayments_api_merchantId'))
+    client.merchant(required_env('ONLINEPAYMENTS_MERCHANT_ID'))
   end
 
   # The absolute public base URL of your shop, e.g. https://shop.example. The return URL of a checkout is built from
   # it, never from the Host header of a request, which the sender controls.
   # @return [String] without a trailing slash
   def self.public_base_url
-    value = required_env('shop_publicBaseUrl')
+    value = required_env('SHOP_PUBLIC_BASE_URL')
     uri = URI.parse(value)
     unless uri.is_a?(URI::HTTP) && uri.host && !uri.host.empty? && uri.query.nil? && uri.fragment.nil?
-      raise "shop_publicBaseUrl must be an absolute http(s) URL without query or fragment, e.g. https://shop.example"
+      raise "SHOP_PUBLIC_BASE_URL must be an absolute http(s) URL without query or fragment, e.g. https://shop.example"
     end
 
     value.strip.chomp('/')

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -10,6 +12,12 @@ module OnlinePayments
       class FixedListValidator < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :allowed_values
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(allowed_values: nil)
+          super()
+          @allowed_values = allowed_values
+        end
 
         # Sets the property and returns this same instance.
         def with_allowed_values(value)
@@ -26,8 +34,8 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'allowedValues'
-            raise TypeError, "value '%s' is not an Array" % [hash['allowedValues']] unless hash['allowedValues'].is_a? Array
+          if hash.key? 'allowedValues'
+            raise TypeError, "value '#{hash['allowedValues']}' is not an Array" unless hash['allowedValues'].is_a? Array
             @allowed_values = []
             hash['allowedValues'].each do |e|
               @allowed_values << e

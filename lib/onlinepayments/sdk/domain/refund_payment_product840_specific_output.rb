@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -11,6 +13,12 @@ module OnlinePayments
       class RefundPaymentProduct840SpecificOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :customer_account
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(customer_account: nil)
+          super()
+          @customer_account = customer_account
+        end
 
         # Sets the property and returns this same instance.
         def with_customer_account(value)
@@ -27,8 +35,8 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'customerAccount'
-            raise TypeError, "value '%s' is not a Hash" % [hash['customerAccount']] unless hash['customerAccount'].is_a? Hash
+          if hash.key? 'customerAccount'
+            raise TypeError, "value '#{hash['customerAccount']}' is not a Hash" unless hash['customerAccount'].is_a? Hash
             @customer_account = OnlinePayments::SDK::Domain::RefundPaymentProduct840CustomerAccount.new_from_hash(hash['customerAccount'])
           end
         end

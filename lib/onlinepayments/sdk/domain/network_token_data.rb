@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -25,6 +27,17 @@ module OnlinePayments
         attr_accessor :scheme_token_requestor_id
 
         attr_accessor :token_expiry_date
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(cardholder_name: nil, cryptogram: nil, eci: nil, network_token: nil, scheme_token_requestor_id: nil, token_expiry_date: nil)
+          super()
+          @cardholder_name = cardholder_name
+          @cryptogram = cryptogram
+          @eci = eci
+          @network_token = network_token
+          @scheme_token_requestor_id = scheme_token_requestor_id
+          @token_expiry_date = token_expiry_date
+        end
 
         # Sets the property and returns this same instance.
         def with_cardholder_name(value)
@@ -76,22 +89,22 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'cardholderName'
+          if hash.key? 'cardholderName'
             @cardholder_name = hash['cardholderName']
           end
-          if hash.has_key? 'cryptogram'
+          if hash.key? 'cryptogram'
             @cryptogram = hash['cryptogram']
           end
-          if hash.has_key? 'eci'
+          if hash.key? 'eci'
             @eci = hash['eci']
           end
-          if hash.has_key? 'networkToken'
+          if hash.key? 'networkToken'
             @network_token = hash['networkToken']
           end
-          if hash.has_key? 'schemeTokenRequestorId'
+          if hash.key? 'schemeTokenRequestorId'
             @scheme_token_requestor_id = hash['schemeTokenRequestorId']
           end
-          if hash.has_key? 'tokenExpiryDate'
+          if hash.key? 'tokenExpiryDate'
             @token_expiry_date = hash['tokenExpiryDate']
           end
         end

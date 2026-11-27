@@ -156,11 +156,11 @@ describe ApiResource do
       expect(resource.send(:instantiate_uri, '/resource/{id}/detail')).to eq('/resource/abc-123-def/detail')
     end
 
-    it 'raises TypeError for numeric path_context values' do
+    it 'converts numeric path_context values to strings' do
       comm = make_communicator
       resource = ApiResource.new(communicator: comm, path_context: { 'version' => 2, 'id' => 12_345 })
 
-      expect { resource.send(:instantiate_uri, '/v{version}/resource/{id}') }.to raise_error(TypeError)
+      expect(resource.send(:instantiate_uri, '/v{version}/resource/{id}')).to eq('/v2/resource/12345')
     end
 
     it 'chains instantiate_uri through parent' do
@@ -169,6 +169,52 @@ describe ApiResource do
       child = ApiResource.new(parent: parent, path_context: { 'merchantId' => 'M789' })
       result = child.send(:instantiate_uri, '/{v}/{merchantId}/payments')
       expect(result).to eq('/v2/M789/payments')
+    end
+
+    it 'encodes reserved characters in path values' do
+      resource = ApiResource.new(communicator: make_communicator, path_context: { 'merchantId' => 'm1' })
+      {
+        '../x?y=1#z' => '..%2Fx%3Fy%3D1%23z',
+        'a/b' => 'a%2Fb',
+        'a?b' => 'a%3Fb',
+        'a#b' => 'a%23b',
+        '100%' => '100%25',
+        'a b' => 'a%20b',
+        "ü€" => '%C3%BC%E2%82%AC'
+      }.each do |value, expected|
+        result = resource.send(:instantiate_uri, '/v2/{merchantId}/payments/{paymentId}', { 'paymentId' => value })
+        expect(result).to eq("/v2/m1/payments/#{expected}")
+      end
+    end
+
+    it 'rejects dot segments as path values' do
+      resource = ApiResource.new(communicator: make_communicator, path_context: { 'merchantId' => 'm1' })
+      ['.', '..'].each do |value|
+        expect { resource.send(:instantiate_uri, '/v2/{merchantId}/payments/{paymentId}', { 'paymentId' => value }) }
+          .to raise_error(ArgumentError)
+      end
+    end
+
+    it 'rejects nil and empty path values' do
+      resource = ApiResource.new(communicator: make_communicator, path_context: { 'merchantId' => 'm1' })
+      [nil, ''].each do |value|
+        expect { resource.send(:instantiate_uri, '/v2/{merchantId}/payments/{paymentId}', { 'paymentId' => value }) }
+          .to raise_error(ArgumentError, 'paymentId is required')
+      end
+    end
+
+    it 'encodes NUL bytes in path values' do
+      resource = ApiResource.new(communicator: make_communicator, path_context: { 'merchantId' => 'm1' })
+      result = resource.send(:instantiate_uri, '/v2/{merchantId}/payments/{paymentId}', { 'paymentId' => "pay\0ment" })
+
+      expect(result).to eq('/v2/m1/payments/pay%00ment')
+    end
+
+    it 'does not substitute values twice' do
+      parent = ApiResource.new(communicator: make_communicator, path_context: { 'merchantId' => 'm1' })
+      child = ApiResource.new(parent: parent, path_context: { 'paymentId' => '{merchantId}' })
+      result = child.send(:instantiate_uri, '/v2/{merchantId}/payments/{paymentId}')
+      expect(result).to eq('/v2/m1/payments/%7BmerchantId%7D')
     end
   end
 end

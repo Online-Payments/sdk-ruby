@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -79,6 +81,56 @@ module OnlinePayments
         attr_accessor :payment_product_id
 
         attr_accessor :virtual_card_indicator
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(card_corporate_indicator: nil,
+                       card_effective_date: nil,
+                       card_effective_date_indicator: nil,
+                       card_pan_type: nil,
+                       card_product_code: nil,
+                       card_product_name: nil,
+                       card_product_usage_label: nil,
+                       card_scheme: nil,
+                       card_type: nil,
+                       co_brands: nil,
+                       country_code: nil,
+                       is_allowed_in_context: nil,
+                       issuer_code: nil,
+                       issuer_name: nil,
+                       issuer_principal_member_code: nil,
+                       issuer_principal_member_name: nil,
+                       issuer_region_code: nil,
+                       issuing_country_code: nil,
+                       pan_length_max: nil,
+                       pan_length_min: nil,
+                       pan_luhn_check: nil,
+                       payment_product_id: nil,
+                       virtual_card_indicator: nil)
+          super()
+          @card_corporate_indicator = card_corporate_indicator
+          @card_effective_date = card_effective_date
+          @card_effective_date_indicator = card_effective_date_indicator
+          @card_pan_type = card_pan_type
+          @card_product_code = card_product_code
+          @card_product_name = card_product_name
+          @card_product_usage_label = card_product_usage_label
+          @card_scheme = card_scheme
+          @card_type = card_type
+          @co_brands = co_brands
+          @country_code = country_code
+          @is_allowed_in_context = is_allowed_in_context
+          @issuer_code = issuer_code
+          @issuer_name = issuer_name
+          @issuer_principal_member_code = issuer_principal_member_code
+          @issuer_principal_member_name = issuer_principal_member_name
+          @issuer_region_code = issuer_region_code
+          @issuing_country_code = issuing_country_code
+          @pan_length_max = pan_length_max
+          @pan_length_min = pan_length_min
+          @pan_luhn_check = pan_luhn_check
+          @payment_product_id = payment_product_id
+          @virtual_card_indicator = virtual_card_indicator
+        end
 
         # Sets the property and returns this same instance.
         def with_card_corporate_indicator(value)
@@ -249,77 +301,77 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'cardCorporateIndicator'
+          if hash.key? 'cardCorporateIndicator'
             @card_corporate_indicator = hash['cardCorporateIndicator']
           end
-          if hash.has_key? 'cardEffectiveDate'
+          if hash.key? 'cardEffectiveDate'
             @card_effective_date = Date.parse(hash['cardEffectiveDate'])
           end
-          if hash.has_key? 'cardEffectiveDateIndicator'
+          if hash.key? 'cardEffectiveDateIndicator'
             @card_effective_date_indicator = hash['cardEffectiveDateIndicator']
           end
-          if hash.has_key? 'cardPanType'
+          if hash.key? 'cardPanType'
             @card_pan_type = hash['cardPanType']
           end
-          if hash.has_key? 'cardProductCode'
+          if hash.key? 'cardProductCode'
             @card_product_code = hash['cardProductCode']
           end
-          if hash.has_key? 'cardProductName'
+          if hash.key? 'cardProductName'
             @card_product_name = hash['cardProductName']
           end
-          if hash.has_key? 'cardProductUsageLabel'
+          if hash.key? 'cardProductUsageLabel'
             @card_product_usage_label = hash['cardProductUsageLabel']
           end
-          if hash.has_key? 'cardScheme'
+          if hash.key? 'cardScheme'
             @card_scheme = hash['cardScheme']
           end
-          if hash.has_key? 'cardType'
+          if hash.key? 'cardType'
             @card_type = hash['cardType']
           end
-          if hash.has_key? 'coBrands'
-            raise TypeError, "value '%s' is not an Array" % [hash['coBrands']] unless hash['coBrands'].is_a? Array
+          if hash.key? 'coBrands'
+            raise TypeError, "value '#{hash['coBrands']}' is not an Array" unless hash['coBrands'].is_a? Array
             @co_brands = []
             hash['coBrands'].each do |e|
               @co_brands << OnlinePayments::SDK::Domain::IINDetail.new_from_hash(e)
             end
           end
-          if hash.has_key? 'countryCode'
+          if hash.key? 'countryCode'
             @country_code = hash['countryCode']
           end
-          if hash.has_key? 'isAllowedInContext'
+          if hash.key? 'isAllowedInContext'
             @is_allowed_in_context = hash['isAllowedInContext']
           end
-          if hash.has_key? 'issuerCode'
+          if hash.key? 'issuerCode'
             @issuer_code = hash['issuerCode']
           end
-          if hash.has_key? 'issuerName'
+          if hash.key? 'issuerName'
             @issuer_name = hash['issuerName']
           end
-          if hash.has_key? 'issuerPrincipalMemberCode'
+          if hash.key? 'issuerPrincipalMemberCode'
             @issuer_principal_member_code = hash['issuerPrincipalMemberCode']
           end
-          if hash.has_key? 'issuerPrincipalMemberName'
+          if hash.key? 'issuerPrincipalMemberName'
             @issuer_principal_member_name = hash['issuerPrincipalMemberName']
           end
-          if hash.has_key? 'issuerRegionCode'
+          if hash.key? 'issuerRegionCode'
             @issuer_region_code = hash['issuerRegionCode']
           end
-          if hash.has_key? 'issuingCountryCode'
+          if hash.key? 'issuingCountryCode'
             @issuing_country_code = hash['issuingCountryCode']
           end
-          if hash.has_key? 'panLengthMax'
+          if hash.key? 'panLengthMax'
             @pan_length_max = hash['panLengthMax']
           end
-          if hash.has_key? 'panLengthMin'
+          if hash.key? 'panLengthMin'
             @pan_length_min = hash['panLengthMin']
           end
-          if hash.has_key? 'panLuhnCheck'
+          if hash.key? 'panLuhnCheck'
             @pan_luhn_check = hash['panLuhnCheck']
           end
-          if hash.has_key? 'paymentProductId'
+          if hash.key? 'paymentProductId'
             @payment_product_id = hash['paymentProductId']
           end
-          if hash.has_key? 'virtualCardIndicator'
+          if hash.key? 'virtualCardIndicator'
             @virtual_card_indicator = hash['virtualCardIndicator']
           end
         end

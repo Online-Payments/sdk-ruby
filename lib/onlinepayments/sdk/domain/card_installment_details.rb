@@ -11,6 +11,11 @@ module OnlinePayments
 
         attr_accessor :installment_payment_sequence_indicator
 
+        def initialize(installment_payment_sequence_indicator: nil)
+          super()
+          @installment_payment_sequence_indicator = installment_payment_sequence_indicator
+        end
+
         # Sets the property and returns this same instance.
         def with_installment_payment_sequence_indicator(value)
           @installment_payment_sequence_indicator = value
@@ -26,7 +31,7 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'installmentPaymentSequenceIndicator'
+          if hash.key? 'installmentPaymentSequenceIndicator'
             @installment_payment_sequence_indicator = hash['installmentPaymentSequenceIndicator']
           end
         end

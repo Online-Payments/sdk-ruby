@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -16,6 +18,14 @@ module OnlinePayments
         attr_accessor :status_category
 
         attr_accessor :status_code
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(is_cancellable: nil, status_category: nil, status_code: nil)
+          super()
+          @is_cancellable = is_cancellable
+          @status_category = status_category
+          @status_code = status_code
+        end
 
         # Sets the property and returns this same instance.
         def with_is_cancellable(value)
@@ -46,13 +56,13 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'isCancellable'
+          if hash.key? 'isCancellable'
             @is_cancellable = hash['isCancellable']
           end
-          if hash.has_key? 'statusCategory'
+          if hash.key? 'statusCategory'
             @status_category = hash['statusCategory']
           end
-          if hash.has_key? 'statusCode'
+          if hash.key? 'statusCode'
             @status_code = hash['statusCode']
           end
         end

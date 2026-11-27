@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -16,6 +18,14 @@ module OnlinePayments
         attr_accessor :number_of_payment_attempts_last_year
 
         attr_accessor :number_of_purchases_last6_months
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(number_of_payment_attempts_last24_hours: nil, number_of_payment_attempts_last_year: nil, number_of_purchases_last6_months: nil)
+          super()
+          @number_of_payment_attempts_last24_hours = number_of_payment_attempts_last24_hours
+          @number_of_payment_attempts_last_year = number_of_payment_attempts_last_year
+          @number_of_purchases_last6_months = number_of_purchases_last6_months
+        end
 
         # Sets the property and returns this same instance.
         def with_number_of_payment_attempts_last24_hours(value)
@@ -46,13 +56,13 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'numberOfPaymentAttemptsLast24Hours'
+          if hash.key? 'numberOfPaymentAttemptsLast24Hours'
             @number_of_payment_attempts_last24_hours = hash['numberOfPaymentAttemptsLast24Hours']
           end
-          if hash.has_key? 'numberOfPaymentAttemptsLastYear'
+          if hash.key? 'numberOfPaymentAttemptsLastYear'
             @number_of_payment_attempts_last_year = hash['numberOfPaymentAttemptsLastYear']
           end
-          if hash.has_key? 'numberOfPurchasesLast6Months'
+          if hash.key? 'numberOfPurchasesLast6Months'
             @number_of_purchases_last6_months = hash['numberOfPurchasesLast6Months']
           end
         end

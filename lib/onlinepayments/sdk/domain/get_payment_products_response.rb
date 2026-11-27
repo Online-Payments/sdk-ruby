@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -11,6 +13,12 @@ module OnlinePayments
       class GetPaymentProductsResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :payment_products
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(payment_products: nil)
+          super()
+          @payment_products = payment_products
+        end
 
         # Sets the property and returns this same instance.
         def with_payment_products(value)
@@ -27,8 +35,8 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'paymentProducts'
-            raise TypeError, "value '%s' is not an Array" % [hash['paymentProducts']] unless hash['paymentProducts'].is_a? Array
+          if hash.key? 'paymentProducts'
+            raise TypeError, "value '#{hash['paymentProducts']}' is not an Array" unless hash['paymentProducts'].is_a? Array
             @payment_products = []
             hash['paymentProducts'].each do |e|
               @payment_products << OnlinePayments::SDK::Domain::PaymentProduct.new_from_hash(e)

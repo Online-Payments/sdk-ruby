@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -17,6 +19,14 @@ module OnlinePayments
         attr_accessor :customer_ip_address
 
         attr_accessor :product_categories
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(black_list_data: nil, customer_ip_address: nil, product_categories: nil)
+          super()
+          @black_list_data = black_list_data
+          @customer_ip_address = customer_ip_address
+          @product_categories = product_categories
+        end
 
         # Sets the property and returns this same instance.
         def with_black_list_data(value)
@@ -47,14 +57,14 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'blackListData'
+          if hash.key? 'blackListData'
             @black_list_data = hash['blackListData']
           end
-          if hash.has_key? 'customerIpAddress'
+          if hash.key? 'customerIpAddress'
             @customer_ip_address = hash['customerIpAddress']
           end
-          if hash.has_key? 'productCategories'
-            raise TypeError, "value '%s' is not an Array" % [hash['productCategories']] unless hash['productCategories'].is_a? Array
+          if hash.key? 'productCategories'
+            raise TypeError, "value '#{hash['productCategories']}' is not an Array" unless hash['productCategories'].is_a? Array
             @product_categories = []
             hash['productCategories'].each do |e|
               @product_categories << e

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -30,6 +32,22 @@ module OnlinePayments
         attr_accessor :omnichannel_payout_specific_input
 
         attr_accessor :references
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(amount_of_money: nil,
+                       card_payout_method_specific_input: nil,
+                       descriptor: nil,
+                       feedbacks: nil,
+                       omnichannel_payout_specific_input: nil,
+                       references: nil)
+          super()
+          @amount_of_money = amount_of_money
+          @card_payout_method_specific_input = card_payout_method_specific_input
+          @descriptor = descriptor
+          @feedbacks = feedbacks
+          @omnichannel_payout_specific_input = omnichannel_payout_specific_input
+          @references = references
+        end
 
         # Sets the property and returns this same instance.
         def with_amount_of_money(value)
@@ -81,27 +99,27 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'amountOfMoney'
-            raise TypeError, "value '%s' is not a Hash" % [hash['amountOfMoney']] unless hash['amountOfMoney'].is_a? Hash
+          if hash.key? 'amountOfMoney'
+            raise TypeError, "value '#{hash['amountOfMoney']}' is not a Hash" unless hash['amountOfMoney'].is_a? Hash
             @amount_of_money = OnlinePayments::SDK::Domain::AmountOfMoney.new_from_hash(hash['amountOfMoney'])
           end
-          if hash.has_key? 'cardPayoutMethodSpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['cardPayoutMethodSpecificInput']] unless hash['cardPayoutMethodSpecificInput'].is_a? Hash
+          if hash.key? 'cardPayoutMethodSpecificInput'
+            raise TypeError, "value '#{hash['cardPayoutMethodSpecificInput']}' is not a Hash" unless hash['cardPayoutMethodSpecificInput'].is_a? Hash
             @card_payout_method_specific_input = OnlinePayments::SDK::Domain::CardPayoutMethodSpecificInput.new_from_hash(hash['cardPayoutMethodSpecificInput'])
           end
-          if hash.has_key? 'descriptor'
+          if hash.key? 'descriptor'
             @descriptor = hash['descriptor']
           end
-          if hash.has_key? 'feedbacks'
-            raise TypeError, "value '%s' is not a Hash" % [hash['feedbacks']] unless hash['feedbacks'].is_a? Hash
+          if hash.key? 'feedbacks'
+            raise TypeError, "value '#{hash['feedbacks']}' is not a Hash" unless hash['feedbacks'].is_a? Hash
             @feedbacks = OnlinePayments::SDK::Domain::Feedbacks.new_from_hash(hash['feedbacks'])
           end
-          if hash.has_key? 'omnichannelPayoutSpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['omnichannelPayoutSpecificInput']] unless hash['omnichannelPayoutSpecificInput'].is_a? Hash
+          if hash.key? 'omnichannelPayoutSpecificInput'
+            raise TypeError, "value '#{hash['omnichannelPayoutSpecificInput']}' is not a Hash" unless hash['omnichannelPayoutSpecificInput'].is_a? Hash
             @omnichannel_payout_specific_input = OnlinePayments::SDK::Domain::OmnichannelPayoutSpecificInput.new_from_hash(hash['omnichannelPayoutSpecificInput'])
           end
-          if hash.has_key? 'references'
-            raise TypeError, "value '%s' is not a Hash" % [hash['references']] unless hash['references'].is_a? Hash
+          if hash.key? 'references'
+            raise TypeError, "value '#{hash['references']}' is not a Hash" unless hash['references'].is_a? Hash
             @references = OnlinePayments::SDK::Domain::PaymentReferences.new_from_hash(hash['references'])
           end
         end

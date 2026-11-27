@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -10,6 +12,12 @@ module OnlinePayments
       class PaymentProduct5704AutoCapture < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :delay_in_minutes
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(delay_in_minutes: nil)
+          super()
+          @delay_in_minutes = delay_in_minutes
+        end
 
         # Sets the property and returns this same instance.
         def with_delay_in_minutes(value)
@@ -26,7 +34,7 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'delayInMinutes'
+          if hash.key? 'delayInMinutes'
             @delay_in_minutes = hash['delayInMinutes']
           end
         end

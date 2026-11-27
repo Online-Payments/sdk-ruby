@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -19,6 +21,14 @@ module OnlinePayments
         attr_accessor :pagination
 
         attr_accessor :sorting
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(filtering: nil, pagination: nil, sorting: nil)
+          super()
+          @filtering = filtering
+          @pagination = pagination
+          @sorting = sorting
+        end
 
         # Sets the property and returns this same instance.
         def with_filtering(value)
@@ -49,16 +59,16 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'filtering'
-            raise TypeError, "value '%s' is not a Hash" % [hash['filtering']] unless hash['filtering'].is_a? Hash
+          if hash.key? 'filtering'
+            raise TypeError, "value '#{hash['filtering']}' is not a Hash" unless hash['filtering'].is_a? Hash
             @filtering = OnlinePayments::SDK::Domain::PaymentLinkOverviewFiltering.new_from_hash(hash['filtering'])
           end
-          if hash.has_key? 'pagination'
-            raise TypeError, "value '%s' is not a Hash" % [hash['pagination']] unless hash['pagination'].is_a? Hash
+          if hash.key? 'pagination'
+            raise TypeError, "value '#{hash['pagination']}' is not a Hash" unless hash['pagination'].is_a? Hash
             @pagination = OnlinePayments::SDK::Domain::Pagination.new_from_hash(hash['pagination'])
           end
-          if hash.has_key? 'sorting'
-            raise TypeError, "value '%s' is not a Hash" % [hash['sorting']] unless hash['sorting'].is_a? Hash
+          if hash.key? 'sorting'
+            raise TypeError, "value '#{hash['sorting']}' is not a Hash" unless hash['sorting'].is_a? Hash
             @sorting = OnlinePayments::SDK::Domain::PaymentLinkOverviewSorting.new_from_hash(hash['sorting'])
           end
         end

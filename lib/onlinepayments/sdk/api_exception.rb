@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
 require 'onlinepayments/sdk/domain/api_error'
+require 'onlinepayments/sdk/logging/obfuscation/body_obfuscator'
 
 module OnlinePayments
   module SDK
@@ -42,10 +45,10 @@ module OnlinePayments
       def to_s
         str = super.to_s
         if @status_code > 0
-          str += '; status_code=' + @status_code.to_s
+          str += "; status_code=#{@status_code}"
         end
         if !@response_body.nil? && @response_body.length > 0
-          str += "; response_body='" + @response_body + "'"
+          str += "; response_body='#{OnlinePayments::SDK::Logging::Obfuscation::BodyObfuscator.default_obfuscator.obfuscate_body(@response_body)}'"
         end
         str.to_s
       end

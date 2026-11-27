@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -32,6 +34,24 @@ module OnlinePayments
         attr_accessor :protection_eligibility
 
         attr_accessor :shipping_address
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(billing_address: nil,
+                       billing_personal_address: nil,
+                       customer_account: nil,
+                       customer_address: nil,
+                       pay_pal_transaction_id: nil,
+                       protection_eligibility: nil,
+                       shipping_address: nil)
+          super()
+          @billing_address = billing_address
+          @billing_personal_address = billing_personal_address
+          @customer_account = customer_account
+          @customer_address = customer_address
+          @pay_pal_transaction_id = pay_pal_transaction_id
+          @protection_eligibility = protection_eligibility
+          @shipping_address = shipping_address
+        end
 
         # Sets the property and returns this same instance.
         def with_billing_address(value)
@@ -90,31 +110,31 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'billingAddress'
-            raise TypeError, "value '%s' is not a Hash" % [hash['billingAddress']] unless hash['billingAddress'].is_a? Hash
+          if hash.key? 'billingAddress'
+            raise TypeError, "value '#{hash['billingAddress']}' is not a Hash" unless hash['billingAddress'].is_a? Hash
             @billing_address = OnlinePayments::SDK::Domain::Address.new_from_hash(hash['billingAddress'])
           end
-          if hash.has_key? 'billingPersonalAddress'
-            raise TypeError, "value '%s' is not a Hash" % [hash['billingPersonalAddress']] unless hash['billingPersonalAddress'].is_a? Hash
+          if hash.key? 'billingPersonalAddress'
+            raise TypeError, "value '#{hash['billingPersonalAddress']}' is not a Hash" unless hash['billingPersonalAddress'].is_a? Hash
             @billing_personal_address = OnlinePayments::SDK::Domain::AddressPersonal.new_from_hash(hash['billingPersonalAddress'])
           end
-          if hash.has_key? 'customerAccount'
-            raise TypeError, "value '%s' is not a Hash" % [hash['customerAccount']] unless hash['customerAccount'].is_a? Hash
+          if hash.key? 'customerAccount'
+            raise TypeError, "value '#{hash['customerAccount']}' is not a Hash" unless hash['customerAccount'].is_a? Hash
             @customer_account = OnlinePayments::SDK::Domain::PaymentProduct840CustomerAccount.new_from_hash(hash['customerAccount'])
           end
-          if hash.has_key? 'customerAddress'
-            raise TypeError, "value '%s' is not a Hash" % [hash['customerAddress']] unless hash['customerAddress'].is_a? Hash
+          if hash.key? 'customerAddress'
+            raise TypeError, "value '#{hash['customerAddress']}' is not a Hash" unless hash['customerAddress'].is_a? Hash
             @customer_address = OnlinePayments::SDK::Domain::Address.new_from_hash(hash['customerAddress'])
           end
-          if hash.has_key? 'payPalTransactionId'
+          if hash.key? 'payPalTransactionId'
             @pay_pal_transaction_id = hash['payPalTransactionId']
           end
-          if hash.has_key? 'protectionEligibility'
-            raise TypeError, "value '%s' is not a Hash" % [hash['protectionEligibility']] unless hash['protectionEligibility'].is_a? Hash
+          if hash.key? 'protectionEligibility'
+            raise TypeError, "value '#{hash['protectionEligibility']}' is not a Hash" unless hash['protectionEligibility'].is_a? Hash
             @protection_eligibility = OnlinePayments::SDK::Domain::ProtectionEligibility.new_from_hash(hash['protectionEligibility'])
           end
-          if hash.has_key? 'shippingAddress'
-            raise TypeError, "value '%s' is not a Hash" % [hash['shippingAddress']] unless hash['shippingAddress'].is_a? Hash
+          if hash.key? 'shippingAddress'
+            raise TypeError, "value '#{hash['shippingAddress']}' is not a Hash" unless hash['shippingAddress'].is_a? Hash
             @shipping_address = OnlinePayments::SDK::Domain::AddressPersonal.new_from_hash(hash['shippingAddress'])
           end
         end

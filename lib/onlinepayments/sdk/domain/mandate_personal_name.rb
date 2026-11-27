@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :first_name
 
         attr_accessor :surname
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(first_name: nil, surname: nil)
+          super()
+          @first_name = first_name
+          @surname = surname
+        end
 
         # Sets the property and returns this same instance.
         def with_first_name(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'firstName'
+          if hash.key? 'firstName'
             @first_name = hash['firstName']
           end
-          if hash.has_key? 'surname'
+          if hash.key? 'surname'
             @surname = hash['surname']
           end
         end

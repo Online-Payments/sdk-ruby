@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -40,6 +42,30 @@ module OnlinePayments
         attr_accessor :redirection_url
 
         attr_accessor :status
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(amount: nil,
+                       created_by: nil,
+                       creation_date: nil,
+                       expiration_date: nil,
+                       is_reusable_link: nil,
+                       merchant_id: nil,
+                       merchant_reference: nil,
+                       payment_link_id: nil,
+                       redirection_url: nil,
+                       status: nil)
+          super()
+          @amount = amount
+          @created_by = created_by
+          @creation_date = creation_date
+          @expiration_date = expiration_date
+          @is_reusable_link = is_reusable_link
+          @merchant_id = merchant_id
+          @merchant_reference = merchant_reference
+          @payment_link_id = payment_link_id
+          @redirection_url = redirection_url
+          @status = status
+        end
 
         # Sets the property and returns this same instance.
         def with_amount(value)
@@ -119,35 +145,35 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'amount'
-            raise TypeError, "value '%s' is not a Hash" % [hash['amount']] unless hash['amount'].is_a? Hash
+          if hash.key? 'amount'
+            raise TypeError, "value '#{hash['amount']}' is not a Hash" unless hash['amount'].is_a? Hash
             @amount = OnlinePayments::SDK::Domain::AmountOfMoney.new_from_hash(hash['amount'])
           end
-          if hash.has_key? 'createdBy'
+          if hash.key? 'createdBy'
             @created_by = hash['createdBy']
           end
-          if hash.has_key? 'creationDate'
+          if hash.key? 'creationDate'
             @creation_date = DateTime.parse(hash['creationDate'])
           end
-          if hash.has_key? 'expirationDate'
+          if hash.key? 'expirationDate'
             @expiration_date = DateTime.parse(hash['expirationDate'])
           end
-          if hash.has_key? 'isReusableLink'
+          if hash.key? 'isReusableLink'
             @is_reusable_link = hash['isReusableLink']
           end
-          if hash.has_key? 'merchantId'
+          if hash.key? 'merchantId'
             @merchant_id = hash['merchantId']
           end
-          if hash.has_key? 'merchantReference'
+          if hash.key? 'merchantReference'
             @merchant_reference = hash['merchantReference']
           end
-          if hash.has_key? 'paymentLinkId'
+          if hash.key? 'paymentLinkId'
             @payment_link_id = hash['paymentLinkId']
           end
-          if hash.has_key? 'redirectionUrl'
+          if hash.key? 'redirectionUrl'
             @redirection_url = hash['redirectionUrl']
           end
-          if hash.has_key? 'status'
+          if hash.key? 'status'
             @status = hash['status']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -19,6 +21,15 @@ module OnlinePayments
         attr_accessor :custom
 
         attr_accessor :pay_later
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(java_script_sdk_flow: nil, address_selection_at_pay_pal: nil, custom: nil, pay_later: nil)
+          super()
+          @java_script_sdk_flow = java_script_sdk_flow
+          @address_selection_at_pay_pal = address_selection_at_pay_pal
+          @custom = custom
+          @pay_later = pay_later
+        end
 
         # Sets the property and returns this same instance.
         def with_java_script_sdk_flow(value)
@@ -56,16 +67,16 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'JavaScriptSdkFlow'
+          if hash.key? 'JavaScriptSdkFlow'
             @java_script_sdk_flow = hash['JavaScriptSdkFlow']
           end
-          if hash.has_key? 'addressSelectionAtPayPal'
+          if hash.key? 'addressSelectionAtPayPal'
             @address_selection_at_pay_pal = hash['addressSelectionAtPayPal']
           end
-          if hash.has_key? 'custom'
+          if hash.key? 'custom'
             @custom = hash['custom']
           end
-          if hash.has_key? 'payLater'
+          if hash.key? 'payLater'
             @pay_later = hash['payLater']
           end
         end

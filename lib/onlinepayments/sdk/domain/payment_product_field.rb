@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -21,6 +23,15 @@ module OnlinePayments
         attr_accessor :id
 
         attr_accessor :type
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(data_restrictions: nil, display_hints: nil, id: nil, type: nil)
+          super()
+          @data_restrictions = data_restrictions
+          @display_hints = display_hints
+          @id = id
+          @type = type
+        end
 
         # Sets the property and returns this same instance.
         def with_data_restrictions(value)
@@ -58,18 +69,18 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'dataRestrictions'
-            raise TypeError, "value '%s' is not a Hash" % [hash['dataRestrictions']] unless hash['dataRestrictions'].is_a? Hash
+          if hash.key? 'dataRestrictions'
+            raise TypeError, "value '#{hash['dataRestrictions']}' is not a Hash" unless hash['dataRestrictions'].is_a? Hash
             @data_restrictions = OnlinePayments::SDK::Domain::PaymentProductFieldDataRestrictions.new_from_hash(hash['dataRestrictions'])
           end
-          if hash.has_key? 'displayHints'
-            raise TypeError, "value '%s' is not a Hash" % [hash['displayHints']] unless hash['displayHints'].is_a? Hash
+          if hash.key? 'displayHints'
+            raise TypeError, "value '#{hash['displayHints']}' is not a Hash" unless hash['displayHints'].is_a? Hash
             @display_hints = OnlinePayments::SDK::Domain::PaymentProductFieldDisplayHints.new_from_hash(hash['displayHints'])
           end
-          if hash.has_key? 'id'
+          if hash.key? 'id'
             @id = hash['id']
           end
-          if hash.has_key? 'type'
+          if hash.key? 'type'
             @type = hash['type']
           end
         end

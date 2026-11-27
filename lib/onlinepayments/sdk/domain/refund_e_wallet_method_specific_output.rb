@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -17,6 +19,14 @@ module OnlinePayments
         attr_accessor :total_amount_paid
 
         attr_accessor :total_amount_refunded
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(payment_product840_specific_output: nil, total_amount_paid: nil, total_amount_refunded: nil)
+          super()
+          @payment_product840_specific_output = payment_product840_specific_output
+          @total_amount_paid = total_amount_paid
+          @total_amount_refunded = total_amount_refunded
+        end
 
         # Sets the property and returns this same instance.
         def with_payment_product840_specific_output(value)
@@ -47,14 +57,14 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'paymentProduct840SpecificOutput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct840SpecificOutput']] unless hash['paymentProduct840SpecificOutput'].is_a? Hash
+          if hash.key? 'paymentProduct840SpecificOutput'
+            raise TypeError, "value '#{hash['paymentProduct840SpecificOutput']}' is not a Hash" unless hash['paymentProduct840SpecificOutput'].is_a? Hash
             @payment_product840_specific_output = OnlinePayments::SDK::Domain::RefundPaymentProduct840SpecificOutput.new_from_hash(hash['paymentProduct840SpecificOutput'])
           end
-          if hash.has_key? 'totalAmountPaid'
+          if hash.key? 'totalAmountPaid'
             @total_amount_paid = hash['totalAmountPaid']
           end
-          if hash.has_key? 'totalAmountRefunded'
+          if hash.key? 'totalAmountRefunded'
             @total_amount_refunded = hash['totalAmountRefunded']
           end
         end

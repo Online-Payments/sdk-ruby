@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -124,6 +126,76 @@ module OnlinePayments
         attr_accessor :unscheduled_card_on_file_sequence_indicator
 
         attr_accessor :validation_rules
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(allow_dynamic_linking: nil,
+                       authorization_mode: nil,
+                       auto_capture: nil,
+                       card: nil,
+                       card_on_file_recurring_expiration: nil,
+                       card_on_file_recurring_frequency: nil,
+                       cobrand_selection_indicator: nil,
+                       currency_conversion: nil,
+                       initial_scheme_transaction_id: nil,
+                       installment: nil,
+                       is_recurring: nil,
+                       market_place: nil,
+                       multiple_payment_information: nil,
+                       network_token_data: nil,
+                       payment_product130_specific_input: nil,
+                       payment_product3012_specific_input: nil,
+                       payment_product3013_specific_input: nil,
+                       payment_product3208_specific_input: nil,
+                       payment_product3209_specific_input: nil,
+                       payment_product5002_specific_input: nil,
+                       payment_product_id: nil,
+                       recurring: nil,
+                       return_url: nil,
+                       scheme_reference_data: nil,
+                       skip_authentication: nil,
+                       sub_merchant: nil,
+                       three_d_secure: nil,
+                       token: nil,
+                       tokenize: nil,
+                       transaction_channel: nil,
+                       unscheduled_card_on_file_requestor: nil,
+                       unscheduled_card_on_file_sequence_indicator: nil,
+                       validation_rules: nil)
+          super()
+          @allow_dynamic_linking = allow_dynamic_linking
+          @authorization_mode = authorization_mode
+          @auto_capture = auto_capture
+          @card = card
+          @card_on_file_recurring_expiration = card_on_file_recurring_expiration
+          @card_on_file_recurring_frequency = card_on_file_recurring_frequency
+          @cobrand_selection_indicator = cobrand_selection_indicator
+          @currency_conversion = currency_conversion
+          @initial_scheme_transaction_id = initial_scheme_transaction_id
+          @installment = installment
+          @is_recurring = is_recurring
+          @market_place = market_place
+          @multiple_payment_information = multiple_payment_information
+          @network_token_data = network_token_data
+          @payment_product130_specific_input = payment_product130_specific_input
+          @payment_product3012_specific_input = payment_product3012_specific_input
+          @payment_product3013_specific_input = payment_product3013_specific_input
+          @payment_product3208_specific_input = payment_product3208_specific_input
+          @payment_product3209_specific_input = payment_product3209_specific_input
+          @payment_product5002_specific_input = payment_product5002_specific_input
+          @payment_product_id = payment_product_id
+          @recurring = recurring
+          @return_url = return_url
+          @scheme_reference_data = scheme_reference_data
+          @skip_authentication = skip_authentication
+          @sub_merchant = sub_merchant
+          @three_d_secure = three_d_secure
+          @token = token
+          @tokenize = tokenize
+          @transaction_channel = transaction_channel
+          @unscheduled_card_on_file_requestor = unscheduled_card_on_file_requestor
+          @unscheduled_card_on_file_sequence_indicator = unscheduled_card_on_file_sequence_indicator
+          @validation_rules = validation_rules
+        end
 
         # Sets the property and returns this same instance.
         def with_allow_dynamic_linking(value)
@@ -364,120 +436,120 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'allowDynamicLinking'
+          if hash.key? 'allowDynamicLinking'
             @allow_dynamic_linking = hash['allowDynamicLinking']
           end
-          if hash.has_key? 'authorizationMode'
+          if hash.key? 'authorizationMode'
             @authorization_mode = hash['authorizationMode']
           end
-          if hash.has_key? 'autoCapture'
-            raise TypeError, "value '%s' is not a Hash" % [hash['autoCapture']] unless hash['autoCapture'].is_a? Hash
+          if hash.key? 'autoCapture'
+            raise TypeError, "value '#{hash['autoCapture']}' is not a Hash" unless hash['autoCapture'].is_a? Hash
             @auto_capture = OnlinePayments::SDK::Domain::AutoCapture.new_from_hash(hash['autoCapture'])
           end
-          if hash.has_key? 'card'
-            raise TypeError, "value '%s' is not a Hash" % [hash['card']] unless hash['card'].is_a? Hash
+          if hash.key? 'card'
+            raise TypeError, "value '#{hash['card']}' is not a Hash" unless hash['card'].is_a? Hash
             @card = OnlinePayments::SDK::Domain::Card.new_from_hash(hash['card'])
           end
-          if hash.has_key? 'cardOnFileRecurringExpiration'
+          if hash.key? 'cardOnFileRecurringExpiration'
             @card_on_file_recurring_expiration = hash['cardOnFileRecurringExpiration']
           end
-          if hash.has_key? 'cardOnFileRecurringFrequency'
+          if hash.key? 'cardOnFileRecurringFrequency'
             @card_on_file_recurring_frequency = hash['cardOnFileRecurringFrequency']
           end
-          if hash.has_key? 'cobrandSelectionIndicator'
+          if hash.key? 'cobrandSelectionIndicator'
             @cobrand_selection_indicator = hash['cobrandSelectionIndicator']
           end
-          if hash.has_key? 'currencyConversion'
-            raise TypeError, "value '%s' is not a Hash" % [hash['currencyConversion']] unless hash['currencyConversion'].is_a? Hash
+          if hash.key? 'currencyConversion'
+            raise TypeError, "value '#{hash['currencyConversion']}' is not a Hash" unless hash['currencyConversion'].is_a? Hash
             @currency_conversion = OnlinePayments::SDK::Domain::CurrencyConversionInput.new_from_hash(hash['currencyConversion'])
           end
-          if hash.has_key? 'initialSchemeTransactionId'
+          if hash.key? 'initialSchemeTransactionId'
             @initial_scheme_transaction_id = hash['initialSchemeTransactionId']
           end
-          if hash.has_key? 'installment'
-            raise TypeError, "value '%s' is not a Hash" % [hash['installment']] unless hash['installment'].is_a? Hash
+          if hash.key? 'installment'
+            raise TypeError, "value '#{hash['installment']}' is not a Hash" unless hash['installment'].is_a? Hash
             @installment = OnlinePayments::SDK::Domain::CardInstallmentDetails.new_from_hash(hash['installment'])
           end
-          if hash.has_key? 'isRecurring'
+          if hash.key? 'isRecurring'
             @is_recurring = hash['isRecurring']
           end
-          if hash.has_key? 'marketPlace'
-            raise TypeError, "value '%s' is not a Hash" % [hash['marketPlace']] unless hash['marketPlace'].is_a? Hash
+          if hash.key? 'marketPlace'
+            raise TypeError, "value '#{hash['marketPlace']}' is not a Hash" unless hash['marketPlace'].is_a? Hash
             @market_place = OnlinePayments::SDK::Domain::MarketPlace.new_from_hash(hash['marketPlace'])
           end
-          if hash.has_key? 'multiplePaymentInformation'
-            raise TypeError, "value '%s' is not a Hash" % [hash['multiplePaymentInformation']] unless hash['multiplePaymentInformation'].is_a? Hash
+          if hash.key? 'multiplePaymentInformation'
+            raise TypeError, "value '#{hash['multiplePaymentInformation']}' is not a Hash" unless hash['multiplePaymentInformation'].is_a? Hash
             @multiple_payment_information = OnlinePayments::SDK::Domain::MultiplePaymentInformation.new_from_hash(hash['multiplePaymentInformation'])
           end
-          if hash.has_key? 'networkTokenData'
-            raise TypeError, "value '%s' is not a Hash" % [hash['networkTokenData']] unless hash['networkTokenData'].is_a? Hash
+          if hash.key? 'networkTokenData'
+            raise TypeError, "value '#{hash['networkTokenData']}' is not a Hash" unless hash['networkTokenData'].is_a? Hash
             @network_token_data = OnlinePayments::SDK::Domain::NetworkTokenData.new_from_hash(hash['networkTokenData'])
           end
-          if hash.has_key? 'paymentProduct130SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct130SpecificInput']] unless hash['paymentProduct130SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct130SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct130SpecificInput']}' is not a Hash" unless hash['paymentProduct130SpecificInput'].is_a? Hash
             @payment_product130_specific_input = OnlinePayments::SDK::Domain::PaymentProduct130SpecificInput.new_from_hash(hash['paymentProduct130SpecificInput'])
           end
-          if hash.has_key? 'paymentProduct3012SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct3012SpecificInput']] unless hash['paymentProduct3012SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct3012SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct3012SpecificInput']}' is not a Hash" unless hash['paymentProduct3012SpecificInput'].is_a? Hash
             @payment_product3012_specific_input = OnlinePayments::SDK::Domain::PaymentProduct3012SpecificInput.new_from_hash(hash['paymentProduct3012SpecificInput'])
           end
-          if hash.has_key? 'paymentProduct3013SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct3013SpecificInput']] unless hash['paymentProduct3013SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct3013SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct3013SpecificInput']}' is not a Hash" unless hash['paymentProduct3013SpecificInput'].is_a? Hash
             @payment_product3013_specific_input = OnlinePayments::SDK::Domain::PaymentProduct3013SpecificInput.new_from_hash(hash['paymentProduct3013SpecificInput'])
           end
-          if hash.has_key? 'paymentProduct3208SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct3208SpecificInput']] unless hash['paymentProduct3208SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct3208SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct3208SpecificInput']}' is not a Hash" unless hash['paymentProduct3208SpecificInput'].is_a? Hash
             @payment_product3208_specific_input = OnlinePayments::SDK::Domain::PaymentProduct3208SpecificInput.new_from_hash(hash['paymentProduct3208SpecificInput'])
           end
-          if hash.has_key? 'paymentProduct3209SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct3209SpecificInput']] unless hash['paymentProduct3209SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct3209SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct3209SpecificInput']}' is not a Hash" unless hash['paymentProduct3209SpecificInput'].is_a? Hash
             @payment_product3209_specific_input = OnlinePayments::SDK::Domain::PaymentProduct3209SpecificInput.new_from_hash(hash['paymentProduct3209SpecificInput'])
           end
-          if hash.has_key? 'paymentProduct5002SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct5002SpecificInput']] unless hash['paymentProduct5002SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct5002SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct5002SpecificInput']}' is not a Hash" unless hash['paymentProduct5002SpecificInput'].is_a? Hash
             @payment_product5002_specific_input = OnlinePayments::SDK::Domain::PaymentProduct5002SpecificInput.new_from_hash(hash['paymentProduct5002SpecificInput'])
           end
-          if hash.has_key? 'paymentProductId'
+          if hash.key? 'paymentProductId'
             @payment_product_id = hash['paymentProductId']
           end
-          if hash.has_key? 'recurring'
-            raise TypeError, "value '%s' is not a Hash" % [hash['recurring']] unless hash['recurring'].is_a? Hash
+          if hash.key? 'recurring'
+            raise TypeError, "value '#{hash['recurring']}' is not a Hash" unless hash['recurring'].is_a? Hash
             @recurring = OnlinePayments::SDK::Domain::CardRecurrenceDetails.new_from_hash(hash['recurring'])
           end
-          if hash.has_key? 'returnUrl'
+          if hash.key? 'returnUrl'
             @return_url = hash['returnUrl']
           end
-          if hash.has_key? 'schemeReferenceData'
+          if hash.key? 'schemeReferenceData'
             @scheme_reference_data = hash['schemeReferenceData']
           end
-          if hash.has_key? 'skipAuthentication'
+          if hash.key? 'skipAuthentication'
             @skip_authentication = hash['skipAuthentication']
           end
-          if hash.has_key? 'subMerchant'
-            raise TypeError, "value '%s' is not a Hash" % [hash['subMerchant']] unless hash['subMerchant'].is_a? Hash
+          if hash.key? 'subMerchant'
+            raise TypeError, "value '#{hash['subMerchant']}' is not a Hash" unless hash['subMerchant'].is_a? Hash
             @sub_merchant = OnlinePayments::SDK::Domain::SubMerchant.new_from_hash(hash['subMerchant'])
           end
-          if hash.has_key? 'threeDSecure'
-            raise TypeError, "value '%s' is not a Hash" % [hash['threeDSecure']] unless hash['threeDSecure'].is_a? Hash
+          if hash.key? 'threeDSecure'
+            raise TypeError, "value '#{hash['threeDSecure']}' is not a Hash" unless hash['threeDSecure'].is_a? Hash
             @three_d_secure = OnlinePayments::SDK::Domain::ThreeDSecure.new_from_hash(hash['threeDSecure'])
           end
-          if hash.has_key? 'token'
+          if hash.key? 'token'
             @token = hash['token']
           end
-          if hash.has_key? 'tokenize'
+          if hash.key? 'tokenize'
             @tokenize = hash['tokenize']
           end
-          if hash.has_key? 'transactionChannel'
+          if hash.key? 'transactionChannel'
             @transaction_channel = hash['transactionChannel']
           end
-          if hash.has_key? 'unscheduledCardOnFileRequestor'
+          if hash.key? 'unscheduledCardOnFileRequestor'
             @unscheduled_card_on_file_requestor = hash['unscheduledCardOnFileRequestor']
           end
-          if hash.has_key? 'unscheduledCardOnFileSequenceIndicator'
+          if hash.key? 'unscheduledCardOnFileSequenceIndicator'
             @unscheduled_card_on_file_sequence_indicator = hash['unscheduledCardOnFileSequenceIndicator']
           end
-          if hash.has_key? 'validationRules'
-            raise TypeError, "value '%s' is not a Hash" % [hash['validationRules']] unless hash['validationRules'].is_a? Hash
+          if hash.key? 'validationRules'
+            raise TypeError, "value '#{hash['validationRules']}' is not a Hash" unless hash['validationRules'].is_a? Hash
             @validation_rules = OnlinePayments::SDK::Domain::CreditCardValidationRules.new_from_hash(hash['validationRules'])
           end
         end

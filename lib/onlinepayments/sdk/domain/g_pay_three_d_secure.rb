@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -26,6 +28,22 @@ module OnlinePayments
         attr_accessor :skip_authentication
 
         attr_accessor :skip_soft_decline
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(challenge_canvas_size: nil,
+                       challenge_indicator: nil,
+                       exemption_request: nil,
+                       redirection_data: nil,
+                       skip_authentication: nil,
+                       skip_soft_decline: nil)
+          super()
+          @challenge_canvas_size = challenge_canvas_size
+          @challenge_indicator = challenge_indicator
+          @exemption_request = exemption_request
+          @redirection_data = redirection_data
+          @skip_authentication = skip_authentication
+          @skip_soft_decline = skip_soft_decline
+        end
 
         # Sets the property and returns this same instance.
         def with_challenge_canvas_size(value)
@@ -77,23 +95,23 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'challengeCanvasSize'
+          if hash.key? 'challengeCanvasSize'
             @challenge_canvas_size = hash['challengeCanvasSize']
           end
-          if hash.has_key? 'challengeIndicator'
+          if hash.key? 'challengeIndicator'
             @challenge_indicator = hash['challengeIndicator']
           end
-          if hash.has_key? 'exemptionRequest'
+          if hash.key? 'exemptionRequest'
             @exemption_request = hash['exemptionRequest']
           end
-          if hash.has_key? 'redirectionData'
-            raise TypeError, "value '%s' is not a Hash" % [hash['redirectionData']] unless hash['redirectionData'].is_a? Hash
+          if hash.key? 'redirectionData'
+            raise TypeError, "value '#{hash['redirectionData']}' is not a Hash" unless hash['redirectionData'].is_a? Hash
             @redirection_data = OnlinePayments::SDK::Domain::RedirectionData.new_from_hash(hash['redirectionData'])
           end
-          if hash.has_key? 'skipAuthentication'
+          if hash.key? 'skipAuthentication'
             @skip_authentication = hash['skipAuthentication']
           end
-          if hash.has_key? 'skipSoftDecline'
+          if hash.key? 'skipSoftDecline'
             @skip_soft_decline = hash['skipSoftDecline']
           end
         end

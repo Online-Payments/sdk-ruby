@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -26,6 +28,16 @@ module OnlinePayments
         attr_accessor :operation_references
 
         attr_accessor :shipping
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(amount_of_money: nil, is_final: nil, line_item_details: nil, operation_references: nil, shipping: nil)
+          super()
+          @amount_of_money = amount_of_money
+          @is_final = is_final
+          @line_item_details = line_item_details
+          @operation_references = operation_references
+          @shipping = shipping
+        end
 
         # Sets the property and returns this same instance.
         def with_amount_of_money(value)
@@ -70,26 +82,26 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'amountOfMoney'
-            raise TypeError, "value '%s' is not a Hash" % [hash['amountOfMoney']] unless hash['amountOfMoney'].is_a? Hash
+          if hash.key? 'amountOfMoney'
+            raise TypeError, "value '#{hash['amountOfMoney']}' is not a Hash" unless hash['amountOfMoney'].is_a? Hash
             @amount_of_money = OnlinePayments::SDK::Domain::AmountOfMoney.new_from_hash(hash['amountOfMoney'])
           end
-          if hash.has_key? 'isFinal'
+          if hash.key? 'isFinal'
             @is_final = hash['isFinal']
           end
-          if hash.has_key? 'lineItemDetails'
-            raise TypeError, "value '%s' is not an Array" % [hash['lineItemDetails']] unless hash['lineItemDetails'].is_a? Array
+          if hash.key? 'lineItemDetails'
+            raise TypeError, "value '#{hash['lineItemDetails']}' is not an Array" unless hash['lineItemDetails'].is_a? Array
             @line_item_details = []
             hash['lineItemDetails'].each do |e|
               @line_item_details << OnlinePayments::SDK::Domain::LineItemDetail.new_from_hash(e)
             end
           end
-          if hash.has_key? 'operationReferences'
-            raise TypeError, "value '%s' is not a Hash" % [hash['operationReferences']] unless hash['operationReferences'].is_a? Hash
+          if hash.key? 'operationReferences'
+            raise TypeError, "value '#{hash['operationReferences']}' is not a Hash" unless hash['operationReferences'].is_a? Hash
             @operation_references = OnlinePayments::SDK::Domain::OperationPaymentReferences.new_from_hash(hash['operationReferences'])
           end
-          if hash.has_key? 'shipping'
-            raise TypeError, "value '%s' is not a Hash" % [hash['shipping']] unless hash['shipping'].is_a? Hash
+          if hash.key? 'shipping'
+            raise TypeError, "value '#{hash['shipping']}' is not a Hash" unless hash['shipping'].is_a? Hash
             @shipping = OnlinePayments::SDK::Domain::ShippingDetail.new_from_hash(hash['shipping'])
           end
         end

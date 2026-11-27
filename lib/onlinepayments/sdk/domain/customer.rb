@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -43,6 +45,30 @@ module OnlinePayments
         attr_accessor :merchant_customer_id
 
         attr_accessor :personal_information
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(account: nil,
+                       account_type: nil,
+                       billing_address: nil,
+                       company_information: nil,
+                       contact_details: nil,
+                       device: nil,
+                       fiscal_number: nil,
+                       locale: nil,
+                       merchant_customer_id: nil,
+                       personal_information: nil)
+          super()
+          @account = account
+          @account_type = account_type
+          @billing_address = billing_address
+          @company_information = company_information
+          @contact_details = contact_details
+          @device = device
+          @fiscal_number = fiscal_number
+          @locale = locale
+          @merchant_customer_id = merchant_customer_id
+          @personal_information = personal_information
+        end
 
         # Sets the property and returns this same instance.
         def with_account(value)
@@ -122,40 +148,40 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'account'
-            raise TypeError, "value '%s' is not a Hash" % [hash['account']] unless hash['account'].is_a? Hash
+          if hash.key? 'account'
+            raise TypeError, "value '#{hash['account']}' is not a Hash" unless hash['account'].is_a? Hash
             @account = OnlinePayments::SDK::Domain::CustomerAccount.new_from_hash(hash['account'])
           end
-          if hash.has_key? 'accountType'
+          if hash.key? 'accountType'
             @account_type = hash['accountType']
           end
-          if hash.has_key? 'billingAddress'
-            raise TypeError, "value '%s' is not a Hash" % [hash['billingAddress']] unless hash['billingAddress'].is_a? Hash
+          if hash.key? 'billingAddress'
+            raise TypeError, "value '#{hash['billingAddress']}' is not a Hash" unless hash['billingAddress'].is_a? Hash
             @billing_address = OnlinePayments::SDK::Domain::Address.new_from_hash(hash['billingAddress'])
           end
-          if hash.has_key? 'companyInformation'
-            raise TypeError, "value '%s' is not a Hash" % [hash['companyInformation']] unless hash['companyInformation'].is_a? Hash
+          if hash.key? 'companyInformation'
+            raise TypeError, "value '#{hash['companyInformation']}' is not a Hash" unless hash['companyInformation'].is_a? Hash
             @company_information = OnlinePayments::SDK::Domain::CompanyInformation.new_from_hash(hash['companyInformation'])
           end
-          if hash.has_key? 'contactDetails'
-            raise TypeError, "value '%s' is not a Hash" % [hash['contactDetails']] unless hash['contactDetails'].is_a? Hash
+          if hash.key? 'contactDetails'
+            raise TypeError, "value '#{hash['contactDetails']}' is not a Hash" unless hash['contactDetails'].is_a? Hash
             @contact_details = OnlinePayments::SDK::Domain::ContactDetails.new_from_hash(hash['contactDetails'])
           end
-          if hash.has_key? 'device'
-            raise TypeError, "value '%s' is not a Hash" % [hash['device']] unless hash['device'].is_a? Hash
+          if hash.key? 'device'
+            raise TypeError, "value '#{hash['device']}' is not a Hash" unless hash['device'].is_a? Hash
             @device = OnlinePayments::SDK::Domain::CustomerDevice.new_from_hash(hash['device'])
           end
-          if hash.has_key? 'fiscalNumber'
+          if hash.key? 'fiscalNumber'
             @fiscal_number = hash['fiscalNumber']
           end
-          if hash.has_key? 'locale'
+          if hash.key? 'locale'
             @locale = hash['locale']
           end
-          if hash.has_key? 'merchantCustomerId'
+          if hash.key? 'merchantCustomerId'
             @merchant_customer_id = hash['merchantCustomerId']
           end
-          if hash.has_key? 'personalInformation'
-            raise TypeError, "value '%s' is not a Hash" % [hash['personalInformation']] unless hash['personalInformation'].is_a? Hash
+          if hash.key? 'personalInformation'
+            raise TypeError, "value '#{hash['personalInformation']}' is not a Hash" unless hash['personalInformation'].is_a? Hash
             @personal_information = OnlinePayments::SDK::Domain::PersonalInformation.new_from_hash(hash['personalInformation'])
           end
         end

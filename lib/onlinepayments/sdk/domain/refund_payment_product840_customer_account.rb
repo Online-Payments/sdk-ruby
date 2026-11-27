@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -16,6 +18,14 @@ module OnlinePayments
         attr_accessor :customer_address_status
 
         attr_accessor :payer_id
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(customer_account_status: nil, customer_address_status: nil, payer_id: nil)
+          super()
+          @customer_account_status = customer_account_status
+          @customer_address_status = customer_address_status
+          @payer_id = payer_id
+        end
 
         # Sets the property and returns this same instance.
         def with_customer_account_status(value)
@@ -46,13 +56,13 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'customerAccountStatus'
+          if hash.key? 'customerAccountStatus'
             @customer_account_status = hash['customerAccountStatus']
           end
-          if hash.has_key? 'customerAddressStatus'
+          if hash.key? 'customerAddressStatus'
             @customer_address_status = hash['customerAddressStatus']
           end
-          if hash.has_key? 'payerId'
+          if hash.key? 'payerId'
             @payer_id = hash['payerId']
           end
         end

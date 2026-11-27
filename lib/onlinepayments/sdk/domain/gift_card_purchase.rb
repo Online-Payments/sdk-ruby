@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -14,6 +16,13 @@ module OnlinePayments
         attr_accessor :amount_of_money
 
         attr_accessor :number_of_gift_cards
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(amount_of_money: nil, number_of_gift_cards: nil)
+          super()
+          @amount_of_money = amount_of_money
+          @number_of_gift_cards = number_of_gift_cards
+        end
 
         # Sets the property and returns this same instance.
         def with_amount_of_money(value)
@@ -37,11 +46,11 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'amountOfMoney'
-            raise TypeError, "value '%s' is not a Hash" % [hash['amountOfMoney']] unless hash['amountOfMoney'].is_a? Hash
+          if hash.key? 'amountOfMoney'
+            raise TypeError, "value '#{hash['amountOfMoney']}' is not a Hash" unless hash['amountOfMoney'].is_a? Hash
             @amount_of_money = OnlinePayments::SDK::Domain::AmountOfMoney.new_from_hash(hash['amountOfMoney'])
           end
-          if hash.has_key? 'numberOfGiftCards'
+          if hash.key? 'numberOfGiftCards'
             @number_of_gift_cards = hash['numberOfGiftCards']
           end
         end

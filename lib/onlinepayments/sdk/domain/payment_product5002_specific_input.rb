@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :checkout_response_signature
 
         attr_accessor :credit_card_brand
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(checkout_response_signature: nil, credit_card_brand: nil)
+          super()
+          @checkout_response_signature = checkout_response_signature
+          @credit_card_brand = credit_card_brand
+        end
 
         # Sets the property and returns this same instance.
         def with_checkout_response_signature(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'checkoutResponseSignature'
+          if hash.key? 'checkoutResponseSignature'
             @checkout_response_signature = hash['checkoutResponseSignature']
           end
-          if hash.has_key? 'creditCardBrand'
+          if hash.key? 'creditCardBrand'
             @credit_card_brand = hash['creditCardBrand']
           end
         end

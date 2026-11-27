@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -14,6 +16,12 @@ module OnlinePayments
         class GetCardDataByPaymentsParams < OnlinePayments::SDK::Communication::ParamRequest
 
           attr_accessor :payments
+
+          # Creates a new instance; every attribute can be given as a keyword argument.
+          def initialize(payments: nil)
+            super()
+            @payments = payments
+          end
 
           # Adds the parameter _value_ to the _payments_ Array
           #

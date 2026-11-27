@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -14,6 +16,13 @@ module OnlinePayments
         attr_accessor :payment_product771_specific_input
 
         attr_accessor :payment_product_id
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(payment_product771_specific_input: nil, payment_product_id: nil)
+          super()
+          @payment_product771_specific_input = payment_product771_specific_input
+          @payment_product_id = payment_product_id
+        end
 
         # Sets the property and returns this same instance.
         def with_payment_product771_specific_input(value)
@@ -37,11 +46,11 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'paymentProduct771SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct771SpecificInput']] unless hash['paymentProduct771SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct771SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct771SpecificInput']}' is not a Hash" unless hash['paymentProduct771SpecificInput'].is_a? Hash
             @payment_product771_specific_input = OnlinePayments::SDK::Domain::SepaDirectDebitPaymentProduct771SpecificInputBase.new_from_hash(hash['paymentProduct771SpecificInput'])
           end
-          if hash.has_key? 'paymentProductId'
+          if hash.key? 'paymentProductId'
             @payment_product_id = hash['paymentProductId']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :result
 
         attr_accessor :result_reason
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(result: nil, result_reason: nil)
+          super()
+          @result = result
+          @result_reason = result_reason
+        end
 
         # Sets the property and returns this same instance.
         def with_result(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'result'
+          if hash.key? 'result'
             @result = hash['result']
           end
-          if hash.has_key? 'resultReason'
+          if hash.key? 'resultReason'
             @result_reason = hash['resultReason']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :retailer_country
 
         attr_accessor :retailer_name
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(retailer_country: nil, retailer_name: nil)
+          super()
+          @retailer_country = retailer_country
+          @retailer_name = retailer_name
+        end
 
         # Sets the property and returns this same instance.
         def with_retailer_country(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'retailerCountry'
+          if hash.key? 'retailerCountry'
             @retailer_country = hash['retailerCountry']
           end
-          if hash.has_key? 'retailerName'
+          if hash.key? 'retailerName'
             @retailer_name = hash['retailerName']
           end
         end

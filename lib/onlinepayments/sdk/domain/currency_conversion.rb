@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -14,6 +16,13 @@ module OnlinePayments
         attr_accessor :accepted_by_user
 
         attr_accessor :proposal
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(accepted_by_user: nil, proposal: nil)
+          super()
+          @accepted_by_user = accepted_by_user
+          @proposal = proposal
+        end
 
         # Sets the property and returns this same instance.
         def with_accepted_by_user(value)
@@ -37,11 +46,11 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'acceptedByUser'
+          if hash.key? 'acceptedByUser'
             @accepted_by_user = hash['acceptedByUser']
           end
-          if hash.has_key? 'proposal'
-            raise TypeError, "value '%s' is not a Hash" % [hash['proposal']] unless hash['proposal'].is_a? Hash
+          if hash.key? 'proposal'
+            raise TypeError, "value '#{hash['proposal']}' is not a Hash" unless hash['proposal'].is_a? Hash
             @proposal = OnlinePayments::SDK::Domain::DccProposal.new_from_hash(hash['proposal'])
           end
         end

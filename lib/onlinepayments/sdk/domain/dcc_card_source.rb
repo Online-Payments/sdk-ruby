@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -20,6 +22,15 @@ module OnlinePayments
         attr_accessor :hosted_tokenization_id
 
         attr_accessor :token
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(card: nil, encrypted_customer_input: nil, hosted_tokenization_id: nil, token: nil)
+          super()
+          @card = card
+          @encrypted_customer_input = encrypted_customer_input
+          @hosted_tokenization_id = hosted_tokenization_id
+          @token = token
+        end
 
         # Sets the property and returns this same instance.
         def with_card(value)
@@ -57,17 +68,17 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'card'
-            raise TypeError, "value '%s' is not a Hash" % [hash['card']] unless hash['card'].is_a? Hash
+          if hash.key? 'card'
+            raise TypeError, "value '#{hash['card']}' is not a Hash" unless hash['card'].is_a? Hash
             @card = OnlinePayments::SDK::Domain::CardInfo.new_from_hash(hash['card'])
           end
-          if hash.has_key? 'encryptedCustomerInput'
+          if hash.key? 'encryptedCustomerInput'
             @encrypted_customer_input = hash['encryptedCustomerInput']
           end
-          if hash.has_key? 'hostedTokenizationId'
+          if hash.key? 'hostedTokenizationId'
             @hosted_tokenization_id = hash['hostedTokenizationId']
           end
-          if hash.has_key? 'token'
+          if hash.key? 'token'
             @token = hash['token']
           end
         end

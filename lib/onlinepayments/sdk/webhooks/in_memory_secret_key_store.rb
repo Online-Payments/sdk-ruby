@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'concurrent'
 require 'singleton'
 require 'onlinepayments/sdk/webhooks/secret_key_not_available_exception'
@@ -26,8 +28,8 @@ module OnlinePayments
         # @raise [OnlinePayments::SDK::Webhooks::SecretKeyNotAvailableException] if the secret key for the given key id is not available.
         def get_secret_key(key_id)
           if (secret_key = @store.get(key_id)).nil?
-            msg = "could not find secret key for key id " + key_id
-            raise SecretKeyNotAvailableException.new(message: msg, key_id: key_id)
+            msg = "could not find secret key for key id #{key_id}"
+            raise SecretKeyNotAvailableException.new(message: msg, key_id: key_id.to_s)
           end
           secret_key
         end
@@ -37,8 +39,9 @@ module OnlinePayments
         # @param key_id     [String] key id of the secret key
         # @param secret_key [String] the secret key to be stored
         def store_secret_key(key_id, secret_key)
-          raise ArgumentError if key_id.nil? or key_id.strip.empty?
-          raise ArgumentError if secret_key.nil? or secret_key.strip.empty?
+          raise ArgumentError if key_id.nil? || key_id.strip.empty?
+          raise ArgumentError if secret_key.nil? || secret_key.strip.empty?
+
           @store.put(key_id, secret_key)
         end
 

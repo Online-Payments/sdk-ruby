@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -23,6 +25,16 @@ module OnlinePayments
         attr_accessor :payout_reason
 
         attr_accessor :token
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(card: nil, hosted_fields_session_id: nil, payment_product_id: nil, payout_reason: nil, token: nil)
+          super()
+          @card = card
+          @hosted_fields_session_id = hosted_fields_session_id
+          @payment_product_id = payment_product_id
+          @payout_reason = payout_reason
+          @token = token
+        end
 
         # Sets the property and returns this same instance.
         def with_card(value)
@@ -67,20 +79,20 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'card'
-            raise TypeError, "value '%s' is not a Hash" % [hash['card']] unless hash['card'].is_a? Hash
+          if hash.key? 'card'
+            raise TypeError, "value '#{hash['card']}' is not a Hash" unless hash['card'].is_a? Hash
             @card = OnlinePayments::SDK::Domain::Card.new_from_hash(hash['card'])
           end
-          if hash.has_key? 'hostedFieldsSessionId'
+          if hash.key? 'hostedFieldsSessionId'
             @hosted_fields_session_id = hash['hostedFieldsSessionId']
           end
-          if hash.has_key? 'paymentProductId'
+          if hash.key? 'paymentProductId'
             @payment_product_id = hash['paymentProductId']
           end
-          if hash.has_key? 'payoutReason'
+          if hash.key? 'payoutReason'
             @payout_reason = hash['payoutReason']
           end
-          if hash.has_key? 'token'
+          if hash.key? 'token'
             @token = hash['token']
           end
         end

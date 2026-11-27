@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -19,6 +21,15 @@ module OnlinePayments
         attr_accessor :masked_pan
 
         attr_accessor :token_id
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(expiry_date: nil, is_temporary: nil, masked_pan: nil, token_id: nil)
+          super()
+          @expiry_date = expiry_date
+          @is_temporary = is_temporary
+          @masked_pan = masked_pan
+          @token_id = token_id
+        end
 
         # Sets the property and returns this same instance.
         def with_expiry_date(value)
@@ -56,16 +67,16 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'expiryDate'
+          if hash.key? 'expiryDate'
             @expiry_date = hash['expiryDate']
           end
-          if hash.has_key? 'isTemporary'
+          if hash.key? 'isTemporary'
             @is_temporary = hash['isTemporary']
           end
-          if hash.has_key? 'maskedPan'
+          if hash.key? 'maskedPan'
             @masked_pan = hash['maskedPan']
           end
-          if hash.has_key? 'tokenId'
+          if hash.key? 'tokenId'
             @token_id = hash['tokenId']
           end
         end

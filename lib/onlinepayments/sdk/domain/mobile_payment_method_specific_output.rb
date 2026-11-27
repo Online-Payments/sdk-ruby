@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -28,6 +30,17 @@ module OnlinePayments
         attr_accessor :payment_product_id
 
         attr_accessor :three_d_secure_results
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(authorisation_code: nil, fraud_results: nil, network: nil, payment_data: nil, payment_product_id: nil, three_d_secure_results: nil)
+          super()
+          @authorisation_code = authorisation_code
+          @fraud_results = fraud_results
+          @network = network
+          @payment_data = payment_data
+          @payment_product_id = payment_product_id
+          @three_d_secure_results = three_d_secure_results
+        end
 
         # Sets the property and returns this same instance.
         def with_authorisation_code(value)
@@ -79,25 +92,25 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'authorisationCode'
+          if hash.key? 'authorisationCode'
             @authorisation_code = hash['authorisationCode']
           end
-          if hash.has_key? 'fraudResults'
-            raise TypeError, "value '%s' is not a Hash" % [hash['fraudResults']] unless hash['fraudResults'].is_a? Hash
+          if hash.key? 'fraudResults'
+            raise TypeError, "value '#{hash['fraudResults']}' is not a Hash" unless hash['fraudResults'].is_a? Hash
             @fraud_results = OnlinePayments::SDK::Domain::CardFraudResults.new_from_hash(hash['fraudResults'])
           end
-          if hash.has_key? 'network'
+          if hash.key? 'network'
             @network = hash['network']
           end
-          if hash.has_key? 'paymentData'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentData']] unless hash['paymentData'].is_a? Hash
+          if hash.key? 'paymentData'
+            raise TypeError, "value '#{hash['paymentData']}' is not a Hash" unless hash['paymentData'].is_a? Hash
             @payment_data = OnlinePayments::SDK::Domain::MobilePaymentData.new_from_hash(hash['paymentData'])
           end
-          if hash.has_key? 'paymentProductId'
+          if hash.key? 'paymentProductId'
             @payment_product_id = hash['paymentProductId']
           end
-          if hash.has_key? 'threeDSecureResults'
-            raise TypeError, "value '%s' is not a Hash" % [hash['threeDSecureResults']] unless hash['threeDSecureResults'].is_a? Hash
+          if hash.key? 'threeDSecureResults'
+            raise TypeError, "value '#{hash['threeDSecureResults']}' is not a Hash" unless hash['threeDSecureResults'].is_a? Hash
             @three_d_secure_results = OnlinePayments::SDK::Domain::ThreeDSecureResults.new_from_hash(hash['threeDSecureResults'])
           end
         end

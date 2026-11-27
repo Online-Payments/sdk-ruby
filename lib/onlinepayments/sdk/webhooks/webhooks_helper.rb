@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'onlinepayments/sdk/webhooks/webhooks_event'
 require 'onlinepayments/sdk/webhooks/api_version_mismatch_exception'
 require 'onlinepayments/sdk/webhooks/signature_validator'
@@ -9,6 +11,7 @@ module OnlinePayments
       class WebhooksHelper
         def initialize(marshaller, secret_key_store)
           raise ArgumentError if marshaller.nil?
+
           @marshaller = marshaller
           @signature_validator = OnlinePayments::SDK::Webhooks::SignatureValidator.new(secret_key_store)
         end
@@ -33,6 +36,5 @@ module OnlinePayments
         end
       end
     end
-
   end
 end

@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 module OnlinePayments
   module SDK
     module Logging
       # Abstract mixin module that allows loggers to be registered to an object.
       module LoggingCapable
-
         def enable_logging(communicator_logger)
           raise NotImplementedError
         end

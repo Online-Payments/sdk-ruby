@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -16,6 +18,14 @@ module OnlinePayments
         attr_accessor :label
 
         attr_accessor :logo
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(display_order: nil, label: nil, logo: nil)
+          super()
+          @display_order = display_order
+          @label = label
+          @logo = logo
+        end
 
         # Sets the property and returns this same instance.
         def with_display_order(value)
@@ -46,13 +56,13 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'displayOrder'
+          if hash.key? 'displayOrder'
             @display_order = hash['displayOrder']
           end
-          if hash.has_key? 'label'
+          if hash.key? 'label'
             @label = hash['label']
           end
-          if hash.has_key? 'logo'
+          if hash.key? 'logo'
             @logo = hash['logo']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -29,6 +31,22 @@ module OnlinePayments
         attr_accessor :pre_order_item_availability_date
 
         attr_accessor :re_order_indicator
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(amount_breakdown: nil,
+                       gift_card_purchase: nil,
+                       is_pre_order: nil,
+                       items: nil,
+                       pre_order_item_availability_date: nil,
+                       re_order_indicator: nil)
+          super()
+          @amount_breakdown = amount_breakdown
+          @gift_card_purchase = gift_card_purchase
+          @is_pre_order = is_pre_order
+          @items = items
+          @pre_order_item_availability_date = pre_order_item_availability_date
+          @re_order_indicator = re_order_indicator
+        end
 
         # Sets the property and returns this same instance.
         def with_amount_breakdown(value)
@@ -80,31 +98,31 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'amountBreakdown'
-            raise TypeError, "value '%s' is not an Array" % [hash['amountBreakdown']] unless hash['amountBreakdown'].is_a? Array
+          if hash.key? 'amountBreakdown'
+            raise TypeError, "value '#{hash['amountBreakdown']}' is not an Array" unless hash['amountBreakdown'].is_a? Array
             @amount_breakdown = []
             hash['amountBreakdown'].each do |e|
               @amount_breakdown << OnlinePayments::SDK::Domain::AmountBreakdown.new_from_hash(e)
             end
           end
-          if hash.has_key? 'giftCardPurchase'
-            raise TypeError, "value '%s' is not a Hash" % [hash['giftCardPurchase']] unless hash['giftCardPurchase'].is_a? Hash
+          if hash.key? 'giftCardPurchase'
+            raise TypeError, "value '#{hash['giftCardPurchase']}' is not a Hash" unless hash['giftCardPurchase'].is_a? Hash
             @gift_card_purchase = OnlinePayments::SDK::Domain::GiftCardPurchase.new_from_hash(hash['giftCardPurchase'])
           end
-          if hash.has_key? 'isPreOrder'
+          if hash.key? 'isPreOrder'
             @is_pre_order = hash['isPreOrder']
           end
-          if hash.has_key? 'items'
-            raise TypeError, "value '%s' is not an Array" % [hash['items']] unless hash['items'].is_a? Array
+          if hash.key? 'items'
+            raise TypeError, "value '#{hash['items']}' is not an Array" unless hash['items'].is_a? Array
             @items = []
             hash['items'].each do |e|
               @items << OnlinePayments::SDK::Domain::LineItem.new_from_hash(e)
             end
           end
-          if hash.has_key? 'preOrderItemAvailabilityDate'
+          if hash.key? 'preOrderItemAvailabilityDate'
             @pre_order_item_availability_date = hash['preOrderItemAvailabilityDate']
           end
-          if hash.has_key? 'reOrderIndicator'
+          if hash.key? 'reOrderIndicator'
             @re_order_indicator = hash['reOrderIndicator']
           end
         end

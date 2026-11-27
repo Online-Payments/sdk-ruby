@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -17,6 +19,13 @@ module OnlinePayments
           attr_accessor :locale
 
           attr_accessor :payment_product_id
+
+          # Creates a new instance; every attribute can be given as a keyword argument.
+          def initialize(locale: nil, payment_product_id: nil)
+            super()
+            @locale = locale
+            @payment_product_id = payment_product_id
+          end
 
           # Sets the parameter and returns this same instance.
           def with_locale(value)

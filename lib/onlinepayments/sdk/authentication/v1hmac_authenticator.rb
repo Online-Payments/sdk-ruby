@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'openssl'
 require 'base64'
 
@@ -10,26 +12,27 @@ module OnlinePayments
     module Authentication
       # Authenticates requests made to the Online Payments platform using V1Hmac.
       class V1HmacAuthenticator < Authenticator
-
         # HMAC algorithm used to generate the signature
-        HMAC_ALGOR = 'SHA256'.freeze
-        CONTENT_TYPE = 'Content-Type'.freeze
-        DATE = 'Date'.freeze
-        XGCS = 'X-GCS'.freeze
+        HMAC_ALGOR = 'SHA256'
+        CONTENT_TYPE = 'Content-Type'
+        DATE = 'Date'
+        XGCS = 'X-GCS'
         XGCS_LOWER = XGCS.downcase.freeze
 
         # Constructs a new V1HmacAuthenticator instance using the provided CommunicatorConfiguration.
         #
         # @param communicator_configuration [OnlinePayments::SDK::CommunicatorConfiguration] The configuration object
-        #                                   containing the V1Hmac authorization id and authorization secret,
-        #                                   connection timeout, and socket timeout. None of these can be _nil_ or empty,
-        #                                   and the timeout values must be positive.
+        #                                   containing the V1Hmac authorization id and authorization secret.
+        #                                   Neither of these can be _nil_ or empty.
         def initialize(communicator_configuration)
-          raise ArgumentError unless communicator_configuration.api_key_id and not communicator_configuration.api_key_id.strip.empty?
-          raise ArgumentError unless communicator_configuration.secret_api_key and not communicator_configuration.secret_api_key.strip.empty?
+          super()
+          api_key_id = communicator_configuration.api_key_id
+          secret_api_key = communicator_configuration.secret_api_key
+          raise ArgumentError, 'api_key_id is required' unless api_key_id && !api_key_id.strip.empty?
+          raise ArgumentError, 'secret_api_key is required' unless secret_api_key && !secret_api_key.strip.empty?
 
-          @api_key_id = communicator_configuration.api_key_id
-          @secret_api_key = communicator_configuration.secret_api_key
+          @api_key_id = api_key_id
+          @secret_api_key = secret_api_key
           @authorization_type = communicator_configuration.authorization_type
         end
 
@@ -62,17 +65,16 @@ module OnlinePayments
           http_headers&.each do |header|
             name = header.name
             value = header.value
-            case
-            when name.casecmp(CONTENT_TYPE).zero?
+            if name.casecmp(CONTENT_TYPE).zero?
               content_type = value
-            when name.casecmp(DATE).zero?
+            elsif name.casecmp(DATE).zero?
               date = value
-            when to_canonical_header_name(name).start_with?(XGCS_LOWER)
+            elsif to_canonical_header_name(name).start_with?(XGCS_LOWER)
               xgc_http_headers << [to_canonical_header_name(name), to_canonical_header_value(value)]
             end
           end
 
-          xgc_http_headers.sort! { |(h1, v1), (h2, v2)| h1 <=> h2 } unless xgc_http_headers.empty?
+          xgc_http_headers.sort! { |(h1, _v1), (h2, _v2)| h1 <=> h2 } unless xgc_http_headers.empty?
 
           data = "#{http_method.upcase}\n#{content_type}\n#{date}\n"
           data << xgc_http_headers.inject('') { |s, (k, v)| "#{s}#{k}:#{v}\n" } unless xgc_http_headers.empty?
@@ -89,9 +91,10 @@ module OnlinePayments
 
         private
 
-        # Returns the URI path without the HTTP method and including all decoded query parameters.
+        # Returns the URI path without the HTTP method and including all query parameters, encoded as they are sent.
         def to_canonical_resource(resource_uri)
           return "#{resource_uri.path}?#{resource_uri.query}" if resource_uri.query
+
           resource_uri.path
         end
 
@@ -102,6 +105,7 @@ module OnlinePayments
         # Strips a header value of excess whitespace to produce a canonical value
         def to_canonical_header_value(original_value)
           return '' unless original_value
+
           original_value.gsub(/\r?\n[\s&&[^\r\n]]*/, ' ').strip
         end
       end

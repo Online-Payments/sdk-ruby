@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -22,6 +24,16 @@ module OnlinePayments
         attr_accessor :session_token
 
         attr_accessor :tokens
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(hosted_fields_session_id: nil, locale: nil, platform_url: nil, session_token: nil, tokens: nil)
+          super()
+          @hosted_fields_session_id = hosted_fields_session_id
+          @locale = locale
+          @platform_url = platform_url
+          @session_token = session_token
+          @tokens = tokens
+        end
 
         # Sets the property and returns this same instance.
         def with_hosted_fields_session_id(value)
@@ -66,20 +78,20 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'hostedFieldsSessionId'
+          if hash.key? 'hostedFieldsSessionId'
             @hosted_fields_session_id = hash['hostedFieldsSessionId']
           end
-          if hash.has_key? 'locale'
+          if hash.key? 'locale'
             @locale = hash['locale']
           end
-          if hash.has_key? 'platformUrl'
+          if hash.key? 'platformUrl'
             @platform_url = hash['platformUrl']
           end
-          if hash.has_key? 'sessionToken'
+          if hash.key? 'sessionToken'
             @session_token = hash['sessionToken']
           end
-          if hash.has_key? 'tokens'
-            raise TypeError, "value '%s' is not an Array" % [hash['tokens']] unless hash['tokens'].is_a? Array
+          if hash.key? 'tokens'
+            raise TypeError, "value '#{hash['tokens']}' is not an Array" unless hash['tokens'].is_a? Array
             @tokens = []
             hash['tokens'].each do |e|
               @tokens << e

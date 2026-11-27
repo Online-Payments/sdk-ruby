@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'date'
 require 'uri'
 require 'onlinepayments/sdk/domain/data_object'
@@ -38,17 +40,17 @@ module OnlinePayments
       # @param marshaller        [OnlinePayments::SDK::JSON::Marshaller] used to marshal and unmarshal data to and from JSON format
       #
       def initialize(api_endpoint, connection, authenticator, metadata_provider, marshaller)
-        raise ArgumentError.new('api_endpoint is required') unless api_endpoint
-        raise ArgumentError.new('connection is required') unless connection
-        raise ArgumentError.new('authenticator is required') unless authenticator
-        raise ArgumentError.new('metadata_provider is required') unless metadata_provider
-        raise ArgumentError.new('marshaller is required') if marshaller.nil?
+        raise ArgumentError, 'api_endpoint is required' unless api_endpoint
+        raise ArgumentError, 'connection is required' unless connection
+        raise ArgumentError, 'authenticator is required' unless authenticator
+        raise ArgumentError, 'metadata_provider is required' unless metadata_provider
+        raise ArgumentError, 'marshaller is required' if marshaller.nil?
 
         uri = URI(api_endpoint)
-        raise RuntimeError.new('api_endpoint should not contain a path') unless uri.path.nil? || uri.path.empty?
-        unless uri.userinfo.nil? && uri.query.nil? && uri.fragment.nil?
-          raise RuntimeError.new('api_endpoint should not contain user info, query or fragment')
-        end
+        raise ArgumentError, 'api_endpoint must be an absolute http or https URL' unless uri.is_a?(URI::HTTP) && !uri.host.to_s.empty?
+        raise 'api_endpoint should not contain a path' unless uri.path.nil? || uri.path.empty?
+        raise 'api_endpoint should not contain user info, query or fragment' unless uri.userinfo.nil? && uri.query.nil? && uri.fragment.nil?
+
         @api_endpoint = uri
         @connection = connection
         @authenticator = authenticator
@@ -70,10 +72,10 @@ module OnlinePayments
       # @raise [OnlinePayments::SDK::Communication::CommunicationException] if there is an error in communicating with the Online Payments platform.
       #        This occurs for example if a timeout occurs.
       def get(relative_path, request_headers, request_parameters, response_type, context)
-        request_parameter_list = request_parameters && request_parameters.to_request_parameters
+        request_parameter_list = request_parameters&.to_request_parameters
         uri = to_absolute_uri(relative_path, request_parameter_list)
 
-        request_headers = [] if request_headers.nil?
+        request_headers = request_headers.nil? ? [] : request_headers.dup
         add_generic_headers('GET', uri, request_headers, context)
 
         response_status_code, response_headers, response_body = nil
@@ -97,20 +99,18 @@ module OnlinePayments
       # @raise [OnlinePayments::SDK::Communication::NotFoundException] if the requested resource is not found
       # @raise [OnlinePayments::SDK::Communication::CommunicationException] if there is an error in communicating with the Online Payments platform.
       #        This occurs for example if a timeout occurs.
-      def get_with_binary_response(relative_path, request_headers, request_parameters, context)
-        request_parameter_list = request_parameters && request_parameters.to_request_parameters
+      def get_with_binary_response(relative_path, request_headers, request_parameters, context, &)
+        request_parameter_list = request_parameters&.to_request_parameters
         uri = to_absolute_uri(relative_path, request_parameter_list)
 
-        request_headers = [] if request_headers.nil?
+        request_headers = request_headers.nil? ? [] : request_headers.dup
         add_generic_headers('GET', uri, request_headers, context)
 
         response_status_code, response_headers, response_body = nil
         @connection.get(uri, request_headers) do |status_code, headers, content|
           response_status_code = status_code
           response_headers = headers
-          response_body = process_binary_response(status_code, content, headers, context) do |h, c|
-            yield h, c
-          end
+          response_body = process_binary_response(status_code, content, headers, context, &)
         end
         throw_exception_if_necessary(response_body, response_status_code, response_headers, relative_path)
       end
@@ -129,9 +129,9 @@ module OnlinePayments
       # @raise [OnlinePayments::SDK::Communication::CommunicationException] if there is an error in communicating with the Online Payments platform.
       #        This occurs for example if a timeout occurs.
       def delete(relative_path, request_headers, request_parameters, response_type, context)
-        request_parameter_list = request_parameters && request_parameters.to_request_parameters
+        request_parameter_list = request_parameters&.to_request_parameters
         uri = to_absolute_uri(relative_path, request_parameter_list)
-        request_headers = [] if request_headers.nil?
+        request_headers = request_headers.nil? ? [] : request_headers.dup
         add_generic_headers('DELETE', uri, request_headers, context)
 
         response_status_code, response_headers, response_body = nil
@@ -155,19 +155,17 @@ module OnlinePayments
       # @raise [OnlinePayments::SDK::Communication::NotFoundException] if the requested resource is not found
       # @raise [OnlinePayments::SDK::Communication::CommunicationException] if there is an error in communicating with the Online Payments platform.
       #        This occurs for example if a timeout occurs.
-      def delete_with_binary_response(relative_path, request_headers, request_parameters, context)
-        request_parameter_list = request_parameters && request_parameters.to_request_parameters
+      def delete_with_binary_response(relative_path, request_headers, request_parameters, context, &)
+        request_parameter_list = request_parameters&.to_request_parameters
         uri = to_absolute_uri(relative_path, request_parameter_list)
-        request_headers = [] if request_headers.nil?
+        request_headers = request_headers.nil? ? [] : request_headers.dup
         add_generic_headers('DELETE', uri, request_headers, context)
 
         response_status_code, response_headers, response_body = nil
         @connection.delete(uri, request_headers) do |status_code, headers, content|
           response_status_code = status_code
           response_headers = headers
-          response_body = process_binary_response(status_code, content, headers, context) do |h, c|
-            yield h, c
-          end
+          response_body = process_binary_response(status_code, content, headers, context, &)
         end
         throw_exception_if_necessary(response_body, response_status_code, response_headers, relative_path)
       end
@@ -177,7 +175,7 @@ module OnlinePayments
       # @param relative_path      [String] Path relative to the API endpoint
       # @param request_headers    [Array<OnlinePayments::SDK::Communication::RequestHeader>, nil] Optional array of request headers
       # @param request_parameters [OnlinePayments::SDK::Communication::ParamRequest, nil] Optional request parameters
-      # @param request_body       [OnlinePayments::SDK::Domain::DataObject, OnlinePayments::SDK::Communication::MultipartFormDataObject, OnlinePayments::SDK::Communication::MultipartFormDataRequest, nil]
+      # @param request_body       [Domain::DataObject, Communication::MultipartFormDataObject, Communication::MultipartFormDataRequest, nil]
       #                           The optional request body
       # @param response_type      [Type] The response type.
       # @param context            [OnlinePayments::SDK::CallContext, nil] Optional call context.
@@ -188,32 +186,10 @@ module OnlinePayments
       # @raise [OnlinePayments::SDK::Communication::CommunicationException] if there is an error in communicating with the Online Payments platform.
       #        This occurs for example if a timeout occurs.
       def post(relative_path, request_headers, request_parameters, request_body, response_type, context)
-        request_parameter_list = request_parameters && request_parameters.to_request_parameters
+        request_parameter_list = request_parameters&.to_request_parameters
         uri = to_absolute_uri(relative_path, request_parameter_list)
-        request_headers = [] if request_headers.nil?
-
-        body = nil
-        if request_body.is_a? Communication::MultipartFormDataObject
-          request_headers.push(Communication::RequestHeader.new('Content-Type', request_body.content_type))
-          body = request_body
-        elsif request_body.is_a? Communication::MultipartFormDataRequest
-          multipart = request_body.to_multipart_form_data_object
-          request_headers.push(Communication::RequestHeader.new('Content-Type', multipart.content_type))
-          body = multipart
-        elsif !request_body.nil?
-          request_headers.push(Communication::RequestHeader.new('Content-Type', 'application/json'))
-          body = @marshaller.marshal(request_body)
-
-          if context&.gzip
-            request_headers.push(Communication::RequestHeader.new('Content-Encoding', 'gzip'))
-          end
-
-        else
-          # Set the content-type, even though there is no body, to prevent the httpClient from
-          # adding a content-type header after authentication has been generated.
-          request_headers.push(Communication::RequestHeader.new('Content-Type', 'text/plain'))
-        end
-
+        request_headers = request_headers.nil? ? [] : request_headers.dup
+        body = prepare_request_body(request_body, request_headers, gzip: context&.gzip)
         add_generic_headers('POST', uri, request_headers, context)
 
         response_status_code, response_headers, response_body = nil
@@ -230,7 +206,7 @@ module OnlinePayments
       # @param relative_path      [String] Path relative to the API endpoint
       # @param request_headers    [Array<OnlinePayments::SDK::Communication::RequestHeader>, nil] Optional array of request headers
       # @param request_parameters [OnlinePayments::SDK::Communication::ParamRequest, nil] Optional request parameters
-      # @param request_body       [OnlinePayments::SDK::Domain::DataObject, OnlinePayments::SDK::Communication::MultipartFormDataObject, OnlinePayments::SDK::Communication::MultipartFormDataRequest, nil]
+      # @param request_body       [Domain::DataObject, Communication::MultipartFormDataObject, Communication::MultipartFormDataRequest, nil]
       #                           The optional request body
       # @param context            [OnlinePayments::SDK::CallContext, nil] Optional call context.
       # @yield [Array<OnlinePayments::SDK::Communication::ResponseHeader>, IO] The response headers and body.
@@ -239,41 +215,18 @@ module OnlinePayments
       # @raise [OnlinePayments::SDK::Communication::NotFoundException] if the requested resource is not found
       # @raise [OnlinePayments::SDK::Communication::CommunicationException] if there is an error in communicating with the Online Payments platform.
       #        This occurs for example if a timeout occurs.
-      def post_with_binary_response(relative_path, request_headers, request_parameters, request_body, context)
-        request_parameter_list = request_parameters && request_parameters.to_request_parameters
+      def post_with_binary_response(relative_path, request_headers, request_parameters, request_body, context, &)
+        request_parameter_list = request_parameters&.to_request_parameters
         uri = to_absolute_uri(relative_path, request_parameter_list)
-        request_headers = [] if request_headers.nil?
-
-        body = nil
-        if request_body.is_a? Communication::MultipartFormDataObject
-          request_headers.push(Communication::RequestHeader.new('Content-Type', request_body.content_type))
-          body = request_body
-        elsif request_body.is_a? Communication::MultipartFormDataRequest
-          multipart = request_body.to_multipart_form_data_object
-          request_headers.push(Communication::RequestHeader.new('Content-Type', multipart.content_type))
-          body = multipart
-        elsif !request_body.nil?
-          request_headers.push(Communication::RequestHeader.new('Content-Type', 'application/json'))
-          body = @marshaller.marshal(request_body)
-
-          if context&.gzip
-            request_headers.push(Communication::RequestHeader.new('Content-Encoding', 'gzip'))
-          end
-
-        else
-          # Set the content-type, even though there is no body, to prevent the httpClient from
-          # adding a content-type header after authentication has been generated.
-          request_headers.push(Communication::RequestHeader.new('Content-Type', 'text/plain'))
-        end
+        request_headers = request_headers.nil? ? [] : request_headers.dup
+        body = prepare_request_body(request_body, request_headers, gzip: context&.gzip)
         add_generic_headers('POST', uri, request_headers, context)
 
         response_status_code, response_headers, response_body = nil
         @connection.post(uri, request_headers, body) do |status_code, headers, content|
           response_status_code = status_code
           response_headers = headers
-          response_body = process_binary_response(status_code, content, headers, context) do |h, c|
-            yield h, c
-          end
+          response_body = process_binary_response(status_code, content, headers, context, &)
         end
         throw_exception_if_necessary(response_body, response_status_code, response_headers, relative_path)
       end
@@ -283,7 +236,7 @@ module OnlinePayments
       # @param relative_path      [String] Path relative to the API endpoint
       # @param request_headers    [Array<OnlinePayments::SDK::Communication::RequestHeader>, nil] Optional array of request headers
       # @param request_parameters [OnlinePayments::SDK::Communication::ParamRequest, nil] Optional request parameters
-      # @param request_body       [OnlinePayments::SDK::Domain::DataObject, OnlinePayments::SDK::Communication::MultipartFormDataObject, OnlinePayments::SDK::Communication::MultipartFormDataRequest, nil]
+      # @param request_body       [Domain::DataObject, Communication::MultipartFormDataObject, Communication::MultipartFormDataRequest, nil]
       #                           The optional request body
       # @param response_type      [Type] The response type.
       # @param context            [OnlinePayments::SDK::CallContext, nil] Optional call context.
@@ -294,26 +247,10 @@ module OnlinePayments
       # @raise [OnlinePayments::SDK::Communication::CommunicationException] if there is an error in communicating with the Online Payments platform.
       #        This occurs for example if a timeout occurs.
       def put(relative_path, request_headers, request_parameters, request_body, response_type, context)
-        request_parameter_list = request_parameters && request_parameters.to_request_parameters
+        request_parameter_list = request_parameters&.to_request_parameters
         uri = to_absolute_uri(relative_path, request_parameter_list)
-        request_headers = [] if request_headers.nil?
-
-        body = nil
-        if request_body.is_a? Communication::MultipartFormDataObject
-          request_headers.push(Communication::RequestHeader.new('Content-Type', request_body.content_type))
-          body = request_body
-        elsif request_body.is_a? Communication::MultipartFormDataRequest
-          multipart = request_body.to_multipart_form_data_object
-          request_headers.push(Communication::RequestHeader.new('Content-Type', multipart.content_type))
-          body = multipart
-        elsif !request_body.nil?
-          request_headers.push(Communication::RequestHeader.new('Content-Type', 'application/json'))
-          body = @marshaller.marshal(request_body)
-        else
-          # Set the content-type, even though there is no body, to prevent the httpClient from
-          # adding a content-type header after authentication has been generated.
-          request_headers.push(Communication::RequestHeader.new('Content-Type', 'text/plain'))
-        end
+        request_headers = request_headers.nil? ? [] : request_headers.dup
+        body = prepare_request_body(request_body, request_headers)
         add_generic_headers('PUT', uri, request_headers, context)
 
         response_status_code, response_headers, response_body = nil
@@ -330,7 +267,7 @@ module OnlinePayments
       # @param relative_path      [String] Path relative to the API endpoint
       # @param request_headers    [Array<OnlinePayments::SDK::Communication::RequestHeader>, nil] Optional array of request headers
       # @param request_parameters [OnlinePayments::SDK::Communication::ParamRequest, nil] Optional request parameters
-      # @param request_body       [OnlinePayments::SDK::Domain::DataObject, OnlinePayments::SDK::Communication::MultipartFormDataObject, OnlinePayments::SDK::Communication::MultipartFormDataRequest, nil]
+      # @param request_body       [Domain::DataObject, Communication::MultipartFormDataObject, Communication::MultipartFormDataRequest, nil]
       #                           The optional request body
       # @param context            [OnlinePayments::SDK::CallContext, nil] Optional call context.
       # @yield [Array<OnlinePayments::SDK::Communication::ResponseHeader>, IO] The response headers and body.
@@ -339,61 +276,43 @@ module OnlinePayments
       # @raise [OnlinePayments::SDK::Communication::NotFoundException] if the requested resource is not found
       # @raise [OnlinePayments::SDK::Communication::CommunicationException] if there is an error in communicating with the Online Payments platform.
       #        This occurs for example if a timeout occurs.
-      def put_with_binary_response(relative_path, request_headers, request_parameters, request_body, context)
-        request_parameter_list = request_parameters && request_parameters.to_request_parameters
+      def put_with_binary_response(relative_path, request_headers, request_parameters, request_body, context, &)
+        request_parameter_list = request_parameters&.to_request_parameters
         uri = to_absolute_uri(relative_path, request_parameter_list)
-        request_headers = [] if request_headers.nil?
-
-        body = nil
-        if request_body.is_a? Communication::MultipartFormDataObject
-          request_headers.push(Communication::RequestHeader.new('Content-Type', request_body.content_type))
-          body = request_body
-        elsif request_body.is_a? Communication::MultipartFormDataRequest
-          multipart = request_body.to_multipart_form_data_object
-          request_headers.push(Communication::RequestHeader.new('Content-Type', multipart.content_type))
-          body = multipart
-        elsif !request_body.nil?
-          request_headers.push(Communication::RequestHeader.new('Content-Type', 'application/json'))
-          body = @marshaller.marshal(request_body)
-        else
-          # Set the content-type, even though there is no body, to prevent the httpClient from
-          # adding a content-type header after authentication has been generated.
-          request_headers.push(Communication::RequestHeader.new('Content-Type', 'text/plain'))
-        end
+        request_headers = request_headers.nil? ? [] : request_headers.dup
+        body = prepare_request_body(request_body, request_headers)
         add_generic_headers('PUT', uri, request_headers, context)
 
         response_status_code, response_headers, response_body = nil
         @connection.put(uri, request_headers, body) do |status_code, headers, content|
           response_status_code = status_code
           response_headers = headers
-          response_body = process_binary_response(status_code, content, headers, context) do |h, c|
-            yield h, c
-          end
+          response_body = process_binary_response(status_code, content, headers, context, &)
         end
         throw_exception_if_necessary(response_body, response_status_code, response_headers, relative_path)
       end
 
-      # Closes any connections idle for more than _idle_time_ seconds.
+      # Sets the idle timeout so connections idle longer than _idle_time_ seconds are closed lazily.
       # Will not have any effect if the connection is not a pooled connection (an instance of {OnlinePayments::SDK::Communication::PooledConnection}).
       def close_idle_connections(idle_time)
-        @connection.close_idle_connections(idle_time) if @connection.is_a? PooledConnection
+        @connection.close_idle_connections(idle_time) if @connection.is_a? Communication::PooledConnection
       end
 
       # Closes any connections that have expired.
       # Will not have any effect if the connection is not a pooled connection (an instance of {OnlinePayments::SDK::Communication::PooledConnection}).
       def close_expired_connections
-        @connection.close_expired_connections if @connection.is_a? PooledConnection
+        @connection.close_expired_connections if @connection.is_a? Communication::PooledConnection
       end
 
       # Sets the current body obfuscator to use.
       # @param body_obfuscator [OnlinePayments::SDK::Logging::Obfuscation::BodyObfuscator]
-      def set_body_obfuscator(body_obfuscator)
+      def body_obfuscator=(body_obfuscator)
         @connection.set_body_obfuscator(body_obfuscator)
       end
 
       # Sets the current header obfuscator to use.
       # @param header_obfuscator [OnlinePayments::SDK::Logging::Obfuscation::HeaderObfuscator]
-      def set_header_obfuscator(header_obfuscator)
+      def header_obfuscator=(header_obfuscator)
         @connection.set_header_obfuscator(header_obfuscator)
       end
 
@@ -404,16 +323,17 @@ module OnlinePayments
       # @param communicator_logger [OnlinePayments::SDK::Logging::CommunicatorLogger] The communicator logger the requests and responses are logged to
       def enable_logging(communicator_logger)
         @connection.enable_logging(communicator_logger)
+        @communicator_logger = communicator_logger
       end
 
       # Disables logging by unregistering any previous logger that might be registered.
       def disable_logging
         @connection.disable_logging
+        @communicator_logger = nil
       end
 
       # Frees networking resources by closing the underlying network connections.
-      # After calling _close_, any use of the _get_, _delete_, _post_ and _put_ methods will not function
-      # and likely result in an error.
+      # A request made after calling _close_ opens a new connection.
       def close
         @connection.close
       end
@@ -426,19 +346,12 @@ module OnlinePayments
       # The returned URL is a *URI* object.
       #
       # @param relative_path      [String] The relative path of the URL.
-      # @param request_parameters [Array<OnlinePayments::SDK::Communication::RequestParam>] A list of request parameters that each have #name and #value
+      # @param request_parameters [Array<OnlinePayments::SDK::Communication::RequestParam>, nil] A list of request parameters that each have #name and #value
       #                           which represent the parameter name and value respectively.
       def to_absolute_uri(relative_path, request_parameters)
-        absolute_path = relative_path.start_with?('/') ? relative_path : '/' + relative_path
-        uri = URI::HTTPS.new(@api_endpoint.scheme, nil, @api_endpoint.host,
-                            @api_endpoint.port, nil, absolute_path, nil, nil, nil)
-        unless request_parameters.nil?
-          request_parameters.each do |nvp|
-            parameters = URI.decode_www_form(uri.query || '') << [nvp.name, nvp.value]
-            uri.query = URI.encode_www_form(parameters)
-          end
-        end
-        uri
+        absolute_path = relative_path.start_with?('/') ? relative_path : "/#{relative_path}"
+        query = URI.encode_www_form(request_parameters.map { |nvp| [nvp.name, nvp.value] }) if request_parameters&.any?
+        URI.for(@api_endpoint.scheme, nil, @api_endpoint.host, @api_endpoint.port, nil, absolute_path, nil, query, nil)
       end
 
       # Adds several standard headers to the http headers.
@@ -452,15 +365,14 @@ module OnlinePayments
       # @param context         [OnlinePayments::SDK::CallContext, nil] optional call context.
       def add_generic_headers(http_method, uri, request_headers, context = nil)
         request_headers.concat(@metadata_provider.metadata_headers)
-        request_headers.push(Communication::RequestHeader.new('Date', get_header_date_string))
-        if !context.nil? && !context.idempotence_key.nil?
-          request_headers.push(Communication::RequestHeader.new('X-GCS-Idempotence-Key', context.idempotence_key))
-        end
+        request_headers.push(Communication::RequestHeader.new('Date', header_date_string))
+        idempotence_key = context&.idempotence_key
+        request_headers.push(Communication::RequestHeader.new('X-GCS-Idempotence-Key', idempotence_key)) unless idempotence_key.nil?
         authorization = @authenticator.get_authorization(http_method, uri, request_headers)
         request_headers.push(Communication::RequestHeader.new('Authorization', authorization))
       end
 
-      def get_header_date_string
+      def header_date_string
         Time.now.utc.strftime('%a, %d %b %Y %H:%M:%S GMT')
       end
 
@@ -483,43 +395,56 @@ module OnlinePayments
       end
 
       def update_context(headers, context)
-        idempotence_request_timestamp_value = Communication::ResponseHeader.get_header_value(headers, 'X-GCS-Idempotence-Request-Timestamp')
-        if idempotence_request_timestamp_value.nil?
-          context.idempotence_request_timestamp = nil
-        else
-          context.idempotence_request_timestamp = idempotence_request_timestamp_value
-        end
+        context.idempotence_request_timestamp = Communication::ResponseHeader.get_header_value(headers, 'X-GCS-Idempotence-Request-Timestamp')
         idempotence_response_date_time_value = Communication::ResponseHeader.get_header_value(headers, 'IdempotencyResponseDatetime')
-        if idempotence_response_date_time_value.nil?
-          context.idempotence_response_date_time = nil
-        else
-          context.idempotence_response_date_time = DateTime.parse(idempotence_response_date_time_value)
-        end
+        context.idempotence_response_date_time = parse_idempotence_response_date_time(idempotence_response_date_time_value)
       end
 
       def throw_exception_if_necessary(body, status_code, headers, request_path)
-        if status_code < 200 || status_code >= 300
-          if !body.nil? && !body.empty? && !is_json(headers)
-            cause = Communication::ResponseException.new(status_code, headers, body)
-            if status_code == 404
-              raise Communication::NotFoundException.new(cause, 'The requested resource was not found; invalid path: ' +
-                                                                request_path)
-            else
-              raise Communication::CommunicationException, cause
-            end
-          else
-            raise Communication::ResponseException.new(status_code, headers, body)
-          end
-        end
+        return unless status_code < 200 || status_code >= 300
+        raise Communication::ResponseException.new(status_code, headers, body) if body.nil? || body.empty? || json?(headers)
+
+        cause = Communication::ResponseException.new(status_code, headers, body)
+        raise Communication::CommunicationException, cause unless status_code == 404
+
+        raise Communication::NotFoundException.new(cause, "The requested resource was not found; invalid path: #{request_path}")
       end
 
       private
 
-      def is_json(headers)
-        content_type = Communication::ResponseHeader.get_header_value(headers, 'Content-Type')
-        if content_type.nil? || 'application/json'.casecmp(content_type) == 0 || 'application/problem+json'.casecmp(content_type) == 0
-          return true
+      def prepare_request_body(request_body, request_headers, gzip: false)
+        if request_body.is_a? Communication::MultipartFormDataObject
+          request_headers.push(Communication::RequestHeader.new('Content-Type', request_body.content_type))
+          request_body
+        elsif request_body.is_a? Communication::MultipartFormDataRequest
+          multipart = request_body.to_multipart_form_data_object
+          request_headers.push(Communication::RequestHeader.new('Content-Type', multipart.content_type))
+          multipart
+        elsif !request_body.nil?
+          request_headers.push(Communication::RequestHeader.new('Content-Type', 'application/json'))
+          request_headers.push(Communication::RequestHeader.new('Content-Encoding', 'gzip')) if gzip
+          @marshaller.marshal(request_body)
+        else
+          # Set the content-type, even though there is no body, to prevent the HTTP library from
+          # adding a content-type header after authentication has been generated.
+          request_headers.push(Communication::RequestHeader.new('Content-Type', 'text/plain'))
+          nil
         end
+      end
+
+      def parse_idempotence_response_date_time(value)
+        return nil if value.nil?
+
+        DateTime.parse(value)
+      rescue Date::Error
+        @communicator_logger&.log("Ignoring invalid value '#{value}' for response header 'IdempotencyResponseDatetime'")
+        nil
+      end
+
+      def json?(headers)
+        content_type = Communication::ResponseHeader.get_header_value(headers, 'Content-Type')
+        return true if content_type.nil? || 'application/json'.casecmp(content_type) == 0 || 'application/problem+json'.casecmp(content_type) == 0
+
         content_type = content_type.downcase
         content_type.start_with?('application/json') || content_type.start_with?('application/problem+json')
       end

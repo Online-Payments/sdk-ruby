@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :exclude
 
         attr_accessor :restrict_to
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(exclude: nil, restrict_to: nil)
+          super()
+          @exclude = exclude
+          @restrict_to = restrict_to
+        end
 
         # Sets the property and returns this same instance.
         def with_exclude(value)
@@ -36,15 +45,15 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'exclude'
-            raise TypeError, "value '%s' is not an Array" % [hash['exclude']] unless hash['exclude'].is_a? Array
+          if hash.key? 'exclude'
+            raise TypeError, "value '#{hash['exclude']}' is not an Array" unless hash['exclude'].is_a? Array
             @exclude = []
             hash['exclude'].each do |e|
               @exclude << e
             end
           end
-          if hash.has_key? 'restrictTo'
-            raise TypeError, "value '%s' is not an Array" % [hash['restrictTo']] unless hash['restrictTo'].is_a? Array
+          if hash.key? 'restrictTo'
+            raise TypeError, "value '#{hash['restrictTo']}' is not an Array" unless hash['restrictTo'].is_a? Array
             @restrict_to = []
             hash['restrictTo'].each do |e|
               @restrict_to << e

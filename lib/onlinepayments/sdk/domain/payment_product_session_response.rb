@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -11,6 +13,12 @@ module OnlinePayments
       class PaymentProductSessionResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :payment_product_session302_specific_output
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(payment_product_session302_specific_output: nil)
+          super()
+          @payment_product_session302_specific_output = payment_product_session302_specific_output
+        end
 
         # Sets the property and returns this same instance.
         def with_payment_product_session302_specific_output(value)
@@ -27,8 +35,8 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'paymentProductSession302SpecificOutput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProductSession302SpecificOutput']] unless hash['paymentProductSession302SpecificOutput'].is_a? Hash
+          if hash.key? 'paymentProductSession302SpecificOutput'
+            raise TypeError, "value '#{hash['paymentProductSession302SpecificOutput']}' is not a Hash" unless hash['paymentProductSession302SpecificOutput'].is_a? Hash
             @payment_product_session302_specific_output = OnlinePayments::SDK::Domain::PaymentProductSession302SpecificOutput.new_from_hash(hash['paymentProductSession302SpecificOutput'])
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -23,6 +25,15 @@ module OnlinePayments
           attr_accessor :amount
 
           attr_accessor :is_recurring
+
+          # Creates a new instance; every attribute can be given as a keyword argument.
+          def initialize(country_code: nil, currency_code: nil, amount: nil, is_recurring: nil)
+            super()
+            @country_code = country_code
+            @currency_code = currency_code
+            @amount = amount
+            @is_recurring = is_recurring
+          end
 
           # Sets the parameter and returns this same instance.
           def with_country_code(value)

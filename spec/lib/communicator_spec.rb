@@ -227,6 +227,67 @@ describe Communicator do
 
       expect(stub).to have_been_requested
     end
+
+    it 'does not add Content-Encoding to PUT requests' do
+      stub = stub_request(:put, 'https://payment.preprod.online-payments.com/v1/put-no-gzip')
+        .with { |req| !req.headers.key?('Content-Encoding') }
+        .to_return(status: 200, body: '{"result":"OK"}', headers: { 'Content-Type' => 'application/json' })
+
+      request = CommunicatorSpecObject.new('request' => 'body')
+
+      sdk_communicator.put('/v1/put-no-gzip', nil, nil, request, CommunicatorSpecObject, CallContext.new(nil))
+
+      expect(stub).to have_been_requested
+    end
+  end
+
+  context 'request headers' do
+    let(:sent_headers) { [] }
+    let(:capturing_connection) do
+      conn = double('connection', close: nil)
+      allow(conn).to receive(:get) do |_uri, headers, &block|
+        sent_headers.replace(headers)
+        block.call(200, [ResponseHeader.new('Content-Type', 'application/json')], StringIO.new('{}'))
+      end
+      allow(conn).to receive(:post) do |_uri, headers, _body, &block|
+        sent_headers.replace(headers)
+        block.call(200, [ResponseHeader.new('Content-Type', 'application/json')], StringIO.new('{}'))
+      end
+      conn
+    end
+    let(:capturing_communicator) do
+      Communicator.new('https://payment.preprod.online-payments.com', capturing_connection,
+                       MockAuthenticator.new, metadata_provider, DefaultMarshaller.instance)
+    end
+
+    def count_headers(name)
+      sent_headers.count { |h| h.name == name }
+    end
+
+    it 'does not modify the provided request headers on GET' do
+      request_headers = [OnlinePayments::SDK::Communication::RequestHeader.new('X-Custom', 'value')]
+
+      capturing_communicator.get('/v1/get', request_headers, nil, CommunicatorSpecObject, nil)
+      capturing_communicator.get('/v1/get', request_headers, nil, CommunicatorSpecObject, nil)
+
+      expect(request_headers.length).to eq(1)
+      expect(count_headers('Date')).to eq(1)
+      expect(count_headers('Authorization')).to eq(1)
+      expect(count_headers('X-Custom')).to eq(1)
+    end
+
+    it 'does not modify the provided request headers on POST' do
+      request_headers = []
+      request = CommunicatorSpecObject.new('request' => 'body')
+
+      capturing_communicator.post('/v1/post', request_headers, nil, request, CommunicatorSpecObject, nil)
+      capturing_communicator.post('/v1/post', request_headers, nil, request, CommunicatorSpecObject, nil)
+
+      expect(request_headers).to eq([])
+      expect(count_headers('Content-Type')).to eq(1)
+      expect(count_headers('Date')).to eq(1)
+      expect(count_headers('Authorization')).to eq(1)
+    end
   end
 
   context 'binary response handlers' do
@@ -459,6 +520,48 @@ describe Communicator do
       expect(context.idempotence_request_timestamp).to eq('123456789')
       expect(context.idempotence_response_date_time).to eq(DateTime.parse('2026-04-02T10:15:30Z'))
     end
+
+    context 'with an invalid IdempotencyResponseDatetime' do
+      let(:invalid_connection) do
+        conn = double('connection', close: nil, enable_logging: nil, disable_logging: nil)
+        allow(conn).to receive(:get) do |_uri, _headers, &block|
+          block.call(200,
+                     [ResponseHeader.new('Content-Type', 'application/json'),
+                      ResponseHeader.new('IdempotencyResponseDatetime', 'not-a-date')],
+                     StringIO.new('{"result":"OK"}'))
+        end
+        conn
+      end
+      let(:invalid_communicator) do
+        Communicator.new('https://payment.preprod.online-payments.com', invalid_connection,
+                         MockAuthenticator.new, metadata_provider, DefaultMarshaller.instance)
+      end
+
+      it 'ignores the header and logs a warning' do
+        messages = []
+        logger = double('logger')
+        allow(logger).to receive(:log) { |message, _thrown = nil| messages << message }
+        invalid_communicator.enable_logging(logger)
+        context = CallContext.new('test-idempotence-key')
+
+        response = invalid_communicator.get('/v1/get', nil, nil, CommunicatorSpecObject, context)
+
+        expect(response.content).to eq('result' => 'OK')
+        expect(context.idempotence_response_date_time).to be_nil
+        expect(messages.length).to eq(1)
+        expect(messages[0]).to include('IdempotencyResponseDatetime')
+        expect(messages[0]).to include('not-a-date')
+      end
+
+      it 'ignores the header without a logger' do
+        context = CallContext.new('test-idempotence-key')
+
+        response = invalid_communicator.get('/v1/get', nil, nil, CommunicatorSpecObject, context)
+
+        expect(response.content).to eq('result' => 'OK')
+        expect(context.idempotence_response_date_time).to be_nil
+      end
+    end
   end
 
   context 'constructor validation' do
@@ -466,6 +569,14 @@ describe Communicator do
       expect do
         Communicator.new(nil, connection, MockAuthenticator.new, metadata_provider, DefaultMarshaller.instance)
       end.to raise_error(ArgumentError, /api_endpoint is required/)
+    end
+
+    it 'requires an absolute http or https api endpoint' do
+      ['payment.preprod.online-payments.com', 'ftp://payment.preprod.online-payments.com'].each do |api_endpoint|
+        expect do
+          Communicator.new(api_endpoint, connection, MockAuthenticator.new, metadata_provider, DefaultMarshaller.instance)
+        end.to raise_error(ArgumentError, 'api_endpoint must be an absolute http or https URL')
+      end
     end
 
     it 'requires a connection' do

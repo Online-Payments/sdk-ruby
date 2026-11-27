@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :max_attempts
 
         attr_accessor :max_delay
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(max_attempts: nil, max_delay: nil)
+          super()
+          @max_attempts = max_attempts
+          @max_delay = max_delay
+        end
 
         # Sets the property and returns this same instance.
         def with_max_attempts(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'maxAttempts'
+          if hash.key? 'maxAttempts'
             @max_attempts = hash['maxAttempts']
           end
-          if hash.has_key? 'maxDelay'
+          if hash.key? 'maxDelay'
             @max_delay = hash['maxDelay']
           end
         end

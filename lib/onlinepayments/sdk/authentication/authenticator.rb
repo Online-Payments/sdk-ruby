@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 module OnlinePayments
   module SDK
     module Authentication
       # Abstract class that is responsible for authenticating requests sent to the Online Payments platform.
       class Authenticator
-
         # Returns a value that can be used for the "Authorization" header.
         #
         # @param http_method     [String] 'GET', 'PUT', 'POST' or 'DELETE' indicating which HTTP method will be used with the request

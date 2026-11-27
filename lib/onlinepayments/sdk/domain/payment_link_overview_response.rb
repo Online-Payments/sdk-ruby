@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -18,6 +20,14 @@ module OnlinePayments
         attr_accessor :payment_link_overview_entries
 
         attr_accessor :total
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(pagination: nil, payment_link_overview_entries: nil, total: nil)
+          super()
+          @pagination = pagination
+          @payment_link_overview_entries = payment_link_overview_entries
+          @total = total
+        end
 
         # Sets the property and returns this same instance.
         def with_pagination(value)
@@ -48,18 +58,18 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'pagination'
-            raise TypeError, "value '%s' is not a Hash" % [hash['pagination']] unless hash['pagination'].is_a? Hash
+          if hash.key? 'pagination'
+            raise TypeError, "value '#{hash['pagination']}' is not a Hash" unless hash['pagination'].is_a? Hash
             @pagination = OnlinePayments::SDK::Domain::Pagination.new_from_hash(hash['pagination'])
           end
-          if hash.has_key? 'paymentLinkOverviewEntries'
-            raise TypeError, "value '%s' is not an Array" % [hash['paymentLinkOverviewEntries']] unless hash['paymentLinkOverviewEntries'].is_a? Array
+          if hash.key? 'paymentLinkOverviewEntries'
+            raise TypeError, "value '#{hash['paymentLinkOverviewEntries']}' is not an Array" unless hash['paymentLinkOverviewEntries'].is_a? Array
             @payment_link_overview_entries = []
             hash['paymentLinkOverviewEntries'].each do |e|
               @payment_link_overview_entries << OnlinePayments::SDK::Domain::PaymentLinkOverviewEntry.new_from_hash(e)
             end
           end
-          if hash.has_key? 'total'
+          if hash.key? 'total'
             @total = hash['total']
           end
         end

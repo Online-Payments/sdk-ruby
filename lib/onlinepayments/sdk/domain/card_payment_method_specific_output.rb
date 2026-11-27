@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -89,6 +91,56 @@ module OnlinePayments
         attr_accessor :three_d_secure_results
 
         attr_accessor :token
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(acceptance: nil,
+                       acquirer_information: nil,
+                       authenticated_amount: nil,
+                       authorisation_code: nil,
+                       card: nil,
+                       click_to_pay: nil,
+                       cobrand_selection_indicator: nil,
+                       crm_token: nil,
+                       currency_conversion: nil,
+                       external_token_linked: nil,
+                       fraud_results: nil,
+                       initial_scheme_transaction_id: nil,
+                       network_token_data: nil,
+                       payment_account_reference: nil,
+                       payment_option: nil,
+                       payment_product3208_specific_output: nil,
+                       payment_product3209_specific_output: nil,
+                       payment_product_id: nil,
+                       reattempt_instructions: nil,
+                       scheme_reference_data: nil,
+                       scheme_transaction_id: nil,
+                       three_d_secure_results: nil,
+                       token: nil)
+          super()
+          @acceptance = acceptance
+          @acquirer_information = acquirer_information
+          @authenticated_amount = authenticated_amount
+          @authorisation_code = authorisation_code
+          @card = card
+          @click_to_pay = click_to_pay
+          @cobrand_selection_indicator = cobrand_selection_indicator
+          @crm_token = crm_token
+          @currency_conversion = currency_conversion
+          @external_token_linked = external_token_linked
+          @fraud_results = fraud_results
+          @initial_scheme_transaction_id = initial_scheme_transaction_id
+          @network_token_data = network_token_data
+          @payment_account_reference = payment_account_reference
+          @payment_option = payment_option
+          @payment_product3208_specific_output = payment_product3208_specific_output
+          @payment_product3209_specific_output = payment_product3209_specific_output
+          @payment_product_id = payment_product_id
+          @reattempt_instructions = reattempt_instructions
+          @scheme_reference_data = scheme_reference_data
+          @scheme_transaction_id = scheme_transaction_id
+          @three_d_secure_results = three_d_secure_results
+          @token = token
+        end
 
         # Sets the property and returns this same instance.
         def with_acceptance(value)
@@ -259,86 +311,86 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'acceptance'
-            raise TypeError, "value '%s' is not a Hash" % [hash['acceptance']] unless hash['acceptance'].is_a? Hash
+          if hash.key? 'acceptance'
+            raise TypeError, "value '#{hash['acceptance']}' is not a Hash" unless hash['acceptance'].is_a? Hash
             @acceptance = OnlinePayments::SDK::Domain::Acceptance.new_from_hash(hash['acceptance'])
           end
-          if hash.has_key? 'acquirerInformation'
-            raise TypeError, "value '%s' is not a Hash" % [hash['acquirerInformation']] unless hash['acquirerInformation'].is_a? Hash
+          if hash.key? 'acquirerInformation'
+            raise TypeError, "value '#{hash['acquirerInformation']}' is not a Hash" unless hash['acquirerInformation'].is_a? Hash
             @acquirer_information = OnlinePayments::SDK::Domain::AcquirerInformation.new_from_hash(hash['acquirerInformation'])
           end
-          if hash.has_key? 'authenticatedAmount'
+          if hash.key? 'authenticatedAmount'
             @authenticated_amount = hash['authenticatedAmount']
           end
-          if hash.has_key? 'authorisationCode'
+          if hash.key? 'authorisationCode'
             @authorisation_code = hash['authorisationCode']
           end
-          if hash.has_key? 'card'
-            raise TypeError, "value '%s' is not a Hash" % [hash['card']] unless hash['card'].is_a? Hash
+          if hash.key? 'card'
+            raise TypeError, "value '#{hash['card']}' is not a Hash" unless hash['card'].is_a? Hash
             @card = OnlinePayments::SDK::Domain::CardEssentials.new_from_hash(hash['card'])
           end
-          if hash.has_key? 'clickToPay'
-            raise TypeError, "value '%s' is not a Hash" % [hash['clickToPay']] unless hash['clickToPay'].is_a? Hash
+          if hash.key? 'clickToPay'
+            raise TypeError, "value '#{hash['clickToPay']}' is not a Hash" unless hash['clickToPay'].is_a? Hash
             @click_to_pay = OnlinePayments::SDK::Domain::ClickToPay.new_from_hash(hash['clickToPay'])
           end
-          if hash.has_key? 'cobrandSelectionIndicator'
+          if hash.key? 'cobrandSelectionIndicator'
             @cobrand_selection_indicator = hash['cobrandSelectionIndicator']
           end
-          if hash.has_key? 'crmToken'
-            raise TypeError, "value '%s' is not a Hash" % [hash['crmToken']] unless hash['crmToken'].is_a? Hash
+          if hash.key? 'crmToken'
+            raise TypeError, "value '#{hash['crmToken']}' is not a Hash" unless hash['crmToken'].is_a? Hash
             @crm_token = OnlinePayments::SDK::Domain::CrmToken.new_from_hash(hash['crmToken'])
           end
-          if hash.has_key? 'currencyConversion'
-            raise TypeError, "value '%s' is not a Hash" % [hash['currencyConversion']] unless hash['currencyConversion'].is_a? Hash
+          if hash.key? 'currencyConversion'
+            raise TypeError, "value '#{hash['currencyConversion']}' is not a Hash" unless hash['currencyConversion'].is_a? Hash
             @currency_conversion = OnlinePayments::SDK::Domain::CurrencyConversion.new_from_hash(hash['currencyConversion'])
           end
-          if hash.has_key? 'externalTokenLinked'
-            raise TypeError, "value '%s' is not a Hash" % [hash['externalTokenLinked']] unless hash['externalTokenLinked'].is_a? Hash
+          if hash.key? 'externalTokenLinked'
+            raise TypeError, "value '#{hash['externalTokenLinked']}' is not a Hash" unless hash['externalTokenLinked'].is_a? Hash
             @external_token_linked = OnlinePayments::SDK::Domain::ExternalTokenLinked.new_from_hash(hash['externalTokenLinked'])
           end
-          if hash.has_key? 'fraudResults'
-            raise TypeError, "value '%s' is not a Hash" % [hash['fraudResults']] unless hash['fraudResults'].is_a? Hash
+          if hash.key? 'fraudResults'
+            raise TypeError, "value '#{hash['fraudResults']}' is not a Hash" unless hash['fraudResults'].is_a? Hash
             @fraud_results = OnlinePayments::SDK::Domain::CardFraudResults.new_from_hash(hash['fraudResults'])
           end
-          if hash.has_key? 'initialSchemeTransactionId'
+          if hash.key? 'initialSchemeTransactionId'
             @initial_scheme_transaction_id = hash['initialSchemeTransactionId']
           end
-          if hash.has_key? 'networkTokenData'
-            raise TypeError, "value '%s' is not a Hash" % [hash['networkTokenData']] unless hash['networkTokenData'].is_a? Hash
+          if hash.key? 'networkTokenData'
+            raise TypeError, "value '#{hash['networkTokenData']}' is not a Hash" unless hash['networkTokenData'].is_a? Hash
             @network_token_data = OnlinePayments::SDK::Domain::NetworkTokenEssentials.new_from_hash(hash['networkTokenData'])
           end
-          if hash.has_key? 'paymentAccountReference'
+          if hash.key? 'paymentAccountReference'
             @payment_account_reference = hash['paymentAccountReference']
           end
-          if hash.has_key? 'paymentOption'
+          if hash.key? 'paymentOption'
             @payment_option = hash['paymentOption']
           end
-          if hash.has_key? 'paymentProduct3208SpecificOutput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct3208SpecificOutput']] unless hash['paymentProduct3208SpecificOutput'].is_a? Hash
+          if hash.key? 'paymentProduct3208SpecificOutput'
+            raise TypeError, "value '#{hash['paymentProduct3208SpecificOutput']}' is not a Hash" unless hash['paymentProduct3208SpecificOutput'].is_a? Hash
             @payment_product3208_specific_output = OnlinePayments::SDK::Domain::PaymentProduct3208SpecificOutput.new_from_hash(hash['paymentProduct3208SpecificOutput'])
           end
-          if hash.has_key? 'paymentProduct3209SpecificOutput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct3209SpecificOutput']] unless hash['paymentProduct3209SpecificOutput'].is_a? Hash
+          if hash.key? 'paymentProduct3209SpecificOutput'
+            raise TypeError, "value '#{hash['paymentProduct3209SpecificOutput']}' is not a Hash" unless hash['paymentProduct3209SpecificOutput'].is_a? Hash
             @payment_product3209_specific_output = OnlinePayments::SDK::Domain::PaymentProduct3209SpecificOutput.new_from_hash(hash['paymentProduct3209SpecificOutput'])
           end
-          if hash.has_key? 'paymentProductId'
+          if hash.key? 'paymentProductId'
             @payment_product_id = hash['paymentProductId']
           end
-          if hash.has_key? 'reattemptInstructions'
-            raise TypeError, "value '%s' is not a Hash" % [hash['reattemptInstructions']] unless hash['reattemptInstructions'].is_a? Hash
+          if hash.key? 'reattemptInstructions'
+            raise TypeError, "value '#{hash['reattemptInstructions']}' is not a Hash" unless hash['reattemptInstructions'].is_a? Hash
             @reattempt_instructions = OnlinePayments::SDK::Domain::ReattemptInstructions.new_from_hash(hash['reattemptInstructions'])
           end
-          if hash.has_key? 'schemeReferenceData'
+          if hash.key? 'schemeReferenceData'
             @scheme_reference_data = hash['schemeReferenceData']
           end
-          if hash.has_key? 'schemeTransactionId'
+          if hash.key? 'schemeTransactionId'
             @scheme_transaction_id = hash['schemeTransactionId']
           end
-          if hash.has_key? 'threeDSecureResults'
-            raise TypeError, "value '%s' is not a Hash" % [hash['threeDSecureResults']] unless hash['threeDSecureResults'].is_a? Hash
+          if hash.key? 'threeDSecureResults'
+            raise TypeError, "value '#{hash['threeDSecureResults']}' is not a Hash" unless hash['threeDSecureResults'].is_a? Hash
             @three_d_secure_results = OnlinePayments::SDK::Domain::ThreeDSecureResults.new_from_hash(hash['threeDSecureResults'])
           end
-          if hash.has_key? 'token'
+          if hash.key? 'token'
             @token = hash['token']
           end
         end

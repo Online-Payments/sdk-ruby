@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+require 'uri'
 require 'onlinepayments/sdk/communication/request_header'
 
 module OnlinePayments
@@ -8,7 +11,6 @@ module OnlinePayments
     # @attr_reader [OnlinePayments::SDK::Communicator] communicator Communicator instance that provides communication with the Online Payments platform.
     # @attr_reader [String] client_meta_info JSON string containing client info specific to the current client.
     class ApiResource
-
       # Creates a new ApiResource.
       #
       # @param parent           [OnlinePayments::SDK::ApiResource] parent resource instance.
@@ -17,15 +19,15 @@ module OnlinePayments
       #                         This hash will be used to instantiate a concrete URL used to access specific resources.
       # @param client_meta_info [String] JSON string containing the metadata for the client.
       def initialize(parent: nil, communicator: nil, path_context: nil, client_meta_info: nil)
-        raise ArgumentError.new('parent and/or communicator is required') if parent.nil? and communicator.nil?
+        raise ArgumentError, 'parent and/or communicator is required' if parent.nil? && communicator.nil?
+
         @parent = parent
         @communicator = communicator.nil? ? parent.communicator : communicator
         @path_context = path_context
-        @client_meta_info = client_meta_info || parent.nil? ? client_meta_info : parent.client_meta_info
+        @client_meta_info = client_meta_info || parent&.client_meta_info
       end
 
-      attr_reader :communicator
-      attr_reader :client_meta_info
+      attr_reader :communicator, :client_meta_info
 
       protected
 
@@ -45,9 +47,7 @@ module OnlinePayments
           instantiate_uri(uri)
         else
           uri = replace_all(uri, @path_context)
-          unless @parent.nil?
-            uri = @parent.instantiate_uri(uri)
-          end
+          uri = @parent.instantiate_uri(uri) unless @parent.nil?
           uri
         end
       end
@@ -55,12 +55,19 @@ module OnlinePayments
       private
 
       def replace_all(uri, path_context)
-        if path_context
-          path_context.each do |key, value|
-            uri = uri.gsub('{' + key + '}', value)
-          end
+        path_context&.each do |key, value|
+          encoded = encode_path_segment(key, value)
+          uri = uri.gsub("{#{key}}") { encoded }
         end
         uri
+      end
+
+      def encode_path_segment(key, value)
+        segment = value.to_s
+        raise ArgumentError, "#{key} is required" if value.nil? || segment.empty?
+        raise ArgumentError, "#{key} must not be '#{segment}'" if %w[. ..].include?(segment)
+
+        URI.encode_uri_component(segment)
       end
     end
   end

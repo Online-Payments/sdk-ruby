@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -14,6 +16,13 @@ module OnlinePayments
         attr_accessor :token
 
         attr_accessor :token_status
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(token: nil, token_status: nil)
+          super()
+          @token = token
+          @token_status = token_status
+        end
 
         # Sets the property and returns this same instance.
         def with_token(value)
@@ -37,11 +46,11 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'token'
-            raise TypeError, "value '%s' is not a Hash" % [hash['token']] unless hash['token'].is_a? Hash
+          if hash.key? 'token'
+            raise TypeError, "value '#{hash['token']}' is not a Hash" unless hash['token'].is_a? Hash
             @token = OnlinePayments::SDK::Domain::TokenResponse.new_from_hash(hash['token'])
           end
-          if hash.has_key? 'tokenStatus'
+          if hash.key? 'tokenStatus'
             @token_status = hash['tokenStatus']
           end
         end

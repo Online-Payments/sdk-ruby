@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :cvv_mandatory_for_existing_token
 
         attr_accessor :cvv_mandatory_for_new_token
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(cvv_mandatory_for_existing_token: nil, cvv_mandatory_for_new_token: nil)
+          super()
+          @cvv_mandatory_for_existing_token = cvv_mandatory_for_existing_token
+          @cvv_mandatory_for_new_token = cvv_mandatory_for_new_token
+        end
 
         # Sets the property and returns this same instance.
         def with_cvv_mandatory_for_existing_token(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'cvvMandatoryForExistingToken'
+          if hash.key? 'cvvMandatoryForExistingToken'
             @cvv_mandatory_for_existing_token = hash['cvvMandatoryForExistingToken']
           end
-          if hash.has_key? 'cvvMandatoryForNewToken'
+          if hash.key? 'cvvMandatoryForNewToken'
             @cvv_mandatory_for_new_token = hash['cvvMandatoryForNewToken']
           end
         end

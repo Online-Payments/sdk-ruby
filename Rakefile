@@ -32,3 +32,11 @@ begin
 rescue LoadError
   puts '[*] error -- development dependency is not installed'
 end
+
+begin
+  require 'rubocop/rake_task'
+
+  RuboCop::RakeTask.new(:rubocop)  # supports checking the hand-written code style using the command *rake* *rubocop*
+rescue LoadError
+  puts '[*] error -- development dependency is not installed'
+end

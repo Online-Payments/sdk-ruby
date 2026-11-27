@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :id
 
         attr_accessor :type
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(id: nil, type: nil)
+          super()
+          @id = id
+          @type = type
+        end
 
         # Sets the property and returns this same instance.
         def with_id(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'id'
+          if hash.key? 'id'
             @id = hash['id']
           end
-          if hash.has_key? 'type'
+          if hash.key? 'type'
             @type = hash['type']
           end
         end

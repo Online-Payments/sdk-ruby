@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -16,6 +18,14 @@ module OnlinePayments
         attr_accessor :method
 
         attr_accessor :utc_timestamp
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(acs_transaction_id: nil, method: nil, utc_timestamp: nil)
+          super()
+          @acs_transaction_id = acs_transaction_id
+          @method = method
+          @utc_timestamp = utc_timestamp
+        end
 
         # Sets the property and returns this same instance.
         def with_acs_transaction_id(value)
@@ -46,13 +56,13 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'acsTransactionId'
+          if hash.key? 'acsTransactionId'
             @acs_transaction_id = hash['acsTransactionId']
           end
-          if hash.has_key? 'method'
+          if hash.key? 'method'
             @method = hash['method']
           end
-          if hash.has_key? 'utcTimestamp'
+          if hash.key? 'utcTimestamp'
             @utc_timestamp = hash['utcTimestamp']
           end
         end

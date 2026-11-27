@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -16,6 +18,14 @@ module OnlinePayments
         attr_accessor :organization_registration_id
 
         attr_accessor :vat_id
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(organization_entity_type: nil, organization_registration_id: nil, vat_id: nil)
+          super()
+          @organization_entity_type = organization_entity_type
+          @organization_registration_id = organization_registration_id
+          @vat_id = vat_id
+        end
 
         # Sets the property and returns this same instance.
         def with_organization_entity_type(value)
@@ -46,13 +56,13 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'organizationEntityType'
+          if hash.key? 'organizationEntityType'
             @organization_entity_type = hash['organizationEntityType']
           end
-          if hash.has_key? 'organizationRegistrationId'
+          if hash.key? 'organizationRegistrationId'
             @organization_registration_id = hash['organizationRegistrationId']
           end
-          if hash.has_key? 'vatId'
+          if hash.key? 'vatId'
             @vat_id = hash['vatId']
           end
         end

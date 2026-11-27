@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :shipping_cost
 
         attr_accessor :shipping_cost_tax
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(shipping_cost: nil, shipping_cost_tax: nil)
+          super()
+          @shipping_cost = shipping_cost
+          @shipping_cost_tax = shipping_cost_tax
+        end
 
         # Sets the property and returns this same instance.
         def with_shipping_cost(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'shippingCost'
+          if hash.key? 'shippingCost'
             @shipping_cost = hash['shippingCost']
           end
-          if hash.has_key? 'shippingCostTax'
+          if hash.key? 'shippingCostTax'
             @shipping_cost_tax = hash['shippingCostTax']
           end
         end

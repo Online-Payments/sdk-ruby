@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -19,6 +21,15 @@ module OnlinePayments
         attr_accessor :payment_reference
 
         attr_accessor :payment_start_date
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(entity_id: nil, payment_end_date: nil, payment_reference: nil, payment_start_date: nil)
+          super()
+          @entity_id = entity_id
+          @payment_end_date = payment_end_date
+          @payment_reference = payment_reference
+          @payment_start_date = payment_start_date
+        end
 
         # Sets the property and returns this same instance.
         def with_entity_id(value)
@@ -56,16 +67,16 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'entityId'
+          if hash.key? 'entityId'
             @entity_id = hash['entityId']
           end
-          if hash.has_key? 'paymentEndDate'
+          if hash.key? 'paymentEndDate'
             @payment_end_date = hash['paymentEndDate']
           end
-          if hash.has_key? 'paymentReference'
+          if hash.key? 'paymentReference'
             @payment_reference = hash['paymentReference']
           end
-          if hash.has_key? 'paymentStartDate'
+          if hash.key? 'paymentStartDate'
             @payment_start_date = hash['paymentStartDate']
           end
         end

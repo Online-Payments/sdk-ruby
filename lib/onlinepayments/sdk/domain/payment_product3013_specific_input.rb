@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -16,6 +18,14 @@ module OnlinePayments
         attr_accessor :purchasing_buyer_reference1
 
         attr_accessor :purchasing_buyer_reference2
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(market_number: nil, purchasing_buyer_reference1: nil, purchasing_buyer_reference2: nil)
+          super()
+          @market_number = market_number
+          @purchasing_buyer_reference1 = purchasing_buyer_reference1
+          @purchasing_buyer_reference2 = purchasing_buyer_reference2
+        end
 
         # Sets the property and returns this same instance.
         def with_market_number(value)
@@ -46,13 +56,13 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'marketNumber'
+          if hash.key? 'marketNumber'
             @market_number = hash['marketNumber']
           end
-          if hash.has_key? 'purchasingBuyerReference1'
+          if hash.key? 'purchasingBuyerReference1'
             @purchasing_buyer_reference1 = hash['purchasingBuyerReference1']
           end
-          if hash.has_key? 'purchasingBuyerReference2'
+          if hash.key? 'purchasingBuyerReference2'
             @purchasing_buyer_reference2 = hash['purchasingBuyerReference2']
           end
         end

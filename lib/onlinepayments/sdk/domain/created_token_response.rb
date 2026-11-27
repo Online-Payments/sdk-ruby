@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -28,6 +30,17 @@ module OnlinePayments
         attr_accessor :token
 
         attr_accessor :token_status
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(card: nil, crm_token: nil, external_token_linked: nil, is_new_token: nil, token: nil, token_status: nil)
+          super()
+          @card = card
+          @crm_token = crm_token
+          @external_token_linked = external_token_linked
+          @is_new_token = is_new_token
+          @token = token
+          @token_status = token_status
+        end
 
         # Sets the property and returns this same instance.
         def with_card(value)
@@ -79,25 +92,25 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'card'
-            raise TypeError, "value '%s' is not a Hash" % [hash['card']] unless hash['card'].is_a? Hash
+          if hash.key? 'card'
+            raise TypeError, "value '#{hash['card']}' is not a Hash" unless hash['card'].is_a? Hash
             @card = OnlinePayments::SDK::Domain::CardWithoutCvv.new_from_hash(hash['card'])
           end
-          if hash.has_key? 'crmToken'
-            raise TypeError, "value '%s' is not a Hash" % [hash['crmToken']] unless hash['crmToken'].is_a? Hash
+          if hash.key? 'crmToken'
+            raise TypeError, "value '#{hash['crmToken']}' is not a Hash" unless hash['crmToken'].is_a? Hash
             @crm_token = OnlinePayments::SDK::Domain::CrmToken.new_from_hash(hash['crmToken'])
           end
-          if hash.has_key? 'externalTokenLinked'
-            raise TypeError, "value '%s' is not a Hash" % [hash['externalTokenLinked']] unless hash['externalTokenLinked'].is_a? Hash
+          if hash.key? 'externalTokenLinked'
+            raise TypeError, "value '#{hash['externalTokenLinked']}' is not a Hash" unless hash['externalTokenLinked'].is_a? Hash
             @external_token_linked = OnlinePayments::SDK::Domain::ExternalTokenLinked.new_from_hash(hash['externalTokenLinked'])
           end
-          if hash.has_key? 'isNewToken'
+          if hash.key? 'isNewToken'
             @is_new_token = hash['isNewToken']
           end
-          if hash.has_key? 'token'
+          if hash.key? 'token'
             @token = hash['token']
           end
-          if hash.has_key? 'tokenStatus'
+          if hash.key? 'tokenStatus'
             @token_status = hash['tokenStatus']
           end
         end

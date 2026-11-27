@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :has_more
 
         attr_accessor :next_cursor
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(has_more: nil, next_cursor: nil)
+          super()
+          @has_more = has_more
+          @next_cursor = next_cursor
+        end
 
         # Sets the property and returns this same instance.
         def with_has_more(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'hasMore'
+          if hash.key? 'hasMore'
             @has_more = hash['hasMore']
           end
-          if hash.has_key? 'nextCursor'
+          if hash.key? 'nextCursor'
             @next_cursor = hash['nextCursor']
           end
         end

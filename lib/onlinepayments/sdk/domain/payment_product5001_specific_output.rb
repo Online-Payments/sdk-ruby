@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -22,6 +24,16 @@ module OnlinePayments
         attr_accessor :mobile_phone_number
 
         attr_accessor :operation_code
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(account_number: nil, authorisation_code: nil, liability: nil, mobile_phone_number: nil, operation_code: nil)
+          super()
+          @account_number = account_number
+          @authorisation_code = authorisation_code
+          @liability = liability
+          @mobile_phone_number = mobile_phone_number
+          @operation_code = operation_code
+        end
 
         # Sets the property and returns this same instance.
         def with_account_number(value)
@@ -66,19 +78,19 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'accountNumber'
+          if hash.key? 'accountNumber'
             @account_number = hash['accountNumber']
           end
-          if hash.has_key? 'authorisationCode'
+          if hash.key? 'authorisationCode'
             @authorisation_code = hash['authorisationCode']
           end
-          if hash.has_key? 'liability'
+          if hash.key? 'liability'
             @liability = hash['liability']
           end
-          if hash.has_key? 'mobilePhoneNumber'
+          if hash.key? 'mobilePhoneNumber'
             @mobile_phone_number = hash['mobilePhoneNumber']
           end
-          if hash.has_key? 'operationCode'
+          if hash.key? 'operationCode'
             @operation_code = hash['operationCode']
           end
         end

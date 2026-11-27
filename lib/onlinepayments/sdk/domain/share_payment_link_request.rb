@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -16,6 +18,14 @@ module OnlinePayments
         attr_accessor :locale
 
         attr_accessor :recipient
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(channel: nil, locale: nil, recipient: nil)
+          super()
+          @channel = channel
+          @locale = locale
+          @recipient = recipient
+        end
 
         # Sets the property and returns this same instance.
         def with_channel(value)
@@ -46,13 +56,13 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'channel'
+          if hash.key? 'channel'
             @channel = hash['channel']
           end
-          if hash.has_key? 'locale'
+          if hash.key? 'locale'
             @locale = hash['locale']
           end
-          if hash.has_key? 'recipient'
+          if hash.key? 'recipient'
             @recipient = hash['recipient']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :qr_code
 
         attr_accessor :url_intent
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(qr_code: nil, url_intent: nil)
+          super()
+          @qr_code = qr_code
+          @url_intent = url_intent
+        end
 
         # Sets the property and returns this same instance.
         def with_qr_code(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'qrCode'
+          if hash.key? 'qrCode'
             @qr_code = hash['qrCode']
           end
-          if hash.has_key? 'urlIntent'
+          if hash.key? 'urlIntent'
             @url_intent = hash['urlIntent']
           end
         end

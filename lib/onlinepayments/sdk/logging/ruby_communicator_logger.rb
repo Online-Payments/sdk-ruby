@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'English'
 require 'onlinepayments/sdk/logging/communicator_logger'
 
@@ -7,13 +9,12 @@ module OnlinePayments
       # Logging class that Logs messages and errors to a logger.
       # Errors can be logged at a separate level compared to regular messages.
       class RubyCommunicatorLogger < CommunicatorLogger
-
         # Creates a new RubyCommunicatorLogger instance.
         #
         # @param logger      [Logger] the logger to log messages to. Messages to log will be provided using logger#log(message level, message)
         # @param log_level   [String] log level to use for non-error messages.
         # @param error_level [String, nil] error logging level to use.
-        def initialize(logger, log_level, error_level = nil)
+        def initialize(logger, log_level, error_level = nil) # rubocop:disable Lint/MissingSuper
           # implement the interface
           error_level ||= log_level
           raise ArgumentError unless logger
@@ -29,7 +30,7 @@ module OnlinePayments
         def log(msg, thrown = nil)
           # use Ruby Logger
           if thrown
-            @logger.log(@error_level) { msg + $RS + thrown.to_s + $RS + thrown.backtrace.join($RS) }
+            @logger.log(@error_level) { msg + $RS + thrown.to_s + $RS + Array(thrown.backtrace).join($RS) }
           else
             @logger.log(@log_level, msg)
           end
@@ -38,22 +39,20 @@ module OnlinePayments
         # Opens or creates a new file in write-only mode with _filename_.
         def self.create_logfile(filename)
           logdev = begin
-                     open(filename, (File::WRONLY | File::APPEND | File::CREAT | File::EXCL))
-                   rescue Errno::EEXIST
-                     # file is created by another process
-                     open_logfile(filename)
-                   end
+            File.open(filename, File::WRONLY | File::APPEND | File::CREAT | File::EXCL)
+          rescue Errno::EEXIST
+            # file is created by another process
+            open_logfile(filename)
+          end
           logdev.sync = true
           logdev
         end
 
         # Opens or creates a new file in write-only mode with _filename_.
         def self.open_logfile(filename)
-          begin
-            open(filename, (File::WRONLY | File::APPEND))
-          rescue Errno::ENOENT
-            create_logfile(filename)
-          end
+          File.open(filename, File::WRONLY | File::APPEND)
+        rescue Errno::ENOENT
+          create_logfile(filename)
         end
       end
     end

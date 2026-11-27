@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -14,6 +16,13 @@ module OnlinePayments
         attr_accessor :message
 
         attr_accessor :polling_url
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(message: nil, polling_url: nil)
+          super()
+          @message = message
+          @polling_url = polling_url
+        end
 
         # Sets the property and returns this same instance.
         def with_message(value)
@@ -37,10 +46,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'message'
+          if hash.key? 'message'
             @message = hash['message']
           end
-          if hash.has_key? 'pollingUrl'
+          if hash.key? 'pollingUrl'
             @polling_url = hash['pollingUrl']
           end
         end

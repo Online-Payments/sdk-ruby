@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -19,6 +21,15 @@ module OnlinePayments
         attr_accessor :acs_transaction_id
 
         attr_accessor :three_d_server_transaction_id
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(acs_reference_number: nil, acs_signed_content: nil, acs_transaction_id: nil, three_d_server_transaction_id: nil)
+          super()
+          @acs_reference_number = acs_reference_number
+          @acs_signed_content = acs_signed_content
+          @acs_transaction_id = acs_transaction_id
+          @three_d_server_transaction_id = three_d_server_transaction_id
+        end
 
         # Sets the property and returns this same instance.
         def with_acs_reference_number(value)
@@ -56,16 +67,16 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'acsReferenceNumber'
+          if hash.key? 'acsReferenceNumber'
             @acs_reference_number = hash['acsReferenceNumber']
           end
-          if hash.has_key? 'acsSignedContent'
+          if hash.key? 'acsSignedContent'
             @acs_signed_content = hash['acsSignedContent']
           end
-          if hash.has_key? 'acsTransactionId'
+          if hash.key? 'acsTransactionId'
             @acs_transaction_id = hash['acsTransactionId']
           end
-          if hash.has_key? 'threeDServerTransactionId'
+          if hash.key? 'threeDServerTransactionId'
             @three_d_server_transaction_id = hash['threeDServerTransactionId']
           end
         end

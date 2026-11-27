@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -22,6 +24,16 @@ module OnlinePayments
         attr_accessor :screen_height
 
         attr_accessor :screen_width
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(color_depth: nil, java_enabled: nil, java_script_enabled: nil, screen_height: nil, screen_width: nil)
+          super()
+          @color_depth = color_depth
+          @java_enabled = java_enabled
+          @java_script_enabled = java_script_enabled
+          @screen_height = screen_height
+          @screen_width = screen_width
+        end
 
         # Sets the property and returns this same instance.
         def with_color_depth(value)
@@ -66,19 +78,19 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'colorDepth'
+          if hash.key? 'colorDepth'
             @color_depth = hash['colorDepth']
           end
-          if hash.has_key? 'javaEnabled'
+          if hash.key? 'javaEnabled'
             @java_enabled = hash['javaEnabled']
           end
-          if hash.has_key? 'javaScriptEnabled'
+          if hash.key? 'javaScriptEnabled'
             @java_script_enabled = hash['javaScriptEnabled']
           end
-          if hash.has_key? 'screenHeight'
+          if hash.key? 'screenHeight'
             @screen_height = hash['screenHeight']
           end
-          if hash.has_key? 'screenWidth'
+          if hash.key? 'screenWidth'
             @screen_width = hash['screenWidth']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -10,6 +12,12 @@ module OnlinePayments
       class ImportCofSeriesResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :payment_id
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(payment_id: nil)
+          super()
+          @payment_id = payment_id
+        end
 
         # Sets the property and returns this same instance.
         def with_payment_id(value)
@@ -26,7 +34,7 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'paymentId'
+          if hash.key? 'paymentId'
             @payment_id = hash['paymentId']
           end
         end

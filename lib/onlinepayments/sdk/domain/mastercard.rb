@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -17,6 +19,14 @@ module OnlinePayments
         attr_accessor :src_initiator_id
 
         attr_accessor :srci_dpa_id
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(authentication_options: nil, src_initiator_id: nil, srci_dpa_id: nil)
+          super()
+          @authentication_options = authentication_options
+          @src_initiator_id = src_initiator_id
+          @srci_dpa_id = srci_dpa_id
+        end
 
         # Sets the property and returns this same instance.
         def with_authentication_options(value)
@@ -47,14 +57,14 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'authenticationOptions'
-            raise TypeError, "value '%s' is not a Hash" % [hash['authenticationOptions']] unless hash['authenticationOptions'].is_a? Hash
+          if hash.key? 'authenticationOptions'
+            raise TypeError, "value '#{hash['authenticationOptions']}' is not a Hash" unless hash['authenticationOptions'].is_a? Hash
             @authentication_options = OnlinePayments::SDK::Domain::AuthenticationOptions.new_from_hash(hash['authenticationOptions'])
           end
-          if hash.has_key? 'srcInitiatorId'
+          if hash.key? 'srcInitiatorId'
             @src_initiator_id = hash['srcInitiatorId']
           end
-          if hash.has_key? 'srciDpaId'
+          if hash.key? 'srciDpaId'
             @srci_dpa_id = hash['srciDpaId']
           end
         end

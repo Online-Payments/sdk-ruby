@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -16,6 +18,14 @@ module OnlinePayments
         attr_accessor :polling_url
 
         attr_accessor :qr_code
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(app_url: nil, polling_url: nil, qr_code: nil)
+          super()
+          @app_url = app_url
+          @polling_url = polling_url
+          @qr_code = qr_code
+        end
 
         # Sets the property and returns this same instance.
         def with_app_url(value)
@@ -46,13 +56,13 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'appUrl'
+          if hash.key? 'appUrl'
             @app_url = hash['appUrl']
           end
-          if hash.has_key? 'pollingUrl'
+          if hash.key? 'pollingUrl'
             @polling_url = hash['pollingUrl']
           end
-          if hash.has_key? 'qrCode'
+          if hash.key? 'qrCode'
             @qr_code = hash['qrCode']
           end
         end

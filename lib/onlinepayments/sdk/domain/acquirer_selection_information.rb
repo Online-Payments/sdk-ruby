@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -16,6 +18,14 @@ module OnlinePayments
         attr_accessor :result
 
         attr_accessor :rule_name
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(fallback_level: nil, result: nil, rule_name: nil)
+          super()
+          @fallback_level = fallback_level
+          @result = result
+          @rule_name = rule_name
+        end
 
         # Sets the property and returns this same instance.
         def with_fallback_level(value)
@@ -46,13 +56,13 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'fallbackLevel'
+          if hash.key? 'fallbackLevel'
             @fallback_level = hash['fallbackLevel']
           end
-          if hash.has_key? 'result'
+          if hash.key? 'result'
             @result = hash['result']
           end
-          if hash.has_key? 'ruleName'
+          if hash.key? 'ruleName'
             @rule_name = hash['ruleName']
           end
         end

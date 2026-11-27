@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 module OnlinePayments
   module SDK
     module Webhooks
       # Raised when an error occurred when validating Webhooks signatures
       class SignatureValidationException < RuntimeError
-
         # Creates a new SignatureValidationException
         #
         # @param [Hash] args the options to create the Exception with

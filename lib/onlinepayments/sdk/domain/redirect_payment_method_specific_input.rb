@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -118,6 +120,68 @@ module OnlinePayments
         attr_accessor :token
 
         attr_accessor :tokenize
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(payment_option: nil,
+                       payment_product11_specific_input: nil,
+                       payment_product3103_specific_input: nil,
+                       payment_product3112_specific_input: nil,
+                       payment_product3116_specific_input: nil,
+                       payment_product3203_specific_input: nil,
+                       payment_product3204_specific_input: nil,
+                       payment_product3302_specific_input: nil,
+                       payment_product3306_specific_input: nil,
+                       payment_product3307_specific_input: nil,
+                       payment_product5001_specific_input: nil,
+                       payment_product5300_specific_input: nil,
+                       payment_product5301_specific_input: nil,
+                       payment_product5402_specific_input: nil,
+                       payment_product5403_specific_input: nil,
+                       payment_product5406_specific_input: nil,
+                       payment_product5407_specific_input: nil,
+                       payment_product5408_specific_input: nil,
+                       payment_product5410_specific_input: nil,
+                       payment_product5412_specific_input: nil,
+                       payment_product5601_specific_input: nil,
+                       payment_product809_specific_input: nil,
+                       payment_product840_specific_input: nil,
+                       payment_product900_specific_input: nil,
+                       payment_product_id: nil,
+                       redirection_data: nil,
+                       requires_approval: nil,
+                       token: nil,
+                       tokenize: nil)
+          super()
+          @payment_option = payment_option
+          @payment_product11_specific_input = payment_product11_specific_input
+          @payment_product3103_specific_input = payment_product3103_specific_input
+          @payment_product3112_specific_input = payment_product3112_specific_input
+          @payment_product3116_specific_input = payment_product3116_specific_input
+          @payment_product3203_specific_input = payment_product3203_specific_input
+          @payment_product3204_specific_input = payment_product3204_specific_input
+          @payment_product3302_specific_input = payment_product3302_specific_input
+          @payment_product3306_specific_input = payment_product3306_specific_input
+          @payment_product3307_specific_input = payment_product3307_specific_input
+          @payment_product5001_specific_input = payment_product5001_specific_input
+          @payment_product5300_specific_input = payment_product5300_specific_input
+          @payment_product5301_specific_input = payment_product5301_specific_input
+          @payment_product5402_specific_input = payment_product5402_specific_input
+          @payment_product5403_specific_input = payment_product5403_specific_input
+          @payment_product5406_specific_input = payment_product5406_specific_input
+          @payment_product5407_specific_input = payment_product5407_specific_input
+          @payment_product5408_specific_input = payment_product5408_specific_input
+          @payment_product5410_specific_input = payment_product5410_specific_input
+          @payment_product5412_specific_input = payment_product5412_specific_input
+          @payment_product5601_specific_input = payment_product5601_specific_input
+          @payment_product809_specific_input = payment_product809_specific_input
+          @payment_product840_specific_input = payment_product840_specific_input
+          @payment_product900_specific_input = payment_product900_specific_input
+          @payment_product_id = payment_product_id
+          @redirection_data = redirection_data
+          @requires_approval = requires_approval
+          @token = token
+          @tokenize = tokenize
+        end
 
         # Sets the property and returns this same instance.
         def with_payment_option(value)
@@ -330,115 +394,115 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'paymentOption'
+          if hash.key? 'paymentOption'
             @payment_option = hash['paymentOption']
           end
-          if hash.has_key? 'paymentProduct11SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct11SpecificInput']] unless hash['paymentProduct11SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct11SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct11SpecificInput']}' is not a Hash" unless hash['paymentProduct11SpecificInput'].is_a? Hash
             @payment_product11_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct11SpecificInput.new_from_hash(hash['paymentProduct11SpecificInput'])
           end
-          if hash.has_key? 'paymentProduct3103SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct3103SpecificInput']] unless hash['paymentProduct3103SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct3103SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct3103SpecificInput']}' is not a Hash" unless hash['paymentProduct3103SpecificInput'].is_a? Hash
             @payment_product3103_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct3103SpecificInput.new_from_hash(hash['paymentProduct3103SpecificInput'])
           end
-          if hash.has_key? 'paymentProduct3112SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct3112SpecificInput']] unless hash['paymentProduct3112SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct3112SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct3112SpecificInput']}' is not a Hash" unless hash['paymentProduct3112SpecificInput'].is_a? Hash
             @payment_product3112_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct3112SpecificInput.new_from_hash(hash['paymentProduct3112SpecificInput'])
           end
-          if hash.has_key? 'paymentProduct3116SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct3116SpecificInput']] unless hash['paymentProduct3116SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct3116SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct3116SpecificInput']}' is not a Hash" unless hash['paymentProduct3116SpecificInput'].is_a? Hash
             @payment_product3116_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct3116SpecificInput.new_from_hash(hash['paymentProduct3116SpecificInput'])
           end
-          if hash.has_key? 'paymentProduct3203SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct3203SpecificInput']] unless hash['paymentProduct3203SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct3203SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct3203SpecificInput']}' is not a Hash" unless hash['paymentProduct3203SpecificInput'].is_a? Hash
             @payment_product3203_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct3203SpecificInput.new_from_hash(hash['paymentProduct3203SpecificInput'])
           end
-          if hash.has_key? 'paymentProduct3204SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct3204SpecificInput']] unless hash['paymentProduct3204SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct3204SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct3204SpecificInput']}' is not a Hash" unless hash['paymentProduct3204SpecificInput'].is_a? Hash
             @payment_product3204_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct3204SpecificInput.new_from_hash(hash['paymentProduct3204SpecificInput'])
           end
-          if hash.has_key? 'paymentProduct3302SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct3302SpecificInput']] unless hash['paymentProduct3302SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct3302SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct3302SpecificInput']}' is not a Hash" unless hash['paymentProduct3302SpecificInput'].is_a? Hash
             @payment_product3302_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct3302SpecificInput.new_from_hash(hash['paymentProduct3302SpecificInput'])
           end
-          if hash.has_key? 'paymentProduct3306SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct3306SpecificInput']] unless hash['paymentProduct3306SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct3306SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct3306SpecificInput']}' is not a Hash" unless hash['paymentProduct3306SpecificInput'].is_a? Hash
             @payment_product3306_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct3306SpecificInput.new_from_hash(hash['paymentProduct3306SpecificInput'])
           end
-          if hash.has_key? 'paymentProduct3307SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct3307SpecificInput']] unless hash['paymentProduct3307SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct3307SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct3307SpecificInput']}' is not a Hash" unless hash['paymentProduct3307SpecificInput'].is_a? Hash
             @payment_product3307_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct3307SpecificInput.new_from_hash(hash['paymentProduct3307SpecificInput'])
           end
-          if hash.has_key? 'paymentProduct5001SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct5001SpecificInput']] unless hash['paymentProduct5001SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct5001SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct5001SpecificInput']}' is not a Hash" unless hash['paymentProduct5001SpecificInput'].is_a? Hash
             @payment_product5001_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct5001SpecificInput.new_from_hash(hash['paymentProduct5001SpecificInput'])
           end
-          if hash.has_key? 'paymentProduct5300SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct5300SpecificInput']] unless hash['paymentProduct5300SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct5300SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct5300SpecificInput']}' is not a Hash" unless hash['paymentProduct5300SpecificInput'].is_a? Hash
             @payment_product5300_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct5300SpecificInput.new_from_hash(hash['paymentProduct5300SpecificInput'])
           end
-          if hash.has_key? 'paymentProduct5301SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct5301SpecificInput']] unless hash['paymentProduct5301SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct5301SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct5301SpecificInput']}' is not a Hash" unless hash['paymentProduct5301SpecificInput'].is_a? Hash
             @payment_product5301_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct5301SpecificInput.new_from_hash(hash['paymentProduct5301SpecificInput'])
           end
-          if hash.has_key? 'paymentProduct5402SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct5402SpecificInput']] unless hash['paymentProduct5402SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct5402SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct5402SpecificInput']}' is not a Hash" unless hash['paymentProduct5402SpecificInput'].is_a? Hash
             @payment_product5402_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct5402SpecificInput.new_from_hash(hash['paymentProduct5402SpecificInput'])
           end
-          if hash.has_key? 'paymentProduct5403SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct5403SpecificInput']] unless hash['paymentProduct5403SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct5403SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct5403SpecificInput']}' is not a Hash" unless hash['paymentProduct5403SpecificInput'].is_a? Hash
             @payment_product5403_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct5403SpecificInput.new_from_hash(hash['paymentProduct5403SpecificInput'])
           end
-          if hash.has_key? 'paymentProduct5406SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct5406SpecificInput']] unless hash['paymentProduct5406SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct5406SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct5406SpecificInput']}' is not a Hash" unless hash['paymentProduct5406SpecificInput'].is_a? Hash
             @payment_product5406_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct5406SpecificInput.new_from_hash(hash['paymentProduct5406SpecificInput'])
           end
-          if hash.has_key? 'paymentProduct5407SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct5407SpecificInput']] unless hash['paymentProduct5407SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct5407SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct5407SpecificInput']}' is not a Hash" unless hash['paymentProduct5407SpecificInput'].is_a? Hash
             @payment_product5407_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct5407SpecificInput.new_from_hash(hash['paymentProduct5407SpecificInput'])
           end
-          if hash.has_key? 'paymentProduct5408SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct5408SpecificInput']] unless hash['paymentProduct5408SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct5408SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct5408SpecificInput']}' is not a Hash" unless hash['paymentProduct5408SpecificInput'].is_a? Hash
             @payment_product5408_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct5408SpecificInput.new_from_hash(hash['paymentProduct5408SpecificInput'])
           end
-          if hash.has_key? 'paymentProduct5410SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct5410SpecificInput']] unless hash['paymentProduct5410SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct5410SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct5410SpecificInput']}' is not a Hash" unless hash['paymentProduct5410SpecificInput'].is_a? Hash
             @payment_product5410_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct5410SpecificInput.new_from_hash(hash['paymentProduct5410SpecificInput'])
           end
-          if hash.has_key? 'paymentProduct5412SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct5412SpecificInput']] unless hash['paymentProduct5412SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct5412SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct5412SpecificInput']}' is not a Hash" unless hash['paymentProduct5412SpecificInput'].is_a? Hash
             @payment_product5412_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct5412SpecificInput.new_from_hash(hash['paymentProduct5412SpecificInput'])
           end
-          if hash.has_key? 'paymentProduct5601SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct5601SpecificInput']] unless hash['paymentProduct5601SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct5601SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct5601SpecificInput']}' is not a Hash" unless hash['paymentProduct5601SpecificInput'].is_a? Hash
             @payment_product5601_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct5601SpecificInput.new_from_hash(hash['paymentProduct5601SpecificInput'])
           end
-          if hash.has_key? 'paymentProduct809SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct809SpecificInput']] unless hash['paymentProduct809SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct809SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct809SpecificInput']}' is not a Hash" unless hash['paymentProduct809SpecificInput'].is_a? Hash
             @payment_product809_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct809SpecificInput.new_from_hash(hash['paymentProduct809SpecificInput'])
           end
-          if hash.has_key? 'paymentProduct840SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct840SpecificInput']] unless hash['paymentProduct840SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct840SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct840SpecificInput']}' is not a Hash" unless hash['paymentProduct840SpecificInput'].is_a? Hash
             @payment_product840_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct840SpecificInput.new_from_hash(hash['paymentProduct840SpecificInput'])
           end
-          if hash.has_key? 'paymentProduct900SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct900SpecificInput']] unless hash['paymentProduct900SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct900SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct900SpecificInput']}' is not a Hash" unless hash['paymentProduct900SpecificInput'].is_a? Hash
             @payment_product900_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentProduct900SpecificInput.new_from_hash(hash['paymentProduct900SpecificInput'])
           end
-          if hash.has_key? 'paymentProductId'
+          if hash.key? 'paymentProductId'
             @payment_product_id = hash['paymentProductId']
           end
-          if hash.has_key? 'redirectionData'
-            raise TypeError, "value '%s' is not a Hash" % [hash['redirectionData']] unless hash['redirectionData'].is_a? Hash
+          if hash.key? 'redirectionData'
+            raise TypeError, "value '#{hash['redirectionData']}' is not a Hash" unless hash['redirectionData'].is_a? Hash
             @redirection_data = OnlinePayments::SDK::Domain::RedirectionData.new_from_hash(hash['redirectionData'])
           end
-          if hash.has_key? 'requiresApproval'
+          if hash.key? 'requiresApproval'
             @requires_approval = hash['requiresApproval']
           end
-          if hash.has_key? 'token'
+          if hash.key? 'token'
             @token = hash['token']
           end
-          if hash.has_key? 'tokenize'
+          if hash.key? 'tokenize'
             @tokenize = hash['tokenize']
           end
         end

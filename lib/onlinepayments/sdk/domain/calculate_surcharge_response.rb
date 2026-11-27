@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -11,6 +13,12 @@ module OnlinePayments
       class CalculateSurchargeResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :surcharges
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(surcharges: nil)
+          super()
+          @surcharges = surcharges
+        end
 
         # Sets the property and returns this same instance.
         def with_surcharges(value)
@@ -27,8 +35,8 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'surcharges'
-            raise TypeError, "value '%s' is not an Array" % [hash['surcharges']] unless hash['surcharges'].is_a? Array
+          if hash.key? 'surcharges'
+            raise TypeError, "value '#{hash['surcharges']}' is not an Array" unless hash['surcharges'].is_a? Array
             @surcharges = []
             hash['surcharges'].each do |e|
               @surcharges << OnlinePayments::SDK::Domain::Surcharge.new_from_hash(e)

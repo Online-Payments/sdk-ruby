@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require 'uri'
+
 module OnlinePayments
   module SDK
     # Contains the URL, username and password of a proxy.
@@ -8,6 +12,8 @@ module OnlinePayments
     # @attr [String] username Proxy authentication username
     # @attr [String] password Proxy authentication password
     class ProxyConfiguration
+      MASK = '********'
+      private_constant :MASK
 
       # Initialize a new ProxyConfiguration from the parameter hash.
       # In order to be complete either host, port and scheme, or an address is required.
@@ -16,7 +22,7 @@ module OnlinePayments
       # @option args [String] :host host part of the URL to the proxy.
       # @option args [Integer] :port port the proxy will be accessed through.
       # @option args [String] :scheme HTTP scheme used to communicate with the proxy (http or https).
-      # @option args [String] :address full URI to the proxy excluding username and password.
+      # @option args [String, URI] :address full URI to the proxy excluding username and password.
       #             If given this uri takes precedence over individual host, port and scheme.
       # @option args [String] :username username used in authentication to the proxy.
       # @option args [String] :password password used to authenticate to the proxy.
@@ -29,13 +35,14 @@ module OnlinePayments
 
         # Don't switch the order, a given address overrides host, port and username
         address = args[:address]
+        address = URI(address) if address.is_a?(String)
         host = address.host if address
         port = address.port if address
         scheme = address.scheme if address
 
-        raise ArgumentError.new('scheme is required') unless scheme and not scheme.strip.empty?
-        raise ArgumentError.new('host is required') unless host and not host.strip.empty?
-        raise ArgumentError.new('port is required') unless port and port > 0 and port <= 65535
+        raise ArgumentError, 'scheme is required' unless scheme && !scheme.strip.empty?
+        raise ArgumentError, 'host is required' unless host && !host.strip.empty?
+        raise ArgumentError, 'port is required' unless port && (port > 0) && (port <= 65_535)
 
         @host = host
         @port = port
@@ -44,12 +51,7 @@ module OnlinePayments
         @scheme = scheme
       end
 
-      attr_accessor :scheme
-      attr_accessor :host
-      attr_accessor :port
-
-      attr_accessor :username
-      attr_accessor :password
+      attr_accessor :scheme, :host, :port, :username, :password
 
       # @return [String] a URL string representation of the proxy, excluding authentication.
       def proxy_uri
@@ -60,14 +62,16 @@ module OnlinePayments
         proxy_uri
       end
 
-      private
-
-      def self.get_port(address)
-        port = address.port
-        return port if port != -1
-        return 80 if address.scheme.casecmp('http') == 0
-        return 443 if address.scheme.casecmp('https') == 0
-        raise ArgumentError.new('unsupported scheme: ' + address.scheme)
+      # @return [String] a description of this proxy configuration in which the password is masked
+      def inspect
+        credentials = if username.nil?
+                        ''
+                      elsif password.nil?
+                        "#{username}@"
+                      else
+                        "#{username}:#{MASK}@"
+                      end
+        "#<#{self.class.name} #{scheme}://#{credentials}#{host}:#{port}>"
       end
     end
   end

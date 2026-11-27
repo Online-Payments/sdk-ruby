@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -39,6 +41,28 @@ module OnlinePayments
         attr_accessor :regular_expression
 
         attr_accessor :terms_and_conditions
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(email_address: nil,
+                       expiration_date: nil,
+                       fixed_list: nil,
+                       iban: nil,
+                       length: nil,
+                       luhn: nil,
+                       range: nil,
+                       regular_expression: nil,
+                       terms_and_conditions: nil)
+          super()
+          @email_address = email_address
+          @expiration_date = expiration_date
+          @fixed_list = fixed_list
+          @iban = iban
+          @length = length
+          @luhn = luhn
+          @range = range
+          @regular_expression = regular_expression
+          @terms_and_conditions = terms_and_conditions
+        end
 
         # Sets the property and returns this same instance.
         def with_email_address(value)
@@ -111,40 +135,40 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'emailAddress'
-            raise TypeError, "value '%s' is not a Hash" % [hash['emailAddress']] unless hash['emailAddress'].is_a? Hash
+          if hash.key? 'emailAddress'
+            raise TypeError, "value '#{hash['emailAddress']}' is not a Hash" unless hash['emailAddress'].is_a? Hash
             @email_address = OnlinePayments::SDK::Domain::EmptyValidator.new_from_hash(hash['emailAddress'])
           end
-          if hash.has_key? 'expirationDate'
-            raise TypeError, "value '%s' is not a Hash" % [hash['expirationDate']] unless hash['expirationDate'].is_a? Hash
+          if hash.key? 'expirationDate'
+            raise TypeError, "value '#{hash['expirationDate']}' is not a Hash" unless hash['expirationDate'].is_a? Hash
             @expiration_date = OnlinePayments::SDK::Domain::EmptyValidator.new_from_hash(hash['expirationDate'])
           end
-          if hash.has_key? 'fixedList'
-            raise TypeError, "value '%s' is not a Hash" % [hash['fixedList']] unless hash['fixedList'].is_a? Hash
+          if hash.key? 'fixedList'
+            raise TypeError, "value '#{hash['fixedList']}' is not a Hash" unless hash['fixedList'].is_a? Hash
             @fixed_list = OnlinePayments::SDK::Domain::FixedListValidator.new_from_hash(hash['fixedList'])
           end
-          if hash.has_key? 'iban'
-            raise TypeError, "value '%s' is not a Hash" % [hash['iban']] unless hash['iban'].is_a? Hash
+          if hash.key? 'iban'
+            raise TypeError, "value '#{hash['iban']}' is not a Hash" unless hash['iban'].is_a? Hash
             @iban = OnlinePayments::SDK::Domain::EmptyValidator.new_from_hash(hash['iban'])
           end
-          if hash.has_key? 'length'
-            raise TypeError, "value '%s' is not a Hash" % [hash['length']] unless hash['length'].is_a? Hash
+          if hash.key? 'length'
+            raise TypeError, "value '#{hash['length']}' is not a Hash" unless hash['length'].is_a? Hash
             @length = OnlinePayments::SDK::Domain::LengthValidator.new_from_hash(hash['length'])
           end
-          if hash.has_key? 'luhn'
-            raise TypeError, "value '%s' is not a Hash" % [hash['luhn']] unless hash['luhn'].is_a? Hash
+          if hash.key? 'luhn'
+            raise TypeError, "value '#{hash['luhn']}' is not a Hash" unless hash['luhn'].is_a? Hash
             @luhn = OnlinePayments::SDK::Domain::EmptyValidator.new_from_hash(hash['luhn'])
           end
-          if hash.has_key? 'range'
-            raise TypeError, "value '%s' is not a Hash" % [hash['range']] unless hash['range'].is_a? Hash
+          if hash.key? 'range'
+            raise TypeError, "value '#{hash['range']}' is not a Hash" unless hash['range'].is_a? Hash
             @range = OnlinePayments::SDK::Domain::RangeValidator.new_from_hash(hash['range'])
           end
-          if hash.has_key? 'regularExpression'
-            raise TypeError, "value '%s' is not a Hash" % [hash['regularExpression']] unless hash['regularExpression'].is_a? Hash
+          if hash.key? 'regularExpression'
+            raise TypeError, "value '#{hash['regularExpression']}' is not a Hash" unless hash['regularExpression'].is_a? Hash
             @regular_expression = OnlinePayments::SDK::Domain::RegularExpressionValidator.new_from_hash(hash['regularExpression'])
           end
-          if hash.has_key? 'termsAndConditions'
-            raise TypeError, "value '%s' is not a Hash" % [hash['termsAndConditions']] unless hash['termsAndConditions'].is_a? Hash
+          if hash.key? 'termsAndConditions'
+            raise TypeError, "value '#{hash['termsAndConditions']}' is not a Hash" unless hash['termsAndConditions'].is_a? Hash
             @terms_and_conditions = OnlinePayments::SDK::Domain::EmptyValidator.new_from_hash(hash['termsAndConditions'])
           end
         end

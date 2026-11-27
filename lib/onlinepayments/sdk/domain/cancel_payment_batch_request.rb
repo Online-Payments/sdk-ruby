@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -14,6 +16,13 @@ module OnlinePayments
         attr_accessor :cancel
 
         attr_accessor :payment_id
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(cancel: nil, payment_id: nil)
+          super()
+          @cancel = cancel
+          @payment_id = payment_id
+        end
 
         # Sets the property and returns this same instance.
         def with_cancel(value)
@@ -37,11 +46,11 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'cancel'
-            raise TypeError, "value '%s' is not a Hash" % [hash['cancel']] unless hash['cancel'].is_a? Hash
+          if hash.key? 'cancel'
+            raise TypeError, "value '#{hash['cancel']}' is not a Hash" unless hash['cancel'].is_a? Hash
             @cancel = OnlinePayments::SDK::Domain::CancelPaymentRequest.new_from_hash(hash['cancel'])
           end
-          if hash.has_key? 'paymentId'
+          if hash.key? 'paymentId'
             @payment_id = hash['paymentId']
           end
         end

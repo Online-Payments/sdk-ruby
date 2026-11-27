@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :purchase_type
 
         attr_accessor :transaction_type
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(purchase_type: nil, transaction_type: nil)
+          super()
+          @purchase_type = purchase_type
+          @transaction_type = transaction_type
+        end
 
         # Sets the property and returns this same instance.
         def with_purchase_type(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'purchaseType'
+          if hash.key? 'purchaseType'
             @purchase_type = hash['purchaseType']
           end
-          if hash.has_key? 'transactionType'
+          if hash.key? 'transactionType'
             @transaction_type = hash['transactionType']
           end
         end

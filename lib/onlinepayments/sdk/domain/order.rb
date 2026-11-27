@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -45,6 +47,30 @@ module OnlinePayments
         attr_accessor :tax_percentage
 
         attr_accessor :total_tax_amount
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(additional_input: nil,
+                       amount_of_money: nil,
+                       customer: nil,
+                       discount: nil,
+                       references: nil,
+                       shipping: nil,
+                       shopping_cart: nil,
+                       surcharge_specific_input: nil,
+                       tax_percentage: nil,
+                       total_tax_amount: nil)
+          super()
+          @additional_input = additional_input
+          @amount_of_money = amount_of_money
+          @customer = customer
+          @discount = discount
+          @references = references
+          @shipping = shipping
+          @shopping_cart = shopping_cart
+          @surcharge_specific_input = surcharge_specific_input
+          @tax_percentage = tax_percentage
+          @total_tax_amount = total_tax_amount
+        end
 
         # Sets the property and returns this same instance.
         def with_additional_input(value)
@@ -124,42 +150,42 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'additionalInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['additionalInput']] unless hash['additionalInput'].is_a? Hash
+          if hash.key? 'additionalInput'
+            raise TypeError, "value '#{hash['additionalInput']}' is not a Hash" unless hash['additionalInput'].is_a? Hash
             @additional_input = OnlinePayments::SDK::Domain::AdditionalOrderInput.new_from_hash(hash['additionalInput'])
           end
-          if hash.has_key? 'amountOfMoney'
-            raise TypeError, "value '%s' is not a Hash" % [hash['amountOfMoney']] unless hash['amountOfMoney'].is_a? Hash
+          if hash.key? 'amountOfMoney'
+            raise TypeError, "value '#{hash['amountOfMoney']}' is not a Hash" unless hash['amountOfMoney'].is_a? Hash
             @amount_of_money = OnlinePayments::SDK::Domain::AmountOfMoney.new_from_hash(hash['amountOfMoney'])
           end
-          if hash.has_key? 'customer'
-            raise TypeError, "value '%s' is not a Hash" % [hash['customer']] unless hash['customer'].is_a? Hash
+          if hash.key? 'customer'
+            raise TypeError, "value '#{hash['customer']}' is not a Hash" unless hash['customer'].is_a? Hash
             @customer = OnlinePayments::SDK::Domain::Customer.new_from_hash(hash['customer'])
           end
-          if hash.has_key? 'discount'
-            raise TypeError, "value '%s' is not a Hash" % [hash['discount']] unless hash['discount'].is_a? Hash
+          if hash.key? 'discount'
+            raise TypeError, "value '#{hash['discount']}' is not a Hash" unless hash['discount'].is_a? Hash
             @discount = OnlinePayments::SDK::Domain::Discount.new_from_hash(hash['discount'])
           end
-          if hash.has_key? 'references'
-            raise TypeError, "value '%s' is not a Hash" % [hash['references']] unless hash['references'].is_a? Hash
+          if hash.key? 'references'
+            raise TypeError, "value '#{hash['references']}' is not a Hash" unless hash['references'].is_a? Hash
             @references = OnlinePayments::SDK::Domain::OrderReferences.new_from_hash(hash['references'])
           end
-          if hash.has_key? 'shipping'
-            raise TypeError, "value '%s' is not a Hash" % [hash['shipping']] unless hash['shipping'].is_a? Hash
+          if hash.key? 'shipping'
+            raise TypeError, "value '#{hash['shipping']}' is not a Hash" unless hash['shipping'].is_a? Hash
             @shipping = OnlinePayments::SDK::Domain::Shipping.new_from_hash(hash['shipping'])
           end
-          if hash.has_key? 'shoppingCart'
-            raise TypeError, "value '%s' is not a Hash" % [hash['shoppingCart']] unless hash['shoppingCart'].is_a? Hash
+          if hash.key? 'shoppingCart'
+            raise TypeError, "value '#{hash['shoppingCart']}' is not a Hash" unless hash['shoppingCart'].is_a? Hash
             @shopping_cart = OnlinePayments::SDK::Domain::ShoppingCart.new_from_hash(hash['shoppingCart'])
           end
-          if hash.has_key? 'surchargeSpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['surchargeSpecificInput']] unless hash['surchargeSpecificInput'].is_a? Hash
+          if hash.key? 'surchargeSpecificInput'
+            raise TypeError, "value '#{hash['surchargeSpecificInput']}' is not a Hash" unless hash['surchargeSpecificInput'].is_a? Hash
             @surcharge_specific_input = OnlinePayments::SDK::Domain::SurchargeSpecificInput.new_from_hash(hash['surchargeSpecificInput'])
           end
-          if hash.has_key? 'taxPercentage'
+          if hash.key? 'taxPercentage'
             @tax_percentage = hash['taxPercentage']
           end
-          if hash.has_key? 'totalTaxAmount'
+          if hash.key? 'totalTaxAmount'
             @total_tax_amount = hash['totalTaxAmount']
           end
         end

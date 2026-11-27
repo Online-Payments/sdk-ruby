@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -14,6 +16,13 @@ module OnlinePayments
         attr_accessor :action_type
 
         attr_accessor :redirect_data
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(action_type: nil, redirect_data: nil)
+          super()
+          @action_type = action_type
+          @redirect_data = redirect_data
+        end
 
         # Sets the property and returns this same instance.
         def with_action_type(value)
@@ -37,11 +46,11 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'actionType'
+          if hash.key? 'actionType'
             @action_type = hash['actionType']
           end
-          if hash.has_key? 'redirectData'
-            raise TypeError, "value '%s' is not a Hash" % [hash['redirectData']] unless hash['redirectData'].is_a? Hash
+          if hash.key? 'redirectData'
+            raise TypeError, "value '#{hash['redirectData']}' is not a Hash" unless hash['redirectData'].is_a? Hash
             @redirect_data = OnlinePayments::SDK::Domain::MandateRedirectData.new_from_hash(hash['redirectData'])
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :eligibility
 
         attr_accessor :type
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(eligibility: nil, type: nil)
+          super()
+          @eligibility = eligibility
+          @type = type
+        end
 
         # Sets the property and returns this same instance.
         def with_eligibility(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'eligibility'
+          if hash.key? 'eligibility'
             @eligibility = hash['eligibility']
           end
-          if hash.has_key? 'type'
+          if hash.key? 'type'
             @type = hash['type']
           end
         end

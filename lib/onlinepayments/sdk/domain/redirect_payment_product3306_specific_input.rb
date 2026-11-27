@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -10,6 +12,12 @@ module OnlinePayments
       class RedirectPaymentProduct3306SpecificInput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :extra_merchant_data
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(extra_merchant_data: nil)
+          super()
+          @extra_merchant_data = extra_merchant_data
+        end
 
         # Sets the property and returns this same instance.
         def with_extra_merchant_data(value)
@@ -26,7 +34,7 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'extraMerchantData'
+          if hash.key? 'extraMerchantData'
             @extra_merchant_data = hash['extraMerchantData']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -19,6 +21,15 @@ module OnlinePayments
         attr_accessor :surcharge_product_type_id
 
         attr_accessor :surcharge_product_type_version
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(ad_valorem_rate: nil, specific_rate: nil, surcharge_product_type_id: nil, surcharge_product_type_version: nil)
+          super()
+          @ad_valorem_rate = ad_valorem_rate
+          @specific_rate = specific_rate
+          @surcharge_product_type_id = surcharge_product_type_id
+          @surcharge_product_type_version = surcharge_product_type_version
+        end
 
         # Sets the property and returns this same instance.
         def with_ad_valorem_rate(value)
@@ -56,16 +67,16 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'adValoremRate'
+          if hash.key? 'adValoremRate'
             @ad_valorem_rate = hash['adValoremRate']
           end
-          if hash.has_key? 'specificRate'
+          if hash.key? 'specificRate'
             @specific_rate = hash['specificRate']
           end
-          if hash.has_key? 'surchargeProductTypeId'
+          if hash.key? 'surchargeProductTypeId'
             @surcharge_product_type_id = hash['surchargeProductTypeId']
           end
-          if hash.has_key? 'surchargeProductTypeVersion'
+          if hash.key? 'surchargeProductTypeVersion'
             @surcharge_product_type_version = hash['surchargeProductTypeVersion']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'onlinepayments/sdk/authentication/authorization_type'
 
 module OnlinePayments
@@ -16,11 +18,9 @@ module OnlinePayments
     # @attr [String] integrator           Name of the integrator
     # @attr [OnlinePayments::SDK::Domain::ShoppingCartExtension] shopping_cart_extension Shopping cart-related metadata.
     class CommunicatorConfiguration
-      private
-
       DEFAULT_MAX_CONNECTIONS = 10
-
-      public
+      MASK = '********'
+      private_constant :DEFAULT_MAX_CONNECTIONS, :MASK
 
       # The default number of connections that are kept alive in the connection pool.
       # Used if _maxConnections_ is not present in the properties.
@@ -40,8 +40,10 @@ module OnlinePayments
       # @param api_key_id              [String, nil] the identifier of the _secret_api_key_ used to authenticate requests.
       # @param secret_api_key          [String, nil] the key used to authenticate requests sent to the Online Payments platform.
       # @param authorization_type      [String, nil] string describing the authorization protocol to follow.
+      #                                Defaults to {OnlinePayments::SDK::Authentication::AuthorizationType::V1HMAC} if not given.
       # @param connect_timeout         [Integer, nil] the number of seconds before a connection attempt with the Online Payments platform times out.
-      # @param socket_timeout          [Integer, nil] the number of seconds before a timeout occurs when transmitting data to or from the Online Payments platform.
+      # @param socket_timeout          [Integer, nil] the number of seconds before a timeout occurs when transmitting data to or from the Online Payments
+      #                                               platform.
       # @param max_connections         [Integer, nil] the number of connections with the Online Payments platform that are kept alive in the connection pool.
       #                                These connections will be reused when possible.
       # @param proxy_configuration     [OnlinePayments::SDK::ProxyConfiguration, nil] stores the URL to a proxy to be used in all communication,
@@ -54,9 +56,11 @@ module OnlinePayments
                      connect_timeout: nil, socket_timeout: nil,
                      max_connections: nil, proxy_configuration: nil,
                      integrator: nil, shopping_cart_extension: nil)
+        @authorization_type = Authentication::AuthorizationType::V1HMAC
         unless properties.nil?
           @api_endpoint = get_endpoint(properties)
-          @authorization_type = Authentication::AuthorizationType.get_authorization(properties['onlinePayments.api.authorizationType'])
+          authorization = properties['onlinePayments.api.authorizationType']
+          @authorization_type = Authentication::AuthorizationType.get_authorization(authorization) unless authorization.nil?
           @connect_timeout = properties['onlinePayments.api.connectTimeout']
           @socket_timeout = properties['onlinePayments.api.socketTimeout']
           @max_connections = get_property(properties, 'onlinePayments.api.maxConnections', DEFAULT_MAX_CONNECTIONS)
@@ -73,54 +77,72 @@ module OnlinePayments
           @shopping_cart_extension = get_shopping_cart_extension(properties)
         end
 
-        if api_endpoint
-          @api_endpoint = api_endpoint
-        end
-        if api_key_id
-          @api_key_id = api_key_id
-        end
-        if secret_api_key
-          @secret_api_key = secret_api_key
-        end
-        if authorization_type
-          @authorization_type = authorization_type
-        end
-        if connect_timeout
-          @connect_timeout = connect_timeout
-        end
-        if socket_timeout
-          @socket_timeout = socket_timeout
-        end
-        if max_connections
-          @max_connections = max_connections
-        end
-        if proxy_configuration
-          @proxy_configuration = proxy_configuration
-        end
-        if integrator
-          @integrator = integrator
-        end
-        if shopping_cart_extension
-          @shopping_cart_extension = shopping_cart_extension
-        end
+        @api_endpoint = api_endpoint if api_endpoint
+        @api_key_id = api_key_id if api_key_id
+        @secret_api_key = secret_api_key if secret_api_key
+        @authorization_type = authorization_type if authorization_type
+        @connect_timeout = connect_timeout if connect_timeout
+        @socket_timeout = socket_timeout if socket_timeout
+        @max_connections = max_connections if max_connections
+        @proxy_configuration = proxy_configuration if proxy_configuration
+        @integrator = integrator if integrator
+        @shopping_cart_extension = shopping_cart_extension if shopping_cart_extension
       end
 
-      attr_accessor :api_endpoint
+      attr_accessor :api_endpoint, :api_key_id, :secret_api_key, :authorization_type, :connect_timeout, :socket_timeout, :max_connections,
+                    :proxy_configuration, :integrator, :shopping_cart_extension
 
-      attr_accessor :api_key_id
-      attr_accessor :secret_api_key
-      attr_accessor :authorization_type
+      # Creates a new CommunicatorConfiguration from environment variables.
+      #
+      # The following variables are read, all of them are required:
+      # * ONLINEPAYMENTS_API_ENDPOINT, for example https://payment.direct.ecom.preprod.worldline-solutions.com
+      # * ONLINEPAYMENTS_API_KEY_ID
+      # * ONLINEPAYMENTS_SECRET_API_KEY
+      # * ONLINEPAYMENTS_INTEGRATOR
+      # * ONLINEPAYMENTS_CONNECT_TIMEOUT, in seconds
+      # * ONLINEPAYMENTS_SOCKET_TIMEOUT, in seconds
+      #
+      # @param env [Hash] the environment to read from; defaults to _ENV_.
+      # @return [OnlinePayments::SDK::CommunicatorConfiguration]
+      # @raise [ArgumentError] if a variable is missing or has an invalid value
+      def self.from_env(env = ENV)
+        new(api_endpoint: required_environment_variable(env, 'ONLINEPAYMENTS_API_ENDPOINT'),
+            api_key_id: required_environment_variable(env, 'ONLINEPAYMENTS_API_KEY_ID'),
+            secret_api_key: required_environment_variable(env, 'ONLINEPAYMENTS_SECRET_API_KEY'),
+            integrator: required_environment_variable(env, 'ONLINEPAYMENTS_INTEGRATOR'),
+            connect_timeout: required_integer_environment_variable(env, 'ONLINEPAYMENTS_CONNECT_TIMEOUT'),
+            socket_timeout: required_integer_environment_variable(env, 'ONLINEPAYMENTS_SOCKET_TIMEOUT'))
+      end
 
-      attr_accessor :connect_timeout
-      attr_accessor :socket_timeout
-      attr_accessor :max_connections
+      def self.required_environment_variable(env, name)
+        value = env[name]
+        raise ArgumentError, "environment variable #{name} is required" if value.nil? || value.strip.empty?
 
-      attr_accessor :proxy_configuration
+        value.strip
+      end
 
-      attr_accessor :integrator
-      attr_accessor :shopping_cart_extension
+      def self.required_integer_environment_variable(env, name)
+        value = required_environment_variable(env, name)
+        Integer(value, 10, exception: false) || raise(ArgumentError, "environment variable #{name} must be an integer, got '#{value}'")
+      end
+      private_class_method :required_environment_variable, :required_integer_environment_variable
+
+      # @return [String] a description of this configuration in which the API key id, the secret API key and the proxy password are masked
+      def inspect
+        "#<#{self.class.name} api_endpoint=#{@api_endpoint.inspect}, api_key_id=#{mask(@api_key_id)}, " \
+          "secret_api_key=#{mask(@secret_api_key)}, authorization_type=#{@authorization_type.inspect}, " \
+          "connect_timeout=#{@connect_timeout.inspect}, socket_timeout=#{@socket_timeout.inspect}, " \
+          "max_connections=#{@max_connections.inspect}, proxy_configuration=#{@proxy_configuration.inspect}, " \
+          "integrator=#{@integrator.inspect}, shopping_cart_extension=#{@shopping_cart_extension.inspect}>"
+      end
+
+      alias to_s inspect
 
       private
+
+      def mask(value)
+        value.nil? ? 'nil' : MASK.inspect
+      end
 
       def get_property(properties, key, default_value)
         property_value = properties[key]
@@ -135,12 +157,8 @@ module OnlinePayments
         host = properties['onlinePayments.api.endpoint.host']
         scheme = properties['onlinePayments.api.endpoint.scheme']
         port = properties['onlinePayments.api.endpoint.port']
-        if scheme.nil?
-          scheme = 'https'
-        end
-        if port.nil?
-          port = -1
-        end
+        scheme = 'https' if scheme.nil?
+        port = -1 if port.nil?
         create_uri(scheme, host, port)
       end
 
@@ -148,7 +166,7 @@ module OnlinePayments
         if port == -1
           "#{scheme}://#{host}"
         else
-          "#{scheme}://#{host}:#{port.to_s}"
+          "#{scheme}://#{host}:#{port}"
         end
       end
 

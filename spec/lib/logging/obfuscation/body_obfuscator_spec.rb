@@ -92,5 +92,77 @@ describe BodyObfuscator do
       expect(obfuscated.encoding).to eq(Encoding::UTF_8)
       expect(obfuscated).to eq('{"cardholderName":"*******","city":"Łódź"}')
     end
+
+    it 'obfuscates a value ending with a backslash and the following fields' do
+      body = "{\"cardholderName\": \"John\\\\\", \"cvv\": \"123\"}"
+
+      obfuscated = BodyObfuscator.default_obfuscator.obfuscate_body(body)
+
+      expect(obfuscated).to eq('{"cardholderName": "******", "cvv": "***"}')
+    end
+
+    it 'obfuscates a value ending with several backslashes' do
+      body = "{\"cardholderName\": \"John\\\\\\\\\", \"cvv\": \"123\"}"
+
+      obfuscated = BodyObfuscator.default_obfuscator.obfuscate_body(body)
+
+      expect(obfuscated).to eq('{"cardholderName": "********", "cvv": "***"}')
+    end
+
+    it 'obfuscates a value only containing a backslash' do
+      body = "{\"cardholderName\": \"\\\\\", \"cvv\": \"123\"}"
+
+      obfuscated = BodyObfuscator.default_obfuscator.obfuscate_body(body)
+
+      expect(obfuscated).to eq('{"cardholderName": "**", "cvv": "***"}')
+    end
+
+    it 'obfuscates a single quoted value ending with a backslash' do
+      body = "{'cardholderName': 'John\\\\', 'cvv': '123'}"
+
+      obfuscated = BodyObfuscator.default_obfuscator.obfuscate_body(body)
+
+      expect(obfuscated).to eq("{'cardholderName': '******', 'cvv': '***'}")
+    end
+
+    it 'obfuscates a value containing an escaped quote' do
+      body = "{\"cardholderName\": \"Jo\\\"hn\", \"cvv\": \"123\"}"
+
+      obfuscated = BodyObfuscator.default_obfuscator.obfuscate_body(body)
+
+      expect(obfuscated).to eq('{"cardholderName": "******", "cvv": "***"}')
+    end
+
+    it 'obfuscates a value with an escaped quote following an escaped backslash' do
+      body = "{\"cardholderName\": \"Jo\\\\\\\"hn\\\\\", \"cvv\": \"123\"}"
+
+      obfuscated = BodyObfuscator.default_obfuscator.obfuscate_body(body)
+
+      expect(obfuscated).to eq('{"cardholderName": "**********", "cvv": "***"}')
+    end
+
+    it 'does not obfuscate the property name when the value equals the property name' do
+      body = '{"value": "value", "cvv": "123"}'
+
+      obfuscated = BodyObfuscator.default_obfuscator.obfuscate_body(body)
+
+      expect(obfuscated).to eq('{"value": "*****", "cvv": "***"}')
+    end
+
+    it 'obfuscates only the value when the value is contained in the property name' do
+      body = '{"cardholderName": "holder", "cvv": "123"}'
+
+      obfuscated = BodyObfuscator.default_obfuscator.obfuscate_body(body)
+
+      expect(obfuscated).to eq('{"cardholderName": "******", "cvv": "***"}')
+    end
+
+    it 'obfuscates a very long value' do
+      body = '{"cardholderName": "' + ('a\\\\' * 100_000) + '", "cvv": "123"}'
+
+      obfuscated = BodyObfuscator.default_obfuscator.obfuscate_body(body)
+
+      expect(obfuscated).to eq('{"cardholderName": "' + ('***' * 100_000) + '", "cvv": "***"}')
+    end
   end
 end

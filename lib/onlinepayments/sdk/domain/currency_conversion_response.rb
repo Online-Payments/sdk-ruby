@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -18,6 +20,14 @@ module OnlinePayments
         attr_accessor :proposal
 
         attr_accessor :result
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(dcc_session_id: nil, proposal: nil, result: nil)
+          super()
+          @dcc_session_id = dcc_session_id
+          @proposal = proposal
+          @result = result
+        end
 
         # Sets the property and returns this same instance.
         def with_dcc_session_id(value)
@@ -48,15 +58,15 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'dccSessionId'
+          if hash.key? 'dccSessionId'
             @dcc_session_id = hash['dccSessionId']
           end
-          if hash.has_key? 'proposal'
-            raise TypeError, "value '%s' is not a Hash" % [hash['proposal']] unless hash['proposal'].is_a? Hash
+          if hash.key? 'proposal'
+            raise TypeError, "value '#{hash['proposal']}' is not a Hash" unless hash['proposal'].is_a? Hash
             @proposal = OnlinePayments::SDK::Domain::DccProposal.new_from_hash(hash['proposal'])
           end
-          if hash.has_key? 'result'
-            raise TypeError, "value '%s' is not a Hash" % [hash['result']] unless hash['result'].is_a? Hash
+          if hash.key? 'result'
+            raise TypeError, "value '#{hash['result']}' is not a Hash" unless hash['result'].is_a? Hash
             @result = OnlinePayments::SDK::Domain::CurrencyConversionResult.new_from_hash(hash['result'])
           end
         end

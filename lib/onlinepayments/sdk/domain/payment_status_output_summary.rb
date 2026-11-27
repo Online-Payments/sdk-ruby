@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -20,6 +22,15 @@ module OnlinePayments
         attr_accessor :status_code
 
         attr_accessor :status_code_change_date_time
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(errors: nil, status_category: nil, status_code: nil, status_code_change_date_time: nil)
+          super()
+          @errors = errors
+          @status_category = status_category
+          @status_code = status_code
+          @status_code_change_date_time = status_code_change_date_time
+        end
 
         # Sets the property and returns this same instance.
         def with_errors(value)
@@ -57,20 +68,20 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'errors'
-            raise TypeError, "value '%s' is not an Array" % [hash['errors']] unless hash['errors'].is_a? Array
+          if hash.key? 'errors'
+            raise TypeError, "value '#{hash['errors']}' is not an Array" unless hash['errors'].is_a? Array
             @errors = []
             hash['errors'].each do |e|
               @errors << OnlinePayments::SDK::Domain::APIError.new_from_hash(e)
             end
           end
-          if hash.has_key? 'statusCategory'
+          if hash.key? 'statusCategory'
             @status_category = hash['statusCategory']
           end
-          if hash.has_key? 'statusCode'
+          if hash.key? 'statusCode'
             @status_code = hash['statusCode']
           end
-          if hash.has_key? 'statusCodeChangeDateTime'
+          if hash.key? 'statusCodeChangeDateTime'
             @status_code_change_date_time = hash['statusCodeChangeDateTime']
           end
         end

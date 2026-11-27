@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'onlinepayments/sdk/communication/connection'
 
 module OnlinePayments
@@ -5,13 +7,11 @@ module OnlinePayments
     module Communication
       # {OnlinePayments::SDK::Communication::Connection} that supports connection pooling. This is used to more efficiently communicate using HTTP.
       # Connection pooling means that a number of connections are kept alive after use so they can possibly be reused.
-      # If the Connection does not do so automatically,
-      # the methods _close_idle_connections_ and _close_expired_connections_ can be used to drop connections
-      # that are idle for a specified amount of time or that have expired.
+      # The methods _close_idle_connections_ and _close_expired_connections_ can be used to configure idle
+      # expiration or drop connections that have expired.
       # @see OnlinePayments::SDK::Communication::DefaultConnection
       class PooledConnection < Connection
-
-        # Closes all connections that have not been used for _idle_time_ seconds.
+        # Configures connections idle longer than _idle_time_ seconds to be closed lazily.
         def close_idle_connections(idle_time)
           raise NotImplementedError
         end

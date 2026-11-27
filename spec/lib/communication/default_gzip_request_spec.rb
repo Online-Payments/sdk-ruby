@@ -1,10 +1,8 @@
-﻿require 'spec_helper'
-require 'webrick'
+require 'spec_helper'
+require 'test_server'
 require 'zlib'
 require 'stringio'
 require 'json'
-require 'socket'
-require 'timeout'
 
 require 'onlinepayments/sdk/communication/default_connection'
 require 'onlinepayments/sdk/communication/request_header'
@@ -22,38 +20,14 @@ describe OnlinePayments::SDK::Communication::DefaultConnection do
   it 'sends gzip-compressed request body when Content-Encoding is gzip' do
     received_content_encoding = nil
     received_raw_body         = nil
-    mutex                     = Mutex.new
 
-    server = WEBrick::HTTPServer.new(
-      Port:        0,
-      BindAddress: '127.0.0.1',
-      Logger:      WEBrick::Log.new(File::NULL),
-      AccessLog:   []
-    )
-
-    server.mount_proc(path) do |req, res|
-      mutex.synchronize do
-        received_content_encoding = req['content-encoding']
-        received_raw_body = req.body&.dup&.force_encoding('BINARY')
-      end
-      res.status          = 200
-      res['Content-Type'] = 'application/json'
-      res.body            = '{"status":"ok"}'
+    app = lambda do |env|
+      received_content_encoding = env['HTTP_CONTENT_ENCODING']
+      received_raw_body = env['rack.input'].read.force_encoding('BINARY')
+      [200, { 'content-type' => 'application/json' }, ['{"status":"ok"}']]
     end
 
-    server_thread = Thread.new { server.start }
-    port          = server[:Port]
-
-    Timeout.timeout(3) do
-      loop do
-        TCPSocket.new('127.0.0.1', port).close
-        break
-      rescue Errno::ECONNREFUSED
-        sleep 0.01
-      end
-    end
-
-    begin
+    TestServer.run(app) do |port|
       connection = DefaultConnection.new({})
 
       request_headers = [
@@ -77,59 +51,30 @@ describe OnlinePayments::SDK::Communication::DefaultConnection do
         body_io.read
       end
 
-      raw_body = mutex.synchronize { received_raw_body }
-
       expect(response_status_code).to eq(200)
       expect(received_content_encoding).to eq('gzip')
-      expect(raw_body).not_to be_nil
-      expect(raw_body.bytesize).to be > 0
+      expect(received_raw_body).not_to be_nil
+      expect(received_raw_body.bytesize).to be > 0
 
-      decompressed_body = Zlib::GzipReader.new(StringIO.new(raw_body)).read
+      decompressed_body = Zlib::GzipReader.new(StringIO.new(received_raw_body)).read
       parsed            = JSON.parse(decompressed_body)
 
       expect(parsed.dig('header', 'operationType')).to eq('CreatePayment')
       expect(parsed.dig('header', 'itemCount')).to eq(2)
-    ensure
-      server.shutdown
-      server_thread.join
     end
   end
 
   it 'sends an uncompressed request body when Content-Encoding is not gzip' do
     received_content_encoding = nil
     received_raw_body         = nil
-    mutex                     = Mutex.new
 
-    server = WEBrick::HTTPServer.new(
-      Port:        0,
-      BindAddress: '127.0.0.1',
-      Logger:      WEBrick::Log.new(File::NULL),
-      AccessLog:   []
-    )
-
-    server.mount_proc(path) do |req, res|
-      mutex.synchronize do
-        received_content_encoding = req['content-encoding']
-        received_raw_body = req.body&.dup
-      end
-      res.status          = 200
-      res['Content-Type'] = 'application/json'
-      res.body            = '{"status":"ok"}'
+    app = lambda do |env|
+      received_content_encoding = env['HTTP_CONTENT_ENCODING']
+      received_raw_body = env['rack.input'].read
+      [200, { 'content-type' => 'application/json' }, ['{"status":"ok"}']]
     end
 
-    server_thread = Thread.new { server.start }
-    port          = server[:Port]
-
-    Timeout.timeout(3) do
-      loop do
-        TCPSocket.new('127.0.0.1', port).close
-        break
-      rescue Errno::ECONNREFUSED
-        sleep 0.01
-      end
-    end
-
-    begin
+    TestServer.run(app) do |port|
       connection = DefaultConnection.new({})
 
       request_headers = [
@@ -152,14 +97,33 @@ describe OnlinePayments::SDK::Communication::DefaultConnection do
         body_io.read
       end
 
-      raw_body = mutex.synchronize { received_raw_body }
-
       expect(response_status_code).to eq(200)
       expect(received_content_encoding).to be_nil
-      expect(JSON.parse(raw_body)).to eq(JSON.parse(request_body))
-    ensure
-      server.shutdown
-      server_thread.join
+      expect(JSON.parse(received_raw_body)).to eq(JSON.parse(request_body))
+    end
+  end
+
+  it 'logs the uncompressed request body when Content-Encoding is gzip' do
+    app = ->(_env) { [200, { 'content-type' => 'application/json' }, ['{"status":"ok"}']] }
+    entries = []
+    logger = double('logger')
+    allow(logger).to receive(:log) { |message, thrown = nil| entries << [message, thrown] }
+
+    TestServer.run(app) do |port|
+      connection = DefaultConnection.new({})
+      connection.enable_logging(logger)
+
+      request_headers = [
+        RequestHeader.new('Content-Type',     'application/json'),
+        RequestHeader.new('Content-Encoding', 'gzip')
+      ]
+      request_body = JSON.generate('header' => { 'operationType' => 'CreatePayment', 'itemCount' => 1 })
+
+      uri = URI::HTTP.build(host: '127.0.0.1', port: port, path: path)
+      connection.post(uri, request_headers, request_body) { |_status_code, _headers, body_io| body_io.read }
+
+      expect(entries.map(&:last).compact).to be_empty
+      expect(entries.first[0]).to include("body:         '#{request_body}'")
     end
   end
 end

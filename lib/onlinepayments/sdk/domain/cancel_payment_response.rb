@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -11,6 +13,12 @@ module OnlinePayments
       class CancelPaymentResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :payment
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(payment: nil)
+          super()
+          @payment = payment
+        end
 
         # Sets the property and returns this same instance.
         def with_payment(value)
@@ -27,8 +35,8 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'payment'
-            raise TypeError, "value '%s' is not a Hash" % [hash['payment']] unless hash['payment'].is_a? Hash
+          if hash.key? 'payment'
+            raise TypeError, "value '#{hash['payment']}' is not a Hash" unless hash['payment'].is_a? Hash
             @payment = OnlinePayments::SDK::Domain::PaymentResponse.new_from_hash(hash['payment'])
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :max_length
 
         attr_accessor :min_length
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(max_length: nil, min_length: nil)
+          super()
+          @max_length = max_length
+          @min_length = min_length
+        end
 
         # Sets the property and returns this same instance.
         def with_max_length(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'maxLength'
+          if hash.key? 'maxLength'
             @max_length = hash['maxLength']
           end
-          if hash.has_key? 'minLength'
+          if hash.key? 'minLength'
             @min_length = hash['minLength']
           end
         end

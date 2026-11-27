@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -14,6 +16,13 @@ module OnlinePayments
         attr_accessor :session_id
 
         attr_accessor :token
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(session_id: nil, token: nil)
+          super()
+          @session_id = session_id
+          @token = token
+        end
 
         # Sets the property and returns this same instance.
         def with_session_id(value)
@@ -37,11 +46,11 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'sessionId'
+          if hash.key? 'sessionId'
             @session_id = hash['sessionId']
           end
-          if hash.has_key? 'token'
-            raise TypeError, "value '%s' is not a Hash" % [hash['token']] unless hash['token'].is_a? Hash
+          if hash.key? 'token'
+            raise TypeError, "value '#{hash['token']}' is not a Hash" unless hash['token'].is_a? Hash
             @token = OnlinePayments::SDK::Domain::TokenInfo.new_from_hash(hash['token'])
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -48,6 +50,32 @@ module OnlinePayments
         attr_accessor :redirect_payment_method_specific_input
 
         attr_accessor :sepa_direct_debit_payment_method_specific_input
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(card_payment_method_specific_input: nil,
+                       encrypted_customer_input: nil,
+                       feedbacks: nil,
+                       fraud_fields: nil,
+                       hosted_fields_session_id: nil,
+                       hosted_tokenization_id: nil,
+                       mobile_payment_method_specific_input: nil,
+                       omnichannel_payment_specific_input: nil,
+                       order: nil,
+                       redirect_payment_method_specific_input: nil,
+                       sepa_direct_debit_payment_method_specific_input: nil)
+          super()
+          @card_payment_method_specific_input = card_payment_method_specific_input
+          @encrypted_customer_input = encrypted_customer_input
+          @feedbacks = feedbacks
+          @fraud_fields = fraud_fields
+          @hosted_fields_session_id = hosted_fields_session_id
+          @hosted_tokenization_id = hosted_tokenization_id
+          @mobile_payment_method_specific_input = mobile_payment_method_specific_input
+          @omnichannel_payment_specific_input = omnichannel_payment_specific_input
+          @order = order
+          @redirect_payment_method_specific_input = redirect_payment_method_specific_input
+          @sepa_direct_debit_payment_method_specific_input = sepa_direct_debit_payment_method_specific_input
+        end
 
         # Sets the property and returns this same instance.
         def with_card_payment_method_specific_input(value)
@@ -134,45 +162,45 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'cardPaymentMethodSpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['cardPaymentMethodSpecificInput']] unless hash['cardPaymentMethodSpecificInput'].is_a? Hash
+          if hash.key? 'cardPaymentMethodSpecificInput'
+            raise TypeError, "value '#{hash['cardPaymentMethodSpecificInput']}' is not a Hash" unless hash['cardPaymentMethodSpecificInput'].is_a? Hash
             @card_payment_method_specific_input = OnlinePayments::SDK::Domain::CardPaymentMethodSpecificInput.new_from_hash(hash['cardPaymentMethodSpecificInput'])
           end
-          if hash.has_key? 'encryptedCustomerInput'
+          if hash.key? 'encryptedCustomerInput'
             @encrypted_customer_input = hash['encryptedCustomerInput']
           end
-          if hash.has_key? 'feedbacks'
-            raise TypeError, "value '%s' is not a Hash" % [hash['feedbacks']] unless hash['feedbacks'].is_a? Hash
+          if hash.key? 'feedbacks'
+            raise TypeError, "value '#{hash['feedbacks']}' is not a Hash" unless hash['feedbacks'].is_a? Hash
             @feedbacks = OnlinePayments::SDK::Domain::Feedbacks.new_from_hash(hash['feedbacks'])
           end
-          if hash.has_key? 'fraudFields'
-            raise TypeError, "value '%s' is not a Hash" % [hash['fraudFields']] unless hash['fraudFields'].is_a? Hash
+          if hash.key? 'fraudFields'
+            raise TypeError, "value '#{hash['fraudFields']}' is not a Hash" unless hash['fraudFields'].is_a? Hash
             @fraud_fields = OnlinePayments::SDK::Domain::FraudFields.new_from_hash(hash['fraudFields'])
           end
-          if hash.has_key? 'hostedFieldsSessionId'
+          if hash.key? 'hostedFieldsSessionId'
             @hosted_fields_session_id = hash['hostedFieldsSessionId']
           end
-          if hash.has_key? 'hostedTokenizationId'
+          if hash.key? 'hostedTokenizationId'
             @hosted_tokenization_id = hash['hostedTokenizationId']
           end
-          if hash.has_key? 'mobilePaymentMethodSpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['mobilePaymentMethodSpecificInput']] unless hash['mobilePaymentMethodSpecificInput'].is_a? Hash
+          if hash.key? 'mobilePaymentMethodSpecificInput'
+            raise TypeError, "value '#{hash['mobilePaymentMethodSpecificInput']}' is not a Hash" unless hash['mobilePaymentMethodSpecificInput'].is_a? Hash
             @mobile_payment_method_specific_input = OnlinePayments::SDK::Domain::MobilePaymentMethodSpecificInput.new_from_hash(hash['mobilePaymentMethodSpecificInput'])
           end
-          if hash.has_key? 'omnichannelPaymentSpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['omnichannelPaymentSpecificInput']] unless hash['omnichannelPaymentSpecificInput'].is_a? Hash
+          if hash.key? 'omnichannelPaymentSpecificInput'
+            raise TypeError, "value '#{hash['omnichannelPaymentSpecificInput']}' is not a Hash" unless hash['omnichannelPaymentSpecificInput'].is_a? Hash
             @omnichannel_payment_specific_input = OnlinePayments::SDK::Domain::OmnichannelPaymentSpecificInput.new_from_hash(hash['omnichannelPaymentSpecificInput'])
           end
-          if hash.has_key? 'order'
-            raise TypeError, "value '%s' is not a Hash" % [hash['order']] unless hash['order'].is_a? Hash
+          if hash.key? 'order'
+            raise TypeError, "value '#{hash['order']}' is not a Hash" unless hash['order'].is_a? Hash
             @order = OnlinePayments::SDK::Domain::Order.new_from_hash(hash['order'])
           end
-          if hash.has_key? 'redirectPaymentMethodSpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['redirectPaymentMethodSpecificInput']] unless hash['redirectPaymentMethodSpecificInput'].is_a? Hash
+          if hash.key? 'redirectPaymentMethodSpecificInput'
+            raise TypeError, "value '#{hash['redirectPaymentMethodSpecificInput']}' is not a Hash" unless hash['redirectPaymentMethodSpecificInput'].is_a? Hash
             @redirect_payment_method_specific_input = OnlinePayments::SDK::Domain::RedirectPaymentMethodSpecificInput.new_from_hash(hash['redirectPaymentMethodSpecificInput'])
           end
-          if hash.has_key? 'sepaDirectDebitPaymentMethodSpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['sepaDirectDebitPaymentMethodSpecificInput']] unless hash['sepaDirectDebitPaymentMethodSpecificInput'].is_a? Hash
+          if hash.key? 'sepaDirectDebitPaymentMethodSpecificInput'
+            raise TypeError, "value '#{hash['sepaDirectDebitPaymentMethodSpecificInput']}' is not a Hash" unless hash['sepaDirectDebitPaymentMethodSpecificInput'].is_a? Hash
             @sepa_direct_debit_payment_method_specific_input = OnlinePayments::SDK::Domain::SepaDirectDebitPaymentMethodSpecificInput.new_from_hash(hash['sepaDirectDebitPaymentMethodSpecificInput'])
           end
         end

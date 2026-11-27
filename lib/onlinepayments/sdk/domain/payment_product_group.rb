@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -21,6 +23,15 @@ module OnlinePayments
         attr_accessor :display_hints_list
 
         attr_accessor :id
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(account_on_file: nil, display_hints: nil, display_hints_list: nil, id: nil)
+          super()
+          @account_on_file = account_on_file
+          @display_hints = display_hints
+          @display_hints_list = display_hints_list
+          @id = id
+        end
 
         # Sets the property and returns this same instance.
         def with_account_on_file(value)
@@ -58,22 +69,22 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'accountOnFile'
-            raise TypeError, "value '%s' is not a Hash" % [hash['accountOnFile']] unless hash['accountOnFile'].is_a? Hash
+          if hash.key? 'accountOnFile'
+            raise TypeError, "value '#{hash['accountOnFile']}' is not a Hash" unless hash['accountOnFile'].is_a? Hash
             @account_on_file = OnlinePayments::SDK::Domain::AccountOnFile.new_from_hash(hash['accountOnFile'])
           end
-          if hash.has_key? 'displayHints'
-            raise TypeError, "value '%s' is not a Hash" % [hash['displayHints']] unless hash['displayHints'].is_a? Hash
+          if hash.key? 'displayHints'
+            raise TypeError, "value '#{hash['displayHints']}' is not a Hash" unless hash['displayHints'].is_a? Hash
             @display_hints = OnlinePayments::SDK::Domain::PaymentProductDisplayHints.new_from_hash(hash['displayHints'])
           end
-          if hash.has_key? 'displayHintsList'
-            raise TypeError, "value '%s' is not an Array" % [hash['displayHintsList']] unless hash['displayHintsList'].is_a? Array
+          if hash.key? 'displayHintsList'
+            raise TypeError, "value '#{hash['displayHintsList']}' is not an Array" unless hash['displayHintsList'].is_a? Array
             @display_hints_list = []
             hash['displayHintsList'].each do |e|
               @display_hints_list << OnlinePayments::SDK::Domain::PaymentProductDisplayHints.new_from_hash(e)
             end
           end
-          if hash.has_key? 'id'
+          if hash.key? 'id'
             @id = hash['id']
           end
         end

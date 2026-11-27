@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -32,6 +34,26 @@ module OnlinePayments
 
         # @deprecated This field is not used by any payment product Title of the passenger (this property is used for fraud screening on the payment platform)
         attr_accessor :title
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(airline_loyalty_status: nil,
+                       country_code: nil,
+                       date_of_birth: nil,
+                       first_name: nil,
+                       passenger_type: nil,
+                       surname: nil,
+                       surname_prefix: nil,
+                       title: nil)
+          super()
+          @airline_loyalty_status = airline_loyalty_status
+          @country_code = country_code
+          @date_of_birth = date_of_birth
+          @first_name = first_name
+          @passenger_type = passenger_type
+          @surname = surname
+          @surname_prefix = surname_prefix
+          @title = title
+        end
 
         # Sets the property and returns this same instance.
         def with_airline_loyalty_status(value)
@@ -97,28 +119,28 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'airlineLoyaltyStatus'
+          if hash.key? 'airlineLoyaltyStatus'
             @airline_loyalty_status = hash['airlineLoyaltyStatus']
           end
-          if hash.has_key? 'countryCode'
+          if hash.key? 'countryCode'
             @country_code = hash['countryCode']
           end
-          if hash.has_key? 'dateOfBirth'
+          if hash.key? 'dateOfBirth'
             @date_of_birth = hash['dateOfBirth']
           end
-          if hash.has_key? 'firstName'
+          if hash.key? 'firstName'
             @first_name = hash['firstName']
           end
-          if hash.has_key? 'passengerType'
+          if hash.key? 'passengerType'
             @passenger_type = hash['passengerType']
           end
-          if hash.has_key? 'surname'
+          if hash.key? 'surname'
             @surname = hash['surname']
           end
-          if hash.has_key? 'surnamePrefix'
+          if hash.key? 'surnamePrefix'
             @surname_prefix = hash['surnamePrefix']
           end
-          if hash.has_key? 'title'
+          if hash.key? 'title'
             @title = hash['title']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :operator_id
 
         attr_accessor :payment_id
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(operator_id: nil, payment_id: nil)
+          super()
+          @operator_id = operator_id
+          @payment_id = payment_id
+        end
 
         # Sets the property and returns this same instance.
         def with_operator_id(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'operatorId'
+          if hash.key? 'operatorId'
             @operator_id = hash['operatorId']
           end
-          if hash.has_key? 'paymentId'
+          if hash.key? 'paymentId'
             @payment_id = hash['paymentId']
           end
         end

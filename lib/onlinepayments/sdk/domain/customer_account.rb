@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -37,6 +39,28 @@ module OnlinePayments
         attr_accessor :payment_account_on_file
 
         attr_accessor :payment_activity
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(authentication: nil,
+                       change_date: nil,
+                       changed_during_checkout: nil,
+                       create_date: nil,
+                       had_suspicious_activity: nil,
+                       password_change_date: nil,
+                       password_changed_during_checkout: nil,
+                       payment_account_on_file: nil,
+                       payment_activity: nil)
+          super()
+          @authentication = authentication
+          @change_date = change_date
+          @changed_during_checkout = changed_during_checkout
+          @create_date = create_date
+          @had_suspicious_activity = had_suspicious_activity
+          @password_change_date = password_change_date
+          @password_changed_during_checkout = password_changed_during_checkout
+          @payment_account_on_file = payment_account_on_file
+          @payment_activity = payment_activity
+        end
 
         # Sets the property and returns this same instance.
         def with_authentication(value)
@@ -109,34 +133,34 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'authentication'
-            raise TypeError, "value '%s' is not a Hash" % [hash['authentication']] unless hash['authentication'].is_a? Hash
+          if hash.key? 'authentication'
+            raise TypeError, "value '#{hash['authentication']}' is not a Hash" unless hash['authentication'].is_a? Hash
             @authentication = OnlinePayments::SDK::Domain::CustomerAccountAuthentication.new_from_hash(hash['authentication'])
           end
-          if hash.has_key? 'changeDate'
+          if hash.key? 'changeDate'
             @change_date = hash['changeDate']
           end
-          if hash.has_key? 'changedDuringCheckout'
+          if hash.key? 'changedDuringCheckout'
             @changed_during_checkout = hash['changedDuringCheckout']
           end
-          if hash.has_key? 'createDate'
+          if hash.key? 'createDate'
             @create_date = hash['createDate']
           end
-          if hash.has_key? 'hadSuspiciousActivity'
+          if hash.key? 'hadSuspiciousActivity'
             @had_suspicious_activity = hash['hadSuspiciousActivity']
           end
-          if hash.has_key? 'passwordChangeDate'
+          if hash.key? 'passwordChangeDate'
             @password_change_date = hash['passwordChangeDate']
           end
-          if hash.has_key? 'passwordChangedDuringCheckout'
+          if hash.key? 'passwordChangedDuringCheckout'
             @password_changed_during_checkout = hash['passwordChangedDuringCheckout']
           end
-          if hash.has_key? 'paymentAccountOnFile'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentAccountOnFile']] unless hash['paymentAccountOnFile'].is_a? Hash
+          if hash.key? 'paymentAccountOnFile'
+            raise TypeError, "value '#{hash['paymentAccountOnFile']}' is not a Hash" unless hash['paymentAccountOnFile'].is_a? Hash
             @payment_account_on_file = OnlinePayments::SDK::Domain::PaymentAccountOnFile.new_from_hash(hash['paymentAccountOnFile'])
           end
-          if hash.has_key? 'paymentActivity'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentActivity']] unless hash['paymentActivity'].is_a? Hash
+          if hash.key? 'paymentActivity'
+            raise TypeError, "value '#{hash['paymentActivity']}' is not a Hash" unless hash['paymentActivity'].is_a? Hash
             @payment_activity = OnlinePayments::SDK::Domain::CustomerPaymentActivity.new_from_hash(hash['paymentActivity'])
           end
         end

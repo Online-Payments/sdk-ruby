@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -60,6 +62,38 @@ module OnlinePayments
         attr_accessor :surcharge_specific_output
 
         attr_accessor :transaction_date
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(acquired_amount: nil,
+                       amount_of_money: nil,
+                       amount_paid: nil,
+                       card_payment_method_specific_output: nil,
+                       merchant_parameters: nil,
+                       mobile_payment_method_specific_output: nil,
+                       operation_references: nil,
+                       payment_creation_date: nil,
+                       payment_method: nil,
+                       redirect_payment_method_specific_output: nil,
+                       references: nil,
+                       sepa_direct_debit_payment_method_specific_output: nil,
+                       surcharge_specific_output: nil,
+                       transaction_date: nil)
+          super()
+          @acquired_amount = acquired_amount
+          @amount_of_money = amount_of_money
+          @amount_paid = amount_paid
+          @card_payment_method_specific_output = card_payment_method_specific_output
+          @merchant_parameters = merchant_parameters
+          @mobile_payment_method_specific_output = mobile_payment_method_specific_output
+          @operation_references = operation_references
+          @payment_creation_date = payment_creation_date
+          @payment_method = payment_method
+          @redirect_payment_method_specific_output = redirect_payment_method_specific_output
+          @references = references
+          @sepa_direct_debit_payment_method_specific_output = sepa_direct_debit_payment_method_specific_output
+          @surcharge_specific_output = surcharge_specific_output
+          @transaction_date = transaction_date
+        end
 
         # Sets the property and returns this same instance.
         def with_acquired_amount(value)
@@ -167,55 +201,55 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'acquiredAmount'
-            raise TypeError, "value '%s' is not a Hash" % [hash['acquiredAmount']] unless hash['acquiredAmount'].is_a? Hash
+          if hash.key? 'acquiredAmount'
+            raise TypeError, "value '#{hash['acquiredAmount']}' is not a Hash" unless hash['acquiredAmount'].is_a? Hash
             @acquired_amount = OnlinePayments::SDK::Domain::AmountOfMoney.new_from_hash(hash['acquiredAmount'])
           end
-          if hash.has_key? 'amountOfMoney'
-            raise TypeError, "value '%s' is not a Hash" % [hash['amountOfMoney']] unless hash['amountOfMoney'].is_a? Hash
+          if hash.key? 'amountOfMoney'
+            raise TypeError, "value '#{hash['amountOfMoney']}' is not a Hash" unless hash['amountOfMoney'].is_a? Hash
             @amount_of_money = OnlinePayments::SDK::Domain::AmountOfMoney.new_from_hash(hash['amountOfMoney'])
           end
-          if hash.has_key? 'amountPaid'
+          if hash.key? 'amountPaid'
             @amount_paid = hash['amountPaid']
           end
-          if hash.has_key? 'cardPaymentMethodSpecificOutput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['cardPaymentMethodSpecificOutput']] unless hash['cardPaymentMethodSpecificOutput'].is_a? Hash
+          if hash.key? 'cardPaymentMethodSpecificOutput'
+            raise TypeError, "value '#{hash['cardPaymentMethodSpecificOutput']}' is not a Hash" unless hash['cardPaymentMethodSpecificOutput'].is_a? Hash
             @card_payment_method_specific_output = OnlinePayments::SDK::Domain::CardPaymentMethodSpecificOutput.new_from_hash(hash['cardPaymentMethodSpecificOutput'])
           end
-          if hash.has_key? 'merchantParameters'
+          if hash.key? 'merchantParameters'
             @merchant_parameters = hash['merchantParameters']
           end
-          if hash.has_key? 'mobilePaymentMethodSpecificOutput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['mobilePaymentMethodSpecificOutput']] unless hash['mobilePaymentMethodSpecificOutput'].is_a? Hash
+          if hash.key? 'mobilePaymentMethodSpecificOutput'
+            raise TypeError, "value '#{hash['mobilePaymentMethodSpecificOutput']}' is not a Hash" unless hash['mobilePaymentMethodSpecificOutput'].is_a? Hash
             @mobile_payment_method_specific_output = OnlinePayments::SDK::Domain::MobilePaymentMethodSpecificOutput.new_from_hash(hash['mobilePaymentMethodSpecificOutput'])
           end
-          if hash.has_key? 'operationReferences'
-            raise TypeError, "value '%s' is not a Hash" % [hash['operationReferences']] unless hash['operationReferences'].is_a? Hash
+          if hash.key? 'operationReferences'
+            raise TypeError, "value '#{hash['operationReferences']}' is not a Hash" unless hash['operationReferences'].is_a? Hash
             @operation_references = OnlinePayments::SDK::Domain::OperationPaymentReferences.new_from_hash(hash['operationReferences'])
           end
-          if hash.has_key? 'paymentCreationDate'
+          if hash.key? 'paymentCreationDate'
             @payment_creation_date = DateTime.parse(hash['paymentCreationDate'])
           end
-          if hash.has_key? 'paymentMethod'
+          if hash.key? 'paymentMethod'
             @payment_method = hash['paymentMethod']
           end
-          if hash.has_key? 'redirectPaymentMethodSpecificOutput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['redirectPaymentMethodSpecificOutput']] unless hash['redirectPaymentMethodSpecificOutput'].is_a? Hash
+          if hash.key? 'redirectPaymentMethodSpecificOutput'
+            raise TypeError, "value '#{hash['redirectPaymentMethodSpecificOutput']}' is not a Hash" unless hash['redirectPaymentMethodSpecificOutput'].is_a? Hash
             @redirect_payment_method_specific_output = OnlinePayments::SDK::Domain::RedirectPaymentMethodSpecificOutput.new_from_hash(hash['redirectPaymentMethodSpecificOutput'])
           end
-          if hash.has_key? 'references'
-            raise TypeError, "value '%s' is not a Hash" % [hash['references']] unless hash['references'].is_a? Hash
+          if hash.key? 'references'
+            raise TypeError, "value '#{hash['references']}' is not a Hash" unless hash['references'].is_a? Hash
             @references = OnlinePayments::SDK::Domain::PaymentReferences.new_from_hash(hash['references'])
           end
-          if hash.has_key? 'sepaDirectDebitPaymentMethodSpecificOutput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['sepaDirectDebitPaymentMethodSpecificOutput']] unless hash['sepaDirectDebitPaymentMethodSpecificOutput'].is_a? Hash
+          if hash.key? 'sepaDirectDebitPaymentMethodSpecificOutput'
+            raise TypeError, "value '#{hash['sepaDirectDebitPaymentMethodSpecificOutput']}' is not a Hash" unless hash['sepaDirectDebitPaymentMethodSpecificOutput'].is_a? Hash
             @sepa_direct_debit_payment_method_specific_output = OnlinePayments::SDK::Domain::SepaDirectDebitPaymentMethodSpecificOutput.new_from_hash(hash['sepaDirectDebitPaymentMethodSpecificOutput'])
           end
-          if hash.has_key? 'surchargeSpecificOutput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['surchargeSpecificOutput']] unless hash['surchargeSpecificOutput'].is_a? Hash
+          if hash.key? 'surchargeSpecificOutput'
+            raise TypeError, "value '#{hash['surchargeSpecificOutput']}' is not a Hash" unless hash['surchargeSpecificOutput'].is_a? Hash
             @surcharge_specific_output = OnlinePayments::SDK::Domain::SurchargeSpecificOutput.new_from_hash(hash['surchargeSpecificOutput'])
           end
-          if hash.has_key? 'transactionDate'
+          if hash.key? 'transactionDate'
             @transaction_date = DateTime.parse(hash['transactionDate'])
           end
         end

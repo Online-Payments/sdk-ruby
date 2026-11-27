@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -26,6 +28,17 @@ module OnlinePayments
         attr_accessor :merchant_id
 
         attr_accessor :website
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(address: nil, company_identification_number: nil, company_name: nil, merchant_category_code: nil, merchant_id: nil, website: nil)
+          super()
+          @address = address
+          @company_identification_number = company_identification_number
+          @company_name = company_name
+          @merchant_category_code = merchant_category_code
+          @merchant_id = merchant_id
+          @website = website
+        end
 
         # Sets the property and returns this same instance.
         def with_address(value)
@@ -77,23 +90,23 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'address'
-            raise TypeError, "value '%s' is not a Hash" % [hash['address']] unless hash['address'].is_a? Hash
+          if hash.key? 'address'
+            raise TypeError, "value '#{hash['address']}' is not a Hash" unless hash['address'].is_a? Hash
             @address = OnlinePayments::SDK::Domain::Address.new_from_hash(hash['address'])
           end
-          if hash.has_key? 'companyIdentificationNumber'
+          if hash.key? 'companyIdentificationNumber'
             @company_identification_number = hash['companyIdentificationNumber']
           end
-          if hash.has_key? 'companyName'
+          if hash.key? 'companyName'
             @company_name = hash['companyName']
           end
-          if hash.has_key? 'merchantCategoryCode'
+          if hash.key? 'merchantCategoryCode'
             @merchant_category_code = hash['merchantCategoryCode']
           end
-          if hash.has_key? 'merchantId'
+          if hash.key? 'merchantId'
             @merchant_id = hash['merchantId']
           end
-          if hash.has_key? 'website'
+          if hash.key? 'website'
             @website = hash['website']
           end
         end

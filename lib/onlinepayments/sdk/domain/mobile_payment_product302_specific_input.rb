@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -21,6 +23,15 @@ module OnlinePayments
         attr_accessor :recurring
 
         attr_accessor :tokenize
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(apple_pay_recurring_payment_request: nil, is_recurring: nil, recurring: nil, tokenize: nil)
+          super()
+          @apple_pay_recurring_payment_request = apple_pay_recurring_payment_request
+          @is_recurring = is_recurring
+          @recurring = recurring
+          @tokenize = tokenize
+        end
 
         # Sets the property and returns this same instance.
         def with_apple_pay_recurring_payment_request(value)
@@ -58,18 +69,18 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'applePayRecurringPaymentRequest'
-            raise TypeError, "value '%s' is not a Hash" % [hash['applePayRecurringPaymentRequest']] unless hash['applePayRecurringPaymentRequest'].is_a? Hash
+          if hash.key? 'applePayRecurringPaymentRequest'
+            raise TypeError, "value '#{hash['applePayRecurringPaymentRequest']}' is not a Hash" unless hash['applePayRecurringPaymentRequest'].is_a? Hash
             @apple_pay_recurring_payment_request = OnlinePayments::SDK::Domain::ApplePayRecurringPaymentRequest.new_from_hash(hash['applePayRecurringPaymentRequest'])
           end
-          if hash.has_key? 'isRecurring'
+          if hash.key? 'isRecurring'
             @is_recurring = hash['isRecurring']
           end
-          if hash.has_key? 'recurring'
-            raise TypeError, "value '%s' is not a Hash" % [hash['recurring']] unless hash['recurring'].is_a? Hash
+          if hash.key? 'recurring'
+            raise TypeError, "value '#{hash['recurring']}' is not a Hash" unless hash['recurring'].is_a? Hash
             @recurring = OnlinePayments::SDK::Domain::Product302Recurring.new_from_hash(hash['recurring'])
           end
-          if hash.has_key? 'tokenize'
+          if hash.key? 'tokenize'
             @tokenize = hash['tokenize']
           end
         end

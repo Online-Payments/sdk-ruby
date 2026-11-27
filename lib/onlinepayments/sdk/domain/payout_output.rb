@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -30,6 +32,22 @@ module OnlinePayments
         attr_accessor :references
 
         attr_accessor :transaction_date
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(amount_of_money: nil,
+                       payment_creation_date: nil,
+                       payout_card_payment_method_specific_output: nil,
+                       payout_reason: nil,
+                       references: nil,
+                       transaction_date: nil)
+          super()
+          @amount_of_money = amount_of_money
+          @payment_creation_date = payment_creation_date
+          @payout_card_payment_method_specific_output = payout_card_payment_method_specific_output
+          @payout_reason = payout_reason
+          @references = references
+          @transaction_date = transaction_date
+        end
 
         # Sets the property and returns this same instance.
         def with_amount_of_money(value)
@@ -81,25 +99,25 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'amountOfMoney'
-            raise TypeError, "value '%s' is not a Hash" % [hash['amountOfMoney']] unless hash['amountOfMoney'].is_a? Hash
+          if hash.key? 'amountOfMoney'
+            raise TypeError, "value '#{hash['amountOfMoney']}' is not a Hash" unless hash['amountOfMoney'].is_a? Hash
             @amount_of_money = OnlinePayments::SDK::Domain::AmountOfMoney.new_from_hash(hash['amountOfMoney'])
           end
-          if hash.has_key? 'paymentCreationDate'
+          if hash.key? 'paymentCreationDate'
             @payment_creation_date = DateTime.parse(hash['paymentCreationDate'])
           end
-          if hash.has_key? 'payoutCardPaymentMethodSpecificOutput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['payoutCardPaymentMethodSpecificOutput']] unless hash['payoutCardPaymentMethodSpecificOutput'].is_a? Hash
+          if hash.key? 'payoutCardPaymentMethodSpecificOutput'
+            raise TypeError, "value '#{hash['payoutCardPaymentMethodSpecificOutput']}' is not a Hash" unless hash['payoutCardPaymentMethodSpecificOutput'].is_a? Hash
             @payout_card_payment_method_specific_output = OnlinePayments::SDK::Domain::PayoutCardPaymentMethodSpecificOutput.new_from_hash(hash['payoutCardPaymentMethodSpecificOutput'])
           end
-          if hash.has_key? 'payoutReason'
+          if hash.key? 'payoutReason'
             @payout_reason = hash['payoutReason']
           end
-          if hash.has_key? 'references'
-            raise TypeError, "value '%s' is not a Hash" % [hash['references']] unless hash['references'].is_a? Hash
+          if hash.key? 'references'
+            raise TypeError, "value '#{hash['references']}' is not a Hash" unless hash['references'].is_a? Hash
             @references = OnlinePayments::SDK::Domain::PaymentReferences.new_from_hash(hash['references'])
           end
-          if hash.has_key? 'transactionDate'
+          if hash.key? 'transactionDate'
             @transaction_date = DateTime.parse(hash['transactionDate'])
           end
         end

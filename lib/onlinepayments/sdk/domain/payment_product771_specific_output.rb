@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -10,6 +12,12 @@ module OnlinePayments
       class PaymentProduct771SpecificOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :mandate_reference
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(mandate_reference: nil)
+          super()
+          @mandate_reference = mandate_reference
+        end
 
         # Sets the property and returns this same instance.
         def with_mandate_reference(value)
@@ -26,7 +34,7 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'mandateReference'
+          if hash.key? 'mandateReference'
             @mandate_reference = hash['mandateReference']
           end
         end

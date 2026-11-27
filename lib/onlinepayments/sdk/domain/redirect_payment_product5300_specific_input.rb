@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -36,6 +38,28 @@ module OnlinePayments
         attr_accessor :title
 
         attr_accessor :transaction_expiration_date_time
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(birth_city: nil,
+                       birth_country: nil,
+                       birth_zip_code: nil,
+                       channel: nil,
+                       loyalty_card_number: nil,
+                       second_installment_payment_date: nil,
+                       session_duration: nil,
+                       title: nil,
+                       transaction_expiration_date_time: nil)
+          super()
+          @birth_city = birth_city
+          @birth_country = birth_country
+          @birth_zip_code = birth_zip_code
+          @channel = channel
+          @loyalty_card_number = loyalty_card_number
+          @second_installment_payment_date = second_installment_payment_date
+          @session_duration = session_duration
+          @title = title
+          @transaction_expiration_date_time = transaction_expiration_date_time
+        end
 
         # Sets the property and returns this same instance.
         def with_birth_city(value)
@@ -108,31 +132,31 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'birthCity'
+          if hash.key? 'birthCity'
             @birth_city = hash['birthCity']
           end
-          if hash.has_key? 'birthCountry'
+          if hash.key? 'birthCountry'
             @birth_country = hash['birthCountry']
           end
-          if hash.has_key? 'birthZipCode'
+          if hash.key? 'birthZipCode'
             @birth_zip_code = hash['birthZipCode']
           end
-          if hash.has_key? 'channel'
+          if hash.key? 'channel'
             @channel = hash['channel']
           end
-          if hash.has_key? 'loyaltyCardNumber'
+          if hash.key? 'loyaltyCardNumber'
             @loyalty_card_number = hash['loyaltyCardNumber']
           end
-          if hash.has_key? 'secondInstallmentPaymentDate'
+          if hash.key? 'secondInstallmentPaymentDate'
             @second_installment_payment_date = hash['secondInstallmentPaymentDate']
           end
-          if hash.has_key? 'sessionDuration'
+          if hash.key? 'sessionDuration'
             @session_duration = hash['sessionDuration']
           end
-          if hash.has_key? 'title'
+          if hash.key? 'title'
             @title = hash['title']
           end
-          if hash.has_key? 'transactionExpirationDateTime'
+          if hash.key? 'transactionExpirationDateTime'
             @transaction_expiration_date_time = DateTime.parse(hash['transactionExpirationDateTime'])
           end
         end

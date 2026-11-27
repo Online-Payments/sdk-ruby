@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :hosted_checkout_id
 
         attr_accessor :variant
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(hosted_checkout_id: nil, variant: nil)
+          super()
+          @hosted_checkout_id = hosted_checkout_id
+          @variant = variant
+        end
 
         # Sets the property and returns this same instance.
         def with_hosted_checkout_id(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'hostedCheckoutId'
+          if hash.key? 'hostedCheckoutId'
             @hosted_checkout_id = hash['hostedCheckoutId']
           end
-          if hash.has_key? 'variant'
+          if hash.key? 'variant'
             @variant = hash['variant']
           end
         end

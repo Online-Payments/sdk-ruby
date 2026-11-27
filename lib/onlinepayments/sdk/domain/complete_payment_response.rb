@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -19,6 +21,14 @@ module OnlinePayments
         attr_accessor :merchant_action
 
         attr_accessor :payment
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(creation_output: nil, merchant_action: nil, payment: nil)
+          super()
+          @creation_output = creation_output
+          @merchant_action = merchant_action
+          @payment = payment
+        end
 
         # Sets the property and returns this same instance.
         def with_creation_output(value)
@@ -49,16 +59,16 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'creationOutput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['creationOutput']] unless hash['creationOutput'].is_a? Hash
+          if hash.key? 'creationOutput'
+            raise TypeError, "value '#{hash['creationOutput']}' is not a Hash" unless hash['creationOutput'].is_a? Hash
             @creation_output = OnlinePayments::SDK::Domain::PaymentCreationOutput.new_from_hash(hash['creationOutput'])
           end
-          if hash.has_key? 'merchantAction'
-            raise TypeError, "value '%s' is not a Hash" % [hash['merchantAction']] unless hash['merchantAction'].is_a? Hash
+          if hash.key? 'merchantAction'
+            raise TypeError, "value '#{hash['merchantAction']}' is not a Hash" unless hash['merchantAction'].is_a? Hash
             @merchant_action = OnlinePayments::SDK::Domain::MerchantAction.new_from_hash(hash['merchantAction'])
           end
-          if hash.has_key? 'payment'
-            raise TypeError, "value '%s' is not a Hash" % [hash['payment']] unless hash['payment'].is_a? Hash
+          if hash.key? 'payment'
+            raise TypeError, "value '#{hash['payment']}' is not a Hash" unless hash['payment'].is_a? Hash
             @payment = OnlinePayments::SDK::Domain::PaymentResponse.new_from_hash(hash['payment'])
           end
         end

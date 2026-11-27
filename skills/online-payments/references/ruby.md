@@ -10,8 +10,8 @@ Source code and README: https://github.com/Online-Payments/sdk-ruby
 gem install onlinepayments-sdk-ruby
 ```
 
-Or add `gem 'onlinepayments-sdk-ruby'` to your `Gemfile` and run `bundle install`. The SDK uses `httpclient` for HTTP
-and `concurrent-ruby`. `require 'onlinepayments/sdk'` loads the whole SDK. The classes have YARD comments with the
+Or add `gem 'onlinepayments-sdk-ruby'` to your `Gemfile` and run `bundle install`. The SDK needs Ruby 3.4 or higher and uses
+`net-http-persistent` for HTTP and `concurrent-ruby`. `require 'onlinepayments/sdk'` loads the whole SDK. The classes have YARD comments with the
 types of every property, parameter and return value; there are no RBS or Sorbet signatures.
 
 ## Namespaces
@@ -36,39 +36,36 @@ Use the full names; the examples do too.
 # Every value is validated here, so a wrong configuration stops the application at startup.
 # @return [OnlinePayments::SDK::Client]
 def self.create_client
-  configuration = OnlinePayments::SDK::CommunicatorConfiguration.new(
-    # Test or live host, e.g. payment.direct.ecom.preprod.worldline-solutions.com (without a path).
-    api_endpoint: "https://#{required_env('onlinePayments_api_endpoint_host')}",
-    api_key_id: required_env('onlinePayments_api_v1hmac_apiKeyId'),
-    secret_api_key: required_env('onlinePayments_api_v1hmac_secretApiKey'),
-    # Required: without it, creating the client raises RuntimeError "Unknown authorizationType".
-    authorization_type: OnlinePayments::SDK::Authentication::AuthorizationType::V1HMAC,
+  OnlinePayments::SDK::Factory.create_client(
+    # Test or live endpoint, e.g. https://payment.direct.ecom.preprod.worldline-solutions.com (without a path).
+    api_endpoint: required_env('ONLINEPAYMENTS_API_ENDPOINT'),
+    api_key_id: required_env('ONLINEPAYMENTS_API_KEY_ID'),
+    secret_api_key: required_env('ONLINEPAYMENTS_SECRET_API_KEY'),
     # Your company or application name; it identifies your requests in the platform logs.
     # Required: without it, the SDK raises ArgumentError "integrator is required".
-    integrator: required_env('onlinePayments_api_integrator'),
-    # In seconds.
+    integrator: required_env('ONLINEPAYMENTS_INTEGRATOR'),
+    # In seconds. Both are required and must be positive, otherwise the SDK raises ArgumentError.
     connect_timeout: 5,
     socket_timeout: 300,
     max_connections: 10
   )
-  OnlinePayments::SDK::Factory.create_client_from_configuration(configuration)
 end
 
 # The merchant ID is your PSPID. All API calls start from the merchant client.
 # @param client [OnlinePayments::SDK::Client]
 # @return [OnlinePayments::SDK::Merchant::MerchantClient]
 def self.create_merchant_client(client)
-  client.merchant(required_env('onlinePayments_api_merchantId'))
+  client.merchant(required_env('ONLINEPAYMENTS_MERCHANT_ID'))
 end
 
 # The absolute public base URL of your shop, e.g. https://shop.example. The return URL of a checkout is built from
 # it, never from the Host header of a request, which the sender controls.
 # @return [String] without a trailing slash
 def self.public_base_url
-  value = required_env('shop_publicBaseUrl')
+  value = required_env('SHOP_PUBLIC_BASE_URL')
   uri = URI.parse(value)
   unless uri.is_a?(URI::HTTP) && uri.host && !uri.host.empty? && uri.query.nil? && uri.fragment.nil?
-    raise "shop_publicBaseUrl must be an absolute http(s) URL without query or fragment, e.g. https://shop.example"
+    raise "SHOP_PUBLIC_BASE_URL must be an absolute http(s) URL without query or fragment, e.g. https://shop.example"
   end
 
   value.strip.chomp('/')
@@ -87,11 +84,14 @@ def self.required_env(name)
 end
 ```
 
-- `CommunicatorConfiguration.new` takes keyword arguments only. Set `authorization_type:` to
-  `OnlinePayments::SDK::Authentication::AuthorizationType::V1HMAC` (the string `'v1HMAC'`): without it, creating the
-  client raises `RuntimeError: Unknown authorizationType`. The `integrator` is mandatory: a `nil` or blank value
-  raises `ArgumentError: integrator is required` when the client is created. Timeouts are in seconds. `max_connections` (connection pool size) defaults
-  to 10.
+- `Factory.create_client` takes keyword arguments only and uses the V1HMAC authorization. `api_endpoint`,
+  `api_key_id`, `secret_api_key`, `integrator`, `connect_timeout` and `socket_timeout` are required. The `integrator`
+  must not be blank (`ArgumentError: integrator is required`). The timeouts are in seconds and must be positive
+  (`ArgumentError: connect_timeout must be positive`). `max_connections` (connection pool size) defaults to 10.
+- `Factory.create_client_from_env` reads the same values from `ONLINEPAYMENTS_API_ENDPOINT`,
+  `ONLINEPAYMENTS_API_KEY_ID`, `ONLINEPAYMENTS_SECRET_API_KEY`, `ONLINEPAYMENTS_INTEGRATOR`,
+  `ONLINEPAYMENTS_CONNECT_TIMEOUT` and `ONLINEPAYMENTS_SOCKET_TIMEOUT`, and raises `ArgumentError` when one is missing
+  or invalid.
 - `api_endpoint` is the scheme and host only (`https://payment.direct.ecom.preprod.worldline-solutions.com`); a path
   raises `RuntimeError: api_endpoint should not contain a path`.
 - `Factory.create_client_from_file(yaml_file, api_key_id, secret_api_key)` reads the other settings from a YAML file
@@ -100,15 +100,15 @@ end
   merchant ID is not part of the client configuration.
 - The client holds a connection pool and is thread-safe. Create it once per process (an initializer in Rails, a
   constant or `set` in Sinatra) and call `client.close` on shutdown, e.g. in `at_exit`. With a block,
-  `Factory.create_client_from_configuration(configuration) { |client| ... }` closes it at the end of the block.
+  `Factory.create_client(...) { |client| ... }` closes it at the end of the block.
   `client.merchant(merchant_id)` is cheap.
 
 ## Conventions
 
 - Calls are synchronous and return the response object. They raise exceptions (see below).
-- Request and response classes take no constructor arguments. Create the object with `new` and set its attributes:
-  `amount = OnlinePayments::SDK::Domain::AmountOfMoney.new` then `amount.amount = 1000`,
-  `amount.currency_code = 'EUR'`. Each attribute also has a `with_<name>(value)` method that returns the object. The
+- Request and response classes take their attributes as keyword arguments:
+  `OnlinePayments::SDK::Domain::AmountOfMoney.new(amount: 1000, currency_code: 'EUR')`. The attributes can also be set
+  afterwards (`amount.amount = 1000`), and each attribute has a `with_<name>(value)` method that returns the object. The
   names are the API names in snake_case (`order.amountOfMoney` is `order.amount_of_money`). Exceptions: `RETURNMAC`
   is `returnmac`, `subsequentcardPaymentMethodSpecificInput` is `subsequentcard_payment_method_specific_input`.
 - A misspelled attribute raises `NoMethodError` when the line runs; an unknown keyword argument raises
@@ -169,12 +169,13 @@ All are in `OnlinePayments::SDK` unless noted. Rescue the specific ones before `
 `errors` is an array (empty if the platform sent none) of `Domain::APIError` with `error_code`, `property_name`,
 `message`, `http_status_code` and `retriable`.
 
-`ApiException#to_s` appends the status and the whole response body to the message:
+`ApiException#to_s` appends the status and the response body to the message:
 `the payment platform returned an error response; status_code=400; response_body='{...}'`. `e.message`,
-`"#{e}"`, `e.inspect` and the default output of an uncaught exception all use it, so logging `e`, `e.message` or
-`e.to_s` writes the response body. For an error that carries a payment (a declined payment) log
-only `e.error_id`, `e.status_code` and the `error_code` values; never `e`, `e.message`, `e.to_s` or `e.response_body`.
-For Hosted Checkout calls the error body is a plain error response, so logging `e` is acceptable.
+`"#{e}"`, `e.inspect` and the default output of an uncaught exception all use it. The body in it is masked with the
+SDK's logging rules (card number, CVV, personal data; the expiry date keeps its last 2 digits); `e.response_body` is
+the unmasked body. For an error that carries a payment (a declined payment) log only `e.error_id`, `e.status_code`
+and the `error_code` values; never `e.response_body`. For Hosted Checkout calls the error body is a plain error
+response, so logging `e` is acceptable. The response headers are in `e.cause.headers`.
 
 On the `GetHostedCheckout` response, `created_payment_output` (`Domain::CreatedPaymentOutput`) holds `payment` and
 `payment_status_category` (a String, may be `nil`); decide on `payment.status_output`, not on this value.

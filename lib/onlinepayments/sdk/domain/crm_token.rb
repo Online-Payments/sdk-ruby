@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :unique_account_identifier
 
         attr_accessor :unique_card_identifier
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(unique_account_identifier: nil, unique_card_identifier: nil)
+          super()
+          @unique_account_identifier = unique_account_identifier
+          @unique_card_identifier = unique_card_identifier
+        end
 
         # Sets the property and returns this same instance.
         def with_unique_account_identifier(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'uniqueAccountIdentifier'
+          if hash.key? 'uniqueAccountIdentifier'
             @unique_account_identifier = hash['uniqueAccountIdentifier']
           end
-          if hash.has_key? 'uniqueCardIdentifier'
+          if hash.key? 'uniqueCardIdentifier'
             @unique_card_identifier = hash['uniqueCardIdentifier']
           end
         end

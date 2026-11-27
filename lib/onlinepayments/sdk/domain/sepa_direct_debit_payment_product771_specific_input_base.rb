@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -14,6 +16,13 @@ module OnlinePayments
         attr_accessor :existing_unique_mandate_reference
 
         attr_accessor :mandate
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(existing_unique_mandate_reference: nil, mandate: nil)
+          super()
+          @existing_unique_mandate_reference = existing_unique_mandate_reference
+          @mandate = mandate
+        end
 
         # Sets the property and returns this same instance.
         def with_existing_unique_mandate_reference(value)
@@ -37,11 +46,11 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'existingUniqueMandateReference'
+          if hash.key? 'existingUniqueMandateReference'
             @existing_unique_mandate_reference = hash['existingUniqueMandateReference']
           end
-          if hash.has_key? 'mandate'
-            raise TypeError, "value '%s' is not a Hash" % [hash['mandate']] unless hash['mandate'].is_a? Hash
+          if hash.key? 'mandate'
+            raise TypeError, "value '#{hash['mandate']}' is not a Hash" unless hash['mandate'].is_a? Hash
             @mandate = OnlinePayments::SDK::Domain::CreateMandateRequest.new_from_hash(hash['mandate'])
           end
         end

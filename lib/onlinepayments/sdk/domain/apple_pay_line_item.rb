@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -28,6 +30,24 @@ module OnlinePayments
         attr_accessor :recurring_payment_interval_unit
 
         attr_accessor :recurring_payment_start_date
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(amount: nil,
+                       label: nil,
+                       payment_timing: nil,
+                       recurring_payment_end_date: nil,
+                       recurring_payment_interval_count: nil,
+                       recurring_payment_interval_unit: nil,
+                       recurring_payment_start_date: nil)
+          super()
+          @amount = amount
+          @label = label
+          @payment_timing = payment_timing
+          @recurring_payment_end_date = recurring_payment_end_date
+          @recurring_payment_interval_count = recurring_payment_interval_count
+          @recurring_payment_interval_unit = recurring_payment_interval_unit
+          @recurring_payment_start_date = recurring_payment_start_date
+        end
 
         # Sets the property and returns this same instance.
         def with_amount(value)
@@ -86,25 +106,25 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'amount'
+          if hash.key? 'amount'
             @amount = hash['amount']
           end
-          if hash.has_key? 'label'
+          if hash.key? 'label'
             @label = hash['label']
           end
-          if hash.has_key? 'paymentTiming'
+          if hash.key? 'paymentTiming'
             @payment_timing = hash['paymentTiming']
           end
-          if hash.has_key? 'recurringPaymentEndDate'
+          if hash.key? 'recurringPaymentEndDate'
             @recurring_payment_end_date = hash['recurringPaymentEndDate']
           end
-          if hash.has_key? 'recurringPaymentIntervalCount'
+          if hash.key? 'recurringPaymentIntervalCount'
             @recurring_payment_interval_count = hash['recurringPaymentIntervalCount']
           end
-          if hash.has_key? 'recurringPaymentIntervalUnit'
+          if hash.key? 'recurringPaymentIntervalUnit'
             @recurring_payment_interval_unit = hash['recurringPaymentIntervalUnit']
           end
-          if hash.has_key? 'recurringPaymentStartDate'
+          if hash.key? 'recurringPaymentStartDate'
             @recurring_payment_start_date = hash['recurringPaymentStartDate']
           end
         end

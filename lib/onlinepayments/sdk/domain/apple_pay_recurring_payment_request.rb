@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -23,6 +25,16 @@ module OnlinePayments
         attr_accessor :regular_billing
 
         attr_accessor :trial_billing
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(billing_agreement: nil, management_url: nil, payment_description: nil, regular_billing: nil, trial_billing: nil)
+          super()
+          @billing_agreement = billing_agreement
+          @management_url = management_url
+          @payment_description = payment_description
+          @regular_billing = regular_billing
+          @trial_billing = trial_billing
+        end
 
         # Sets the property and returns this same instance.
         def with_billing_agreement(value)
@@ -67,21 +79,21 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'billingAgreement'
+          if hash.key? 'billingAgreement'
             @billing_agreement = hash['billingAgreement']
           end
-          if hash.has_key? 'managementUrl'
+          if hash.key? 'managementUrl'
             @management_url = hash['managementUrl']
           end
-          if hash.has_key? 'paymentDescription'
+          if hash.key? 'paymentDescription'
             @payment_description = hash['paymentDescription']
           end
-          if hash.has_key? 'regularBilling'
-            raise TypeError, "value '%s' is not a Hash" % [hash['regularBilling']] unless hash['regularBilling'].is_a? Hash
+          if hash.key? 'regularBilling'
+            raise TypeError, "value '#{hash['regularBilling']}' is not a Hash" unless hash['regularBilling'].is_a? Hash
             @regular_billing = OnlinePayments::SDK::Domain::ApplePayLineItem.new_from_hash(hash['regularBilling'])
           end
-          if hash.has_key? 'trialBilling'
-            raise TypeError, "value '%s' is not a Hash" % [hash['trialBilling']] unless hash['trialBilling'].is_a? Hash
+          if hash.key? 'trialBilling'
+            raise TypeError, "value '#{hash['trialBilling']}' is not a Hash" unless hash['trialBilling'].is_a? Hash
             @trial_billing = OnlinePayments::SDK::Domain::ApplePayLineItem.new_from_hash(hash['trialBilling'])
           end
         end

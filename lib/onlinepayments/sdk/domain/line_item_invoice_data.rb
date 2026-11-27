@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -10,6 +12,12 @@ module OnlinePayments
       class LineItemInvoiceData < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :description
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(description: nil)
+          super()
+          @description = description
+        end
 
         # Sets the property and returns this same instance.
         def with_description(value)
@@ -26,7 +34,7 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'description'
+          if hash.key? 'description'
             @description = hash['description']
           end
         end

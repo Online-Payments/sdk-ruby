@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -14,6 +16,13 @@ module OnlinePayments
         attr_accessor :capture
 
         attr_accessor :payment_id
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(capture: nil, payment_id: nil)
+          super()
+          @capture = capture
+          @payment_id = payment_id
+        end
 
         # Sets the property and returns this same instance.
         def with_capture(value)
@@ -37,11 +46,11 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'capture'
-            raise TypeError, "value '%s' is not a Hash" % [hash['capture']] unless hash['capture'].is_a? Hash
+          if hash.key? 'capture'
+            raise TypeError, "value '#{hash['capture']}' is not a Hash" unless hash['capture'].is_a? Hash
             @capture = OnlinePayments::SDK::Domain::CapturePaymentRequest.new_from_hash(hash['capture'])
           end
-          if hash.has_key? 'paymentId'
+          if hash.key? 'paymentId'
             @payment_id = hash['paymentId']
           end
         end

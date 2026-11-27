@@ -13,8 +13,8 @@ describe 'Factory' do
 
     expect(configuration.api_endpoint).to eq('https://payment.preprod.online-payments.com')
     expect(configuration.authorization_type).to eq('v1HMAC')
-    expect(configuration.connect_timeout).to eq(1000)
-    expect(configuration.socket_timeout).to eq(1000)
+    expect(configuration.connect_timeout).to eq(10)
+    expect(configuration.socket_timeout).to eq(60)
     expect(configuration.max_connections).to eq(100)
     expect(configuration.api_key_id).to eq(API_KEY_ID)
     expect(configuration.secret_api_key).to eq(SECRET_API_KEY)
@@ -77,6 +77,86 @@ describe 'Factory' do
     expect do
       Factory.create_communicator_from_configuration(configuration)
     end.to raise_error(RuntimeError, 'Unknown authorizationType unsupported')
+  end
+
+  context 'create_client' do
+    let(:values) do
+      { api_endpoint: 'https://payment.preprod.online-payments.com', api_key_id: API_KEY_ID, secret_api_key: SECRET_API_KEY,
+        integrator: 'Integrator', connect_timeout: 10, socket_timeout: 20 }
+    end
+
+    it 'returns a client that uses the provided values' do
+      custom_connection = double('connection', close: nil)
+
+      client = Factory.create_client(**values, connection: custom_connection)
+
+      expect(client).to be_a(OnlinePayments::SDK::Client)
+      communicator = client.communicator
+      expect(communicator.instance_variable_get(:@api_endpoint).to_s).to eq('https://payment.preprod.online-payments.com')
+      expect(communicator.instance_variable_get(:@connection)).to be(custom_connection)
+    end
+
+    it 'uses a default connection with the given timeouts' do
+      client = Factory.create_client(**values)
+
+      connection = client.communicator.instance_variable_get(:@connection)
+      expect(connection).to be_an_instance_of(OnlinePayments::SDK::Communication::DefaultConnection)
+      expect(connection.instance_variable_get(:@connect_timeout)).to eq(10)
+      expect(connection.instance_variable_get(:@socket_timeout)).to eq(20)
+    end
+
+    it 'does not accept positional arguments' do
+      expect do
+        Factory.create_client('https://payment.preprod.online-payments.com', API_KEY_ID, SECRET_API_KEY, 'Integrator', 10, 20)
+      end.to raise_error(ArgumentError, /wrong number of arguments/)
+    end
+
+    it 'raises ArgumentError when a timeout is zero' do
+      expect { Factory.create_client(**values, connect_timeout: 0) }.to raise_error(ArgumentError, 'connect_timeout must be positive')
+    end
+  end
+
+  context 'create_client_from_env' do
+    let(:environment) do
+      {
+        'ONLINEPAYMENTS_API_ENDPOINT' => 'https://payment.preprod.online-payments.com',
+        'ONLINEPAYMENTS_API_KEY_ID' => API_KEY_ID,
+        'ONLINEPAYMENTS_SECRET_API_KEY' => SECRET_API_KEY,
+        'ONLINEPAYMENTS_INTEGRATOR' => 'Integrator',
+        'ONLINEPAYMENTS_CONNECT_TIMEOUT' => '10',
+        'ONLINEPAYMENTS_SOCKET_TIMEOUT' => '20'
+      }
+    end
+
+    it 'returns a client that uses the environment' do
+      stub_const('ENV', environment)
+
+      client = Factory.create_client_from_env
+
+      expect(client).to be_a(OnlinePayments::SDK::Client)
+      communicator = client.communicator
+      expect(communicator.instance_variable_get(:@api_endpoint).to_s).to eq('https://payment.preprod.online-payments.com')
+      connection = communicator.instance_variable_get(:@connection)
+      expect(connection).to be_an_instance_of(OnlinePayments::SDK::Communication::DefaultConnection)
+      expect(connection.instance_variable_get(:@connect_timeout)).to eq(10)
+      expect(connection.instance_variable_get(:@socket_timeout)).to eq(20)
+    end
+
+    it 'uses a provided connection' do
+      stub_const('ENV', environment)
+      custom_connection = double('connection', close: nil)
+
+      client = Factory.create_client_from_env(connection: custom_connection)
+
+      expect(client.communicator.instance_variable_get(:@connection)).to be(custom_connection)
+    end
+
+    it 'raises ArgumentError when a variable is missing' do
+      environment.delete('ONLINEPAYMENTS_API_ENDPOINT')
+      stub_const('ENV', environment)
+
+      expect { Factory.create_client_from_env }.to raise_error(ArgumentError, 'environment variable ONLINEPAYMENTS_API_ENDPOINT is required')
+    end
   end
 
   it 'raises an error for unsupported authorization types loaded from file' do

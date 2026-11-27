@@ -1,4 +1,6 @@
-require 'httpclient'
+# frozen_string_literal: true
+
+require 'net/http/persistent'
 require 'securerandom'
 require 'uri'
 require 'zlib'
@@ -12,30 +14,24 @@ require 'onlinepayments/sdk/logging/obfuscation/header_obfuscator'
 require 'onlinepayments/sdk/logging/request_log_message_builder'
 require 'onlinepayments/sdk/logging/response_log_message_builder'
 
-# @private :nodoc: this is not our class
-module RefineHTTPClient
-  refine HTTPClient do
-    # (monkey) patch to gain access to the session pool size in HTTPClient
-    def session_count
-      sess_pool = @session_manager.instance_variable_get(:@sess_pool)
-      sess_pool.size
-    end
-  end
-end
-
 module OnlinePayments
   module SDK
     module Communication
       class DefaultConnection < PooledConnection
-        using RefineHTTPClient
-
-        private
-
-        CONTENT_TYPE = 'Content-Type'.freeze
-        JSON_CONTENT_TYPE = 'application/json'.freeze
-        CONTENT_ENCODING = 'Content-Encoding'.freeze
-
-        public
+        CONTENT_TYPE = 'Content-Type'
+        JSON_CONTENT_TYPE = 'application/json'
+        CONTENT_ENCODING = 'Content-Encoding'
+        PROXY_ENVIRONMENT_VARIABLES = %w[https_proxy HTTPS_PROXY http_proxy HTTP_PROXY].freeze
+        NO_PROXY_ENVIRONMENT_VARIABLES = %w[no_proxy NO_PROXY].freeze
+        FORM_DATA_NAME_ESCAPES = { '"' => '%22', "\r" => '%0D', "\n" => '%0A' }.freeze
+        HTTP_REQUEST_CLASSES = {
+          'get' => Net::HTTP::Get,
+          'delete' => Net::HTTP::Delete,
+          'post' => Net::HTTP::Post,
+          'put' => Net::HTTP::Put
+        }.freeze
+        private_constant :CONTENT_TYPE, :JSON_CONTENT_TYPE, :CONTENT_ENCODING, :PROXY_ENVIRONMENT_VARIABLES,
+                         :NO_PROXY_ENVIRONMENT_VARIABLES, :FORM_DATA_NAME_ESCAPES, :HTTP_REQUEST_CLASSES
 
         # @param args [Hash] the parameters to initialize the connection with
         # @option args [Integer] :connect_timeout connection timeout in seconds.
@@ -46,6 +42,7 @@ module OnlinePayments
         #              If not given the system default proxy is used;
         #              if there is no system default proxy set either, no proxy is used.
         def initialize(args)
+          super()
           raise ArgumentError unless args.is_a? Hash
 
           # Set timeouts to nil if they are negative
@@ -56,106 +53,65 @@ module OnlinePayments
           @max_connections = args[:max_connections] || CommunicatorConfiguration.default_max_connections
           @proxy_configuration = args[:proxy_configuration]
 
-          # HTTPClient provides the following features:
-          # 1) thread safe, an instance can be used by multiple threads without
-          # explicit synchronization
-          # 2) use persistent connection if HTTP 1.1 is supported. The connection
-          # will be left open until explicitly closed or keep_alive_timeout
-          # 3) a built-in connection pool with no limit for max connections
-          @http_client = create_http_client
-          @http_client.connect_timeout = @connect_timeout
-          @http_client.send_timeout = @socket_timeout
-          @http_client.receive_timeout = @socket_timeout
+          @http = Net::HTTP::Persistent.new(name: 'onlinepayments-sdk-ruby')
+          @http.open_timeout = @connect_timeout
+          @http.read_timeout = @socket_timeout
+          @http.write_timeout = @socket_timeout
+          @http.max_retries = 0
+          @http.proxy = proxy_uri
+          @servers = Set.new
+          @servers_mutex = Mutex.new
 
           @body_obfuscator = OnlinePayments::SDK::Logging::Obfuscation::BodyObfuscator.default_obfuscator
           @header_obfuscator = OnlinePayments::SDK::Logging::Obfuscation::HeaderObfuscator.default_obfuscator
         end
 
-        private
-
-        # Create a HTTPClient instance that uses @proxy_configuration or the system proxy if @proxy_configuration is not set
-        def create_http_client
-          if @proxy_configuration
-            httpclient = HTTPClient.new(@proxy_configuration.proxy_uri)
-            httpclient.set_proxy_auth(@proxy_configuration.username, @proxy_configuration.password)
-            httpclient.force_basic_auth = true unless @proxy_configuration.username.nil? || @proxy_configuration.password.nil?
-            httpclient
-          else
-            # use system settings
-            proxy_string = ENV['https_proxy'] || ENV['http_proxy']
-            # proxy string format = 'http://username:password@hostname:port'
-            proxy_string =~ %r{https?//(?<username>[^:]):(?<password>[^@])@.*}
-            username = Regexp.last_match(1)
-            password = Regexp.last_match(2)
-            httpclient = HTTPClient.new(proxy_string)
-            httpclient.set_proxy_auth(username, password) unless username.nil? || password.nil?
-            httpclient.force_basic_auth = true unless username.nil? || password.nil?
-            httpclient
-          end
-        end
-
-        public
-
-        # Closes all connections idle for longer than _idle_time_ seconds.
-        # In addition, the keep_alive_timeout is set to _idle_time_
-        # so any future connections idle for longer than _idle_time_ seconds will also be closed.
+        # Sets the idle timeout to _idle_time_ seconds. Connections idle longer than that are closed lazily.
         def close_idle_connections(idle_time)
-          # in sec
-          @http_client.keep_alive_timeout = idle_time # set timeout value
-          close_expired_connections
+          @http.idle_timeout = idle_time
         end
 
-        # HTTPClient automatically closes expired connections so _close_expired_connections_ is a no-operation.
-        def close_expired_connections
-          # By default, the keep alive timeout is 15 sec, which is the HTTP 1.1
-          # standard. To change the value, use keep_alive_timeout= method
-          # do nothing, handled by HTTPClient
-        end
+        # Expired connections are closed automatically, so _close_expired_connections_ is a no-operation.
+        def close_expired_connections; end
 
-        # Frees all networking resources used.
+        # Closes all connections. A new connection is opened for the next request.
         def close
-          @http_client.reset_all
+          @http.reload
+          @servers_mutex.synchronize { @servers.clear }
         end
 
-        # Returns the number of open connections
+        # Returns the number of servers that requests were sent to since this connection was created or last closed.
         def session_count
-          @http_client.session_count
+          @servers_mutex.synchronize { @servers.size }
         end
 
         # Performs a GET request to the Online Payments platform
         # @see request
-        def get(uri, request_headers)
-          request('get', uri, request_headers) do |response_status_code, response_headers, response_body|
-            yield response_status_code, response_headers, response_body
-          end
+        def get(uri, request_headers, &)
+          request('get', uri, request_headers, &)
         end
 
         # Performs a DELETE request to the Online Payments platform
         # @see request
-        def delete(uri, request_headers)
-          request('delete', uri, request_headers) do |response_status_code, response_headers, response_body|
-            yield response_status_code, response_headers, response_body
-          end
+        def delete(uri, request_headers, &)
+          request('delete', uri, request_headers, &)
         end
 
         # Performs a POST request to the Online Payments platform
         # @see request
-        def post(uri, request_headers, body)
-          request('post', uri, request_headers, body) do |response_status_code, response_headers, response_body|
-            yield response_status_code, response_headers, response_body
-          end
+        def post(uri, request_headers, body, &)
+          request('post', uri, request_headers, body, &)
         end
 
         # Performs a PUT request to the Online Payments platform
         # @see request
-        def put(uri, request_headers, body)
-          request('put', uri, request_headers, body) do |response_status_code, response_headers, response_body|
-            yield response_status_code, response_headers, response_body
-          end
+        def put(uri, request_headers, body, &)
+          request('put', uri, request_headers, body, &)
         end
 
         # Performs a HTTP request and yields the response as the status code, headers and body.
         # Also ensures the request is logged when sent and its response is logged when received.
+        # Errors raised by the given block are not treated as communication errors and are raised unchanged.
         #
         # @param method          [String] 'GET', 'DELETE', 'POST' or 'PUT' depending on the HTTP method being used.
         # @param uri             [URI::HTTP] full URI of the location the request is targeted at, including query parameters.
@@ -173,10 +129,10 @@ module OnlinePayments
           encoding_present = request_headers.keys.any? { |k| k.casecmp(CONTENT_ENCODING).zero? }
 
           if body.is_a?(String) &&
-             content_type && content_type.downcase.start_with?(JSON_CONTENT_TYPE) &&
+             content_type&.downcase&.start_with?(JSON_CONTENT_TYPE) &&
              encoding_present
 
-            gzip_buffer  = StringIO.new
+            gzip_buffer = StringIO.new
             gzip = Zlib::GzipWriter.new(gzip_buffer)
             gzip.write(body)
             gzip.close
@@ -188,48 +144,40 @@ module OnlinePayments
           log_request(request_id, method.upcase, uri, info)
 
           start_time = Time.now
+          block_failed = false
           begin
-            response_headers = nil
-            response_status_code = nil
-            response_content_type = nil
-            response_body = ''
+            @http.request(uri, create_http_request(method, uri, request_headers, body)) do |response|
+              response_status_code = response.code.to_i
+              response_headers = convert_to_sdk_response_headers(response)
+              response_content_type = response[CONTENT_TYPE]
+              response_body = ''
 
-            if body.is_a? MultipartFormDataObject
-              multipart_request(method, uri, request_headers, body) do |status_code, headers, r_content_type, r_body|
-                response_headers = headers
-                response_status_code = status_code
-                response_content_type = r_content_type
-                unless binary_content_type? response_content_type
-                  response_body = r_body.read.force_encoding('UTF-8')
-                  r_body = StringIO.new(response_body)
-                end
-
-                yield status_code, headers, r_body
+              if binary_content_type?(response_content_type)
+                response_body_io = ResponseBodyReader.new(response)
+              else
+                response_body = String.new(response.read_body.to_s, encoding: Encoding::UTF_8)
+                response_body_io = StringIO.new(response_body)
               end
-            else
-              raw_request(method, uri, request_headers, body) do |status_code, headers, r_content_type, r_body|
-                response_headers = headers
-                response_status_code = status_code
-                response_content_type = r_content_type
-                unless binary_content_type? response_content_type
-                  response_body = r_body.read.force_encoding('UTF-8')
-                  r_body = StringIO.new(response_body)
-                end
 
-                yield status_code, headers, r_body
+              log_response(request_id, response_status_code, start_time,
+                           headers: response_headers, body: response_body,
+                           content_type: response_content_type)
+
+              begin
+                yield response_status_code, response_headers, response_body_io
+              rescue ResponseBodyReader::ReadError => e
+                raise e.cause
+              rescue StandardError
+                block_failed = true
+                raise
               end
+
+              response_body_io.drain if response_body_io.is_a?(ResponseBodyReader)
             end
-
-            log_response(request_id, response_status_code, start_time,
-                         headers: response_headers, body: response_body,
-                         content_type: response_content_type)
-          rescue HTTPClient::TimeoutError => e
-            log_error(request_id, start_time, e)
-            raise CommunicationException, e
-          rescue HTTPClient::KeepAliveDisconnected, HTTPClient::RetryableResponse => e # retry these?
-            log_error(request_id, start_time, e)
-            raise CommunicationException, e
+            @servers_mutex.synchronize { @servers << "#{uri.scheme}://#{uri.host}:#{uri.port}" }
           rescue StandardError => e
+            raise if block_failed
+
             log_error(request_id, start_time, e)
             raise CommunicationException, e
           end
@@ -239,7 +187,7 @@ module OnlinePayments
 
         # Sets the current body obfuscator to use.
         # @param body_obfuscator [OnlinePayments::SDK::Logging::Obfuscation::BodyObfuscator]
-        def set_body_obfuscator(body_obfuscator)
+        def body_obfuscator=(body_obfuscator)
           raise ArgumentError, 'body_obfuscator is required' unless body_obfuscator
 
           @body_obfuscator = body_obfuscator
@@ -247,7 +195,7 @@ module OnlinePayments
 
         # Sets the current header obfuscator to use.
         # @param header_obfuscator [OnlinePayments::SDK::Logging::Obfuscation::HeaderObfuscator]
-        def set_header_obfuscator(header_obfuscator)
+        def header_obfuscator=(header_obfuscator)
           raise ArgumentError, 'header_obfuscator is required' unless header_obfuscator
 
           @header_obfuscator = header_obfuscator
@@ -269,18 +217,119 @@ module OnlinePayments
           @communicator_logger = nil
         end
 
+        # Reads the body of a binary response in parts, while the caller reads it.
+        class ResponseBodyReader
+          # Raised when reading the response body fails.
+          class ReadError < StandardError; end
+
+          def initialize(response)
+            @parts = Enumerator.new { |yielder| response.read_body { |part| yielder << part } }
+            @buffer = String.new(encoding: Encoding::BINARY)
+            @eof = false
+          end
+
+          # Reads _length_ bytes, or the rest of the body if _length_ is not given.
+          #
+          # @return [String, nil] the data read, or nil if _length_ is given and the end of the body is reached
+          def read(length = nil, outbuf = nil)
+            fill_buffer(length)
+            data = length.nil? ? @buffer.slice!(0..) : @buffer.slice!(0, length)
+            return nil if length&.positive? && data.empty?
+
+            outbuf ? outbuf.replace(data) : data
+          end
+
+          # Reads and discards the rest of the body.
+          def drain
+            @buffer.clear
+            @buffer.clear until next_part.nil?
+          end
+
+          private
+
+          def fill_buffer(length)
+            while length.nil? || @buffer.bytesize < length
+              part = next_part
+              break if part.nil?
+
+              @buffer << part
+            end
+          end
+
+          def next_part
+            return nil if @eof
+
+            @parts.next
+          rescue StopIteration
+            @eof = true
+            nil
+          rescue StandardError => e
+            raise ReadError, e.message
+          end
+        end
+        private_constant :ResponseBodyReader
+
         private
+
+        def proxy_uri
+          return configured_proxy_uri if @proxy_configuration
+
+          environment_proxy_uri
+        end
+
+        def configured_proxy_uri
+          uri = URI(@proxy_configuration.proxy_uri)
+          unless @proxy_configuration.username.nil?
+            uri.user = URI.encode_www_form_component(@proxy_configuration.username)
+            uri.password = URI.encode_www_form_component(@proxy_configuration.password) unless @proxy_configuration.password.nil?
+          end
+          uri
+        end
+
+        def environment_proxy_uri
+          proxy = ENV.values_at(*PROXY_ENVIRONMENT_VARIABLES).find { |value| value && !value.strip.empty? }
+          return nil if proxy.nil?
+
+          no_proxy = ENV.values_at(*NO_PROXY_ENVIRONMENT_VARIABLES).find { |value| value && !value.strip.empty? }
+          return nil if no_proxy&.strip == '*'
+
+          uri = URI(proxy.include?('://') ? proxy : "http://#{proxy}")
+          uri.query = URI.encode_www_form(no_proxy: no_proxy) if no_proxy
+          uri
+        end
+
+        def create_http_request(method, uri, headers, body)
+          http_request = HTTP_REQUEST_CLASSES.fetch(method).new(uri)
+          headers.each { |name, value| http_request[name] = value }
+          if body.is_a? MultipartFormDataObject
+            http_request.set_form(multipart_form_data(body), 'multipart/form-data', boundary: body.boundary)
+          elsif http_request.request_body_permitted?
+            http_request.body = body || ''
+          end
+          http_request
+        end
+
+        def multipart_form_data(body)
+          files = body.files.map do |name, file|
+            [escape_form_data_name(name), file.content,
+             { filename: escape_form_data_name(file.file_name), content_type: file.content_type }]
+          end
+          values = body.values.map { |name, value| [escape_form_data_name(name), value] }
+          files + values
+        end
+
+        def escape_form_data_name(name)
+          name.to_s.gsub(/["\r\n]/, FORM_DATA_NAME_ESCAPES)
+        end
 
         # Converts a {OnlinePayments::SDK::Communication::RequestHeader} list headers to a hash
         def convert_from_sdk_headers(headers)
-          headers.each_with_object({}) { |h, hash| hash[h.name] = h.value }
+          headers.to_h { |h| [h.name, h.value] }
         end
 
-        # Converts a hash to a {OnlinePayments::SDK::Communication::ResponseHeader} list
-        def convert_to_sdk_response_headers(headers)
-          arr ||= []
-          headers.each { |k, v| arr << ResponseHeader.new(k, v) }
-          arr
+        # Converts the headers of a Net::HTTP response to a {OnlinePayments::SDK::Communication::ResponseHeader} list
+        def convert_to_sdk_response_headers(response)
+          response.each_capitalized.map { |name, value| ResponseHeader.new(name, value) }
         end
 
         def log_request(request_id, method, uri, args = {})
@@ -291,9 +340,9 @@ module OnlinePayments
           body = args[:body]
           content_type = args[:content_type]
           log_msg_builder = OnlinePayments::SDK::Logging::RequestLogMessageBuilder.new(request_id, method, uri,
-                                                                                           @body_obfuscator,
-                                                                                           @header_obfuscator)
-          headers.each { |k, v| log_msg_builder.add_headers(k, v) } if headers
+                                                                                       @body_obfuscator,
+                                                                                       @header_obfuscator)
+          headers&.each { |k, v| log_msg_builder.add_headers(k, v) }
 
           if binary?(headers)
             log_msg_builder.set_body('<binary content>', content_type)
@@ -302,7 +351,7 @@ module OnlinePayments
           end
 
           begin
-            logger.log(log_msg_builder.get_message)
+            logger.log(log_msg_builder.message)
           rescue StandardError => e
             logger.log("An error occurred trying to log request #{request_id}", e)
           end
@@ -336,7 +385,7 @@ module OnlinePayments
           end
 
           begin
-            logger.log(log_msg_builder.get_message)
+            logger.log(log_msg_builder.message)
           rescue StandardError => e
             logger.log("An error occurred trying to log response #{request_id}", e)
           end
@@ -368,74 +417,6 @@ module OnlinePayments
                    !content_type.include?('xml')
           end
           false
-        end
-
-        # Makes a request using the specified method
-        #
-        # Yields a status code, an array of {OnlinePayments::SDK::Communication::ResponseHeader},
-        # the content_type and body
-        def raw_request(method, uri, headers, body = nil)
-          connection = if body
-                         @http_client.send(method + '_async', uri, body: body, header: headers)
-                       else
-                         @http_client.send(method + '_async', uri, header: headers)
-                       end
-
-          response = connection.pop
-          pipe = response.content
-          response_headers = convert_to_sdk_response_headers(response.headers)
-
-          begin
-            yield response.status_code, response_headers, response.content_type, pipe
-          ensure
-            pipe.close
-          end
-        end
-
-        # Makes a request using the specified method
-        #
-        # Yields a status code, an array of {OnlinePayments::SDK::Communication::ResponseHeader},
-        # the content_type and body
-        def multipart_request(method, uri, headers, body = nil)
-          unless body.is_a? MultipartFormDataObject
-            raise ArgumentError, 'body should be a MultipartFormDataObject'
-          end
-
-          if method != 'post' && method != 'put'
-            raise ArgumentError, "method #{method} is not supported"
-          end
-
-          connection = @http_client.send method + '_async',
-                                         uri,
-                                         body: multipart_request_body(body),
-                                         header: headers
-
-          response = connection.pop
-          pipe = response.content
-          response_headers = convert_to_sdk_response_headers(response.headers)
-
-          begin
-            yield response.status_code, response_headers, response.content_type, pipe
-          ensure
-            pipe.close
-          end
-        end
-
-        # Creates a request body for the multipart request
-        def multipart_request_body(body)
-          request_body = []
-          body.files.each do |k, v|
-            request_body.push :content => v.content,
-                              'Content-Type' => v.content_type,
-                              'Content-Disposition' => "form-data; name=\"#{k}\"; filename=\"#{v.file_name}\"",
-                              'Content-Transfer-Encoding' => 'binary'
-          end
-
-          body.values.each do |k, v|
-            request_body << { :content => v,
-                              'Content-Disposition' => "form-data; name=\"#{k}\"" }
-          end
-          request_body
         end
       end
     end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -17,6 +19,14 @@ module OnlinePayments
         attr_accessor :gender
 
         attr_accessor :name
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(date_of_birth: nil, gender: nil, name: nil)
+          super()
+          @date_of_birth = date_of_birth
+          @gender = gender
+          @name = name
+        end
 
         # Sets the property and returns this same instance.
         def with_date_of_birth(value)
@@ -47,14 +57,14 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'dateOfBirth'
+          if hash.key? 'dateOfBirth'
             @date_of_birth = hash['dateOfBirth']
           end
-          if hash.has_key? 'gender'
+          if hash.key? 'gender'
             @gender = hash['gender']
           end
-          if hash.has_key? 'name'
-            raise TypeError, "value '%s' is not a Hash" % [hash['name']] unless hash['name'].is_a? Hash
+          if hash.key? 'name'
+            raise TypeError, "value '#{hash['name']}' is not a Hash" unless hash['name'].is_a? Hash
             @name = OnlinePayments::SDK::Domain::PersonalName.new_from_hash(hash['name'])
           end
         end

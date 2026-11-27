@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -10,6 +12,12 @@ module OnlinePayments
       class CustomerDeviceOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :ip_address_country_code
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(ip_address_country_code: nil)
+          super()
+          @ip_address_country_code = ip_address_country_code
+        end
 
         # Sets the property and returns this same instance.
         def with_ip_address_country_code(value)
@@ -26,7 +34,7 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'ipAddressCountryCode'
+          if hash.key? 'ipAddressCountryCode'
             @ip_address_country_code = hash['ipAddressCountryCode']
           end
         end

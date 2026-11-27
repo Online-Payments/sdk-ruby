@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -11,6 +13,12 @@ module OnlinePayments
       class DpaTransactionOptions < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :three_ds_input_data
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(three_ds_input_data: nil)
+          super()
+          @three_ds_input_data = three_ds_input_data
+        end
 
         # Sets the property and returns this same instance.
         def with_three_ds_input_data(value)
@@ -27,8 +35,8 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'threeDsInputData'
-            raise TypeError, "value '%s' is not a Hash" % [hash['threeDsInputData']] unless hash['threeDsInputData'].is_a? Hash
+          if hash.key? 'threeDsInputData'
+            raise TypeError, "value '#{hash['threeDsInputData']}' is not a Hash" unless hash['threeDsInputData'].is_a? Hash
             @three_ds_input_data = OnlinePayments::SDK::Domain::ThreeDsInputData.new_from_hash(hash['threeDsInputData'])
           end
         end

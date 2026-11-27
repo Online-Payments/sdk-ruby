@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -17,6 +19,14 @@ module OnlinePayments
         attr_accessor :gts_computed_token
 
         attr_accessor :generated_token
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(computed_token: nil, gts_computed_token: nil, generated_token: nil)
+          super()
+          @computed_token = computed_token
+          @gts_computed_token = gts_computed_token
+          @generated_token = generated_token
+        end
 
         # Sets the property and returns this same instance.
         def with_computed_token(value)
@@ -47,13 +57,13 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'ComputedToken'
+          if hash.key? 'ComputedToken'
             @computed_token = hash['ComputedToken']
           end
-          if hash.has_key? 'GTSComputedToken'
+          if hash.key? 'GTSComputedToken'
             @gts_computed_token = hash['GTSComputedToken']
           end
-          if hash.has_key? 'GeneratedToken'
+          if hash.key? 'GeneratedToken'
             @generated_token = hash['GeneratedToken']
           end
         end

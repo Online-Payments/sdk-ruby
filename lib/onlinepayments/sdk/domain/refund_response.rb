@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -21,6 +23,15 @@ module OnlinePayments
         attr_accessor :status
 
         attr_accessor :status_output
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(id: nil, refund_output: nil, status: nil, status_output: nil)
+          super()
+          @id = id
+          @refund_output = refund_output
+          @status = status
+          @status_output = status_output
+        end
 
         # Sets the property and returns this same instance.
         def with_id(value)
@@ -58,18 +69,18 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'id'
+          if hash.key? 'id'
             @id = hash['id']
           end
-          if hash.has_key? 'refundOutput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['refundOutput']] unless hash['refundOutput'].is_a? Hash
+          if hash.key? 'refundOutput'
+            raise TypeError, "value '#{hash['refundOutput']}' is not a Hash" unless hash['refundOutput'].is_a? Hash
             @refund_output = OnlinePayments::SDK::Domain::RefundOutput.new_from_hash(hash['refundOutput'])
           end
-          if hash.has_key? 'status'
+          if hash.key? 'status'
             @status = hash['status']
           end
-          if hash.has_key? 'statusOutput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['statusOutput']] unless hash['statusOutput'].is_a? Hash
+          if hash.key? 'statusOutput'
+            raise TypeError, "value '#{hash['statusOutput']}' is not a Hash" unless hash['statusOutput'].is_a? Hash
             @status_output = OnlinePayments::SDK::Domain::OrderStatusOutput.new_from_hash(hash['statusOutput'])
           end
         end

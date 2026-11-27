@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -16,6 +18,14 @@ module OnlinePayments
         attr_accessor :acquirer_merchant_id
 
         attr_accessor :merchant_name
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(acquirer_bin: nil, acquirer_merchant_id: nil, merchant_name: nil)
+          super()
+          @acquirer_bin = acquirer_bin
+          @acquirer_merchant_id = acquirer_merchant_id
+          @merchant_name = merchant_name
+        end
 
         # Sets the property and returns this same instance.
         def with_acquirer_bin(value)
@@ -46,13 +56,13 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'acquirerBIN'
+          if hash.key? 'acquirerBIN'
             @acquirer_bin = hash['acquirerBIN']
           end
-          if hash.has_key? 'acquirerMerchantId'
+          if hash.key? 'acquirerMerchantId'
             @acquirer_merchant_id = hash['acquirerMerchantId']
           end
-          if hash.has_key? 'merchantName'
+          if hash.key? 'merchantName'
             @merchant_name = hash['merchantName']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'base64'
 require 'openssl'
 require 'onlinepayments/sdk/webhooks/signature_validation_exception'
@@ -5,11 +7,11 @@ require 'onlinepayments/sdk/webhooks/signature_validation_exception'
 module OnlinePayments
   module SDK
     module Webhooks
-
       # Validator for webhooks signatures. Thread-safe.
       class SignatureValidator
         def initialize(secret_key_store)
           raise ArgumentError if secret_key_store.nil?
+
           @secret_key_store = secret_key_store
         end
 
@@ -21,11 +23,12 @@ module OnlinePayments
           validate_body(body, request_headers)
         end
 
-        private
+        HEADER_SIGNATURE = 'X-GCS-Signature'
+        HEADER_KEY_ID = 'X-GCS-KeyId'
+        HMAC_SCHEME = 'SHA256'
+        private_constant :HEADER_SIGNATURE, :HEADER_KEY_ID, :HMAC_SCHEME
 
-        HEADER_SIGNATURE = 'X-GCS-Signature'.freeze
-        HEADER_KEY_ID = 'X-GCS-KeyId'.freeze
-        HMAC_SCHEME = 'SHA256'.freeze
+        private
 
         # Validates the body using given request headers
         #
@@ -39,10 +42,10 @@ module OnlinePayments
           hmac = OpenSSL::HMAC.digest(digest, secret_key, body)
           expected_signature = Base64.strict_encode64(hmac).strip
 
-          unless equal_signatures?(signature, expected_signature)
-            msg = "failed to validate signature '#{signature}'"
-            raise SignatureValidationException.new(message: msg)
-          end
+          return if equal_signatures?(signature, expected_signature)
+
+          msg = "failed to validate signature '#{signature}'"
+          raise SignatureValidationException.new(message: msg)
         end
 
         # Checks two signatures
@@ -57,7 +60,7 @@ module OnlinePayments
           limit = [signature.length, expected_signature.length, 256].max
           limit.times.inject(true) do |flag, idx|
             # NOTE: this block is constructed to take constant time to run
-            flag &= signature[idx] == expected_signature[idx]
+            flag & (signature[idx] == expected_signature[idx])
             # [] returns nil if idx >= the length of the String
           end
         end

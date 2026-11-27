@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -30,6 +32,18 @@ module OnlinePayments
         attr_accessor :tokens
 
         attr_accessor :variant
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(ask_consumer_consent: nil, credit_card_specific_input: nil, locale: nil, origin: nil, payment_product_filters: nil, tokens: nil, variant: nil)
+          super()
+          @ask_consumer_consent = ask_consumer_consent
+          @credit_card_specific_input = credit_card_specific_input
+          @locale = locale
+          @origin = origin
+          @payment_product_filters = payment_product_filters
+          @tokens = tokens
+          @variant = variant
+        end
 
         # Sets the property and returns this same instance.
         def with_ask_consumer_consent(value)
@@ -88,27 +102,27 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'askConsumerConsent'
+          if hash.key? 'askConsumerConsent'
             @ask_consumer_consent = hash['askConsumerConsent']
           end
-          if hash.has_key? 'creditCardSpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['creditCardSpecificInput']] unless hash['creditCardSpecificInput'].is_a? Hash
+          if hash.key? 'creditCardSpecificInput'
+            raise TypeError, "value '#{hash['creditCardSpecificInput']}' is not a Hash" unless hash['creditCardSpecificInput'].is_a? Hash
             @credit_card_specific_input = OnlinePayments::SDK::Domain::CreditCardSpecificInputHostedTokenization.new_from_hash(hash['creditCardSpecificInput'])
           end
-          if hash.has_key? 'locale'
+          if hash.key? 'locale'
             @locale = hash['locale']
           end
-          if hash.has_key? 'origin'
+          if hash.key? 'origin'
             @origin = hash['origin']
           end
-          if hash.has_key? 'paymentProductFilters'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProductFilters']] unless hash['paymentProductFilters'].is_a? Hash
+          if hash.key? 'paymentProductFilters'
+            raise TypeError, "value '#{hash['paymentProductFilters']}' is not a Hash" unless hash['paymentProductFilters'].is_a? Hash
             @payment_product_filters = OnlinePayments::SDK::Domain::PaymentProductFiltersHostedTokenization.new_from_hash(hash['paymentProductFilters'])
           end
-          if hash.has_key? 'tokens'
+          if hash.key? 'tokens'
             @tokens = hash['tokens']
           end
-          if hash.has_key? 'variant'
+          if hash.key? 'variant'
             @variant = hash['variant']
           end
         end

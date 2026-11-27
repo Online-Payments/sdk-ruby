@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -11,6 +13,12 @@ module OnlinePayments
       class PaymentProduct5002SpecificData < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :api_parameters
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(api_parameters: nil)
+          super()
+          @api_parameters = api_parameters
+        end
 
         # Sets the property and returns this same instance.
         def with_api_parameters(value)
@@ -27,8 +35,8 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'apiParameters'
-            raise TypeError, "value '%s' is not a Hash" % [hash['apiParameters']] unless hash['apiParameters'].is_a? Hash
+          if hash.key? 'apiParameters'
+            raise TypeError, "value '#{hash['apiParameters']}' is not a Hash" unless hash['apiParameters'].is_a? Hash
             @api_parameters = OnlinePayments::SDK::Domain::ApiParameters.new_from_hash(hash['apiParameters'])
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -27,6 +29,17 @@ module OnlinePayments
         attr_accessor :sdk_url
 
         attr_accessor :session_data
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(card_tokens: nil, hosted_fields_session_id: nil, invalid_tokens: nil, sdk_sri: nil, sdk_url: nil, session_data: nil)
+          super()
+          @card_tokens = card_tokens
+          @hosted_fields_session_id = hosted_fields_session_id
+          @invalid_tokens = invalid_tokens
+          @sdk_sri = sdk_sri
+          @sdk_url = sdk_url
+          @session_data = session_data
+        end
 
         # Sets the property and returns this same instance.
         def with_card_tokens(value)
@@ -78,31 +91,31 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'cardTokens'
-            raise TypeError, "value '%s' is not an Array" % [hash['cardTokens']] unless hash['cardTokens'].is_a? Array
+          if hash.key? 'cardTokens'
+            raise TypeError, "value '#{hash['cardTokens']}' is not an Array" unless hash['cardTokens'].is_a? Array
             @card_tokens = []
             hash['cardTokens'].each do |e|
               @card_tokens << OnlinePayments::SDK::Domain::CardToken.new_from_hash(e)
             end
           end
-          if hash.has_key? 'hostedFieldsSessionId'
+          if hash.key? 'hostedFieldsSessionId'
             @hosted_fields_session_id = hash['hostedFieldsSessionId']
           end
-          if hash.has_key? 'invalidTokens'
-            raise TypeError, "value '%s' is not an Array" % [hash['invalidTokens']] unless hash['invalidTokens'].is_a? Array
+          if hash.key? 'invalidTokens'
+            raise TypeError, "value '#{hash['invalidTokens']}' is not an Array" unless hash['invalidTokens'].is_a? Array
             @invalid_tokens = []
             hash['invalidTokens'].each do |e|
               @invalid_tokens << e
             end
           end
-          if hash.has_key? 'sdkSri'
+          if hash.key? 'sdkSri'
             @sdk_sri = hash['sdkSri']
           end
-          if hash.has_key? 'sdkUrl'
+          if hash.key? 'sdkUrl'
             @sdk_url = hash['sdkUrl']
           end
-          if hash.has_key? 'sessionData'
-            raise TypeError, "value '%s' is not a Hash" % [hash['sessionData']] unless hash['sessionData'].is_a? Hash
+          if hash.key? 'sessionData'
+            raise TypeError, "value '#{hash['sessionData']}' is not a Hash" unless hash['sessionData'].is_a? Hash
             @session_data = OnlinePayments::SDK::Domain::SessionData.new_from_hash(hash['sessionData'])
           end
         end

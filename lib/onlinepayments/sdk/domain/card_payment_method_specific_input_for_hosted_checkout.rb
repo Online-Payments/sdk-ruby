@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -19,6 +21,15 @@ module OnlinePayments
         attr_accessor :payment_product_preferred_order
 
         attr_accessor :tokenization_mode
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(click_to_pay: nil, group_cards: nil, payment_product_preferred_order: nil, tokenization_mode: nil)
+          super()
+          @click_to_pay = click_to_pay
+          @group_cards = group_cards
+          @payment_product_preferred_order = payment_product_preferred_order
+          @tokenization_mode = tokenization_mode
+        end
 
         # Sets the property and returns this same instance.
         def with_click_to_pay(value)
@@ -56,20 +67,20 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'clickToPay'
+          if hash.key? 'clickToPay'
             @click_to_pay = hash['clickToPay']
           end
-          if hash.has_key? 'groupCards'
+          if hash.key? 'groupCards'
             @group_cards = hash['groupCards']
           end
-          if hash.has_key? 'paymentProductPreferredOrder'
-            raise TypeError, "value '%s' is not an Array" % [hash['paymentProductPreferredOrder']] unless hash['paymentProductPreferredOrder'].is_a? Array
+          if hash.key? 'paymentProductPreferredOrder'
+            raise TypeError, "value '#{hash['paymentProductPreferredOrder']}' is not an Array" unless hash['paymentProductPreferredOrder'].is_a? Array
             @payment_product_preferred_order = []
             hash['paymentProductPreferredOrder'].each do |e|
               @payment_product_preferred_order << e
             end
           end
-          if hash.has_key? 'tokenizationMode'
+          if hash.key? 'tokenizationMode'
             @tokenization_mode = hash['tokenizationMode']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -10,6 +12,12 @@ module OnlinePayments
       class ShowInstructionsData < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :show_data
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(show_data: nil)
+          super()
+          @show_data = show_data
+        end
 
         # Sets the property and returns this same instance.
         def with_show_data(value)
@@ -26,7 +34,7 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'showData'
+          if hash.key? 'showData'
             @show_data = hash['showData']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :class_id
 
         attr_accessor :identification_number
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(class_id: nil, identification_number: nil)
+          super()
+          @class_id = class_id
+          @identification_number = identification_number
+        end
 
         # Sets the property and returns this same instance.
         def with_class_id(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'classId'
+          if hash.key? 'classId'
             @class_id = hash['classId']
           end
-          if hash.has_key? 'identificationNumber'
+          if hash.key? 'identificationNumber'
             @identification_number = hash['identificationNumber']
           end
         end

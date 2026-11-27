@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -18,6 +20,14 @@ module OnlinePayments
         attr_accessor :card_without_cvv
 
         attr_accessor :cobrand_selection_indicator
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(card_bin_details: nil, card_without_cvv: nil, cobrand_selection_indicator: nil)
+          super()
+          @card_bin_details = card_bin_details
+          @card_without_cvv = card_without_cvv
+          @cobrand_selection_indicator = cobrand_selection_indicator
+        end
 
         # Sets the property and returns this same instance.
         def with_card_bin_details(value)
@@ -48,15 +58,15 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'cardBinDetails'
-            raise TypeError, "value '%s' is not a Hash" % [hash['cardBinDetails']] unless hash['cardBinDetails'].is_a? Hash
+          if hash.key? 'cardBinDetails'
+            raise TypeError, "value '#{hash['cardBinDetails']}' is not a Hash" unless hash['cardBinDetails'].is_a? Hash
             @card_bin_details = OnlinePayments::SDK::Domain::CardBinDetails.new_from_hash(hash['cardBinDetails'])
           end
-          if hash.has_key? 'cardWithoutCvv'
-            raise TypeError, "value '%s' is not a Hash" % [hash['cardWithoutCvv']] unless hash['cardWithoutCvv'].is_a? Hash
+          if hash.key? 'cardWithoutCvv'
+            raise TypeError, "value '#{hash['cardWithoutCvv']}' is not a Hash" unless hash['cardWithoutCvv'].is_a? Hash
             @card_without_cvv = OnlinePayments::SDK::Domain::CardWithoutCvv.new_from_hash(hash['cardWithoutCvv'])
           end
-          if hash.has_key? 'cobrandSelectionIndicator'
+          if hash.key? 'cobrandSelectionIndicator'
             @cobrand_selection_indicator = hash['cobrandSelectionIndicator']
           end
         end

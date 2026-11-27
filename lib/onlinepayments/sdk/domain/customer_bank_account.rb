@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -16,6 +18,14 @@ module OnlinePayments
         attr_accessor :bic
 
         attr_accessor :iban
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(account_holder_name: nil, bic: nil, iban: nil)
+          super()
+          @account_holder_name = account_holder_name
+          @bic = bic
+          @iban = iban
+        end
 
         # Sets the property and returns this same instance.
         def with_account_holder_name(value)
@@ -46,13 +56,13 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'accountHolderName'
+          if hash.key? 'accountHolderName'
             @account_holder_name = hash['accountHolderName']
           end
-          if hash.has_key? 'bic'
+          if hash.key? 'bic'
             @bic = hash['bic']
           end
-          if hash.has_key? 'iban'
+          if hash.key? 'iban'
             @iban = hash['iban']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -26,6 +28,22 @@ module OnlinePayments
         attr_accessor :partial_redirect_url
 
         attr_accessor :sri
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(expired_card_tokens: nil,
+                       hosted_tokenization_id: nil,
+                       hosted_tokenization_url: nil,
+                       invalid_tokens: nil,
+                       partial_redirect_url: nil,
+                       sri: nil)
+          super()
+          @expired_card_tokens = expired_card_tokens
+          @hosted_tokenization_id = hosted_tokenization_id
+          @hosted_tokenization_url = hosted_tokenization_url
+          @invalid_tokens = invalid_tokens
+          @partial_redirect_url = partial_redirect_url
+          @sri = sri
+        end
 
         # Sets the property and returns this same instance.
         def with_expired_card_tokens(value)
@@ -77,30 +95,30 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'expiredCardTokens'
-            raise TypeError, "value '%s' is not an Array" % [hash['expiredCardTokens']] unless hash['expiredCardTokens'].is_a? Array
+          if hash.key? 'expiredCardTokens'
+            raise TypeError, "value '#{hash['expiredCardTokens']}' is not an Array" unless hash['expiredCardTokens'].is_a? Array
             @expired_card_tokens = []
             hash['expiredCardTokens'].each do |e|
               @expired_card_tokens << e
             end
           end
-          if hash.has_key? 'hostedTokenizationId'
+          if hash.key? 'hostedTokenizationId'
             @hosted_tokenization_id = hash['hostedTokenizationId']
           end
-          if hash.has_key? 'hostedTokenizationUrl'
+          if hash.key? 'hostedTokenizationUrl'
             @hosted_tokenization_url = hash['hostedTokenizationUrl']
           end
-          if hash.has_key? 'invalidTokens'
-            raise TypeError, "value '%s' is not an Array" % [hash['invalidTokens']] unless hash['invalidTokens'].is_a? Array
+          if hash.key? 'invalidTokens'
+            raise TypeError, "value '#{hash['invalidTokens']}' is not an Array" unless hash['invalidTokens'].is_a? Array
             @invalid_tokens = []
             hash['invalidTokens'].each do |e|
               @invalid_tokens << e
             end
           end
-          if hash.has_key? 'partialRedirectUrl'
+          if hash.key? 'partialRedirectUrl'
             @partial_redirect_url = hash['partialRedirectUrl']
           end
-          if hash.has_key? 'sri'
+          if hash.key? 'sri'
             @sri = hash['sri']
           end
         end

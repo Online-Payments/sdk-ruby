@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -21,6 +23,15 @@ module OnlinePayments
         attr_accessor :payment_product320_specific_input
 
         attr_accessor :payment_product_id
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(authorization_mode: nil, payment_product302_specific_input: nil, payment_product320_specific_input: nil, payment_product_id: nil)
+          super()
+          @authorization_mode = authorization_mode
+          @payment_product302_specific_input = payment_product302_specific_input
+          @payment_product320_specific_input = payment_product320_specific_input
+          @payment_product_id = payment_product_id
+        end
 
         # Sets the property and returns this same instance.
         def with_authorization_mode(value)
@@ -58,18 +69,18 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'authorizationMode'
+          if hash.key? 'authorizationMode'
             @authorization_mode = hash['authorizationMode']
           end
-          if hash.has_key? 'paymentProduct302SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct302SpecificInput']] unless hash['paymentProduct302SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct302SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct302SpecificInput']}' is not a Hash" unless hash['paymentProduct302SpecificInput'].is_a? Hash
             @payment_product302_specific_input = OnlinePayments::SDK::Domain::MobilePaymentProduct302SpecificInput.new_from_hash(hash['paymentProduct302SpecificInput'])
           end
-          if hash.has_key? 'paymentProduct320SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct320SpecificInput']] unless hash['paymentProduct320SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct320SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct320SpecificInput']}' is not a Hash" unless hash['paymentProduct320SpecificInput'].is_a? Hash
             @payment_product320_specific_input = OnlinePayments::SDK::Domain::MobilePaymentProduct320SpecificInput.new_from_hash(hash['paymentProduct320SpecificInput'])
           end
-          if hash.has_key? 'paymentProductId'
+          if hash.key? 'paymentProductId'
             @payment_product_id = hash['paymentProductId']
           end
         end

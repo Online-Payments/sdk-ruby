@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -41,6 +43,30 @@ module OnlinePayments
         attr_accessor :redirection_url
 
         attr_accessor :status
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(expiration_date: nil,
+                       is_reusable_link: nil,
+                       payment_id: nil,
+                       payment_link_events: nil,
+                       payment_link_id: nil,
+                       payment_link_order: nil,
+                       qr_code_base64: nil,
+                       recipient_name: nil,
+                       redirection_url: nil,
+                       status: nil)
+          super()
+          @expiration_date = expiration_date
+          @is_reusable_link = is_reusable_link
+          @payment_id = payment_id
+          @payment_link_events = payment_link_events
+          @payment_link_id = payment_link_id
+          @payment_link_order = payment_link_order
+          @qr_code_base64 = qr_code_base64
+          @recipient_name = recipient_name
+          @redirection_url = redirection_url
+          @status = status
+        end
 
         # Sets the property and returns this same instance.
         def with_expiration_date(value)
@@ -120,39 +146,39 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'expirationDate'
+          if hash.key? 'expirationDate'
             @expiration_date = DateTime.parse(hash['expirationDate'])
           end
-          if hash.has_key? 'isReusableLink'
+          if hash.key? 'isReusableLink'
             @is_reusable_link = hash['isReusableLink']
           end
-          if hash.has_key? 'paymentId'
+          if hash.key? 'paymentId'
             @payment_id = hash['paymentId']
           end
-          if hash.has_key? 'paymentLinkEvents'
-            raise TypeError, "value '%s' is not an Array" % [hash['paymentLinkEvents']] unless hash['paymentLinkEvents'].is_a? Array
+          if hash.key? 'paymentLinkEvents'
+            raise TypeError, "value '#{hash['paymentLinkEvents']}' is not an Array" unless hash['paymentLinkEvents'].is_a? Array
             @payment_link_events = []
             hash['paymentLinkEvents'].each do |e|
               @payment_link_events << OnlinePayments::SDK::Domain::PaymentLinkEvent.new_from_hash(e)
             end
           end
-          if hash.has_key? 'paymentLinkId'
+          if hash.key? 'paymentLinkId'
             @payment_link_id = hash['paymentLinkId']
           end
-          if hash.has_key? 'paymentLinkOrder'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentLinkOrder']] unless hash['paymentLinkOrder'].is_a? Hash
+          if hash.key? 'paymentLinkOrder'
+            raise TypeError, "value '#{hash['paymentLinkOrder']}' is not a Hash" unless hash['paymentLinkOrder'].is_a? Hash
             @payment_link_order = OnlinePayments::SDK::Domain::PaymentLinkOrderOutput.new_from_hash(hash['paymentLinkOrder'])
           end
-          if hash.has_key? 'qrCodeBase64'
+          if hash.key? 'qrCodeBase64'
             @qr_code_base64 = hash['qrCodeBase64']
           end
-          if hash.has_key? 'recipientName'
+          if hash.key? 'recipientName'
             @recipient_name = hash['recipientName']
           end
-          if hash.has_key? 'redirectionUrl'
+          if hash.key? 'redirectionUrl'
             @redirection_url = hash['redirectionUrl']
           end
-          if hash.has_key? 'status'
+          if hash.key? 'status'
             @status = hash['status']
           end
         end

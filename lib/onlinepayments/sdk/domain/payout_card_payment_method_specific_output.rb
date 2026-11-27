@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -21,6 +23,15 @@ module OnlinePayments
         attr_accessor :card
 
         attr_accessor :payment_product_id
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(acceptance: nil, authorisation_code: nil, card: nil, payment_product_id: nil)
+          super()
+          @acceptance = acceptance
+          @authorisation_code = authorisation_code
+          @card = card
+          @payment_product_id = payment_product_id
+        end
 
         # Sets the property and returns this same instance.
         def with_acceptance(value)
@@ -58,18 +69,18 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'acceptance'
-            raise TypeError, "value '%s' is not a Hash" % [hash['acceptance']] unless hash['acceptance'].is_a? Hash
+          if hash.key? 'acceptance'
+            raise TypeError, "value '#{hash['acceptance']}' is not a Hash" unless hash['acceptance'].is_a? Hash
             @acceptance = OnlinePayments::SDK::Domain::Acceptance.new_from_hash(hash['acceptance'])
           end
-          if hash.has_key? 'authorisationCode'
+          if hash.key? 'authorisationCode'
             @authorisation_code = hash['authorisationCode']
           end
-          if hash.has_key? 'card'
-            raise TypeError, "value '%s' is not a Hash" % [hash['card']] unless hash['card'].is_a? Hash
+          if hash.key? 'card'
+            raise TypeError, "value '#{hash['card']}' is not a Hash" unless hash['card'].is_a? Hash
             @card = OnlinePayments::SDK::Domain::CardEssentials.new_from_hash(hash['card'])
           end
-          if hash.has_key? 'paymentProductId'
+          if hash.key? 'paymentProductId'
             @payment_product_id = hash['paymentProductId']
           end
         end

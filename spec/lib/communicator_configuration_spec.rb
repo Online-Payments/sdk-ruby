@@ -209,7 +209,7 @@ describe 'CommunicatorConfiguration' do
     expect(communicator_config.api_endpoint).to be_nil
     expect(communicator_config.api_key_id).to be_nil
     expect(communicator_config.secret_api_key).to be_nil
-    expect(communicator_config.authorization_type).to be_nil
+    expect(communicator_config.authorization_type).to eq('v1HMAC')
     expect(communicator_config.connect_timeout).to be_nil
     expect(communicator_config.socket_timeout).to be_nil
     expect(communicator_config.max_connections).to be_nil
@@ -246,5 +246,74 @@ describe 'CommunicatorConfiguration' do
     expect(communicator_config.proxy_configuration).to be(proxy_configuration)
     expect(communicator_config.integrator).to eq('TestIntegrator')
     expect(communicator_config.shopping_cart_extension).to be(shopping_cart_extension)
+  end
+
+  it 'masks the API key id, the secret API key and the proxy password in inspect and to_s' do
+    proxy_configuration = ProxyConfiguration.new(address: URI('http://proxy.example.com:3128'),
+                                                 username: 'proxy-user', password: 'proxy-password')
+    communicator_config = CommunicatorConfiguration.new(api_endpoint: 'https://payment.preprod.online-payments.com',
+                                                        api_key_id: 'api-key-id', secret_api_key: 'secret-api-key',
+                                                        proxy_configuration: proxy_configuration, integrator: 'TestIntegrator')
+
+    [communicator_config.inspect, communicator_config.to_s].each do |printout|
+      expect(printout).not_to include('api-key-id')
+      expect(printout).not_to include('secret-api-key')
+      expect(printout).not_to include('proxy-password')
+      expect(printout).to include('https://payment.preprod.online-payments.com')
+      expect(printout).to include('TestIntegrator')
+    end
+  end
+
+  it 'uses v1HMAC when the properties have no authorization type' do
+    communicator_config = CommunicatorConfiguration.new(properties: { 'onlinePayments.api.endpoint.host' => 'payment.preprod.online-payments.com' })
+
+    expect(communicator_config.authorization_type).to eq('v1HMAC')
+  end
+
+  context '.from_env' do
+    let(:environment) do
+      {
+        'ONLINEPAYMENTS_API_ENDPOINT' => 'https://payment.preprod.online-payments.com',
+        'ONLINEPAYMENTS_API_KEY_ID' => 'api-key-id',
+        'ONLINEPAYMENTS_SECRET_API_KEY' => 'secret-api-key',
+        'ONLINEPAYMENTS_INTEGRATOR' => 'TestIntegrator',
+        'ONLINEPAYMENTS_CONNECT_TIMEOUT' => '10',
+        'ONLINEPAYMENTS_SOCKET_TIMEOUT' => '60'
+      }
+    end
+
+    it 'sets the values from the environment' do
+      communicator_config = CommunicatorConfiguration.from_env(environment)
+
+      expect(communicator_config.api_endpoint).to eq('https://payment.preprod.online-payments.com')
+      expect(communicator_config.api_key_id).to eq('api-key-id')
+      expect(communicator_config.secret_api_key).to eq('secret-api-key')
+      expect(communicator_config.integrator).to eq('TestIntegrator')
+      expect(communicator_config.connect_timeout).to eq(10)
+      expect(communicator_config.socket_timeout).to eq(60)
+      expect(communicator_config.authorization_type).to eq('v1HMAC')
+    end
+
+    it 'reads ENV by default' do
+      stub_const('ENV', environment)
+
+      communicator_config = CommunicatorConfiguration.from_env
+
+      expect(communicator_config.api_key_id).to eq('api-key-id')
+    end
+
+    it 'raises ArgumentError with the variable name when a variable is missing' do
+      environment.delete('ONLINEPAYMENTS_SECRET_API_KEY')
+
+      expect { CommunicatorConfiguration.from_env(environment) }
+        .to raise_error(ArgumentError, 'environment variable ONLINEPAYMENTS_SECRET_API_KEY is required')
+    end
+
+    it 'raises ArgumentError with the variable name when a timeout is not an integer' do
+      environment['ONLINEPAYMENTS_CONNECT_TIMEOUT'] = 'abc'
+
+      expect { CommunicatorConfiguration.from_env(environment) }
+        .to raise_error(ArgumentError, "environment variable ONLINEPAYMENTS_CONNECT_TIMEOUT must be an integer, got 'abc'")
+    end
   end
 end

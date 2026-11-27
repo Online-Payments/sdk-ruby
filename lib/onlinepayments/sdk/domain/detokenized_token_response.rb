@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -28,6 +30,24 @@ module OnlinePayments
         attr_accessor :scheme_reference_data
 
         attr_accessor :token
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(card_brand: nil,
+                       card_expiry_date: nil,
+                       card_holder_name: nil,
+                       encrypted_card_number: nil,
+                       payment_id: nil,
+                       scheme_reference_data: nil,
+                       token: nil)
+          super()
+          @card_brand = card_brand
+          @card_expiry_date = card_expiry_date
+          @card_holder_name = card_holder_name
+          @encrypted_card_number = encrypted_card_number
+          @payment_id = payment_id
+          @scheme_reference_data = scheme_reference_data
+          @token = token
+        end
 
         # Sets the property and returns this same instance.
         def with_card_brand(value)
@@ -86,25 +106,25 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'cardBrand'
+          if hash.key? 'cardBrand'
             @card_brand = hash['cardBrand']
           end
-          if hash.has_key? 'cardExpiryDate'
+          if hash.key? 'cardExpiryDate'
             @card_expiry_date = hash['cardExpiryDate']
           end
-          if hash.has_key? 'cardHolderName'
+          if hash.key? 'cardHolderName'
             @card_holder_name = hash['cardHolderName']
           end
-          if hash.has_key? 'encryptedCardNumber'
+          if hash.key? 'encryptedCardNumber'
             @encrypted_card_number = hash['encryptedCardNumber']
           end
-          if hash.has_key? 'paymentId'
+          if hash.key? 'paymentId'
             @payment_id = hash['paymentId']
           end
-          if hash.has_key? 'schemeReferenceData'
+          if hash.key? 'schemeReferenceData'
             @scheme_reference_data = hash['schemeReferenceData']
           end
-          if hash.has_key? 'token'
+          if hash.key? 'token'
             @token = hash['token']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -51,6 +53,34 @@ module OnlinePayments
         attr_accessor :payment_product_id
 
         attr_accessor :token
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(authorisation_code: nil,
+                       customer_bank_account: nil,
+                       fraud_results: nil,
+                       payment_method3204_specific_output: nil,
+                       payment_option: nil,
+                       payment_product3203_specific_output: nil,
+                       payment_product5001_specific_output: nil,
+                       payment_product5402_specific_output: nil,
+                       payment_product5500_specific_output: nil,
+                       payment_product840_specific_output: nil,
+                       payment_product_id: nil,
+                       token: nil)
+          super()
+          @authorisation_code = authorisation_code
+          @customer_bank_account = customer_bank_account
+          @fraud_results = fraud_results
+          @payment_method3204_specific_output = payment_method3204_specific_output
+          @payment_option = payment_option
+          @payment_product3203_specific_output = payment_product3203_specific_output
+          @payment_product5001_specific_output = payment_product5001_specific_output
+          @payment_product5402_specific_output = payment_product5402_specific_output
+          @payment_product5500_specific_output = payment_product5500_specific_output
+          @payment_product840_specific_output = payment_product840_specific_output
+          @payment_product_id = payment_product_id
+          @token = token
+        end
 
         # Sets the property and returns this same instance.
         def with_authorisation_code(value)
@@ -144,48 +174,48 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'authorisationCode'
+          if hash.key? 'authorisationCode'
             @authorisation_code = hash['authorisationCode']
           end
-          if hash.has_key? 'customerBankAccount'
-            raise TypeError, "value '%s' is not a Hash" % [hash['customerBankAccount']] unless hash['customerBankAccount'].is_a? Hash
+          if hash.key? 'customerBankAccount'
+            raise TypeError, "value '#{hash['customerBankAccount']}' is not a Hash" unless hash['customerBankAccount'].is_a? Hash
             @customer_bank_account = OnlinePayments::SDK::Domain::CustomerBankAccount.new_from_hash(hash['customerBankAccount'])
           end
-          if hash.has_key? 'fraudResults'
-            raise TypeError, "value '%s' is not a Hash" % [hash['fraudResults']] unless hash['fraudResults'].is_a? Hash
+          if hash.key? 'fraudResults'
+            raise TypeError, "value '#{hash['fraudResults']}' is not a Hash" unless hash['fraudResults'].is_a? Hash
             @fraud_results = OnlinePayments::SDK::Domain::FraudResults.new_from_hash(hash['fraudResults'])
           end
-          if hash.has_key? 'paymentMethod3204SpecificOutput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentMethod3204SpecificOutput']] unless hash['paymentMethod3204SpecificOutput'].is_a? Hash
+          if hash.key? 'paymentMethod3204SpecificOutput'
+            raise TypeError, "value '#{hash['paymentMethod3204SpecificOutput']}' is not a Hash" unless hash['paymentMethod3204SpecificOutput'].is_a? Hash
             @payment_method3204_specific_output = OnlinePayments::SDK::Domain::PaymentProduct3204SpecificOutput.new_from_hash(hash['paymentMethod3204SpecificOutput'])
           end
-          if hash.has_key? 'paymentOption'
+          if hash.key? 'paymentOption'
             @payment_option = hash['paymentOption']
           end
-          if hash.has_key? 'paymentProduct3203SpecificOutput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct3203SpecificOutput']] unless hash['paymentProduct3203SpecificOutput'].is_a? Hash
+          if hash.key? 'paymentProduct3203SpecificOutput'
+            raise TypeError, "value '#{hash['paymentProduct3203SpecificOutput']}' is not a Hash" unless hash['paymentProduct3203SpecificOutput'].is_a? Hash
             @payment_product3203_specific_output = OnlinePayments::SDK::Domain::PaymentProduct3203SpecificOutput.new_from_hash(hash['paymentProduct3203SpecificOutput'])
           end
-          if hash.has_key? 'paymentProduct5001SpecificOutput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct5001SpecificOutput']] unless hash['paymentProduct5001SpecificOutput'].is_a? Hash
+          if hash.key? 'paymentProduct5001SpecificOutput'
+            raise TypeError, "value '#{hash['paymentProduct5001SpecificOutput']}' is not a Hash" unless hash['paymentProduct5001SpecificOutput'].is_a? Hash
             @payment_product5001_specific_output = OnlinePayments::SDK::Domain::PaymentProduct5001SpecificOutput.new_from_hash(hash['paymentProduct5001SpecificOutput'])
           end
-          if hash.has_key? 'paymentProduct5402SpecificOutput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct5402SpecificOutput']] unless hash['paymentProduct5402SpecificOutput'].is_a? Hash
+          if hash.key? 'paymentProduct5402SpecificOutput'
+            raise TypeError, "value '#{hash['paymentProduct5402SpecificOutput']}' is not a Hash" unless hash['paymentProduct5402SpecificOutput'].is_a? Hash
             @payment_product5402_specific_output = OnlinePayments::SDK::Domain::PaymentProduct5402SpecificOutput.new_from_hash(hash['paymentProduct5402SpecificOutput'])
           end
-          if hash.has_key? 'paymentProduct5500SpecificOutput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct5500SpecificOutput']] unless hash['paymentProduct5500SpecificOutput'].is_a? Hash
+          if hash.key? 'paymentProduct5500SpecificOutput'
+            raise TypeError, "value '#{hash['paymentProduct5500SpecificOutput']}' is not a Hash" unless hash['paymentProduct5500SpecificOutput'].is_a? Hash
             @payment_product5500_specific_output = OnlinePayments::SDK::Domain::PaymentProduct5500SpecificOutput.new_from_hash(hash['paymentProduct5500SpecificOutput'])
           end
-          if hash.has_key? 'paymentProduct840SpecificOutput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct840SpecificOutput']] unless hash['paymentProduct840SpecificOutput'].is_a? Hash
+          if hash.key? 'paymentProduct840SpecificOutput'
+            raise TypeError, "value '#{hash['paymentProduct840SpecificOutput']}' is not a Hash" unless hash['paymentProduct840SpecificOutput'].is_a? Hash
             @payment_product840_specific_output = OnlinePayments::SDK::Domain::PaymentProduct840SpecificOutput.new_from_hash(hash['paymentProduct840SpecificOutput'])
           end
-          if hash.has_key? 'paymentProductId'
+          if hash.key? 'paymentProductId'
             @payment_product_id = hash['paymentProductId']
           end
-          if hash.has_key? 'token'
+          if hash.key? 'token'
             @token = hash['token']
           end
         end

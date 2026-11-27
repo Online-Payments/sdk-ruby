@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :accepted_by_user
 
         attr_accessor :dcc_session_id
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(accepted_by_user: nil, dcc_session_id: nil)
+          super()
+          @accepted_by_user = accepted_by_user
+          @dcc_session_id = dcc_session_id
+        end
 
         # Sets the property and returns this same instance.
         def with_accepted_by_user(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'acceptedByUser'
+          if hash.key? 'acceptedByUser'
             @accepted_by_user = hash['acceptedByUser']
           end
-          if hash.has_key? 'dccSessionId'
+          if hash.key? 'dccSessionId'
             @dcc_session_id = hash['dccSessionId']
           end
         end

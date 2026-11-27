@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -16,6 +18,14 @@ module OnlinePayments
         attr_accessor :issuer_list
 
         attr_accessor :issuer_name
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(issuer_id: nil, issuer_list: nil, issuer_name: nil)
+          super()
+          @issuer_id = issuer_id
+          @issuer_list = issuer_list
+          @issuer_name = issuer_name
+        end
 
         # Sets the property and returns this same instance.
         def with_issuer_id(value)
@@ -46,13 +56,13 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'issuerId'
+          if hash.key? 'issuerId'
             @issuer_id = hash['issuerId']
           end
-          if hash.has_key? 'issuerList'
+          if hash.key? 'issuerList'
             @issuer_list = hash['issuerList']
           end
-          if hash.has_key? 'issuerName'
+          if hash.key? 'issuerName'
             @issuer_name = hash['issuerName']
           end
         end

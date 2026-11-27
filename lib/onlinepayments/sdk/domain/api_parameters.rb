@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -26,6 +28,16 @@ module OnlinePayments
         attr_accessor :mastercard
 
         attr_accessor :visa
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(amex: nil, cb: nil, eftpos: nil, mastercard: nil, visa: nil)
+          super()
+          @amex = amex
+          @cb = cb
+          @eftpos = eftpos
+          @mastercard = mastercard
+          @visa = visa
+        end
 
         # Sets the property and returns this same instance.
         def with_amex(value)
@@ -70,24 +82,24 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'amex'
-            raise TypeError, "value '%s' is not a Hash" % [hash['amex']] unless hash['amex'].is_a? Hash
+          if hash.key? 'amex'
+            raise TypeError, "value '#{hash['amex']}' is not a Hash" unless hash['amex'].is_a? Hash
             @amex = OnlinePayments::SDK::Domain::Amex.new_from_hash(hash['amex'])
           end
-          if hash.has_key? 'cb'
-            raise TypeError, "value '%s' is not a Hash" % [hash['cb']] unless hash['cb'].is_a? Hash
+          if hash.key? 'cb'
+            raise TypeError, "value '#{hash['cb']}' is not a Hash" unless hash['cb'].is_a? Hash
             @cb = OnlinePayments::SDK::Domain::PaymentProduct5002defaultBrandParameters.new_from_hash(hash['cb'])
           end
-          if hash.has_key? 'eftpos'
-            raise TypeError, "value '%s' is not a Hash" % [hash['eftpos']] unless hash['eftpos'].is_a? Hash
+          if hash.key? 'eftpos'
+            raise TypeError, "value '#{hash['eftpos']}' is not a Hash" unless hash['eftpos'].is_a? Hash
             @eftpos = OnlinePayments::SDK::Domain::PaymentProduct5002defaultBrandParameters.new_from_hash(hash['eftpos'])
           end
-          if hash.has_key? 'mastercard'
-            raise TypeError, "value '%s' is not a Hash" % [hash['mastercard']] unless hash['mastercard'].is_a? Hash
+          if hash.key? 'mastercard'
+            raise TypeError, "value '#{hash['mastercard']}' is not a Hash" unless hash['mastercard'].is_a? Hash
             @mastercard = OnlinePayments::SDK::Domain::Mastercard.new_from_hash(hash['mastercard'])
           end
-          if hash.has_key? 'visa'
-            raise TypeError, "value '%s' is not a Hash" % [hash['visa']] unless hash['visa'].is_a? Hash
+          if hash.key? 'visa'
+            raise TypeError, "value '#{hash['visa']}' is not a Hash" unless hash['visa'].is_a? Hash
             @visa = OnlinePayments::SDK::Domain::Visa.new_from_hash(hash['visa'])
           end
         end

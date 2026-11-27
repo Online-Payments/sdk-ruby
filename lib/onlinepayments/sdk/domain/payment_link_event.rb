@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -16,6 +18,14 @@ module OnlinePayments
         attr_accessor :details
 
         attr_accessor :type
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(date_time: nil, details: nil, type: nil)
+          super()
+          @date_time = date_time
+          @details = details
+          @type = type
+        end
 
         # Sets the property and returns this same instance.
         def with_date_time(value)
@@ -46,13 +56,13 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'dateTime'
+          if hash.key? 'dateTime'
             @date_time = hash['dateTime']
           end
-          if hash.has_key? 'details'
+          if hash.key? 'details'
             @details = hash['details']
           end
-          if hash.has_key? 'type'
+          if hash.key? 'type'
             @type = hash['type']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -23,6 +25,15 @@ module OnlinePayments
         attr_accessor :lodging_data
 
         attr_accessor :type_information
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(airline_data: nil, loan_recipient: nil, lodging_data: nil, type_information: nil)
+          super()
+          @airline_data = airline_data
+          @loan_recipient = loan_recipient
+          @lodging_data = lodging_data
+          @type_information = type_information
+        end
 
         # Sets the property and returns this same instance.
         def with_airline_data(value)
@@ -60,20 +71,20 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'airlineData'
-            raise TypeError, "value '%s' is not a Hash" % [hash['airlineData']] unless hash['airlineData'].is_a? Hash
+          if hash.key? 'airlineData'
+            raise TypeError, "value '#{hash['airlineData']}' is not a Hash" unless hash['airlineData'].is_a? Hash
             @airline_data = OnlinePayments::SDK::Domain::AirlineData.new_from_hash(hash['airlineData'])
           end
-          if hash.has_key? 'loanRecipient'
-            raise TypeError, "value '%s' is not a Hash" % [hash['loanRecipient']] unless hash['loanRecipient'].is_a? Hash
+          if hash.key? 'loanRecipient'
+            raise TypeError, "value '#{hash['loanRecipient']}' is not a Hash" unless hash['loanRecipient'].is_a? Hash
             @loan_recipient = OnlinePayments::SDK::Domain::LoanRecipient.new_from_hash(hash['loanRecipient'])
           end
-          if hash.has_key? 'lodgingData'
-            raise TypeError, "value '%s' is not a Hash" % [hash['lodgingData']] unless hash['lodgingData'].is_a? Hash
+          if hash.key? 'lodgingData'
+            raise TypeError, "value '#{hash['lodgingData']}' is not a Hash" unless hash['lodgingData'].is_a? Hash
             @lodging_data = OnlinePayments::SDK::Domain::LodgingData.new_from_hash(hash['lodgingData'])
           end
-          if hash.has_key? 'typeInformation'
-            raise TypeError, "value '%s' is not a Hash" % [hash['typeInformation']] unless hash['typeInformation'].is_a? Hash
+          if hash.key? 'typeInformation'
+            raise TypeError, "value '#{hash['typeInformation']}' is not a Hash" unless hash['typeInformation'].is_a? Hash
             @type_information = OnlinePayments::SDK::Domain::OrderTypeInformation.new_from_hash(hash['typeInformation'])
           end
         end

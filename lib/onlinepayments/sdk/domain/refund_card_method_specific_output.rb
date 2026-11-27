@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -28,6 +30,22 @@ module OnlinePayments
         attr_accessor :total_amount_paid
 
         attr_accessor :total_amount_refunded
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(acceptance: nil,
+                       authorisation_code: nil,
+                       currency_conversion: nil,
+                       reattempt_instructions: nil,
+                       total_amount_paid: nil,
+                       total_amount_refunded: nil)
+          super()
+          @acceptance = acceptance
+          @authorisation_code = authorisation_code
+          @currency_conversion = currency_conversion
+          @reattempt_instructions = reattempt_instructions
+          @total_amount_paid = total_amount_paid
+          @total_amount_refunded = total_amount_refunded
+        end
 
         # Sets the property and returns this same instance.
         def with_acceptance(value)
@@ -79,25 +97,25 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'acceptance'
-            raise TypeError, "value '%s' is not a Hash" % [hash['acceptance']] unless hash['acceptance'].is_a? Hash
+          if hash.key? 'acceptance'
+            raise TypeError, "value '#{hash['acceptance']}' is not a Hash" unless hash['acceptance'].is_a? Hash
             @acceptance = OnlinePayments::SDK::Domain::Acceptance.new_from_hash(hash['acceptance'])
           end
-          if hash.has_key? 'authorisationCode'
+          if hash.key? 'authorisationCode'
             @authorisation_code = hash['authorisationCode']
           end
-          if hash.has_key? 'currencyConversion'
-            raise TypeError, "value '%s' is not a Hash" % [hash['currencyConversion']] unless hash['currencyConversion'].is_a? Hash
+          if hash.key? 'currencyConversion'
+            raise TypeError, "value '#{hash['currencyConversion']}' is not a Hash" unless hash['currencyConversion'].is_a? Hash
             @currency_conversion = OnlinePayments::SDK::Domain::CurrencyConversion.new_from_hash(hash['currencyConversion'])
           end
-          if hash.has_key? 'reattemptInstructions'
-            raise TypeError, "value '%s' is not a Hash" % [hash['reattemptInstructions']] unless hash['reattemptInstructions'].is_a? Hash
+          if hash.key? 'reattemptInstructions'
+            raise TypeError, "value '#{hash['reattemptInstructions']}' is not a Hash" unless hash['reattemptInstructions'].is_a? Hash
             @reattempt_instructions = OnlinePayments::SDK::Domain::ReattemptInstructions.new_from_hash(hash['reattemptInstructions'])
           end
-          if hash.has_key? 'totalAmountPaid'
+          if hash.key? 'totalAmountPaid'
             @total_amount_paid = hash['totalAmountPaid']
           end
-          if hash.has_key? 'totalAmountRefunded'
+          if hash.key? 'totalAmountRefunded'
             @total_amount_refunded = hash['totalAmountRefunded']
           end
         end

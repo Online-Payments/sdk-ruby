@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -10,6 +12,12 @@ module OnlinePayments
       class PaymentProduct3204SpecificOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :banking_app_label
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(banking_app_label: nil)
+          super()
+          @banking_app_label = banking_app_label
+        end
 
         # Sets the property and returns this same instance.
         def with_banking_app_label(value)
@@ -26,7 +34,7 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'bankingAppLabel'
+          if hash.key? 'bankingAppLabel'
             @banking_app_label = hash['bankingAppLabel']
           end
         end

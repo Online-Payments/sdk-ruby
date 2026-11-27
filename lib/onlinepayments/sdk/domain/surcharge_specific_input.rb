@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -14,6 +16,13 @@ module OnlinePayments
         attr_accessor :mode
 
         attr_accessor :surcharge_amount
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(mode: nil, surcharge_amount: nil)
+          super()
+          @mode = mode
+          @surcharge_amount = surcharge_amount
+        end
 
         # Sets the property and returns this same instance.
         def with_mode(value)
@@ -37,11 +46,11 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'mode'
+          if hash.key? 'mode'
             @mode = hash['mode']
           end
-          if hash.has_key? 'surchargeAmount'
-            raise TypeError, "value '%s' is not a Hash" % [hash['surchargeAmount']] unless hash['surchargeAmount'].is_a? Hash
+          if hash.key? 'surchargeAmount'
+            raise TypeError, "value '#{hash['surchargeAmount']}' is not a Hash" unless hash['surchargeAmount'].is_a? Hash
             @surcharge_amount = OnlinePayments::SDK::Domain::AmountOfMoney.new_from_hash(hash['surchargeAmount'])
           end
         end

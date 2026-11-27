@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -22,6 +24,16 @@ module OnlinePayments
         attr_accessor :surname
 
         attr_accessor :zip
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(account_number: nil, date_of_birth: nil, partial_pan: nil, surname: nil, zip: nil)
+          super()
+          @account_number = account_number
+          @date_of_birth = date_of_birth
+          @partial_pan = partial_pan
+          @surname = surname
+          @zip = zip
+        end
 
         # Sets the property and returns this same instance.
         def with_account_number(value)
@@ -66,19 +78,19 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'accountNumber'
+          if hash.key? 'accountNumber'
             @account_number = hash['accountNumber']
           end
-          if hash.has_key? 'dateOfBirth'
+          if hash.key? 'dateOfBirth'
             @date_of_birth = hash['dateOfBirth']
           end
-          if hash.has_key? 'partialPan'
+          if hash.key? 'partialPan'
             @partial_pan = hash['partialPan']
           end
-          if hash.has_key? 'surname'
+          if hash.key? 'surname'
             @surname = hash['surname']
           end
-          if hash.has_key? 'zip'
+          if hash.key? 'zip'
             @zip = hash['zip']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -31,6 +33,26 @@ module OnlinePayments
         attr_accessor :payer_id
 
         attr_accessor :surname
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(account_id: nil,
+                       company_name: nil,
+                       country_code: nil,
+                       customer_account_status: nil,
+                       customer_address_status: nil,
+                       first_name: nil,
+                       payer_id: nil,
+                       surname: nil)
+          super()
+          @account_id = account_id
+          @company_name = company_name
+          @country_code = country_code
+          @customer_account_status = customer_account_status
+          @customer_address_status = customer_address_status
+          @first_name = first_name
+          @payer_id = payer_id
+          @surname = surname
+        end
 
         # Sets the property and returns this same instance.
         def with_account_id(value)
@@ -96,28 +118,28 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'accountId'
+          if hash.key? 'accountId'
             @account_id = hash['accountId']
           end
-          if hash.has_key? 'companyName'
+          if hash.key? 'companyName'
             @company_name = hash['companyName']
           end
-          if hash.has_key? 'countryCode'
+          if hash.key? 'countryCode'
             @country_code = hash['countryCode']
           end
-          if hash.has_key? 'customerAccountStatus'
+          if hash.key? 'customerAccountStatus'
             @customer_account_status = hash['customerAccountStatus']
           end
-          if hash.has_key? 'customerAddressStatus'
+          if hash.key? 'customerAddressStatus'
             @customer_address_status = hash['customerAddressStatus']
           end
-          if hash.has_key? 'firstName'
+          if hash.key? 'firstName'
             @first_name = hash['firstName']
           end
-          if hash.has_key? 'payerId'
+          if hash.key? 'payerId'
             @payer_id = hash['payerId']
           end
-          if hash.has_key? 'surname'
+          if hash.key? 'surname'
             @surname = hash['surname']
           end
         end

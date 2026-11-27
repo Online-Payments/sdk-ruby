@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -19,6 +21,14 @@ module OnlinePayments
         attr_accessor :merchant_reference
 
         attr_accessor :surcharge_specific_input
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(amount: nil, merchant_reference: nil, surcharge_specific_input: nil)
+          super()
+          @amount = amount
+          @merchant_reference = merchant_reference
+          @surcharge_specific_input = surcharge_specific_input
+        end
 
         # Sets the property and returns this same instance.
         def with_amount(value)
@@ -49,15 +59,15 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'amount'
-            raise TypeError, "value '%s' is not a Hash" % [hash['amount']] unless hash['amount'].is_a? Hash
+          if hash.key? 'amount'
+            raise TypeError, "value '#{hash['amount']}' is not a Hash" unless hash['amount'].is_a? Hash
             @amount = OnlinePayments::SDK::Domain::AmountOfMoney.new_from_hash(hash['amount'])
           end
-          if hash.has_key? 'merchantReference'
+          if hash.key? 'merchantReference'
             @merchant_reference = hash['merchantReference']
           end
-          if hash.has_key? 'surchargeSpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['surchargeSpecificInput']] unless hash['surchargeSpecificInput'].is_a? Hash
+          if hash.key? 'surchargeSpecificInput'
+            raise TypeError, "value '#{hash['surchargeSpecificInput']}' is not a Hash" unless hash['surchargeSpecificInput'].is_a? Hash
             @surcharge_specific_input = OnlinePayments::SDK::Domain::SurchargeForPaymentLink.new_from_hash(hash['surchargeSpecificInput'])
           end
         end

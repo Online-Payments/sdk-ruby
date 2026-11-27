@@ -11,8 +11,8 @@ module WebhooksSetup
   # @return [OnlinePayments::SDK::Webhooks::WebhooksHelper]
   def self.create_webhooks_helper
     secret_key_store = OnlinePayments::SDK::Webhooks::InMemorySecretKeyStore.instance
-    secret_key_store.store_secret_key(ClientSetup.required_env('onlinePayments_webhooks_keyId'),
-                                      ClientSetup.required_env('onlinePayments_webhooks_secret'))
+    secret_key_store.store_secret_key(ClientSetup.required_env('ONLINEPAYMENTS_WEBHOOKS_KEY_ID'),
+                                      ClientSetup.required_env('ONLINEPAYMENTS_WEBHOOKS_SECRET'))
     OnlinePayments::SDK::Webhooks::WebhooksHelper.new(OnlinePayments::SDK::JSON::DefaultMarshaller.instance,
                                                       secret_key_store)
   end

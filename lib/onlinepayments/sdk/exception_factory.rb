@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -37,7 +39,7 @@ module OnlinePayments
         return ProblemDetailsException.new(status_code, response_body, error_object)
       end
       return ApiException.new(status_code, response_body, nil, nil) if error_object.nil?
-      raise ArgumentError.new("unsupported error object type: " + error_object.class.name) unless error_object.is_a?(OnlinePayments::SDK::Domain::ErrorResponse)
+      raise ArgumentError, "unsupported error object type: #{error_object.class.name}" unless error_object.is_a?(OnlinePayments::SDK::Domain::ErrorResponse)
       create_exception_from_response_fields(status_code, response_body, error_object.error_id, error_object.errors, context)
     end
 

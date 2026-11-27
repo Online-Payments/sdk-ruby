@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -11,6 +13,12 @@ module OnlinePayments
       class CapturesResponse < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :captures
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(captures: nil)
+          super()
+          @captures = captures
+        end
 
         # Sets the property and returns this same instance.
         def with_captures(value)
@@ -27,8 +35,8 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'captures'
-            raise TypeError, "value '%s' is not an Array" % [hash['captures']] unless hash['captures'].is_a? Array
+          if hash.key? 'captures'
+            raise TypeError, "value '#{hash['captures']}' is not an Array" unless hash['captures'].is_a? Array
             @captures = []
             hash['captures'].each do |e|
               @captures << OnlinePayments::SDK::Domain::Capture.new_from_hash(e)

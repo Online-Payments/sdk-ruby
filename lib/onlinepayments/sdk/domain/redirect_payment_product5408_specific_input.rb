@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -14,6 +16,13 @@ module OnlinePayments
         attr_accessor :customer_bank_account
 
         attr_accessor :instant_payment_only
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(customer_bank_account: nil, instant_payment_only: nil)
+          super()
+          @customer_bank_account = customer_bank_account
+          @instant_payment_only = instant_payment_only
+        end
 
         # Sets the property and returns this same instance.
         def with_customer_bank_account(value)
@@ -37,11 +46,11 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'customerBankAccount'
-            raise TypeError, "value '%s' is not a Hash" % [hash['customerBankAccount']] unless hash['customerBankAccount'].is_a? Hash
+          if hash.key? 'customerBankAccount'
+            raise TypeError, "value '#{hash['customerBankAccount']}' is not a Hash" unless hash['customerBankAccount'].is_a? Hash
             @customer_bank_account = OnlinePayments::SDK::Domain::CustomerBankAccount.new_from_hash(hash['customerBankAccount'])
           end
-          if hash.has_key? 'instantPaymentOnly'
+          if hash.key? 'instantPaymentOnly'
             @instant_payment_only = hash['instantPaymentOnly']
           end
         end

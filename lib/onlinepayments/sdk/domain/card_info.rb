@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :card_number
 
         attr_accessor :payment_product_id
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(card_number: nil, payment_product_id: nil)
+          super()
+          @card_number = card_number
+          @payment_product_id = payment_product_id
+        end
 
         # Sets the property and returns this same instance.
         def with_card_number(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'cardNumber'
+          if hash.key? 'cardNumber'
             @card_number = hash['cardNumber']
           end
-          if hash.has_key? 'paymentProductId'
+          if hash.key? 'paymentProductId'
             @payment_product_id = hash['paymentProductId']
           end
         end

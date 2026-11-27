@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module OnlinePayments
   module SDK
     module Communication
@@ -6,7 +8,6 @@ module OnlinePayments
       #
       # @attr [Exception] cause The error that is the cause of this error.
       class NotFoundException < RuntimeError
-
         def initialize(cause, message = nil)
           super(message.nil? ? cause.to_s : message)
           @cause = cause

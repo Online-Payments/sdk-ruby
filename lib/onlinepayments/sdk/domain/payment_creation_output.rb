@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -19,6 +21,15 @@ module OnlinePayments
         attr_accessor :token
 
         attr_accessor :tokenization_succeeded
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(external_reference: nil, is_new_token: nil, token: nil, tokenization_succeeded: nil)
+          super()
+          @external_reference = external_reference
+          @is_new_token = is_new_token
+          @token = token
+          @tokenization_succeeded = tokenization_succeeded
+        end
 
         # Sets the property and returns this same instance.
         def with_external_reference(value)
@@ -56,16 +67,16 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'externalReference'
+          if hash.key? 'externalReference'
             @external_reference = hash['externalReference']
           end
-          if hash.has_key? 'isNewToken'
+          if hash.key? 'isNewToken'
             @is_new_token = hash['isNewToken']
           end
-          if hash.has_key? 'token'
+          if hash.key? 'token'
             @token = hash['token']
           end
-          if hash.has_key? 'tokenizationSucceeded'
+          if hash.key? 'tokenizationSucceeded'
             @tokenization_succeeded = hash['tokenizationSucceeded']
           end
         end

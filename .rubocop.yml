@@ -1,0 +1,82 @@
+# Only the hand-written code is checked; the style of the generated code follows the generator templates.
+AllCops:
+  TargetRubyVersion: 3.4
+  NewCops: enable
+  SuggestExtensions: false
+  Include:
+    - 'lib/onlinepayments/sdk/api_resource.rb'
+    - 'lib/onlinepayments/sdk/call_context.rb'
+    - 'lib/onlinepayments/sdk/communicator.rb'
+    - 'lib/onlinepayments/sdk/communicator_configuration.rb'
+    - 'lib/onlinepayments/sdk/factory.rb'
+    - 'lib/onlinepayments/sdk/proxy_configuration.rb'
+    - 'lib/onlinepayments/sdk/version.rb'
+    - 'lib/onlinepayments/sdk/authentication.rb'
+    - 'lib/onlinepayments/sdk/authentication/**/*.rb'
+    - 'lib/onlinepayments/sdk/communication.rb'
+    - 'lib/onlinepayments/sdk/communication/**/*.rb'
+    - 'lib/onlinepayments/sdk/json.rb'
+    - 'lib/onlinepayments/sdk/json/**/*.rb'
+    - 'lib/onlinepayments/sdk/logging.rb'
+    - 'lib/onlinepayments/sdk/logging/**/*.rb'
+    - 'lib/onlinepayments/sdk/webhooks.rb'
+    - 'lib/onlinepayments/sdk/webhooks/**/*.rb'
+    - 'lib/onlinepayments/sdk/domain/data_object.rb'
+    - 'lib/onlinepayments/sdk/domain/shopping_cart_extension.rb'
+    - 'lib/onlinepayments/sdk/domain/uploadable_file.rb'
+
+# casecmp returns nil for incompatible encodings, so `casecmp(y) == 0` cannot be replaced with `zero?`.
+Style/NumericPredicate:
+  Enabled: false
+
+Metrics:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 160
+
+# Reported, but never auto-corrected: the corrections of these cops can change the behavior of the code.
+Lint/UselessAssignment:
+  AutoCorrect: false
+
+Lint/UselessAccessModifier:
+  AutoCorrect: false
+
+Lint/UnusedMethodArgument:
+  AutoCorrect: false
+
+Lint/UnusedBlockArgument:
+  AutoCorrect: false
+
+Style/AccessModifierDeclarations:
+  AutoCorrect: false
+
+Style/GuardClause:
+  AutoCorrect: false
+
+Style/StringConcatenation:
+  AutoCorrect: false
+
+Style/SafeNavigation:
+  AutoCorrect: false
+
+Style/AndOr:
+  AutoCorrect: false
+
+Style/PreferredHashMethods:
+  AutoCorrect: false
+
+Style/ZeroLengthPredicate:
+  AutoCorrect: false
+
+Style/InverseMethods:
+  AutoCorrect: false
+
+Style/ReduceToHash:
+  AutoCorrect: false
+
+Style/MapIntoArray:
+  AutoCorrect: false

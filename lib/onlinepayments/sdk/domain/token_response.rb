@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -36,6 +38,26 @@ module OnlinePayments
         attr_accessor :network_token_linked
 
         attr_accessor :payment_product_id
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(card: nil,
+                       crm_token: nil,
+                       e_wallet: nil,
+                       external_token_linked: nil,
+                       id: nil,
+                       is_temporary: nil,
+                       network_token_linked: nil,
+                       payment_product_id: nil)
+          super()
+          @card = card
+          @crm_token = crm_token
+          @e_wallet = e_wallet
+          @external_token_linked = external_token_linked
+          @id = id
+          @is_temporary = is_temporary
+          @network_token_linked = network_token_linked
+          @payment_product_id = payment_product_id
+        end
 
         # Sets the property and returns this same instance.
         def with_card(value)
@@ -101,33 +123,33 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'card'
-            raise TypeError, "value '%s' is not a Hash" % [hash['card']] unless hash['card'].is_a? Hash
+          if hash.key? 'card'
+            raise TypeError, "value '#{hash['card']}' is not a Hash" unless hash['card'].is_a? Hash
             @card = OnlinePayments::SDK::Domain::TokenCard.new_from_hash(hash['card'])
           end
-          if hash.has_key? 'crmToken'
-            raise TypeError, "value '%s' is not a Hash" % [hash['crmToken']] unless hash['crmToken'].is_a? Hash
+          if hash.key? 'crmToken'
+            raise TypeError, "value '#{hash['crmToken']}' is not a Hash" unless hash['crmToken'].is_a? Hash
             @crm_token = OnlinePayments::SDK::Domain::CrmToken.new_from_hash(hash['crmToken'])
           end
-          if hash.has_key? 'eWallet'
-            raise TypeError, "value '%s' is not a Hash" % [hash['eWallet']] unless hash['eWallet'].is_a? Hash
+          if hash.key? 'eWallet'
+            raise TypeError, "value '#{hash['eWallet']}' is not a Hash" unless hash['eWallet'].is_a? Hash
             @e_wallet = OnlinePayments::SDK::Domain::TokenEWallet.new_from_hash(hash['eWallet'])
           end
-          if hash.has_key? 'externalTokenLinked'
-            raise TypeError, "value '%s' is not a Hash" % [hash['externalTokenLinked']] unless hash['externalTokenLinked'].is_a? Hash
+          if hash.key? 'externalTokenLinked'
+            raise TypeError, "value '#{hash['externalTokenLinked']}' is not a Hash" unless hash['externalTokenLinked'].is_a? Hash
             @external_token_linked = OnlinePayments::SDK::Domain::ExternalTokenLinked.new_from_hash(hash['externalTokenLinked'])
           end
-          if hash.has_key? 'id'
+          if hash.key? 'id'
             @id = hash['id']
           end
-          if hash.has_key? 'isTemporary'
+          if hash.key? 'isTemporary'
             @is_temporary = hash['isTemporary']
           end
-          if hash.has_key? 'networkTokenLinked'
-            raise TypeError, "value '%s' is not a Hash" % [hash['networkTokenLinked']] unless hash['networkTokenLinked'].is_a? Hash
+          if hash.key? 'networkTokenLinked'
+            raise TypeError, "value '#{hash['networkTokenLinked']}' is not a Hash" unless hash['networkTokenLinked'].is_a? Hash
             @network_token_linked = OnlinePayments::SDK::Domain::NetworkTokenLinked.new_from_hash(hash['networkTokenLinked'])
           end
-          if hash.has_key? 'paymentProductId'
+          if hash.key? 'paymentProductId'
             @payment_product_id = hash['paymentProductId']
           end
         end

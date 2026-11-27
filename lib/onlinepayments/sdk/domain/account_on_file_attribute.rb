@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -20,6 +22,15 @@ module OnlinePayments
         attr_accessor :status
 
         attr_accessor :value
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(key: nil, must_write_reason: nil, status: nil, value: nil)
+          super()
+          @key = key
+          @must_write_reason = must_write_reason
+          @status = status
+          @value = value
+        end
 
         # Sets the property and returns this same instance.
         def with_key(value)
@@ -57,16 +68,16 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'key'
+          if hash.key? 'key'
             @key = hash['key']
           end
-          if hash.has_key? 'mustWriteReason'
+          if hash.key? 'mustWriteReason'
             @must_write_reason = hash['mustWriteReason']
           end
-          if hash.has_key? 'status'
+          if hash.key? 'status'
             @status = hash['status']
           end
-          if hash.has_key? 'value'
+          if hash.key? 'value'
             @value = hash['value']
           end
         end

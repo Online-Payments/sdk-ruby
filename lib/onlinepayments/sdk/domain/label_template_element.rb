@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :attribute_key
 
         attr_accessor :mask
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(attribute_key: nil, mask: nil)
+          super()
+          @attribute_key = attribute_key
+          @mask = mask
+        end
 
         # Sets the property and returns this same instance.
         def with_attribute_key(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'attributeKey'
+          if hash.key? 'attributeKey'
             @attribute_key = hash['attributeKey']
           end
-          if hash.has_key? 'mask'
+          if hash.key? 'mask'
             @mask = hash['mask']
           end
         end

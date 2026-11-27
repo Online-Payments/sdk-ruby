@@ -1,3 +1,15 @@
+require 'simplecov'
+require 'simplecov_json_formatter'
+
+if ENV['COVERAGE'] == 'true'
+  SimpleCov.start do
+    coverage_dir 'out/coverage'
+    formatter SimpleCov::Formatter::JSONFormatter
+    add_filter '/spec/'
+    track_files 'lib/**/*.rb'
+  end
+end
+
 require 'rspec'
 require 'webmock/rspec'
 

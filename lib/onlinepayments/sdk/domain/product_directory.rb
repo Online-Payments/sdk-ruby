@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -11,6 +13,12 @@ module OnlinePayments
       class ProductDirectory < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :entries
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(entries: nil)
+          super()
+          @entries = entries
+        end
 
         # Sets the property and returns this same instance.
         def with_entries(value)
@@ -27,8 +35,8 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'entries'
-            raise TypeError, "value '%s' is not an Array" % [hash['entries']] unless hash['entries'].is_a? Array
+          if hash.key? 'entries'
+            raise TypeError, "value '#{hash['entries']}' is not an Array" unless hash['entries'].is_a? Array
             @entries = []
             hash['entries'].each do |e|
               @entries << OnlinePayments::SDK::Domain::DirectoryEntry.new_from_hash(e)

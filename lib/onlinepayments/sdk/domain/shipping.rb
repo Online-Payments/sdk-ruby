@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -36,6 +38,28 @@ module OnlinePayments
         attr_accessor :shipping_cost_tax
 
         attr_accessor :type
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(address: nil,
+                       address_indicator: nil,
+                       email_address: nil,
+                       first_usage_date: nil,
+                       is_first_usage: nil,
+                       method: nil,
+                       shipping_cost: nil,
+                       shipping_cost_tax: nil,
+                       type: nil)
+          super()
+          @address = address
+          @address_indicator = address_indicator
+          @email_address = email_address
+          @first_usage_date = first_usage_date
+          @is_first_usage = is_first_usage
+          @method = method
+          @shipping_cost = shipping_cost
+          @shipping_cost_tax = shipping_cost_tax
+          @type = type
+        end
 
         # Sets the property and returns this same instance.
         def with_address(value)
@@ -108,33 +132,33 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'address'
-            raise TypeError, "value '%s' is not a Hash" % [hash['address']] unless hash['address'].is_a? Hash
+          if hash.key? 'address'
+            raise TypeError, "value '#{hash['address']}' is not a Hash" unless hash['address'].is_a? Hash
             @address = OnlinePayments::SDK::Domain::AddressPersonal.new_from_hash(hash['address'])
           end
-          if hash.has_key? 'addressIndicator'
+          if hash.key? 'addressIndicator'
             @address_indicator = hash['addressIndicator']
           end
-          if hash.has_key? 'emailAddress'
+          if hash.key? 'emailAddress'
             @email_address = hash['emailAddress']
           end
-          if hash.has_key? 'firstUsageDate'
+          if hash.key? 'firstUsageDate'
             @first_usage_date = hash['firstUsageDate']
           end
-          if hash.has_key? 'isFirstUsage'
+          if hash.key? 'isFirstUsage'
             @is_first_usage = hash['isFirstUsage']
           end
-          if hash.has_key? 'method'
-            raise TypeError, "value '%s' is not a Hash" % [hash['method']] unless hash['method'].is_a? Hash
+          if hash.key? 'method'
+            raise TypeError, "value '#{hash['method']}' is not a Hash" unless hash['method'].is_a? Hash
             @method = OnlinePayments::SDK::Domain::ShippingMethod.new_from_hash(hash['method'])
           end
-          if hash.has_key? 'shippingCost'
+          if hash.key? 'shippingCost'
             @shipping_cost = hash['shippingCost']
           end
-          if hash.has_key? 'shippingCostTax'
+          if hash.key? 'shippingCostTax'
             @shipping_cost_tax = hash['shippingCostTax']
           end
-          if hash.has_key? 'type'
+          if hash.key? 'type'
             @type = hash['type']
           end
         end

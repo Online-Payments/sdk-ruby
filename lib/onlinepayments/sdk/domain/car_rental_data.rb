@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -57,6 +59,42 @@ module OnlinePayments
         attr_accessor :toll_free_number
 
         attr_accessor :vehicle
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(agreement_number: nil,
+                       cardholder_notified: nil,
+                       charges_amount: nil,
+                       charges_category: nil,
+                       distance_measure: nil,
+                       distance_unit: nil,
+                       driver_identification_number: nil,
+                       driver_tax_number: nil,
+                       pickup_details: nil,
+                       rental_rate_amount: nil,
+                       rental_rate_type: nil,
+                       renter_name: nil,
+                       return_details: nil,
+                       tax_exempt_indicator: nil,
+                       toll_free_number: nil,
+                       vehicle: nil)
+          super()
+          @agreement_number = agreement_number
+          @cardholder_notified = cardholder_notified
+          @charges_amount = charges_amount
+          @charges_category = charges_category
+          @distance_measure = distance_measure
+          @distance_unit = distance_unit
+          @driver_identification_number = driver_identification_number
+          @driver_tax_number = driver_tax_number
+          @pickup_details = pickup_details
+          @rental_rate_amount = rental_rate_amount
+          @rental_rate_type = rental_rate_type
+          @renter_name = renter_name
+          @return_details = return_details
+          @tax_exempt_indicator = tax_exempt_indicator
+          @toll_free_number = toll_free_number
+          @vehicle = vehicle
+        end
 
         # Sets the property and returns this same instance.
         def with_agreement_number(value)
@@ -178,55 +216,55 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'agreementNumber'
+          if hash.key? 'agreementNumber'
             @agreement_number = hash['agreementNumber']
           end
-          if hash.has_key? 'cardholderNotified'
+          if hash.key? 'cardholderNotified'
             @cardholder_notified = hash['cardholderNotified']
           end
-          if hash.has_key? 'chargesAmount'
+          if hash.key? 'chargesAmount'
             @charges_amount = hash['chargesAmount']
           end
-          if hash.has_key? 'chargesCategory'
+          if hash.key? 'chargesCategory'
             @charges_category = hash['chargesCategory']
           end
-          if hash.has_key? 'distanceMeasure'
+          if hash.key? 'distanceMeasure'
             @distance_measure = hash['distanceMeasure']
           end
-          if hash.has_key? 'distanceUnit'
+          if hash.key? 'distanceUnit'
             @distance_unit = hash['distanceUnit']
           end
-          if hash.has_key? 'driverIdentificationNumber'
+          if hash.key? 'driverIdentificationNumber'
             @driver_identification_number = hash['driverIdentificationNumber']
           end
-          if hash.has_key? 'driverTaxNumber'
+          if hash.key? 'driverTaxNumber'
             @driver_tax_number = hash['driverTaxNumber']
           end
-          if hash.has_key? 'pickupDetails'
-            raise TypeError, "value '%s' is not a Hash" % [hash['pickupDetails']] unless hash['pickupDetails'].is_a? Hash
+          if hash.key? 'pickupDetails'
+            raise TypeError, "value '#{hash['pickupDetails']}' is not a Hash" unless hash['pickupDetails'].is_a? Hash
             @pickup_details = OnlinePayments::SDK::Domain::CarRentalPickupReturnData.new_from_hash(hash['pickupDetails'])
           end
-          if hash.has_key? 'rentalRateAmount'
+          if hash.key? 'rentalRateAmount'
             @rental_rate_amount = hash['rentalRateAmount']
           end
-          if hash.has_key? 'rentalRateType'
+          if hash.key? 'rentalRateType'
             @rental_rate_type = hash['rentalRateType']
           end
-          if hash.has_key? 'renterName'
+          if hash.key? 'renterName'
             @renter_name = hash['renterName']
           end
-          if hash.has_key? 'returnDetails'
-            raise TypeError, "value '%s' is not a Hash" % [hash['returnDetails']] unless hash['returnDetails'].is_a? Hash
+          if hash.key? 'returnDetails'
+            raise TypeError, "value '#{hash['returnDetails']}' is not a Hash" unless hash['returnDetails'].is_a? Hash
             @return_details = OnlinePayments::SDK::Domain::CarRentalPickupReturnData.new_from_hash(hash['returnDetails'])
           end
-          if hash.has_key? 'taxExemptIndicator'
+          if hash.key? 'taxExemptIndicator'
             @tax_exempt_indicator = hash['taxExemptIndicator']
           end
-          if hash.has_key? 'tollFreeNumber'
+          if hash.key? 'tollFreeNumber'
             @toll_free_number = hash['tollFreeNumber']
           end
-          if hash.has_key? 'vehicle'
-            raise TypeError, "value '%s' is not a Hash" % [hash['vehicle']] unless hash['vehicle'].is_a? Hash
+          if hash.key? 'vehicle'
+            raise TypeError, "value '#{hash['vehicle']}' is not a Hash" unless hash['vehicle'].is_a? Hash
             @vehicle = OnlinePayments::SDK::Domain::CarRentalVehicleData.new_from_hash(hash['vehicle'])
           end
         end

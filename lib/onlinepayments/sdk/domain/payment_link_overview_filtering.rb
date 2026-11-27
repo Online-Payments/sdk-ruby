@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :merchant_ids
 
         attr_accessor :status
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(merchant_ids: nil, status: nil)
+          super()
+          @merchant_ids = merchant_ids
+          @status = status
+        end
 
         # Sets the property and returns this same instance.
         def with_merchant_ids(value)
@@ -36,15 +45,15 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'merchantIds'
-            raise TypeError, "value '%s' is not an Array" % [hash['merchantIds']] unless hash['merchantIds'].is_a? Array
+          if hash.key? 'merchantIds'
+            raise TypeError, "value '#{hash['merchantIds']}' is not an Array" unless hash['merchantIds'].is_a? Array
             @merchant_ids = []
             hash['merchantIds'].each do |e|
               @merchant_ids << e
             end
           end
-          if hash.has_key? 'status'
-            raise TypeError, "value '%s' is not an Array" % [hash['status']] unless hash['status'].is_a? Array
+          if hash.key? 'status'
+            raise TypeError, "value '#{hash['status']}' is not an Array" unless hash['status'].is_a? Array
             @status = []
             hash['status'].each do |e|
               @status << e

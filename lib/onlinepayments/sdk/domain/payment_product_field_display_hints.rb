@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -40,6 +42,30 @@ module OnlinePayments
         attr_accessor :preferred_input_type
 
         attr_accessor :tooltip
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(always_show: nil,
+                       display_order: nil,
+                       form_element: nil,
+                       label: nil,
+                       link: nil,
+                       mask: nil,
+                       obfuscate: nil,
+                       placeholder_label: nil,
+                       preferred_input_type: nil,
+                       tooltip: nil)
+          super()
+          @always_show = always_show
+          @display_order = display_order
+          @form_element = form_element
+          @label = label
+          @link = link
+          @mask = mask
+          @obfuscate = obfuscate
+          @placeholder_label = placeholder_label
+          @preferred_input_type = preferred_input_type
+          @tooltip = tooltip
+        end
 
         # Sets the property and returns this same instance.
         def with_always_show(value)
@@ -119,36 +145,36 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'alwaysShow'
+          if hash.key? 'alwaysShow'
             @always_show = hash['alwaysShow']
           end
-          if hash.has_key? 'displayOrder'
+          if hash.key? 'displayOrder'
             @display_order = hash['displayOrder']
           end
-          if hash.has_key? 'formElement'
-            raise TypeError, "value '%s' is not a Hash" % [hash['formElement']] unless hash['formElement'].is_a? Hash
+          if hash.key? 'formElement'
+            raise TypeError, "value '#{hash['formElement']}' is not a Hash" unless hash['formElement'].is_a? Hash
             @form_element = OnlinePayments::SDK::Domain::PaymentProductFieldFormElement.new_from_hash(hash['formElement'])
           end
-          if hash.has_key? 'label'
+          if hash.key? 'label'
             @label = hash['label']
           end
-          if hash.has_key? 'link'
+          if hash.key? 'link'
             @link = hash['link']
           end
-          if hash.has_key? 'mask'
+          if hash.key? 'mask'
             @mask = hash['mask']
           end
-          if hash.has_key? 'obfuscate'
+          if hash.key? 'obfuscate'
             @obfuscate = hash['obfuscate']
           end
-          if hash.has_key? 'placeholderLabel'
+          if hash.key? 'placeholderLabel'
             @placeholder_label = hash['placeholderLabel']
           end
-          if hash.has_key? 'preferredInputType'
+          if hash.key? 'preferredInputType'
             @preferred_input_type = hash['preferredInputType']
           end
-          if hash.has_key? 'tooltip'
-            raise TypeError, "value '%s' is not a Hash" % [hash['tooltip']] unless hash['tooltip'].is_a? Hash
+          if hash.key? 'tooltip'
+            raise TypeError, "value '#{hash['tooltip']}' is not a Hash" unless hash['tooltip'].is_a? Hash
             @tooltip = OnlinePayments::SDK::Domain::PaymentProductFieldTooltip.new_from_hash(hash['tooltip'])
           end
         end

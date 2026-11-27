@@ -115,39 +115,39 @@ describe LogMessageBuilder do
     end
   end
 
-  describe '#is_binary' do
+  describe '#binary?' do
     subject { LogMessageBuilder.new('req-001') }
 
     it 'returns false for nil' do
-      expect(subject.is_binary(nil)).to be false
+      expect(subject.send(:binary?, nil)).to be false
     end
 
     it 'returns false for text/html' do
-      expect(subject.is_binary('text/html')).to be false
+      expect(subject.send(:binary?, 'text/html')).to be false
     end
 
     it 'returns false for text/plain' do
-      expect(subject.is_binary('text/plain')).to be false
+      expect(subject.send(:binary?, 'text/plain')).to be false
     end
 
     it 'returns false for application/json' do
-      expect(subject.is_binary('application/json')).to be false
+      expect(subject.send(:binary?, 'application/json')).to be false
     end
 
     it 'returns false for content types containing xml' do
-      expect(subject.is_binary('application/xml')).to be false
+      expect(subject.send(:binary?, 'application/xml')).to be false
     end
 
     it 'returns true for application/octet-stream' do
-      expect(subject.is_binary('application/octet-stream')).to be true
+      expect(subject.send(:binary?, 'application/octet-stream')).to be true
     end
 
     it 'returns true for image/png' do
-      expect(subject.is_binary('image/png')).to be true
+      expect(subject.send(:binary?, 'image/png')).to be true
     end
 
     it 'returns true for application/pdf' do
-      expect(subject.is_binary('application/pdf')).to be true
+      expect(subject.send(:binary?, 'application/pdf')).to be true
     end
   end
 
@@ -163,7 +163,7 @@ describe LogMessageBuilder do
     it 'raises NoMethodError for text StringIO content' do
       expect {
         subject.set_body(StringIO.new('reader body'), 'text/plain')
-      }.to raise_error(NoMethodError, /empty\?/) 
+      }.to raise_error(NoMethodError, /empty\?/)
     end
   end
 
@@ -175,14 +175,14 @@ describe LogMessageBuilder do
   end
 
   describe '#to_s' do
-    it 'on the base class calls super (not get_message)' do
+    it 'on the base class calls super (not message)' do
       b = LogMessageBuilder.new('req-001')
       expect { b.to_s }.not_to raise_error
     end
 
-    it 'delegates to get_message on subclasses' do
+    it 'delegates to message on subclasses' do
       subclass = Class.new(LogMessageBuilder) do
-        def get_message
+        def message
           "subclass message for #{request_id}"
         end
       end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :app_switch_link
 
         attr_accessor :payment_request_token
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(app_switch_link: nil, payment_request_token: nil)
+          super()
+          @app_switch_link = app_switch_link
+          @payment_request_token = payment_request_token
+        end
 
         # Sets the property and returns this same instance.
         def with_app_switch_link(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'appSwitchLink'
+          if hash.key? 'appSwitchLink'
             @app_switch_link = hash['appSwitchLink']
           end
-          if hash.has_key? 'paymentRequestToken'
+          if hash.key? 'paymentRequestToken'
             @payment_request_token = hash['paymentRequestToken']
           end
         end

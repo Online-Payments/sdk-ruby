@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -15,6 +17,13 @@ module OnlinePayments
         attr_accessor :card_source
 
         attr_accessor :transaction
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(card_source: nil, transaction: nil)
+          super()
+          @card_source = card_source
+          @transaction = transaction
+        end
 
         # Sets the property and returns this same instance.
         def with_card_source(value)
@@ -38,12 +47,12 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'cardSource'
-            raise TypeError, "value '%s' is not a Hash" % [hash['cardSource']] unless hash['cardSource'].is_a? Hash
+          if hash.key? 'cardSource'
+            raise TypeError, "value '#{hash['cardSource']}' is not a Hash" unless hash['cardSource'].is_a? Hash
             @card_source = OnlinePayments::SDK::Domain::DccCardSource.new_from_hash(hash['cardSource'])
           end
-          if hash.has_key? 'transaction'
-            raise TypeError, "value '%s' is not a Hash" % [hash['transaction']] unless hash['transaction'].is_a? Hash
+          if hash.key? 'transaction'
+            raise TypeError, "value '#{hash['transaction']}' is not a Hash" unless hash['transaction'].is_a? Hash
             @transaction = OnlinePayments::SDK::Domain::Transaction.new_from_hash(hash['transaction'])
           end
         end

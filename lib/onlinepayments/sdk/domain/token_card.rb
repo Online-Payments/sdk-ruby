@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -14,6 +16,13 @@ module OnlinePayments
         attr_accessor :alias
 
         attr_accessor :data
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(alias: nil, data: nil)
+          super()
+          @alias = binding.local_variable_get(:alias)
+          @data = data
+        end
 
         # Sets the property and returns this same instance.
         def with_alias(value)
@@ -37,11 +46,11 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'alias'
+          if hash.key? 'alias'
             @alias = hash['alias']
           end
-          if hash.has_key? 'data'
-            raise TypeError, "value '%s' is not a Hash" % [hash['data']] unless hash['data'].is_a? Hash
+          if hash.key? 'data'
+            raise TypeError, "value '#{hash['data']}' is not a Hash" unless hash['data'].is_a? Hash
             @data = OnlinePayments::SDK::Domain::TokenCardData.new_from_hash(hash['data'])
           end
         end

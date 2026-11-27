@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -20,6 +22,15 @@ module OnlinePayments
         attr_accessor :payment_product_filters
 
         attr_accessor :tokens
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(locale: nil, origin: nil, payment_product_filters: nil, tokens: nil)
+          super()
+          @locale = locale
+          @origin = origin
+          @payment_product_filters = payment_product_filters
+          @tokens = tokens
+        end
 
         # Sets the property and returns this same instance.
         def with_locale(value)
@@ -57,18 +68,18 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'locale'
+          if hash.key? 'locale'
             @locale = hash['locale']
           end
-          if hash.has_key? 'origin'
+          if hash.key? 'origin'
             @origin = hash['origin']
           end
-          if hash.has_key? 'paymentProductFilters'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProductFilters']] unless hash['paymentProductFilters'].is_a? Hash
+          if hash.key? 'paymentProductFilters'
+            raise TypeError, "value '#{hash['paymentProductFilters']}' is not a Hash" unless hash['paymentProductFilters'].is_a? Hash
             @payment_product_filters = OnlinePayments::SDK::Domain::PaymentProductFiltersHostedFields.new_from_hash(hash['paymentProductFilters'])
           end
-          if hash.has_key? 'tokens'
-            raise TypeError, "value '%s' is not an Array" % [hash['tokens']] unless hash['tokens'].is_a? Array
+          if hash.key? 'tokens'
+            raise TypeError, "value '#{hash['tokens']}' is not an Array" unless hash['tokens'].is_a? Array
             @tokens = []
             hash['tokens'].each do |e|
               @tokens << e

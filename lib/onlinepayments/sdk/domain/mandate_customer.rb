@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -26,6 +28,16 @@ module OnlinePayments
         attr_accessor :mandate_address
 
         attr_accessor :personal_information
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(bank_account_iban: nil, company_name: nil, contact_details: nil, mandate_address: nil, personal_information: nil)
+          super()
+          @bank_account_iban = bank_account_iban
+          @company_name = company_name
+          @contact_details = contact_details
+          @mandate_address = mandate_address
+          @personal_information = personal_information
+        end
 
         # Sets the property and returns this same instance.
         def with_bank_account_iban(value)
@@ -70,23 +82,23 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'bankAccountIban'
-            raise TypeError, "value '%s' is not a Hash" % [hash['bankAccountIban']] unless hash['bankAccountIban'].is_a? Hash
+          if hash.key? 'bankAccountIban'
+            raise TypeError, "value '#{hash['bankAccountIban']}' is not a Hash" unless hash['bankAccountIban'].is_a? Hash
             @bank_account_iban = OnlinePayments::SDK::Domain::BankAccountIban.new_from_hash(hash['bankAccountIban'])
           end
-          if hash.has_key? 'companyName'
+          if hash.key? 'companyName'
             @company_name = hash['companyName']
           end
-          if hash.has_key? 'contactDetails'
-            raise TypeError, "value '%s' is not a Hash" % [hash['contactDetails']] unless hash['contactDetails'].is_a? Hash
+          if hash.key? 'contactDetails'
+            raise TypeError, "value '#{hash['contactDetails']}' is not a Hash" unless hash['contactDetails'].is_a? Hash
             @contact_details = OnlinePayments::SDK::Domain::MandateContactDetails.new_from_hash(hash['contactDetails'])
           end
-          if hash.has_key? 'mandateAddress'
-            raise TypeError, "value '%s' is not a Hash" % [hash['mandateAddress']] unless hash['mandateAddress'].is_a? Hash
+          if hash.key? 'mandateAddress'
+            raise TypeError, "value '#{hash['mandateAddress']}' is not a Hash" unless hash['mandateAddress'].is_a? Hash
             @mandate_address = OnlinePayments::SDK::Domain::MandateAddress.new_from_hash(hash['mandateAddress'])
           end
-          if hash.has_key? 'personalInformation'
-            raise TypeError, "value '%s' is not a Hash" % [hash['personalInformation']] unless hash['personalInformation'].is_a? Hash
+          if hash.key? 'personalInformation'
+            raise TypeError, "value '#{hash['personalInformation']}' is not a Hash" unless hash['personalInformation'].is_a? Hash
             @personal_information = OnlinePayments::SDK::Domain::MandatePersonalInformation.new_from_hash(hash['personalInformation'])
           end
         end

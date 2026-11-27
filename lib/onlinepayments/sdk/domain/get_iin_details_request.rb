@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -14,6 +16,13 @@ module OnlinePayments
         attr_accessor :bin
 
         attr_accessor :payment_context
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(bin: nil, payment_context: nil)
+          super()
+          @bin = bin
+          @payment_context = payment_context
+        end
 
         # Sets the property and returns this same instance.
         def with_bin(value)
@@ -37,11 +46,11 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'bin'
+          if hash.key? 'bin'
             @bin = hash['bin']
           end
-          if hash.has_key? 'paymentContext'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentContext']] unless hash['paymentContext'].is_a? Hash
+          if hash.key? 'paymentContext'
+            raise TypeError, "value '#{hash['paymentContext']}' is not a Hash" unless hash['paymentContext'].is_a? Hash
             @payment_context = OnlinePayments::SDK::Domain::PaymentContext.new_from_hash(hash['paymentContext'])
           end
         end

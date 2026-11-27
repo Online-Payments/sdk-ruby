@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -49,6 +51,36 @@ module OnlinePayments
         attr_accessor :tokens
 
         attr_accessor :variant
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(allowed_number_of_payment_attempts: nil,
+                       auto_refund_split_payments: nil,
+                       card_payment_method_specific_input: nil,
+                       is_new_unscheduled_card_on_file_series: nil,
+                       is_recurring: nil,
+                       locale: nil,
+                       payment_product_filters: nil,
+                       return_url: nil,
+                       session_timeout: nil,
+                       show_result_page: nil,
+                       split_payment_product_filters: nil,
+                       tokens: nil,
+                       variant: nil)
+          super()
+          @allowed_number_of_payment_attempts = allowed_number_of_payment_attempts
+          @auto_refund_split_payments = auto_refund_split_payments
+          @card_payment_method_specific_input = card_payment_method_specific_input
+          @is_new_unscheduled_card_on_file_series = is_new_unscheduled_card_on_file_series
+          @is_recurring = is_recurring
+          @locale = locale
+          @payment_product_filters = payment_product_filters
+          @return_url = return_url
+          @session_timeout = session_timeout
+          @show_result_page = show_result_page
+          @split_payment_product_filters = split_payment_product_filters
+          @tokens = tokens
+          @variant = variant
+        end
 
         # Sets the property and returns this same instance.
         def with_allowed_number_of_payment_attempts(value)
@@ -149,46 +181,46 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'allowedNumberOfPaymentAttempts'
+          if hash.key? 'allowedNumberOfPaymentAttempts'
             @allowed_number_of_payment_attempts = hash['allowedNumberOfPaymentAttempts']
           end
-          if hash.has_key? 'autoRefundSplitPayments'
+          if hash.key? 'autoRefundSplitPayments'
             @auto_refund_split_payments = hash['autoRefundSplitPayments']
           end
-          if hash.has_key? 'cardPaymentMethodSpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['cardPaymentMethodSpecificInput']] unless hash['cardPaymentMethodSpecificInput'].is_a? Hash
+          if hash.key? 'cardPaymentMethodSpecificInput'
+            raise TypeError, "value '#{hash['cardPaymentMethodSpecificInput']}' is not a Hash" unless hash['cardPaymentMethodSpecificInput'].is_a? Hash
             @card_payment_method_specific_input = OnlinePayments::SDK::Domain::CardPaymentMethodSpecificInputForHostedCheckout.new_from_hash(hash['cardPaymentMethodSpecificInput'])
           end
-          if hash.has_key? 'isNewUnscheduledCardOnFileSeries'
+          if hash.key? 'isNewUnscheduledCardOnFileSeries'
             @is_new_unscheduled_card_on_file_series = hash['isNewUnscheduledCardOnFileSeries']
           end
-          if hash.has_key? 'isRecurring'
+          if hash.key? 'isRecurring'
             @is_recurring = hash['isRecurring']
           end
-          if hash.has_key? 'locale'
+          if hash.key? 'locale'
             @locale = hash['locale']
           end
-          if hash.has_key? 'paymentProductFilters'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProductFilters']] unless hash['paymentProductFilters'].is_a? Hash
+          if hash.key? 'paymentProductFilters'
+            raise TypeError, "value '#{hash['paymentProductFilters']}' is not a Hash" unless hash['paymentProductFilters'].is_a? Hash
             @payment_product_filters = OnlinePayments::SDK::Domain::PaymentProductFiltersHostedCheckout.new_from_hash(hash['paymentProductFilters'])
           end
-          if hash.has_key? 'returnUrl'
+          if hash.key? 'returnUrl'
             @return_url = hash['returnUrl']
           end
-          if hash.has_key? 'sessionTimeout'
+          if hash.key? 'sessionTimeout'
             @session_timeout = hash['sessionTimeout']
           end
-          if hash.has_key? 'showResultPage'
+          if hash.key? 'showResultPage'
             @show_result_page = hash['showResultPage']
           end
-          if hash.has_key? 'splitPaymentProductFilters'
-            raise TypeError, "value '%s' is not a Hash" % [hash['splitPaymentProductFilters']] unless hash['splitPaymentProductFilters'].is_a? Hash
+          if hash.key? 'splitPaymentProductFilters'
+            raise TypeError, "value '#{hash['splitPaymentProductFilters']}' is not a Hash" unless hash['splitPaymentProductFilters'].is_a? Hash
             @split_payment_product_filters = OnlinePayments::SDK::Domain::SplitPaymentProductFiltersHostedCheckout.new_from_hash(hash['splitPaymentProductFilters'])
           end
-          if hash.has_key? 'tokens'
+          if hash.key? 'tokens'
             @tokens = hash['tokens']
           end
-          if hash.has_key? 'variant'
+          if hash.key? 'variant'
             @variant = hash['variant']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -21,6 +23,15 @@ module OnlinePayments
         attr_accessor :status
 
         attr_accessor :status_output
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(capture_output: nil, id: nil, status: nil, status_output: nil)
+          super()
+          @capture_output = capture_output
+          @id = id
+          @status = status
+          @status_output = status_output
+        end
 
         # Sets the property and returns this same instance.
         def with_capture_output(value)
@@ -58,18 +69,18 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'captureOutput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['captureOutput']] unless hash['captureOutput'].is_a? Hash
+          if hash.key? 'captureOutput'
+            raise TypeError, "value '#{hash['captureOutput']}' is not a Hash" unless hash['captureOutput'].is_a? Hash
             @capture_output = OnlinePayments::SDK::Domain::CaptureOutput.new_from_hash(hash['captureOutput'])
           end
-          if hash.has_key? 'id'
+          if hash.key? 'id'
             @id = hash['id']
           end
-          if hash.has_key? 'status'
+          if hash.key? 'status'
             @status = hash['status']
           end
-          if hash.has_key? 'statusOutput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['statusOutput']] unless hash['statusOutput'].is_a? Hash
+          if hash.key? 'statusOutput'
+            raise TypeError, "value '#{hash['statusOutput']}' is not a Hash" unless hash['statusOutput'].is_a? Hash
             @status_output = OnlinePayments::SDK::Domain::CaptureStatusOutput.new_from_hash(hash['statusOutput'])
           end
         end

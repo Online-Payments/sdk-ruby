@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -29,6 +31,18 @@ module OnlinePayments
         attr_accessor :status
 
         attr_accessor :unique_mandate_reference
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(alias: nil, customer: nil, customer_reference: nil, mandate_pdf: nil, recurrence_type: nil, status: nil, unique_mandate_reference: nil)
+          super()
+          @alias = binding.local_variable_get(:alias)
+          @customer = customer
+          @customer_reference = customer_reference
+          @mandate_pdf = mandate_pdf
+          @recurrence_type = recurrence_type
+          @status = status
+          @unique_mandate_reference = unique_mandate_reference
+        end
 
         # Sets the property and returns this same instance.
         def with_alias(value)
@@ -87,26 +101,26 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'alias'
+          if hash.key? 'alias'
             @alias = hash['alias']
           end
-          if hash.has_key? 'customer'
-            raise TypeError, "value '%s' is not a Hash" % [hash['customer']] unless hash['customer'].is_a? Hash
+          if hash.key? 'customer'
+            raise TypeError, "value '#{hash['customer']}' is not a Hash" unless hash['customer'].is_a? Hash
             @customer = OnlinePayments::SDK::Domain::MandateCustomerResponse.new_from_hash(hash['customer'])
           end
-          if hash.has_key? 'customerReference'
+          if hash.key? 'customerReference'
             @customer_reference = hash['customerReference']
           end
-          if hash.has_key? 'mandatePdf'
+          if hash.key? 'mandatePdf'
             @mandate_pdf = hash['mandatePdf']
           end
-          if hash.has_key? 'recurrenceType'
+          if hash.key? 'recurrenceType'
             @recurrence_type = hash['recurrenceType']
           end
-          if hash.has_key? 'status'
+          if hash.key? 'status'
             @status = hash['status']
           end
-          if hash.has_key? 'uniqueMandateReference'
+          if hash.key? 'uniqueMandateReference'
             @unique_mandate_reference = hash['uniqueMandateReference']
           end
         end

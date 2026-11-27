@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -17,6 +19,13 @@ module OnlinePayments
           attr_accessor :cursor
 
           attr_accessor :limit
+
+          # Creates a new instance; every attribute can be given as a keyword argument.
+          def initialize(cursor: nil, limit: nil)
+            super()
+            @cursor = cursor
+            @limit = limit
+          end
 
           # Sets the parameter and returns this same instance.
           def with_cursor(value)

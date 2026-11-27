@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -23,6 +25,15 @@ module OnlinePayments
         attr_accessor :order_line_details
 
         attr_accessor :other_details
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(amount_of_money: nil, invoice_data: nil, order_line_details: nil, other_details: nil)
+          super()
+          @amount_of_money = amount_of_money
+          @invoice_data = invoice_data
+          @order_line_details = order_line_details
+          @other_details = other_details
+        end
 
         # Sets the property and returns this same instance.
         def with_amount_of_money(value)
@@ -60,20 +71,20 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'amountOfMoney'
-            raise TypeError, "value '%s' is not a Hash" % [hash['amountOfMoney']] unless hash['amountOfMoney'].is_a? Hash
+          if hash.key? 'amountOfMoney'
+            raise TypeError, "value '#{hash['amountOfMoney']}' is not a Hash" unless hash['amountOfMoney'].is_a? Hash
             @amount_of_money = OnlinePayments::SDK::Domain::AmountOfMoney.new_from_hash(hash['amountOfMoney'])
           end
-          if hash.has_key? 'invoiceData'
-            raise TypeError, "value '%s' is not a Hash" % [hash['invoiceData']] unless hash['invoiceData'].is_a? Hash
+          if hash.key? 'invoiceData'
+            raise TypeError, "value '#{hash['invoiceData']}' is not a Hash" unless hash['invoiceData'].is_a? Hash
             @invoice_data = OnlinePayments::SDK::Domain::LineItemInvoiceData.new_from_hash(hash['invoiceData'])
           end
-          if hash.has_key? 'orderLineDetails'
-            raise TypeError, "value '%s' is not a Hash" % [hash['orderLineDetails']] unless hash['orderLineDetails'].is_a? Hash
+          if hash.key? 'orderLineDetails'
+            raise TypeError, "value '#{hash['orderLineDetails']}' is not a Hash" unless hash['orderLineDetails'].is_a? Hash
             @order_line_details = OnlinePayments::SDK::Domain::OrderLineDetails.new_from_hash(hash['orderLineDetails'])
           end
-          if hash.has_key? 'otherDetails'
-            raise TypeError, "value '%s' is not a Hash" % [hash['otherDetails']] unless hash['otherDetails'].is_a? Hash
+          if hash.key? 'otherDetails'
+            raise TypeError, "value '#{hash['otherDetails']}' is not a Hash" unless hash['otherDetails'].is_a? Hash
             @other_details = OnlinePayments::SDK::Domain::OtherDetails.new_from_hash(hash['otherDetails'])
           end
         end

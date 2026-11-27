@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -15,6 +17,13 @@ module OnlinePayments
 
         # @deprecated This field is not used by any payment product
         attr_accessor :value_mapping
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(type: nil, value_mapping: nil)
+          super()
+          @type = type
+          @value_mapping = value_mapping
+        end
 
         # Sets the property and returns this same instance.
         def with_type(value)
@@ -38,11 +47,11 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'type'
+          if hash.key? 'type'
             @type = hash['type']
           end
-          if hash.has_key? 'valueMapping'
-            raise TypeError, "value '%s' is not an Array" % [hash['valueMapping']] unless hash['valueMapping'].is_a? Array
+          if hash.key? 'valueMapping'
+            raise TypeError, "value '#{hash['valueMapping']}' is not an Array" unless hash['valueMapping'].is_a? Array
             @value_mapping = []
             hash['valueMapping'].each do |e|
               @value_mapping << OnlinePayments::SDK::Domain::ValueMappingElement.new_from_hash(e)

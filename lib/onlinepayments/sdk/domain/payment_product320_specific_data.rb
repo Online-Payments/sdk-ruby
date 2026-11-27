@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :gateway
 
         attr_accessor :networks
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(gateway: nil, networks: nil)
+          super()
+          @gateway = gateway
+          @networks = networks
+        end
 
         # Sets the property and returns this same instance.
         def with_gateway(value)
@@ -36,11 +45,11 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'gateway'
+          if hash.key? 'gateway'
             @gateway = hash['gateway']
           end
-          if hash.has_key? 'networks'
-            raise TypeError, "value '%s' is not an Array" % [hash['networks']] unless hash['networks'].is_a? Array
+          if hash.key? 'networks'
+            raise TypeError, "value '#{hash['networks']}' is not an Array" unless hash['networks'].is_a? Array
             @networks = []
             hash['networks'].each do |e|
               @networks << e

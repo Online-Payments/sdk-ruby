@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -25,6 +27,17 @@ module OnlinePayments
         attr_accessor :partial_redirect_url
 
         attr_accessor :redirect_url
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(returnmac: nil, hosted_checkout_id: nil, invalid_tokens: nil, merchant_reference: nil, partial_redirect_url: nil, redirect_url: nil)
+          super()
+          @returnmac = returnmac
+          @hosted_checkout_id = hosted_checkout_id
+          @invalid_tokens = invalid_tokens
+          @merchant_reference = merchant_reference
+          @partial_redirect_url = partial_redirect_url
+          @redirect_url = redirect_url
+        end
 
         # Sets the property and returns this same instance.
         def with_returnmac(value)
@@ -76,26 +89,26 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'RETURNMAC'
+          if hash.key? 'RETURNMAC'
             @returnmac = hash['RETURNMAC']
           end
-          if hash.has_key? 'hostedCheckoutId'
+          if hash.key? 'hostedCheckoutId'
             @hosted_checkout_id = hash['hostedCheckoutId']
           end
-          if hash.has_key? 'invalidTokens'
-            raise TypeError, "value '%s' is not an Array" % [hash['invalidTokens']] unless hash['invalidTokens'].is_a? Array
+          if hash.key? 'invalidTokens'
+            raise TypeError, "value '#{hash['invalidTokens']}' is not an Array" unless hash['invalidTokens'].is_a? Array
             @invalid_tokens = []
             hash['invalidTokens'].each do |e|
               @invalid_tokens << e
             end
           end
-          if hash.has_key? 'merchantReference'
+          if hash.key? 'merchantReference'
             @merchant_reference = hash['merchantReference']
           end
-          if hash.has_key? 'partialRedirectUrl'
+          if hash.key? 'partialRedirectUrl'
             @partial_redirect_url = hash['partialRedirectUrl']
           end
-          if hash.has_key? 'redirectUrl'
+          if hash.key? 'redirectUrl'
             @redirect_url = hash['redirectUrl']
           end
         end

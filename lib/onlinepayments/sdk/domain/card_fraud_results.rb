@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -16,6 +18,14 @@ module OnlinePayments
         attr_accessor :cvv_result
 
         attr_accessor :fraud_service_result
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(avs_result: nil, cvv_result: nil, fraud_service_result: nil)
+          super()
+          @avs_result = avs_result
+          @cvv_result = cvv_result
+          @fraud_service_result = fraud_service_result
+        end
 
         # Sets the property and returns this same instance.
         def with_avs_result(value)
@@ -46,13 +56,13 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'avsResult'
+          if hash.key? 'avsResult'
             @avs_result = hash['avsResult']
           end
-          if hash.has_key? 'cvvResult'
+          if hash.key? 'cvvResult'
             @cvv_result = hash['cvvResult']
           end
-          if hash.has_key? 'fraudServiceResult'
+          if hash.key? 'fraudServiceResult'
             @fraud_service_result = hash['fraudServiceResult']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :page
 
         attr_accessor :page_size
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(page: nil, page_size: nil)
+          super()
+          @page = page
+          @page_size = page_size
+        end
 
         # Sets the property and returns this same instance.
         def with_page(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'page'
+          if hash.key? 'page'
             @page = hash['page']
           end
-          if hash.has_key? 'pageSize'
+          if hash.key? 'pageSize'
             @page_size = hash['pageSize']
           end
         end

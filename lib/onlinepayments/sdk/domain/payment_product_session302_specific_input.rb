@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :display_name
 
         attr_accessor :domain_name
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(display_name: nil, domain_name: nil)
+          super()
+          @display_name = display_name
+          @domain_name = domain_name
+        end
 
         # Sets the property and returns this same instance.
         def with_display_name(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'displayName'
+          if hash.key? 'displayName'
             @display_name = hash['displayName']
           end
-          if hash.has_key? 'domainName'
+          if hash.key? 'domainName'
             @domain_name = hash['domainName']
           end
         end

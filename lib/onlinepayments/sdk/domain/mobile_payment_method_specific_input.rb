@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -41,6 +43,30 @@ module OnlinePayments
         attr_accessor :public_key_hash
 
         attr_accessor :requires_approval
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(authorization_mode: nil,
+                       auto_capture: nil,
+                       decrypted_payment_data: nil,
+                       encrypted_payment_data: nil,
+                       ephemeral_key: nil,
+                       payment_product302_specific_input: nil,
+                       payment_product320_specific_input: nil,
+                       payment_product_id: nil,
+                       public_key_hash: nil,
+                       requires_approval: nil)
+          super()
+          @authorization_mode = authorization_mode
+          @auto_capture = auto_capture
+          @decrypted_payment_data = decrypted_payment_data
+          @encrypted_payment_data = encrypted_payment_data
+          @ephemeral_key = ephemeral_key
+          @payment_product302_specific_input = payment_product302_specific_input
+          @payment_product320_specific_input = payment_product320_specific_input
+          @payment_product_id = payment_product_id
+          @public_key_hash = public_key_hash
+          @requires_approval = requires_approval
+        end
 
         # Sets the property and returns this same instance.
         def with_authorization_mode(value)
@@ -120,38 +146,38 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'authorizationMode'
+          if hash.key? 'authorizationMode'
             @authorization_mode = hash['authorizationMode']
           end
-          if hash.has_key? 'autoCapture'
-            raise TypeError, "value '%s' is not a Hash" % [hash['autoCapture']] unless hash['autoCapture'].is_a? Hash
+          if hash.key? 'autoCapture'
+            raise TypeError, "value '#{hash['autoCapture']}' is not a Hash" unless hash['autoCapture'].is_a? Hash
             @auto_capture = OnlinePayments::SDK::Domain::AutoCapture.new_from_hash(hash['autoCapture'])
           end
-          if hash.has_key? 'decryptedPaymentData'
-            raise TypeError, "value '%s' is not a Hash" % [hash['decryptedPaymentData']] unless hash['decryptedPaymentData'].is_a? Hash
+          if hash.key? 'decryptedPaymentData'
+            raise TypeError, "value '#{hash['decryptedPaymentData']}' is not a Hash" unless hash['decryptedPaymentData'].is_a? Hash
             @decrypted_payment_data = OnlinePayments::SDK::Domain::DecryptedPaymentData.new_from_hash(hash['decryptedPaymentData'])
           end
-          if hash.has_key? 'encryptedPaymentData'
+          if hash.key? 'encryptedPaymentData'
             @encrypted_payment_data = hash['encryptedPaymentData']
           end
-          if hash.has_key? 'ephemeralKey'
+          if hash.key? 'ephemeralKey'
             @ephemeral_key = hash['ephemeralKey']
           end
-          if hash.has_key? 'paymentProduct302SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct302SpecificInput']] unless hash['paymentProduct302SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct302SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct302SpecificInput']}' is not a Hash" unless hash['paymentProduct302SpecificInput'].is_a? Hash
             @payment_product302_specific_input = OnlinePayments::SDK::Domain::MobilePaymentProduct302SpecificInput.new_from_hash(hash['paymentProduct302SpecificInput'])
           end
-          if hash.has_key? 'paymentProduct320SpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['paymentProduct320SpecificInput']] unless hash['paymentProduct320SpecificInput'].is_a? Hash
+          if hash.key? 'paymentProduct320SpecificInput'
+            raise TypeError, "value '#{hash['paymentProduct320SpecificInput']}' is not a Hash" unless hash['paymentProduct320SpecificInput'].is_a? Hash
             @payment_product320_specific_input = OnlinePayments::SDK::Domain::MobilePaymentProduct320SpecificInput.new_from_hash(hash['paymentProduct320SpecificInput'])
           end
-          if hash.has_key? 'paymentProductId'
+          if hash.key? 'paymentProductId'
             @payment_product_id = hash['paymentProductId']
           end
-          if hash.has_key? 'publicKeyHash'
+          if hash.key? 'publicKeyHash'
             @public_key_hash = hash['publicKeyHash']
           end
-          if hash.has_key? 'requiresApproval'
+          if hash.key? 'requiresApproval'
             @requires_approval = hash['requiresApproval']
           end
         end

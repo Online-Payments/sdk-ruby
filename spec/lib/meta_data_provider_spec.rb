@@ -18,8 +18,8 @@ describe 'MetadataProvider' do
     server_meta_info_json = Base64.strict_decode64(request_headers[0].value).force_encoding('utf-8')
     server_meta_info = OnlinePayments::SDK::JSON::DefaultMarshaller.instance.unmarshal(server_meta_info_json, MetadataProvider::ServerMetaInfo)
 
-    expect(server_meta_info.platform_identifier).to eq(meta_data_provider.send(:get_platform_identifier))
-    expect(server_meta_info.sdk_identifier).to eq(meta_data_provider.send(:get_sdk_identifier))
+    expect(server_meta_info.platform_identifier).to eq(meta_data_provider.send(:platform_identifier))
+    expect(server_meta_info.sdk_identifier).to eq(meta_data_provider.send(:sdk_identifier))
     expect(server_meta_info.sdk_creator).to eq('OnlinePayments')
     expect(server_meta_info.shopping_cart_extension.creator).to eq(shopping_cart_extension.creator)
     expect(server_meta_info.shopping_cart_extension.name).to eq(shopping_cart_extension.name)
@@ -38,8 +38,8 @@ describe 'MetadataProvider' do
     server_meta_info_json = Base64.strict_decode64(request_headers[0].value).force_encoding('utf-8')
     server_meta_info = OnlinePayments::SDK::JSON::DefaultMarshaller.instance.unmarshal(server_meta_info_json, MetadataProvider::ServerMetaInfo)
 
-    expect(server_meta_info.platform_identifier).to eq(meta_data_provider.send(:get_platform_identifier))
-    expect(server_meta_info.sdk_identifier).to eq(meta_data_provider.send(:get_sdk_identifier))
+    expect(server_meta_info.platform_identifier).to eq(meta_data_provider.send(:platform_identifier))
+    expect(server_meta_info.sdk_identifier).to eq(meta_data_provider.send(:sdk_identifier))
     expect(server_meta_info.sdk_creator).to eq('OnlinePayments')
     expect(server_meta_info.shopping_cart_extension.creator).to eq(shopping_cart_extension.creator)
     expect(server_meta_info.shopping_cart_extension.name).to eq(shopping_cart_extension.name)
@@ -59,8 +59,8 @@ describe 'MetadataProvider' do
     server_meta_info_json = Base64.strict_decode64(request_headers[0].value).force_encoding('utf-8')
     server_meta_info = OnlinePayments::SDK::JSON::DefaultMarshaller.instance.unmarshal(server_meta_info_json, MetadataProvider::ServerMetaInfo)
 
-    expect(server_meta_info.platform_identifier).to eq(meta_data_provider.send(:get_platform_identifier))
-    expect(server_meta_info.sdk_identifier).to eq(meta_data_provider.send(:get_sdk_identifier))
+    expect(server_meta_info.platform_identifier).to eq(meta_data_provider.send(:platform_identifier))
+    expect(server_meta_info.sdk_identifier).to eq(meta_data_provider.send(:sdk_identifier))
     expect(server_meta_info.sdk_creator).to eq('OnlinePayments')
   end
 
@@ -77,5 +77,16 @@ describe 'MetadataProvider' do
       expect(request_headers[i]).to eq(header)
       i += 1
     end
+  end
+
+  it 'uses the SDK version in the server_meta_info header' do
+    meta_data_provider = MetadataProvider.new('OnlinePayments')
+
+    request_headers = meta_data_provider.metadata_headers
+    server_meta_info_json = Base64.strict_decode64(request_headers[0].value).force_encoding('utf-8')
+    server_meta_info = OnlinePayments::SDK::JSON::DefaultMarshaller.instance.unmarshal(server_meta_info_json, MetadataProvider::ServerMetaInfo)
+
+    expect(MetadataProvider.sdk_version).to eq(OnlinePayments::SDK::VERSION)
+    expect(server_meta_info.sdk_identifier).to eq("RubyServerSDK/v#{OnlinePayments::SDK::VERSION}")
   end
 end

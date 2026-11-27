@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -11,6 +13,12 @@ module OnlinePayments
       class CustomerOutput < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :device
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(device: nil)
+          super()
+          @device = device
+        end
 
         # Sets the property and returns this same instance.
         def with_device(value)
@@ -27,8 +35,8 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'device'
-            raise TypeError, "value '%s' is not a Hash" % [hash['device']] unless hash['device'].is_a? Hash
+          if hash.key? 'device'
+            raise TypeError, "value '#{hash['device']}' is not a Hash" unless hash['device'].is_a? Hash
             @device = OnlinePayments::SDK::Domain::CustomerDeviceOutput.new_from_hash(hash['device'])
           end
         end

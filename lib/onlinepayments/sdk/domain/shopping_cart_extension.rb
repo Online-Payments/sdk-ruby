@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'onlinepayments/sdk/domain/data_object'
 
 module OnlinePayments
@@ -10,10 +12,11 @@ module OnlinePayments
       # @attr_reader [String] version
       # @attr_reader [String] extension_id
       class ShoppingCartExtension < DataObject
-        def initialize(creator, name, version, extension_id=nil)
-          raise ArgumentError.new if creator.nil? or creator.strip.empty?
-          raise ArgumentError.new if name.nil? or name.strip.empty?
-          raise ArgumentError.new if version.nil? or version.to_s.strip.empty?
+        def initialize(creator, name, version, extension_id = nil)
+          super()
+          raise ArgumentError if creator.nil? || creator.strip.empty?
+          raise ArgumentError if name.nil? || name.strip.empty?
+          raise ArgumentError if version.nil? || version.to_s.strip.empty?
 
           @creator = creator
           @name = name
@@ -27,11 +30,11 @@ module OnlinePayments
         # Overridden so ShoppingCartExtension can retain mandatory default arguments
         #++
         def self.new_from_hash(hash)
-          creator = hash['creator'] if hash.has_key?('creator')
-          name = hash['name'] if hash.has_key?('name')
-          version = hash['version'] if hash.has_key?('version')
-          extension_id = hash['extensionId'] if hash.has_key?('extensionId')
-          self.new(creator, name, version, extension_id)
+          creator = hash['creator'] if hash.key?('creator')
+          name = hash['name'] if hash.key?('name')
+          version = hash['version'] if hash.key?('version')
+          extension_id = hash['extensionId'] if hash.key?('extensionId')
+          new(creator, name, version, extension_id)
         end
 
         # Converts the shopping cart metadata to a hash
@@ -47,10 +50,10 @@ module OnlinePayments
         # loads shopping cart metadata from a parameter hash
         def from_hash(hash)
           super
-          @creator = hash['creator'] if hash.has_key? 'creator'
-          @name = hash['name'] if hash.has_key? 'name'
-          @version = hash['version'] if hash.has_key? 'version'
-          @extension_id = hash['extensionId'] if hash.has_key? 'extensionId'
+          @creator = hash['creator'] if hash.key? 'creator'
+          @name = hash['name'] if hash.key? 'name'
+          @version = hash['version'] if hash.key? 'version'
+          @extension_id = hash['extensionId'] if hash.key? 'extensionId'
         end
 
         attr_reader :creator, :name, :version, :extension_id

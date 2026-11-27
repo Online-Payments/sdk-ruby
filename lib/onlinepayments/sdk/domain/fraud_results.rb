@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -10,6 +12,12 @@ module OnlinePayments
       class FraudResults < OnlinePayments::SDK::Domain::DataObject
 
         attr_accessor :fraud_service_result
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(fraud_service_result: nil)
+          super()
+          @fraud_service_result = fraud_service_result
+        end
 
         # Sets the property and returns this same instance.
         def with_fraud_service_result(value)
@@ -26,7 +34,7 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'fraudServiceResult'
+          if hash.key? 'fraudServiceResult'
             @fraud_service_result = hash['fraudServiceResult']
           end
         end

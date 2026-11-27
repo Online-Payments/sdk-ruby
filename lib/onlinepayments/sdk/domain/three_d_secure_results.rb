@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -46,6 +48,36 @@ module OnlinePayments
         attr_accessor :version
 
         attr_accessor :xid
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(acs_transaction_id: nil,
+                       applied_exemption: nil,
+                       authentication_status: nil,
+                       cavv: nil,
+                       challenge_indicator: nil,
+                       ds_transaction_id: nil,
+                       eci: nil,
+                       exemption_engine_flow: nil,
+                       flow: nil,
+                       liability: nil,
+                       scheme_eci: nil,
+                       version: nil,
+                       xid: nil)
+          super()
+          @acs_transaction_id = acs_transaction_id
+          @applied_exemption = applied_exemption
+          @authentication_status = authentication_status
+          @cavv = cavv
+          @challenge_indicator = challenge_indicator
+          @ds_transaction_id = ds_transaction_id
+          @eci = eci
+          @exemption_engine_flow = exemption_engine_flow
+          @flow = flow
+          @liability = liability
+          @scheme_eci = scheme_eci
+          @version = version
+          @xid = xid
+        end
 
         # Sets the property and returns this same instance.
         def with_acs_transaction_id(value)
@@ -146,43 +178,43 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'acsTransactionId'
+          if hash.key? 'acsTransactionId'
             @acs_transaction_id = hash['acsTransactionId']
           end
-          if hash.has_key? 'appliedExemption'
+          if hash.key? 'appliedExemption'
             @applied_exemption = hash['appliedExemption']
           end
-          if hash.has_key? 'authenticationStatus'
+          if hash.key? 'authenticationStatus'
             @authentication_status = hash['authenticationStatus']
           end
-          if hash.has_key? 'cavv'
+          if hash.key? 'cavv'
             @cavv = hash['cavv']
           end
-          if hash.has_key? 'challengeIndicator'
+          if hash.key? 'challengeIndicator'
             @challenge_indicator = hash['challengeIndicator']
           end
-          if hash.has_key? 'dsTransactionId'
+          if hash.key? 'dsTransactionId'
             @ds_transaction_id = hash['dsTransactionId']
           end
-          if hash.has_key? 'eci'
+          if hash.key? 'eci'
             @eci = hash['eci']
           end
-          if hash.has_key? 'exemptionEngineFlow'
+          if hash.key? 'exemptionEngineFlow'
             @exemption_engine_flow = hash['exemptionEngineFlow']
           end
-          if hash.has_key? 'flow'
+          if hash.key? 'flow'
             @flow = hash['flow']
           end
-          if hash.has_key? 'liability'
+          if hash.key? 'liability'
             @liability = hash['liability']
           end
-          if hash.has_key? 'schemeEci'
+          if hash.key? 'schemeEci'
             @scheme_eci = hash['schemeEci']
           end
-          if hash.has_key? 'version'
+          if hash.key? 'version'
             @version = hash['version']
           end
-          if hash.has_key? 'xid'
+          if hash.key? 'xid'
             @xid = hash['xid']
           end
         end

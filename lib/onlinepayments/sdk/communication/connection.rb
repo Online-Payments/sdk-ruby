@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'onlinepayments/sdk/logging/logging_capable'
 require 'onlinepayments/sdk/logging/obfuscation/obfuscation_capable'
 

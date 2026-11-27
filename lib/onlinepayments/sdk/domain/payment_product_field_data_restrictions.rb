@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -14,6 +16,13 @@ module OnlinePayments
         attr_accessor :is_required
 
         attr_accessor :validators
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(is_required: nil, validators: nil)
+          super()
+          @is_required = is_required
+          @validators = validators
+        end
 
         # Sets the property and returns this same instance.
         def with_is_required(value)
@@ -37,11 +46,11 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'isRequired'
+          if hash.key? 'isRequired'
             @is_required = hash['isRequired']
           end
-          if hash.has_key? 'validators'
-            raise TypeError, "value '%s' is not a Hash" % [hash['validators']] unless hash['validators'].is_a? Hash
+          if hash.key? 'validators'
+            raise TypeError, "value '#{hash['validators']}' is not a Hash" unless hash['validators'].is_a? Hash
             @validators = OnlinePayments::SDK::Domain::PaymentProductFieldValidators.new_from_hash(hash['validators'])
           end
         end

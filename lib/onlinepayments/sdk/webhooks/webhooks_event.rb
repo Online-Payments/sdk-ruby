@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'onlinepayments/sdk/domain/data_object'
 require 'onlinepayments/sdk/domain/get_batch_status_response'
 require 'onlinepayments/sdk/domain/payment_link_response'
@@ -14,37 +16,31 @@ module OnlinePayments
       # @attr [String] id
       # @attr [String] merchant_id
       # @attr [String] type
-      # @attr [OnlinePayments::SDK::V2::Domain::GetBatchStatusResponse] direct_batch
-      # @attr [OnlinePayments::SDK::V2::Domain::PaymentLinkResponse] payment_link
-      # @attr [OnlinePayments::SDK::V2::Domain::PaymentResponse] payment
-      # @attr [OnlinePayments::SDK::V2::Domain::PayoutResponse] payout
-      # @attr [OnlinePayments::SDK::V2::Domain::RefundResponse] refund
-      # @attr [OnlinePayments::SDK::V2::Domain::TokenResponse] token
+      # @attr [OnlinePayments::SDK::Domain::GetBatchStatusResponse] direct_batch
+      # @attr [OnlinePayments::SDK::Domain::PaymentLinkResponse] payment_link
+      # @attr [OnlinePayments::SDK::Domain::PaymentResponse] payment
+      # @attr [OnlinePayments::SDK::Domain::PayoutResponse] payout
+      # @attr [OnlinePayments::SDK::Domain::RefundResponse] refund
+      # @attr [OnlinePayments::SDK::Domain::TokenResponse] token
       class WebhooksEvent < OnlinePayments::SDK::Domain::DataObject
+        attr_accessor :api_version, :created, :id, :merchant_id, :type, :direct_batch, :payment_link, :payment, :payout, :refund, :token
 
-        attr_accessor :api_version
-
-        attr_accessor :created
-
-        attr_accessor :dispute
-
-        attr_accessor :id
-
-        attr_accessor :merchant_id
-
-        attr_accessor :type
-
-        attr_accessor :direct_batch
-
-        attr_accessor :payment_link
-
-        attr_accessor :payment
-
-        attr_accessor :payout
-
-        attr_accessor :refund
-
-        attr_accessor :token
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(api_version: nil, created: nil, id: nil, merchant_id: nil, type: nil, direct_batch: nil,
+                       payment_link: nil, payment: nil, payout: nil, refund: nil, token: nil)
+          super()
+          @api_version = api_version
+          @created = created
+          @id = id
+          @merchant_id = merchant_id
+          @type = type
+          @direct_batch = direct_batch
+          @payment_link = payment_link
+          @payment = payment
+          @payout = payout
+          @refund = refund
+          @token = token
+        end
 
         # @return (Hash)
         def to_h
@@ -65,39 +61,19 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'apiVersion'
-            @api_version = hash['apiVersion']
-          end
-          if hash.has_key? 'created'
-            @created = hash['created']
-          end
-          if hash.has_key? 'id'
-            @id = hash['id']
-          end
-          if hash.has_key? 'merchantId'
-            @merchant_id = hash['merchantId']
-          end
-          if hash.has_key? 'type'
-            @type = hash['type']
-          end
-          if hash.has_key? 'directBatch'
-            @direct_batch = OnlinePayments::SDK::Domain::GetBatchStatusResponse.new_from_hash(hash['directBatch'])
-          end
-          if hash.has_key? 'paymentLink'
-            @payment_link = OnlinePayments::SDK::Domain::PaymentLinkResponse.new_from_hash(hash['paymentLink'])
-          end
-          if hash.has_key? 'payment'
-            @payment = OnlinePayments::SDK::Domain::PaymentResponse.new_from_hash(hash['payment'])
-          end
-          if hash.has_key? 'payout'
-            @payout = OnlinePayments::SDK::Domain::PayoutResponse.new_from_hash(hash['payout'])
-          end
-          if hash.has_key? 'refund'
-            @refund = OnlinePayments::SDK::Domain::RefundResponse.new_from_hash(hash['refund'])
-          end
-          if hash.has_key? 'token'
-            @token = OnlinePayments::SDK::Domain::TokenResponse.new_from_hash(hash['token'])
-          end
+          @api_version = hash['apiVersion'] if hash.key? 'apiVersion'
+          @created = hash['created'] if hash.key? 'created'
+          @id = hash['id'] if hash.key? 'id'
+          @merchant_id = hash['merchantId'] if hash.key? 'merchantId'
+          @type = hash['type'] if hash.key? 'type'
+          @direct_batch = OnlinePayments::SDK::Domain::GetBatchStatusResponse.new_from_hash(hash['directBatch']) if hash.key? 'directBatch'
+          @payment_link = OnlinePayments::SDK::Domain::PaymentLinkResponse.new_from_hash(hash['paymentLink']) if hash.key? 'paymentLink'
+          @payment = OnlinePayments::SDK::Domain::PaymentResponse.new_from_hash(hash['payment']) if hash.key? 'payment'
+          @payout = OnlinePayments::SDK::Domain::PayoutResponse.new_from_hash(hash['payout']) if hash.key? 'payout'
+          @refund = OnlinePayments::SDK::Domain::RefundResponse.new_from_hash(hash['refund']) if hash.key? 'refund'
+          return unless hash.key? 'token'
+
+          @token = OnlinePayments::SDK::Domain::TokenResponse.new_from_hash(hash['token'])
         end
       end
     end

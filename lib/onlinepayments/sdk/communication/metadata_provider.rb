@@ -1,8 +1,12 @@
+# frozen_string_literal: true
+
 require 'base64'
+require 'etc'
 require 'onlinepayments/sdk/communication/request_header'
 require 'onlinepayments/sdk/domain/data_object'
 require 'onlinepayments/sdk/domain/shopping_cart_extension'
 require 'onlinepayments/sdk/json/default_marshaller'
+require 'onlinepayments/sdk/version'
 
 module OnlinePayments
   module SDK
@@ -11,34 +15,21 @@ module OnlinePayments
       #
       # @attr_reader [Array<OnlinePayments::SDK::Communication::RequestHeader>] metadata_headers List of headers that should be used in all requests.
       class MetadataProvider
-        private
-
-        SDK_VERSION = '11.1.0'.freeze
-        SERVER_META_INFO_HEADER = 'X-GCS-ServerMetaInfo'.freeze
+        SDK_VERSION = OnlinePayments::SDK::VERSION
+        SERVER_META_INFO_HEADER = 'X-GCS-ServerMetaInfo'
         PROHIBITED_HEADERS = [SERVER_META_INFO_HEADER, 'X-GCS-Idempotence-Key', 'Date', 'Content-Type', 'Authorization'].sort!.freeze
-        CHARSET = 'utf-8'.freeze
-
-        public
+        CHARSET = 'utf-8'
+        private_constant :SDK_VERSION, :SERVER_META_INFO_HEADER, :PROHIBITED_HEADERS, :CHARSET
 
         # Stores metadata about the server so it can be sent to the Online Payments platform
         class ServerMetaInfo < OnlinePayments::SDK::Domain::DataObject
-          @platform_identifier = nil
-          @sdk_identifier = nil
-          @sdk_creator = nil
-          @integrator = nil
-          @shopping_cart_extension = nil
-
           # String containing system information (Operating system and Ruby version).
           attr_accessor :platform_identifier
 
           # String containing this SDK version.
           attr_accessor :sdk_identifier
 
-          attr_accessor :sdk_creator
-
-          attr_accessor :integrator
-
-          attr_accessor :shopping_cart_extension
+          attr_accessor :sdk_creator, :integrator, :shopping_cart_extension
 
           # Returns the values of all attributes as a hash.
           def to_h
@@ -54,11 +45,13 @@ module OnlinePayments
           # Initializes the ServerMetaInfo object with properties stored in the parameter hash
           def from_hash(hash)
             super
-            @platform_identifier = hash['platformIdentifier'] if hash.has_key? 'platformIdentifier'
-            @sdk_identifier = hash['sdkIdentifier'] if hash.has_key? 'sdkIdentifier'
-            @sdk_creator = hash['sdkCreator'] if hash.has_key? 'sdkCreator'
-            @integrator = hash['integrator'] if hash.has_key? 'integrator'
-            @shopping_cart_extension = OnlinePayments::SDK::Domain::ShoppingCartExtension.new_from_hash(hash['shoppingCartExtension']) if hash.has_key? 'shoppingCartExtension'
+            @platform_identifier = hash['platformIdentifier'] if hash.key? 'platformIdentifier'
+            @sdk_identifier = hash['sdkIdentifier'] if hash.key? 'sdkIdentifier'
+            @sdk_creator = hash['sdkCreator'] if hash.key? 'sdkCreator'
+            @integrator = hash['integrator'] if hash.key? 'integrator'
+            return unless hash.key? 'shoppingCartExtension'
+
+            @shopping_cart_extension = OnlinePayments::SDK::Domain::ShoppingCartExtension.new_from_hash(hash['shoppingCartExtension'])
           end
         end
 
@@ -66,22 +59,26 @@ module OnlinePayments
         #
         # @param integrator                 [String] Name of the integrator
         # @param shopping_cart_extension    [OnlinePayments::SDK::Domain::ShoppingCartExtension] shopping cart-related metadata.
-        # @param additional_request_headers [Array<OnlinePayments::SDK::Communication::RequestHeader>] list of additional headers to include in all requests made.
+        # @param additional_request_headers [Array<OnlinePayments::SDK::Communication::RequestHeader>] list of additional headers to include in all
+        #                                                                                              requests made.
         #                                   The following headers are not allowed due to conflicts with already added headers:
         #                                   'X-GCS-Idempotence-Key', 'Date', 'Content-Type', 'Authorization' and 'X-GCS-ServerMetaInfo'
         def initialize(integrator, shopping_cart_extension: nil, additional_request_headers: [].freeze)
-          raise ArgumentError.new('integrator is required') if integrator.nil? or integrator.strip.empty?
+          raise ArgumentError, 'integrator is required' if integrator.nil? || integrator.strip.empty?
+
           MetadataProvider.validate_additional_request_headers(additional_request_headers)
           server_meta_info = ServerMetaInfo.new
-          server_meta_info.platform_identifier = get_platform_identifier
-          server_meta_info.sdk_identifier = get_sdk_identifier
+          server_meta_info.platform_identifier = platform_identifier
+          server_meta_info.sdk_identifier = sdk_identifier
           server_meta_info.sdk_creator = 'OnlinePayments'
           server_meta_info.integrator = integrator
           server_meta_info.shopping_cart_extension = shopping_cart_extension unless shopping_cart_extension.nil?
           server_meta_info_string = OnlinePayments::SDK::JSON::DefaultMarshaller.instance.marshal(server_meta_info)
           server_meta_info_header = RequestHeader.new(
             SERVER_META_INFO_HEADER, Base64.strict_encode64(
-            server_meta_info_string.force_encoding('iso-8859-1').encode(CHARSET)))
+                                       server_meta_info_string.force_encoding('iso-8859-1').encode(CHARSET)
+                                     )
+          )
           if additional_request_headers.nil? || additional_request_headers.empty?
             @metadata_headers = [server_meta_info_header].freeze
           else
@@ -96,10 +93,10 @@ module OnlinePayments
         # 'X-GCS-Idempotence-Key', 'Date', 'Content-Type', 'Authorization' and 'X-GCS-ServerMetaInfo'
         # If a header is found that is equal to one of the forbidden headers an ArgumentError is raised.
         def self.validate_additional_request_headers(additional_request_headers)
-          unless additional_request_headers.nil?
-            additional_request_headers.each { |additional_request_header|
-              validate_additional_request_header(additional_request_header)
-            }
+          return if additional_request_headers.nil?
+
+          additional_request_headers.each do |additional_request_header|
+            validate_additional_request_header(additional_request_header)
           end
         end
 
@@ -108,30 +105,23 @@ module OnlinePayments
         # 'X-GCS-Idempotence-Key', 'Date', 'Content-Type', 'Authorization' and 'X-GCS-ServerMetaInfo'
         # If the header is equal to one of the forbidden headers an ArgumentError is raised.
         def self.validate_additional_request_header(additional_request_header)
-          if prohibited_headers.include? additional_request_header.name
-            raise ArgumentError.new('request header not allowed' + additional_request_header.name)
-          end
+          name = additional_request_header.name.strip
+          return unless prohibited_headers.any? { |prohibited_header| prohibited_header.casecmp?(name) }
+
+          raise ArgumentError, "request header not allowed: #{additional_request_header.name}"
         end
 
         protected
 
         # String containing information of the system using the SDK.
         # It contains data like Operating System version and Ruby version
-        def get_platform_identifier
-          config = RbConfig::CONFIG['host_os']
-          if config.include? 'mingw'
-            s = 'Windows'
-          elsif config.include? 'linux'
-            s = 'Linux'
-          else
-            s = 'Mac OS X'
-          end
-          s + '/' + RUBY_DESCRIPTION
+        def platform_identifier
+          "#{Etc.uname[:sysname]}/#{RUBY_DESCRIPTION}"
         end
 
         # String describing the version of the SDK being used
-        def get_sdk_identifier
-          'RubyServerSDK/v' + SDK_VERSION
+        def sdk_identifier
+          "RubyServerSDK/v#{SDK_VERSION}"
         end
 
         public

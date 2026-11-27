@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -22,6 +24,16 @@ module OnlinePayments
         attr_accessor :payment_reference
 
         attr_accessor :qr_code
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(payment_bic: nil, payment_beneficiary: nil, payment_iban: nil, payment_reference: nil, qr_code: nil)
+          super()
+          @payment_bic = payment_bic
+          @payment_beneficiary = payment_beneficiary
+          @payment_iban = payment_iban
+          @payment_reference = payment_reference
+          @qr_code = qr_code
+        end
 
         # Sets the property and returns this same instance.
         def with_payment_bic(value)
@@ -66,19 +78,19 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'paymentBIC'
+          if hash.key? 'paymentBIC'
             @payment_bic = hash['paymentBIC']
           end
-          if hash.has_key? 'paymentBeneficiary'
+          if hash.key? 'paymentBeneficiary'
             @payment_beneficiary = hash['paymentBeneficiary']
           end
-          if hash.has_key? 'paymentIBAN'
+          if hash.key? 'paymentIBAN'
             @payment_iban = hash['paymentIBAN']
           end
-          if hash.has_key? 'paymentReference'
+          if hash.key? 'paymentReference'
             @payment_reference = hash['paymentReference']
           end
-          if hash.has_key? 'qrCode'
+          if hash.key? 'qrCode'
             @qr_code = hash['qrCode']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'date'
 
 module OnlinePayments
@@ -19,18 +21,12 @@ module OnlinePayments
     # @attr        [DateTime] idempotence_response_date_time If two or more requests arrive at the Online Payments platform with the same _idempotence_key_,
     #              the _idempotence_response_date_time_ will be set to the response date/time of the first response.
     class CallContext
-      @idempotence_key = nil
-      @idempotence_request_timestamp = nil
-      @idempotence_response_date_time = nil
-
       def initialize(idempotence_key = nil)
         @idempotence_key = idempotence_key
       end
 
       attr_reader :idempotence_key
-      attr_accessor :idempotence_request_timestamp
-      attr_accessor :idempotence_response_date_time
-      attr_accessor :gzip
+      attr_accessor :idempotence_request_timestamp, :idempotence_response_date_time, :gzip
     end
   end
 end

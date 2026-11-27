@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -28,6 +30,18 @@ module OnlinePayments
         attr_accessor :product_name
 
         attr_accessor :token
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(cardholder_name: nil, expiry_date: nil, logo_url: nil, masked_pan: nil, payment_product_id: nil, product_name: nil, token: nil)
+          super()
+          @cardholder_name = cardholder_name
+          @expiry_date = expiry_date
+          @logo_url = logo_url
+          @masked_pan = masked_pan
+          @payment_product_id = payment_product_id
+          @product_name = product_name
+          @token = token
+        end
 
         # Sets the property and returns this same instance.
         def with_cardholder_name(value)
@@ -86,25 +100,25 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'cardholderName'
+          if hash.key? 'cardholderName'
             @cardholder_name = hash['cardholderName']
           end
-          if hash.has_key? 'expiryDate'
+          if hash.key? 'expiryDate'
             @expiry_date = hash['expiryDate']
           end
-          if hash.has_key? 'logoUrl'
+          if hash.key? 'logoUrl'
             @logo_url = hash['logoUrl']
           end
-          if hash.has_key? 'maskedPan'
+          if hash.key? 'maskedPan'
             @masked_pan = hash['maskedPan']
           end
-          if hash.has_key? 'paymentProductId'
+          if hash.key? 'paymentProductId'
             @payment_product_id = hash['paymentProductId']
           end
-          if hash.has_key? 'productName'
+          if hash.key? 'productName'
             @product_name = hash['productName']
           end
-          if hash.has_key? 'token'
+          if hash.key? 'token'
             @token = hash['token']
           end
         end

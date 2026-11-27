@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -15,6 +17,13 @@ module OnlinePayments
         attr_accessor :card_payment_method_specific_input
 
         attr_accessor :order
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(card_payment_method_specific_input: nil, order: nil)
+          super()
+          @card_payment_method_specific_input = card_payment_method_specific_input
+          @order = order
+        end
 
         # Sets the property and returns this same instance.
         def with_card_payment_method_specific_input(value)
@@ -38,12 +47,12 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'cardPaymentMethodSpecificInput'
-            raise TypeError, "value '%s' is not a Hash" % [hash['cardPaymentMethodSpecificInput']] unless hash['cardPaymentMethodSpecificInput'].is_a? Hash
+          if hash.key? 'cardPaymentMethodSpecificInput'
+            raise TypeError, "value '#{hash['cardPaymentMethodSpecificInput']}' is not a Hash" unless hash['cardPaymentMethodSpecificInput'].is_a? Hash
             @card_payment_method_specific_input = OnlinePayments::SDK::Domain::CompletePaymentCardPaymentMethodSpecificInput.new_from_hash(hash['cardPaymentMethodSpecificInput'])
           end
-          if hash.has_key? 'order'
-            raise TypeError, "value '%s' is not a Hash" % [hash['order']] unless hash['order'].is_a? Hash
+          if hash.key? 'order'
+            raise TypeError, "value '#{hash['order']}' is not a Hash" unless hash['order'].is_a? Hash
             @order = OnlinePayments::SDK::Domain::Order.new_from_hash(hash['order'])
           end
         end

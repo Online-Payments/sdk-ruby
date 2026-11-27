@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -13,6 +15,13 @@ module OnlinePayments
         attr_accessor :max_value
 
         attr_accessor :min_value
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(max_value: nil, min_value: nil)
+          super()
+          @max_value = max_value
+          @min_value = min_value
+        end
 
         # Sets the property and returns this same instance.
         def with_max_value(value)
@@ -36,10 +45,10 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'maxValue'
+          if hash.key? 'maxValue'
             @max_value = hash['maxValue']
           end
-          if hash.has_key? 'minValue'
+          if hash.key? 'minValue'
             @min_value = hash['minValue']
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # This file was automatically generated.
 #
@@ -19,6 +21,14 @@ module OnlinePayments
         attr_accessor :company_information
 
         attr_accessor :personal_information
+
+        # Creates a new instance; every attribute can be given as a keyword argument.
+        def initialize(billing_address: nil, company_information: nil, personal_information: nil)
+          super()
+          @billing_address = billing_address
+          @company_information = company_information
+          @personal_information = personal_information
+        end
 
         # Sets the property and returns this same instance.
         def with_billing_address(value)
@@ -49,16 +59,16 @@ module OnlinePayments
 
         def from_hash(hash)
           super
-          if hash.has_key? 'billingAddress'
-            raise TypeError, "value '%s' is not a Hash" % [hash['billingAddress']] unless hash['billingAddress'].is_a? Hash
+          if hash.key? 'billingAddress'
+            raise TypeError, "value '#{hash['billingAddress']}' is not a Hash" unless hash['billingAddress'].is_a? Hash
             @billing_address = OnlinePayments::SDK::Domain::Address.new_from_hash(hash['billingAddress'])
           end
-          if hash.has_key? 'companyInformation'
-            raise TypeError, "value '%s' is not a Hash" % [hash['companyInformation']] unless hash['companyInformation'].is_a? Hash
+          if hash.key? 'companyInformation'
+            raise TypeError, "value '#{hash['companyInformation']}' is not a Hash" unless hash['companyInformation'].is_a? Hash
             @company_information = OnlinePayments::SDK::Domain::CompanyInformation.new_from_hash(hash['companyInformation'])
           end
-          if hash.has_key? 'personalInformation'
-            raise TypeError, "value '%s' is not a Hash" % [hash['personalInformation']] unless hash['personalInformation'].is_a? Hash
+          if hash.key? 'personalInformation'
+            raise TypeError, "value '#{hash['personalInformation']}' is not a Hash" unless hash['personalInformation'].is_a? Hash
             @personal_information = OnlinePayments::SDK::Domain::PersonalInformationToken.new_from_hash(hash['personalInformation'])
           end
         end
